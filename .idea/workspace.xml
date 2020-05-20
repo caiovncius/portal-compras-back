@@ -2,11 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/portal-compras-back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/portal-compras-back.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/City.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Functionality.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Pharmacy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Profile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/State.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Traits/Models/CityRelations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Traits/Models/ProfileRelations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Traits/Models/StateRelations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Traits/Models/UserRelations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/passport.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2014_10_11_000000_create_profile_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000001_create_oauth_auth_codes_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000002_create_oauth_access_tokens_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000003_create_oauth_refresh_tokens_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000004_create_oauth_clients_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000005_create_oauth_personal_access_clients_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145025_create_functionalities_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145043_create_profile_functionalities_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145719_create_states_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145734_create_cities_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145741_create_pharmacies_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/CreateInitialUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,13 +161,16 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1c7zxJPLcC02Iv4v504aDKzH27G" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -168,7 +193,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589894664873</updated>
       <workItem from="1589894670311" duration="1843000" />
-      <workItem from="1589983029067" duration="1787000" />
+      <workItem from="1589983029067" duration="7383000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://grupoitss.visualstudio.com/Associados/_git/portal-compras-back&#10;&#10;# Conflicts:&#10;#&#9;README.md">
       <created>1589895176923</created>
@@ -184,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589896424312</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Adicionado pltaforma de documentação">
+      <created>1589985145915</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1589985145915</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,26 +225,33 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Merge branch 'master' of https://grupoitss.visualstudio.com/Associados/_git/portal-compras-back&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
     <MESSAGE value="Alterado rota root&#10;Instalado passport" />
-    <option name="LAST_COMMIT_MESSAGE" value="Alterado rota root&#10;Instalado passport" />
+    <MESSAGE value="Adicionado pltaforma de documentação" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionado pltaforma de documentação" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="114" y="23" key="CommitChangelistDialog2" timestamp="1589896423988">
+    <state x="114" y="23" key="CommitChangelistDialog2" timestamp="1589985145491">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1589896423988" />
+    <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1589985145491" />
     <state x="356" y="111" key="MultipleFileMergeDialog" timestamp="1589894795509">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
     <state x="356" y="111" key="MultipleFileMergeDialog/0.23.1280.731@0.23.1280.731" timestamp="1589894795509" />
-    <state x="240" y="128" key="Vcs.Push.Dialog.v2" timestamp="1589896425709">
+    <state x="351" y="352" key="NewPhpClassDialog" timestamp="1589990766407">
+      <screen x="0" y="23" width="1920" height="1011" />
+    </state>
+    <state x="351" y="352" key="NewPhpClassDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1589990766407" />
+    <state x="240" y="128" key="Vcs.Push.Dialog.v2" timestamp="1589985147938">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1589896425709" />
-    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup" timestamp="1589983639593">
-      <screen x="0" y="23" width="1280" height="731" />
+    <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1589985147938" />
+    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup" timestamp="1589987624647">
+      <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1589983639593" />
+    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1589987624647" />
   </component>
 </project>
