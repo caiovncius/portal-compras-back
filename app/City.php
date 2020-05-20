@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Models\CityRelations;
+use App\Traits\Models\CityScopes;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class City extends Model
 {
-    use CityRelations;
+    use CityRelations, CityScopes;
 
     /**
      * @var bool

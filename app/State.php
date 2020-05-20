@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Models\StateRelations;
+use App\Traits\Models\StateScopes;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class State extends Model
 {
-    use StateRelations;
+    use StateRelations, StateScopes;
 
     /**
      * @var bool

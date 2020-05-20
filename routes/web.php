@@ -17,4 +17,8 @@ Route::get('/', function () {
     return response()->make('API status ok');
 });
 
+Route::middleware([])->group(function(){
+    Route::get('/states', 'StateController@allStates')->name('state.all');
+    Route::get('/cities/by-state/{state}', 'CityController@allCities')->name('cities.byState');
+});
 

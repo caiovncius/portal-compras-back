@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/cities.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/states.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/CreateCities.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/CreateStates.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/CityController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/StateController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/CityResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/StateResource.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Traits/Models/CityScopes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Traits/Models/StateScopes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/City.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/State.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/State.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +175,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589894664873</updated>
       <workItem from="1589894670311" duration="1843000" />
-      <workItem from="1589983029067" duration="8887000" />
+      <workItem from="1589983029067" duration="10165000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://grupoitss.visualstudio.com/Associados/_git/portal-compras-back&#10;&#10;# Conflicts:&#10;#&#9;README.md">
       <created>1589895176923</created>
@@ -201,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589991096165</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adicionado seed de estados e cidades">
+      <created>1589996639100</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1589996639100</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,22 +226,31 @@
     <MESSAGE value="Alterado rota root&#10;Instalado passport" />
     <MESSAGE value="Adicionado pltaforma de documentação" />
     <MESSAGE value="Criado modelos de dados e seus relacinamentos&#10;Configurado passport para login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Criado modelos de dados e seus relacinamentos&#10;Configurado passport para login" />
+    <MESSAGE value="Adicionado seed de estados e cidades" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionado seed de estados e cidades" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="171" y="23" key="CommitChangelistDialog2" timestamp="1589991095849">
+    <state x="456" y="110" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1589996818682">
+      <screen x="0" y="23" width="1920" height="1011" />
+    </state>
+    <state x="456" y="110" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1589996818682" />
+    <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589997633265">
+      <screen x="0" y="23" width="1920" height="1011" />
+    </state>
+    <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1589997633265" />
+    <state x="171" y="23" key="CommitChangelistDialog2" timestamp="1589996638847">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1589985145491" />
-    <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1589991095849" />
+    <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1589996638847" />
     <state x="356" y="111" key="MultipleFileMergeDialog" timestamp="1589894795509">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
     <state x="356" y="111" key="MultipleFileMergeDialog/0.23.1280.731@0.23.1280.731" timestamp="1589894795509" />
-    <state x="351" y="352" key="NewPhpClassDialog" timestamp="1589990766407">
+    <state x="351" y="352" key="NewPhpClassDialog" timestamp="1589997076614">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
-    <state x="351" y="352" key="NewPhpClassDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1589990766407" />
+    <state x="351" y="352" key="NewPhpClassDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1589997076614" />
     <state x="518" y="459" key="NewPhpFileDialog" timestamp="1589996355418">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -240,10 +260,10 @@
     </state>
     <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1589985147938" />
     <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1589991097342" />
-    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup" timestamp="1589987624647">
+    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup" timestamp="1589997385094">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1589983639593" />
-    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1589987624647" />
+    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1589997385094" />
   </component>
 </project>
