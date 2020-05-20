@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::domain('docs.portal-compras-back.test')->group(function () {
+//    Route::get('/{any}', function () {
+//        return \File::get(public_path() . '/docs/index.html');
+//    })->where('any', '.*');
+//});
+
 Route::get('/', function () {
     return response()->make('API status ok');
 });
+
+
