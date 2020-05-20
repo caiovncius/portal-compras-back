@@ -2,34 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/City.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Functionality.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Pharmacy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Profile.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/State.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Traits/Models/CityRelations.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Traits/Models/ProfileRelations.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Traits/Models/StateRelations.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Traits/Models/UserRelations.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/passport.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2014_10_11_000000_create_profile_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000001_create_oauth_auth_codes_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000002_create_oauth_access_tokens_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000003_create_oauth_refresh_tokens_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000004_create_oauth_clients_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2016_06_01_000005_create_oauth_personal_access_clients_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145025_create_functionalities_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145043_create_profile_functionalities_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145719_create_states_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145734_create_cities_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145741_create_pharmacies_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/CreateInitialUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/cities.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/states.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/CreateCities.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/CreateStates.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +171,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589894664873</updated>
       <workItem from="1589894670311" duration="1843000" />
-      <workItem from="1589983029067" duration="7383000" />
+      <workItem from="1589983029067" duration="8887000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://grupoitss.visualstudio.com/Associados/_git/portal-compras-back&#10;&#10;# Conflicts:&#10;#&#9;README.md">
       <created>1589895176923</created>
@@ -216,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589985145915</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Criado modelos de dados e seus relacinamentos&#10;Configurado passport para login">
+      <created>1589991096165</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589991096165</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,13 +214,15 @@
     <MESSAGE value="Merge branch 'master' of https://grupoitss.visualstudio.com/Associados/_git/portal-compras-back&#10;&#10;# Conflicts:&#10;#&#9;README.md" />
     <MESSAGE value="Alterado rota root&#10;Instalado passport" />
     <MESSAGE value="Adicionado pltaforma de documentação" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionado pltaforma de documentação" />
+    <MESSAGE value="Criado modelos de dados e seus relacinamentos&#10;Configurado passport para login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criado modelos de dados e seus relacinamentos&#10;Configurado passport para login" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="114" y="23" key="CommitChangelistDialog2" timestamp="1589985145491">
-      <screen x="0" y="23" width="1280" height="731" />
+    <state x="171" y="23" key="CommitChangelistDialog2" timestamp="1589991095849">
+      <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1589985145491" />
+    <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1589991095849" />
     <state x="356" y="111" key="MultipleFileMergeDialog" timestamp="1589894795509">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
@@ -244,10 +231,15 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="351" y="352" key="NewPhpClassDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1589990766407" />
-    <state x="240" y="128" key="Vcs.Push.Dialog.v2" timestamp="1589985147938">
-      <screen x="0" y="23" width="1280" height="731" />
+    <state x="518" y="459" key="NewPhpFileDialog" timestamp="1589996355418">
+      <screen x="0" y="23" width="1920" height="1011" />
+    </state>
+    <state x="518" y="459" key="NewPhpFileDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1589996355418" />
+    <state x="360" y="168" key="Vcs.Push.Dialog.v2" timestamp="1589991097342">
+      <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1589985147938" />
+    <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1589991097342" />
     <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup" timestamp="1589987624647">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
