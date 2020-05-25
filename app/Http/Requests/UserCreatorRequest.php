@@ -18,6 +18,12 @@ use Illuminate\Foundation\Http\FormRequest;
  *   enum={"COMMERCIAL", "PHARMACY", "SUPPLIER"}
  * )
  *
+ * @OA\Parameter(
+ *     name="Authorization",
+ *     in="header",
+ *     required=true
+ * )
+ *
  * @OA\Schema(
  *   schema="ValidationResponse",
  *   @OA\Property(property="message", type="string", example="The given data was invalid."),

@@ -73,7 +73,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
             }
         },
         "/users": {
@@ -558,6 +563,13 @@
                     }
                 },
                 "type": "object"
+            }
+        },
+        "parameters": {
+            "Authorization": {
+                "name": "Authorization",
+                "in": "header",
+                "required": true
             }
         },
         "securitySchemes": {

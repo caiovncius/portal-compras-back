@@ -12,6 +12,9 @@ class StateController extends Controller
      * @OA\Get(
      *     tags={"States"},
      *     path="/states",
+     *     security={
+     *         {"passport": {}},
+     *     },
      *     @OA\Response(
      *         response=200,
      *         description="",
