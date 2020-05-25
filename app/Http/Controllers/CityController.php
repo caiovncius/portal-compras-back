@@ -21,9 +21,8 @@ class CityController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="data",
-     *                     allOf={
-     *                         @OA\Items(ref="#/components/schemas/CityResource"),
-     *                     }
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/CityResource"),
      *                 )
      *             )
      *         )

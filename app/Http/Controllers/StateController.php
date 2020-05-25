@@ -20,9 +20,8 @@ class StateController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="data",
-     *                     allOf={
-     *                         @OA\Schema(ref="#/components/schemas/StateResource"),
-     *                     }
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/StateResource"),
      *                 )
      *             )
      *         )

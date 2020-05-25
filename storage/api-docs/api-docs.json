@@ -24,11 +24,10 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "allOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/CityResource"
-                                                }
-                                            ]
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CityResource"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -63,11 +62,10 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "allOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/StateResource"
-                                                }
-                                            ]
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/StateResource"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -79,6 +77,72 @@
             }
         },
         "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "nome"
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "example": "email@email.com"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "ACTIVE"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "example": "COMMERCIAL"
+                    },
+                    {
+                        "name": "created_at",
+                        "in": "query",
+                        "example": "2020-01-01"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Users"
@@ -182,6 +246,51 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Usuário removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -352,6 +461,100 @@
                     "code": {
                         "type": "string",
                         "example": "GO"
+                    }
+                },
+                "type": "object"
+            },
+            "PaginationLinks": {
+                "properties": {
+                    "first": {
+                        "type": "string",
+                        "example": "http://api.test/api/users?page=1"
+                    },
+                    "last": {
+                        "type": "string",
+                        "example": "http://api.test/api/users?page=10"
+                    },
+                    "next": {
+                        "type": "string",
+                        "example": "http://api.test/api/users?page=3"
+                    }
+                },
+                "type": "object"
+            },
+            "PaginationMeta": {
+                "properties": {
+                    "current_page": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "from": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "last_page": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "path": {
+                        "type": "string",
+                        "example": "http://api.test/api/users"
+                    },
+                    "per_page": {
+                        "type": "integer",
+                        "example": "20"
+                    },
+                    "to": {
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "total": {
+                        "type": "integer",
+                        "example": "10"
+                    }
+                },
+                "type": "object"
+            },
+            "UserListResource": {
+                "title": "UserList Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "user01"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Meu Nome"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "meu@email.com"
+                    },
+                    "phone_1": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "phone_2": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "profile_name": {
+                        "type": "string",
+                        "example": "Gerente"
+                    },
+                    "created_at": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
                     }
                 },
                 "type": "object"

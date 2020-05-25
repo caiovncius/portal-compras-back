@@ -6,7 +6,7 @@ namespace App\User\Services;
 
 use App\Notifications\Wellcome;
 use App\User;
-use App\User\Contratcs\UserCreatorable;
+use App\User\Contracts\UserCreatorable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 

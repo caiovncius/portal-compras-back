@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreatorRequest;
 use App\Http\Requests\UserUpdatorRequest;
+use App\Http\Resources\UserListResource;
 use App\User;
-use App\User\Contratcs\UserCreatorable;
-use App\User\Contratcs\UserUpdatable;
+use App\User\Contracts\UserCreatorable;
+use App\User\Contracts\UserUpdatable;
+use App\User\Contracts\UserRemovable;
+use App\User\Contracts\UserRetrievable;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -21,10 +24,92 @@ class UserController extends Controller
      */
     private $updaterService;
 
+    /**
+     * @var UserRemovable
+     */
+    private $removerService;
+
+    /**
+     * @var UserRetrievable
+     */
+    private $retreiverService;
+
     public function __construct()
     {
         $this->creatorService = app()->make(UserCreatorable::class);
         $this->updaterService = app()->make(UserUpdatable::class);
+        $this->removerService = app()->make(UserRemovable::class);
+        $this->retreiverService = app()->make(UserRetrievable::class);
+    }
+
+    /**
+     * @OA\Get(
+     *     tags={"Users"},
+     *     path="/users",
+     *     @OA\Parameter(
+     *        name="name",
+     *        in="query",
+     *        example="nome",
+     *     ),
+     *     @OA\Parameter(
+     *        name="email",
+     *        in="query",
+     *        example="email@email.com",
+     *     ),
+     *     @OA\Parameter(
+     *        name="status",
+     *        in="query",
+     *        example="ACTIVE",
+     *     ),
+     *     @OA\Parameter(
+     *        name="type",
+     *        in="query",
+     *        example="COMMERCIAL",
+     *     ),
+     *     @OA\Parameter(
+     *        name="created_at",
+     *        in="query",
+     *        example="2020-01-01",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/UserListResource"),
+     *                 ),
+     *                 @OA\Property(
+     *                     property="links",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationLinks"),
+     *                     }
+     *                 ),
+     *                  @OA\Property(
+     *                     property="meta",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationMeta"),
+     *                     }
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function list(Request $request) {
+        try {
+            return UserListResource::collection($this->retreiverService->getUsers($request->query())->paginate(20));
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
     }
 
     /**
@@ -127,6 +212,7 @@ class UserController extends Controller
      *     )
      * )
      */
+
     /**
      * @param UserCreatorRequest $request
      * @return mixed
@@ -137,7 +223,58 @@ class UserController extends Controller
             $this->updaterService->update($user, $request->all());
             return response()->json(['message' => 'Usuário atualizado com sucesso'], 200);
         } catch (\Exception $e) {
-            return reponse()->json(['error' => $e->getMessage()], 400);
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Delete(
+     *     tags={"Users"},
+     *     path="/users/{user}",
+     *     @OA\Parameter(
+     *        name="user",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Usuário removido com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(User $user)
+    {
+        try {
+            $this->removerService->delete($user);
+            return response()->json(['message' => 'Usuário removido com sucesso'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
         }
     }
 }

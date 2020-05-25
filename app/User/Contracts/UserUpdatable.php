@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\User\Contratcs;
+namespace App\User\Contracts;
 
 
 use App\User;

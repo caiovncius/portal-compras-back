@@ -5,7 +5,7 @@ namespace App\User\Services;
 
 
 use App\User;
-use App\User\Contratcs\UserUpdatable;
+use App\User\Contracts\UserUpdatable;
 
 class UserUpdater implements UserUpdatable
 {

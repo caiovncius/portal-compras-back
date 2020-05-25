@@ -22,6 +22,8 @@ Route::middleware([])->group(function(){
     Route::get('/states', 'StateController@allStates')->name('state.all');
     Route::get('/cities/by-state/{state}', 'CityController@allCities')->name('cities.byState');
 
+    Route::get('/users', 'UserController@list')->name('user.list');
     Route::post('/users', 'UserController@store')->name('user.store');
     Route::put('/users/{user}', 'UserController@update')->name('user.update');
+    Route::delete('/users/{user}', 'UserController@delete')->name('user.delete');
 });
