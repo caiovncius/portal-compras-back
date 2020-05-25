@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/vendor.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StateController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UserCreatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UserCreatorRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +176,7 @@
       <workItem from="1590010411230" duration="497000" />
       <workItem from="1590344450348" duration="680000" />
       <workItem from="1590375999813" duration="9069000" />
-      <workItem from="1590415182219" duration="6234000" />
+      <workItem from="1590415182219" duration="8495000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://grupoitss.visualstudio.com/Associados/_git/portal-compras-back&#10;&#10;# Conflicts:&#10;#&#9;README.md">
       <created>1589895176923</created>
@@ -249,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590420473567</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Ajustes">
+      <created>1590427383336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1590427383336</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,7 +285,8 @@
     <MESSAGE value="Adicionado documentação de criação de criação de usuários" />
     <MESSAGE value="Atualizado usuário" />
     <MESSAGE value="Listando Usuários e documentação da APi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Listando Usuários e documentação da APi" />
+    <MESSAGE value="Ajustes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="456" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590419199722">
@@ -290,11 +297,11 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590416915559" />
-    <state x="171" y="23" key="CommitChangelistDialog2" timestamp="1590420473247">
+    <state x="171" y="23" key="CommitChangelistDialog2" timestamp="1590427383063">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1589985145491" />
-    <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1590420473247" />
+    <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1590427383063" />
     <state x="356" y="111" key="MultipleFileMergeDialog" timestamp="1589894795509">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
@@ -324,10 +331,10 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="586" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1011@0.23.1920.1011" timestamp="1590427371947" />
-    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup" timestamp="1590419642033">
+    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup" timestamp="1590433711407">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1589983639593" />
-    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1590419642033" />
+    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1590433711407" />
   </component>
 </project>
