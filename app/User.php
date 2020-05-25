@@ -57,6 +57,10 @@ class User extends Authenticatable
         'manager_id',
     ];
 
+    protected $guarded = [
+        'password'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

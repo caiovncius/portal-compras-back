@@ -118,6 +118,88 @@
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{user}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserUpdaterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Usuário atualizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -160,7 +242,15 @@
                 "type": "object"
             },
             "UserCreatorRequest": {
-                "title": "Parâmetros criação de usuário",
+                "title": "User form request",
+                "required": [
+                    "name",
+                    "email",
+                    "username",
+                    "profile_id",
+                    "type",
+                    "status"
+                ],
                 "properties": {
                     "name": {
                         "type": "string",
@@ -173,6 +263,50 @@
                     "username": {
                         "type": "string",
                         "example": "user01"
+                    },
+                    "phone_1": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "phone_2": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": "2"
+                    }
+                },
+                "type": "object"
+            },
+            "UserUpdaterRequest": {
+                "title": "User update form request",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Usuário Teste"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "user01@test.test"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "user01"
+                    },
+                    "phone_1": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "phone_2": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"

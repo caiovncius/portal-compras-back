@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Traits/Models/UserScopes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UserUpdatorRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/User/Contratcs/UserUpdatable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/User/Services/UserUpdater.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StateController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/UserCreatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UserCreatorRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/UserServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/UserServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -181,7 +182,8 @@
       <workItem from="1589999432519" duration="6013000" />
       <workItem from="1590010411230" duration="497000" />
       <workItem from="1590344450348" duration="680000" />
-      <workItem from="1590375999813" duration="8999000" />
+      <workItem from="1590375999813" duration="9069000" />
+      <workItem from="1590415182219" duration="2010000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://grupoitss.visualstudio.com/Associados/_git/portal-compras-back&#10;&#10;# Conflicts:&#10;#&#9;README.md">
       <created>1589895176923</created>
@@ -232,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590383571342</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Adicionado documentação de criação de criação de usuários">
+      <created>1590386400581</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1590386400581</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,30 +268,31 @@
     <MESSAGE value="Adicionado seed de estados e cidades" />
     <MESSAGE value="Adicionado endpoint de listagem de estados e cidades por estado" />
     <MESSAGE value="Criado serviço de criação de usuários&#10;Gerando senha e enviando por email" />
-    <option name="LAST_COMMIT_MESSAGE" value="Criado serviço de criação de usuários&#10;Gerando senha e enviando por email" />
+    <MESSAGE value="Adicionado documentação de criação de criação de usuários" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionado documentação de criação de criação de usuários" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="456" y="110" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1589996818682">
+    <state x="456" y="110" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590415334653">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
-    <state x="456" y="110" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1589996818682" />
-    <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589997633265">
+    <state x="456" y="110" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590415334653" />
+    <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590416915559">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
-    <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1589997633265" />
-    <state x="171" y="23" key="CommitChangelistDialog2" timestamp="1590383570549">
+    <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590416915559" />
+    <state x="171" y="23" key="CommitChangelistDialog2" timestamp="1590386400249">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1589985145491" />
-    <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1590383570549" />
+    <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1590386400249" />
     <state x="356" y="111" key="MultipleFileMergeDialog" timestamp="1589894795509">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
     <state x="356" y="111" key="MultipleFileMergeDialog/0.23.1280.731@0.23.1280.731" timestamp="1589894795509" />
-    <state x="351" y="352" key="NewPhpClassDialog" timestamp="1590384030436">
+    <state x="351" y="352" key="NewPhpClassDialog" timestamp="1590415320312">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
-    <state x="351" y="352" key="NewPhpClassDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590384030436" />
+    <state x="351" y="352" key="NewPhpClassDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590415320312" />
     <state x="518" y="459" key="NewPhpFileDialog" timestamp="1590380180654">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -291,19 +301,19 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="348" y="167" key="SettingsEditor/0.23.1920.1011@0.23.1920.1011" timestamp="1589999400094" />
-    <state x="360" y="168" key="Vcs.Push.Dialog.v2" timestamp="1590383573409">
+    <state x="360" y="168" key="Vcs.Push.Dialog.v2" timestamp="1590386401602">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1589985147938" />
-    <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1590383573409" />
+    <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1590386401602" />
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590001721179">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590001721179" />
-    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup" timestamp="1590384953206">
+    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup" timestamp="1590416270205">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1589983639593" />
-    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1590384953206" />
+    <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1590416270205" />
   </component>
 </project>
