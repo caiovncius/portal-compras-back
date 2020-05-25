@@ -14,6 +14,18 @@ class CreateInitialUser extends Seeder
         $email = 'admin@associados.com';
         if (is_null(\App\User::where('email')->first())) {
 
+            $masterProfile = \App\Profile::where('type', \App\Profile::PROFILE_TYPE_MASTER)->first();
+
+            if (is_null($masterProfile)) return;
+
+            \App\User::create([
+                'type' => \App\User::USER_TYPE_MASTER,
+                'name' => 'Usuário master',
+                'username' => 'master',
+                'email' => $email,
+                'password' => \Illuminate\Support\Facades\Hash::make('12345678'),
+                'profile_id' => $masterProfile->id
+            ]);
         }
     }
 }

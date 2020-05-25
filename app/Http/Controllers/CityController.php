@@ -10,8 +10,25 @@ use Illuminate\Http\Request;
 class CityController extends Controller
 {
     /**
-     * @param State $state
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @OA\Get(
+     *     tags={"Cities"},
+     *     path="/cities/by-state/{state}",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/CityResource"),
+     *                     }
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
      */
     public function allCities(State $state)
     {

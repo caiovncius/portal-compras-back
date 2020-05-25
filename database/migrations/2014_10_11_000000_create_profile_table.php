@@ -16,7 +16,7 @@ class CreateProfileTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ['COMMERCIAL', 'PHARMACY', 'SUPPLIER'])->default('PHARMACY');
+            $table->enum('type', ['COMMERCIAL', 'PHARMACY', 'SUPPLIER', 'MASTER'])->default('PHARMACY');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->timestamps();
         });

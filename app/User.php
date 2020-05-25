@@ -36,6 +36,7 @@ class User extends Authenticatable
     const USER_TYPE_COMMERCIAL = 'COMMERCIAL';
     const USER_TYPE_PHARMACY = 'PHARMACY';
     const USER_TYPE_SUPPLIER = 'SUPPLIER';
+    const USER_TYPE_MASTER = 'MASTER';
 
     /**
      * The attributes that are mass assignable.
@@ -51,7 +52,7 @@ class User extends Authenticatable
         'username',
         'phone_1',
         'phone_2',
-        'profile_2',
+        'profile_id',
         'manager_id',
     ];
 

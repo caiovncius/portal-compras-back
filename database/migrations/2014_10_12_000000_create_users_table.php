@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['COMMERCIAL', 'PHARMACY', 'SUPPLIER'])->default('PHARMACY');
+            $table->enum('type', ['COMMERCIAL', 'PHARMACY', 'SUPPLIER', 'MASTER'])->default('PHARMACY');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->string('username');
             $table->string('name');
@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phone_1')->nullable();
             $table->string('phone_2')->nullable();
             $table->unsignedBigInteger('profile_id');
-            $table->bigInteger('manager_id');
+            $table->bigInteger('manager_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

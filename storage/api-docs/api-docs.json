@@ -1,0 +1,137 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My the best API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": ""
+        }
+    ],
+    "paths": {
+        "/cities/by-state/{state}": {
+            "get": {
+                "tags": [
+                    "Cities"
+                ],
+                "operationId": "App\\Http\\Controllers\\CityController::allCities",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/CityResource"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "description": "Status da API",
+                "responses": {
+                    "200": {
+                        "description": "Status da API"
+                    }
+                }
+            }
+        },
+        "/states": {
+            "get": {
+                "tags": [
+                    "States"
+                ],
+                "operationId": "App\\Http\\Controllers\\StateController::allStates",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/StateResource"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CityResource": {
+                "title": "City Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Goiânia"
+                    },
+                    "state": {
+                        "$ref": "#/components/schemas/StateResource"
+                    }
+                },
+                "type": "object"
+            },
+            "StateResource": {
+                "title": "State Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Goiás"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "GO"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "passport": {
+                "type": "oauth2",
+                "description": "Laravel passport oauth2 security.",
+                "in": "header",
+                "scheme": "https",
+                "flows": {
+                    "password": {
+                        "authorizationUrl": "http://portal-compras-back.test/oauth/authorize",
+                        "tokenUrl": "http://portal-compras-back.test/oauth/token",
+                        "refreshUrl": "http://portal-compras-back.test/token/refresh",
+                        "scopes": []
+                    }
+                }
+            }
+        }
+    }
+}

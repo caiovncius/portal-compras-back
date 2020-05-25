@@ -26,6 +26,7 @@ class Profile extends Model
     const PROFILE_TYPE_COMMERCIAL = 'COMMERCIAL';
     const PROFILE_TYPE_PHARMACY = 'PHARMACY';
     const PROFILE_TYPE_SUPPLIER = 'SUPPLIER';
+    const PROFILE_TYPE_MASTER = 'MASTER';
 
     protected $fillable = [
         'name',

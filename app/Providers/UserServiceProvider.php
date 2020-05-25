@@ -2,23 +2,24 @@
 
 namespace App\Providers;
 
+use App\User\Contratcs\UserCreatorable;
+use App\User\Services\UserCreator;
 use Illuminate\Support\ServiceProvider;
-use L5Swagger\L5SwaggerServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class UserServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */
     public function register()
     {
-        $this->app->register(L5SwaggerServiceProvider::class);
+        $this->app->bind(UserCreatorable::class, UserCreator::class);
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
