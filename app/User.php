@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Models\UserRelations;
+use App\Traits\Models\UserScopes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,7 +27,7 @@ use Laravel\Passport\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use UserRelations, HasApiTokens, Notifiable;
+    use UserRelations, HasApiTokens, Notifiable, UserScopes;
 
     /// User status
     const USER_STATUS_ACTIVE = 'ACTIVE';

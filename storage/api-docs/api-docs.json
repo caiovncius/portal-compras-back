@@ -77,10 +77,116 @@
                     }
                 }
             }
+        },
+        "/users": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Usuário criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
+            "UserStatus": {
+                "type": "string",
+                "enum": [
+                    "ACTIVE",
+                    "INACTIVE"
+                ]
+            },
+            "UserType": {
+                "type": "string",
+                "enum": [
+                    "COMMERCIAL",
+                    "PHARMACY",
+                    "SUPPLIER"
+                ]
+            },
+            "ValidationResponse": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "example": "The given data was invalid."
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "example": "Campo teste é obrigatório"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "UserCreatorRequest": {
+                "title": "Parâmetros criação de usuário",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Usuário Teste"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "user01@test.test"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "user01"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "profile_id": {
+                        "type": "integer",
+                        "example": "2"
+                    }
+                },
+                "type": "object"
+            },
             "CityResource": {
                 "title": "City Response",
                 "properties": {

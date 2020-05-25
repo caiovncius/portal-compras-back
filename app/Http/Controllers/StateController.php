@@ -28,7 +28,10 @@ class StateController extends Controller
      *         )
      *     )
      * )
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
+
     public function allStates()
     {
         return StateResource::collection(State::allStates());

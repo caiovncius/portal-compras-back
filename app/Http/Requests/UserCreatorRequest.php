@@ -5,6 +5,45 @@ namespace App\Http\Requests;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema(
+ *   schema="UserStatus",
+ *   type="string",
+ *   enum={"ACTIVE", "INACTIVE"}
+ * )
+ *
+ * @OA\Schema(
+ *   schema="UserType",
+ *   type="string",
+ *   enum={"COMMERCIAL", "PHARMACY", "SUPPLIER"}
+ * )
+ *
+ * @OA\Schema(
+ *   schema="ValidationResponse",
+ *   @OA\Property(property="message", type="string", example="The given data was invalid."),
+ *   @OA\Property(
+ *     property="errors",
+ *     type="array",
+ *     @OA\Items(
+ *         type="array",
+ *         @OA\Items(type="string"),
+ *         example="Campo teste é obrigatório",
+ *     ),
+ *   )
+ * )
+ *
+ * @OA\Schema(
+ *     schema="UserCreatorRequest",
+ *     type="object",
+ *     title="Parâmetros criação de usuário",
+ *     @OA\Property(property="name", type="string", example="Usuário Teste"),
+ *     @OA\Property(property="email", type="string", example="user01@test.test"),
+ *     @OA\Property(property="username", type="string", example="user01"),
+ *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(property="type", ref="#/components/schemas/UserType"),
+ *     @OA\Property(property="profile_id", type="integer", example="2"),
+ * )
+ */
 class UserCreatorRequest extends FormRequest
 {
     /**

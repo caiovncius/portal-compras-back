@@ -29,6 +29,9 @@ class CityController extends Controller
      *         )
      *     )
      * )
+     *
+     * @param State $state
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function allCities(State $state)
     {

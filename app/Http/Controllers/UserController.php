@@ -18,6 +18,40 @@ class UserController extends Controller
         $this->creatorService = app()->make(UserCreatorable::class);
     }
 
+    /**
+     *
+     * @OA\Post(
+     *     tags={"Users"},
+     *     path="/users",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UserCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Usuário criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="",
+     *         @OA\JsonContent(ref="#/components/schemas/ValidationResponse")
+     *     )
+     * )
+     */
+
+    /**
+     * @param UserCreatorRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(UserCreatorRequest $request)
     {
         try {
