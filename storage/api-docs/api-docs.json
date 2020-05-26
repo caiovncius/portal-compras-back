@@ -108,7 +108,7 @@
                         "example": "COMMERCIAL"
                     },
                     {
-                        "name": "created_at",
+                        "name": "createdAt",
                         "in": "query",
                         "example": "2020-01-01"
                     }
@@ -378,11 +378,11 @@
                         "type": "string",
                         "example": "user01"
                     },
-                    "phone_1": {
+                    "phone1": {
                         "type": "string",
                         "example": "(62) 9 9999-9999"
                     },
-                    "phone_2": {
+                    "phone2": {
                         "type": "string",
                         "example": "(62) 9 9999-9999"
                     },
@@ -392,7 +392,7 @@
                     "type": {
                         "$ref": "#/components/schemas/UserType"
                     },
-                    "profile_id": {
+                    "profileId": {
                         "type": "integer",
                         "example": "2"
                     }
@@ -414,11 +414,11 @@
                         "type": "string",
                         "example": "user01"
                     },
-                    "phone_1": {
+                    "phone1": {
                         "type": "string",
                         "example": "(62) 9 9999-9999"
                     },
-                    "phone_2": {
+                    "phone2": {
                         "type": "string",
                         "example": "(62) 9 9999-9999"
                     },
@@ -428,7 +428,7 @@
                     "type": {
                         "$ref": "#/components/schemas/UserType"
                     },
-                    "profile_id": {
+                    "profileId": {
                         "type": "integer",
                         "example": "2"
                     }
@@ -539,11 +539,11 @@
                         "type": "string",
                         "example": "meu@email.com"
                     },
-                    "phone_1": {
+                    "phone1": {
                         "type": "string",
                         "example": "(62) 9 9999-9999"
                     },
-                    "phone_2": {
+                    "phone2": {
                         "type": "string",
                         "example": "(62) 9 9999-9999"
                     },
@@ -553,11 +553,11 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
-                    "profile_name": {
+                    "profileName": {
                         "type": "string",
                         "example": "Gerente"
                     },
-                    "created_at": {
+                    "createdAt": {
                         "type": "datetime",
                         "example": "2020-05-25T05:09:15.000000Z"
                     }

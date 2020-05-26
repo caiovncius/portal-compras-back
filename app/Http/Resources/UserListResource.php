@@ -34,12 +34,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="username", type="string", example="user01"),
  *     @OA\Property(property="name", type="string", example="Meu Nome"),
  *     @OA\Property(property="email", type="string", example="meu@email.com"),
- *     @OA\Property(property="phone_1", type="string", example="(62) 9 9999-9999"),
- *     @OA\Property(property="phone_2", type="string", example="(62) 9 9999-9999"),
+ *     @OA\Property(property="phone1", type="string", example="(62) 9 9999-9999"),
+ *     @OA\Property(property="phone2", type="string", example="(62) 9 9999-9999"),
  *     @OA\Property(property="type", ref="#/components/schemas/UserType"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
- *     @OA\Property(property="profile_name",  type="string", example="Gerente"),
- *     @OA\Property(property="created_at",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
+ *     @OA\Property(property="profileName",  type="string", example="Gerente"),
+ *     @OA\Property(property="createdAt",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
  * )
  */
 class UserListResource extends JsonResource
@@ -57,13 +57,13 @@ class UserListResource extends JsonResource
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
-            'phone_1' => $this->phone_1,
-            'phone_2' => $this->phone_2,
+            'phone1' => $this->phone_1,
+            'phone2' => $this->phone_2,
             'type' => $this->type,
             'status' => $this->status,
-            'profile_name' => $this->profile->name,
+            'profileName' => $this->profile->name,
             'manager' => 'none',
-            'created_at' => $this->created_at
+            'createdAt' => $this->created_at
         ];
     }
 }

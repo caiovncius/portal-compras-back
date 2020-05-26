@@ -27,7 +27,7 @@ class UserRetriever implements UserRetrievable
                 $usersQuery->where('email', 'like', '%' . $querySearchParams['email'] . '%');
             }
 
-            if (isset($querySearchParams['created_at']) && !empty($querySearchParams['created_at'])) {
+            if (isset($querySearchParams['createdAt']) && !empty($querySearchParams['createdAt'])) {
                 $usersQuery->where('created_at', '>=', $querySearchParams['created_at']);
             }
 

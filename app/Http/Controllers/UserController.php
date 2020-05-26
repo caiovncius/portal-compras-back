@@ -67,7 +67,7 @@ class UserController extends Controller
      *        example="COMMERCIAL",
      *     ),
      *     @OA\Parameter(
-     *        name="created_at",
+     *        name="createdAt",
      *        in="query",
      *        example="2020-01-01",
      *     ),

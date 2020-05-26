@@ -13,11 +13,11 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="name", type="string", example="Usuário Teste"),
  *     @OA\Property(property="email", type="string", example="user01@test.test"),
  *     @OA\Property(property="username", type="string", example="user01"),
- *     @OA\Property(property="phone_1", type="string", example="(62) 9 9999-9999"),
- *     @OA\Property(property="phone_2", type="string", example="(62) 9 9999-9999"),
+ *     @OA\Property(property="phone1", type="string", example="(62) 9 9999-9999"),
+ *     @OA\Property(property="phone2", type="string", example="(62) 9 9999-9999"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  *     @OA\Property(property="type", ref="#/components/schemas/UserType"),
- *     @OA\Property(property="profile_id", type="integer", example="2"),
+ *     @OA\Property(property="profileId", type="integer", example="2"),
  * )
  */
 class UserUpdatorRequest extends FormRequest
@@ -44,9 +44,9 @@ class UserUpdatorRequest extends FormRequest
             'email' => 'email|unique:users,email,' . $this->id,
             'type' => 'in:' . User::USER_TYPE_SUPPLIER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
             'status' => 'in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
-            'profile_id' => 'exists:profiles,id',
-            'phone_1' => 'string',
-            'phone_2' => 'string',
+            'profileId' => 'exists:profiles,id',
+            'phone1' => 'string',
+            'phone2' => 'string',
         ];
     }
 }

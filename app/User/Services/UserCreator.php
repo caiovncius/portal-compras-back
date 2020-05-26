@@ -22,7 +22,17 @@ class UserCreator implements UserCreatorable
         try {
             $password = Str::random(8);
             $userData['password'] = Hash::make($password);
-            $user = User::create($userData);
+            $user = new User();
+            $user->name = $userData['name'];
+            $user->username = $userData['username'];
+            $user->email = $userData['email'];
+            $user->password = Hash::make($password);
+            $user->phone_1 = isset($userData['phone1']) ? $userData['phone1'] : null;
+            $user->phone_2 = isset($userData['phone2']) ? $userData['phone2'] : null;
+            $user->status = $userData['status'];
+            $user->type = $userData['type'];
+            $user->profile_id = $userData['profileId'];
+            $user->save();
             $user->notify(new Wellcome($user, $password));
             return true;
         } catch (\Exception $exception) {
