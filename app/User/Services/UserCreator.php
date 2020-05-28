@@ -6,11 +6,11 @@ namespace App\User\Services;
 
 use App\Notifications\Wellcome;
 use App\User;
-use App\User\Contracts\UserCreatorable;
+use App\User\Contracts\UserCreatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserCreator implements UserCreatorable
+class UserCreator implements UserCreatable
 {
     /**
      * @param array $userData

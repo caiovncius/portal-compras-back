@@ -56,6 +56,278 @@
                 }
             }
         },
+        "/profiles": {
+            "get": {
+                "tags": [
+                    "Profiles"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "nome"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "ACTIVE"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "example": "COMMERCIAL"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProfileListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Profiles"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProfileCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Perfil criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/profiles/{profile}": {
+            "get": {
+                "tags": [
+                    "Profiles"
+                ],
+                "parameters": [
+                    {
+                        "name": "profile",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProfileResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Profiles"
+                ],
+                "parameters": [
+                    {
+                        "name": "profile",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProfileUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Perfil atualizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Profiles"
+                ],
+                "parameters": [
+                    {
+                        "name": "profile",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Perfil removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/states": {
             "get": {
                 "tags": [
@@ -185,31 +457,6 @@
                                 }
                             }
                         }
-                    },
-                    "422": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ValidationResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de error"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -329,20 +576,60 @@
     },
     "components": {
         "schemas": {
-            "UserStatus": {
-                "type": "string",
-                "enum": [
-                    "ACTIVE",
-                    "INACTIVE"
-                ]
+            "ProfileCreatorRequest": {
+                "title": "Profile form request",
+                "required": [
+                    "name",
+                    "type",
+                    "status",
+                    "functions"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Manager"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "functions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProfileFunctions"
+                        }
+                    }
+                },
+                "type": "object"
             },
-            "UserType": {
-                "type": "string",
-                "enum": [
-                    "COMMERCIAL",
-                    "PHARMACY",
-                    "SUPPLIER"
-                ]
+            "ProfileUpdatorRequest": {
+                "title": "Profile form request",
+                "required": [
+                    "name",
+                    "type",
+                    "status"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Manager"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "functions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProfileFunctions"
+                        }
+                    }
+                },
+                "type": "object"
             },
             "UserCreatorRequest": {
                 "title": "User form request",
@@ -441,6 +728,52 @@
                 },
                 "type": "object"
             },
+            "ProfileListResource": {
+                "title": "Porfile list Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Manager"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    }
+                },
+                "type": "object"
+            },
+            "ProfileResource": {
+                "title": "Porfile Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Manager"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "permissions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProfilePermission"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "StateResource": {
                 "title": "State Response",
                 "properties": {
@@ -503,6 +836,21 @@
                 },
                 "type": "object"
             },
+            "UserStatus": {
+                "type": "string",
+                "enum": [
+                    "ACTIVE",
+                    "INACTIVE"
+                ]
+            },
+            "UserType": {
+                "type": "string",
+                "enum": [
+                    "COMMERCIAL",
+                    "PHARMACY",
+                    "SUPPLIER"
+                ]
+            },
             "PaginationLinks": {
                 "properties": {
                     "first": {
@@ -516,6 +864,40 @@
                     "next": {
                         "type": "string",
                         "example": "http://api.test/api/users?page=3"
+                    }
+                },
+                "type": "object"
+            },
+            "ProfileFunctions": {
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "example": "users"
+                    },
+                    "permission": {
+                        "type": "string",
+                        "example": "NO_PERMISSION"
+                    }
+                },
+                "type": "object"
+            },
+            "ProfilePermission": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "User module"
+                    },
+                    "key": {
+                        "type": "string",
+                        "example": "user_module"
+                    },
+                    "permission": {
+                        "type": "string",
+                        "example": "FREE_ACCESS"
                     }
                 },
                 "type": "object"

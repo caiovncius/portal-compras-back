@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Models\FunctionalityRelations;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Functionality extends Model
 {
+    use FunctionalityRelations;
     /**
      * @var bool
      */

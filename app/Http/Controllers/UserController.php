@@ -6,7 +6,7 @@ use App\Http\Requests\UserCreatorRequest;
 use App\Http\Requests\UserUpdatorRequest;
 use App\Http\Resources\UserListResource;
 use App\User;
-use App\User\Contracts\UserCreatorable;
+use App\User\Contracts\UserCreatable;
 use App\User\Contracts\UserUpdatable;
 use App\User\Contracts\UserRemovable;
 use App\User\Contracts\UserRetrievable;
@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * @var UserCreatorable
+     * @var UserCreatable
      */
     private $creatorService;
 
@@ -36,7 +36,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->creatorService = app()->make(UserCreatorable::class);
+        $this->creatorService = app()->make(UserCreatable::class);
         $this->updaterService = app()->make(UserUpdatable::class);
         $this->removerService = app()->make(UserRemovable::class);
         $this->retreiverService = app()->make(UserRetrievable::class);
@@ -134,21 +134,7 @@ class UserController extends Controller
      *             )
      *         )
      *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="",
-     *         @OA\JsonContent(ref="#/components/schemas/ValidationResponse")
-     *     ),
-     *     @OA\Response(
-     *         response=400,
-     *         description="",
-     *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 property="error",
-     *                 example ="Mensagem de error"
-     *            )
-     *         )
-     *     )
+     *
      * )
      */
 

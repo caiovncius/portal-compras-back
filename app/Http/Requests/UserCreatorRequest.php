@@ -7,18 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * @OA\Schema(
- *   schema="UserStatus",
- *   type="string",
- *   enum={"ACTIVE", "INACTIVE"}
- * )
- *
- * @OA\Schema(
- *   schema="UserType",
- *   type="string",
- *   enum={"COMMERCIAL", "PHARMACY", "SUPPLIER"}
- * )
- *
- * @OA\Schema(
  *     schema="UserCreatorRequest",
  *     type="object",
  *     title="User form request",

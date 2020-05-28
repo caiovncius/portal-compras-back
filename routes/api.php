@@ -26,4 +26,9 @@ Route::middleware([])->group(function(){
     Route::post('/users', 'UserController@store')->name('user.store');
     Route::put('/users/{user}', 'UserController@update')->name('user.update');
     Route::delete('/users/{user}', 'UserController@delete')->name('user.delete');
+
+    Route::get('/profiles', 'ProfileController@list')->name('profile.list');
+    Route::get('/profiles/{profile}', 'ProfileController@get')->name('profile.get');
+    Route::post('/profiles', 'ProfileController@store')->name('profile.store');
+    Route::put('/profiles/{profile}', 'ProfileController@update')->name('profile.update');
 });

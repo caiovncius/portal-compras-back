@@ -22,6 +22,7 @@ trait ProfileRelations
      */
     public function functionalities()
     {
-        return $this->belongsToMany(Functionality::class, 'profile_functionalities', 'profile_id');
+        return $this->belongsToMany(Functionality::class, 'profile_functionalities', 'profile_id')
+            ->withPivot('access_type');
     }
 }

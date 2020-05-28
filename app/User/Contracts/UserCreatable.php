@@ -4,7 +4,7 @@
 namespace App\User\Contracts;
 
 
-interface UserCreatorable
+interface UserCreatable
 {
     /**
      * @param array $userData

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\User\Contracts\UserCreatorable;
+use App\User\Contracts\UserCreatable;
 use App\User\Contracts\UserRemovable;
 use App\User\Contracts\UserRetrievable;
 use App\User\Contracts\UserUpdatable;
@@ -22,7 +22,7 @@ class UserServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(UserRetrievable::class, UserRetriever::class);
-        $this->app->bind(UserCreatorable::class, UserCreator::class);
+        $this->app->bind(UserCreatable::class, UserCreator::class);
         $this->app->bind(UserUpdatable::class, UserUpdater::class);
         $this->app->bind(UserRemovable::class, UserRemover::class);
     }
