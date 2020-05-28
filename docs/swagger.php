@@ -1,5 +1,19 @@
 <?php
 /**
+ * /**
+ * @OA\Info(
+ *     title="API Portal de compras - Famacias Associadas",
+ *     version="1.0.0"
+ * )
+ *
+ * @OA\Get(
+ *     path="/",
+ *     description="Status da API",
+ *     @OA\Response(response="200", description="Status da API")
+ * )
+ *
+ * ******** Schemas params ********
+ *
  * @OA\Schema(
  *   schema="UserStatus",
  *   type="string",
