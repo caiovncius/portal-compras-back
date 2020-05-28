@@ -16,6 +16,14 @@
                     "Cities"
                 ],
                 "operationId": "App\\Http\\Controllers\\CityController::allCities",
+                "parameters": [
+                    {
+                        "name": "state",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "",
@@ -336,25 +344,6 @@
                     "SUPPLIER"
                 ]
             },
-            "ValidationResponse": {
-                "properties": {
-                    "message": {
-                        "type": "string",
-                        "example": "The given data was invalid."
-                    },
-                    "errors": {
-                        "type": "array",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            },
-                            "example": "Campo teste é obrigatório"
-                        }
-                    }
-                },
-                "type": "object"
-            },
             "UserCreatorRequest": {
                 "title": "User form request",
                 "required": [
@@ -470,6 +459,50 @@
                 },
                 "type": "object"
             },
+            "UserListResource": {
+                "title": "UserList Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "user01"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Meu Nome"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "meu@email.com"
+                    },
+                    "phone1": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "phone2": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "profileName": {
+                        "type": "string",
+                        "example": "Gerente"
+                    },
+                    "createdAt": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    }
+                },
+                "type": "object"
+            },
             "PaginationLinks": {
                 "properties": {
                     "first": {
@@ -520,46 +553,21 @@
                 },
                 "type": "object"
             },
-            "UserListResource": {
-                "title": "UserList Response",
+            "ValidationResponse": {
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "example": "1"
-                    },
-                    "username": {
+                    "message": {
                         "type": "string",
-                        "example": "user01"
+                        "example": "The given data was invalid."
                     },
-                    "name": {
-                        "type": "string",
-                        "example": "Meu Nome"
-                    },
-                    "email": {
-                        "type": "string",
-                        "example": "meu@email.com"
-                    },
-                    "phone1": {
-                        "type": "string",
-                        "example": "(62) 9 9999-9999"
-                    },
-                    "phone2": {
-                        "type": "string",
-                        "example": "(62) 9 9999-9999"
-                    },
-                    "type": {
-                        "$ref": "#/components/schemas/UserType"
-                    },
-                    "status": {
-                        "$ref": "#/components/schemas/UserStatus"
-                    },
-                    "profileName": {
-                        "type": "string",
-                        "example": "Gerente"
-                    },
-                    "createdAt": {
-                        "type": "datetime",
-                        "example": "2020-05-25T05:09:15.000000Z"
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "example": "Campo teste é obrigatório"
+                        }
                     }
                 },
                 "type": "object"

@@ -13,6 +13,12 @@ class CityController extends Controller
      * @OA\Get(
      *     tags={"Cities"},
      *     path="/cities/by-state/{state}",
+     *     @OA\Parameter(
+     *        name="state",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="",
