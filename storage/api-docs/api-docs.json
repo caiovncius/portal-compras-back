@@ -4,6 +4,11 @@
         "title": "API Portal de compras - Famacias Associadas",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": ""
+        }
+    ],
     "paths": {
         "/cities/by-state/{state}": {
             "get": {
@@ -1311,9 +1316,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://localhost/oauth/authorize",
-                        "tokenUrl": "http://localhost/oauth/token",
-                        "refreshUrl": "http://localhost/token/refresh",
+                        "authorizationUrl": "http://portal-compras-back.test/oauth/authorize",
+                        "tokenUrl": "http://portal-compras-back.test/oauth/token",
+                        "refreshUrl": "http://portal-compras-back.test/token/refresh",
                         "scopes": []
                     }
                 }
