@@ -1,0 +1,49 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Pharmacy;
+use Illuminate\Foundation\Http\FormRequest;
+
+/**
+ * @OA\Schema(
+ *     schema="PharmacyUpdaterRequest",
+ *     type="object",
+ *     title="Pharmacy update form request",
+ *     @OA\Property(property="code", type="integer", example="01"),
+ *     @OA\Property(property="cnpj", type="string", example="99.999.999/0001-91"),
+ *     @OA\Property(property="company_name", type="string", example="Teste"),
+ *     @OA\Property(property="status", type="string", example="ACTIVE"),
+ *     @OA\Property(property="city_id", type="integer", example="10"),
+ *     @OA\Property(property="commercial", type="string", example="Teste 02"),
+ * )
+ */
+class PharmacyUpdatorRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'code' => 'required|integer',
+            'cnpj' => 'required|string',
+            'company_name' => 'required|string',
+            'status' => 'required|in:ACTIVE,INACTIVE',
+            'city_id' => 'required|integer|exists:cities,id',
+            'commercial' => 'required|string',
+        ];
+    }
+}

@@ -26,4 +26,9 @@ class Pharmacy extends Model
         'city_id',
         'commercial'
     ];
+
+    public function city()
+    {
+        return $this->belongsTo(City::name, 'city');
+    }
 }

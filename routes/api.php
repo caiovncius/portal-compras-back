@@ -31,4 +31,9 @@ Route::middleware([])->group(function(){
     Route::get('/profiles/{profile}', 'ProfileController@get')->name('profile.get');
     Route::post('/profiles', 'ProfileController@store')->name('profile.store');
     Route::put('/profiles/{profile}', 'ProfileController@update')->name('profile.update');
+
+    Route::get('/pharmacies', 'PharmacyController@list')->name('pharmacy.list');
+    Route::get('/pharmacies/{pharmacy}', 'PharmacyController@get')->name('pharmacy.get');
+    Route::post('/pharmacies', 'PharmacyController@store')->name('pharmacy.store');
+    Route::put('/pharmacies/{pharmacy}', 'PharmacyController@update')->name('pharmacy.update');
 });
