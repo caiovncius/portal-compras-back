@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
+    <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="Corrigido descrição da API">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/l5-swagger.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/l5-swagger.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.php" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Profile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +183,10 @@
       <workItem from="1590375999813" duration="9069000" />
       <workItem from="1590415182219" duration="8989000" />
       <workItem from="1590435669772" duration="1945000" />
-      <workItem from="1590670253448" duration="12129000" />
+      <workItem from="1590670253448" duration="12246000" />
+      <workItem from="1590699836320" duration="10000" />
+      <workItem from="1591013276040" duration="329000" />
+      <workItem from="1591059016425" duration="66000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://grupoitss.visualstudio.com/Associados/_git/portal-compras-back&#10;&#10;# Conflicts:&#10;#&#9;README.md">
       <created>1589895176923</created>
@@ -299,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590687319047</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Corrigido descrição da API">
+      <created>1590687719453</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1590687719453</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +343,8 @@
     <MESSAGE value="fix" />
     <MESSAGE value="Melhorado documentação" />
     <MESSAGE value="Endpoints de perfil" />
-    <option name="LAST_COMMIT_MESSAGE" value="Endpoints de perfil" />
+    <MESSAGE value="Corrigido descrição da API" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrigido descrição da API" />
   </component>
   <component name="WindowStateProjectService">
     <state x="456" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590685640307">
@@ -346,11 +355,11 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590679558111" />
-    <state x="171" y="23" key="CommitChangelistDialog2" timestamp="1590687318658">
+    <state x="171" y="23" key="CommitChangelistDialog2" timestamp="1591059026322">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1589985145491" />
-    <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1590687318658" />
+    <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1591059026322" />
     <state x="356" y="111" key="MultipleFileMergeDialog" timestamp="1589894795509">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
@@ -372,10 +381,10 @@
     </state>
     <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1589985147938" />
     <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1590455788414" />
-    <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590001721179">
+    <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591059078375">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
-    <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590001721179" />
+    <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1591059078375" />
     <state x="586" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590687704732">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
