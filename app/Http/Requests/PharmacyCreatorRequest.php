@@ -40,7 +40,7 @@ class PharmacyCreatorRequest extends FormRequest
     {
         return [
             'code' => 'required|integer',
-            'cnpj' => 'required|string',
+            'cnpj' => 'required|cnpj',
             'company_name' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'city_id' => 'required|integer|exists:cities,id',
