@@ -13,5 +13,5 @@ interface PharmacyRetrievable
      * @return \Illuminate\Database\Eloquent\Builder
      * @throws \Exception
      */
-    public function getPharmacies(array $params);
+    public function pharmacies(array $params);
 }
