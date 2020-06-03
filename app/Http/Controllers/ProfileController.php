@@ -319,4 +319,47 @@ class ProfileController extends Controller
     {
         return ProfileResource::make($profile);
     }
+
+    /**
+     *
+     * @OA\GET(
+     *     tags={"Profiles"},
+     *     path="/profiles/by-type/{type}",
+     *     @OA\Parameter(
+     *        name="type",
+     *        in="path",
+     *        example="PHARMACY",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/ProfileResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param $type
+     * @return ProfileResource
+     */
+    public function byType($type)
+    {
+        return ProfileResource::collection(Profile::byType($type)->get());
+    }
 }

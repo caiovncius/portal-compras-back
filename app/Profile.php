@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Models\ProfileRelations;
+use App\Traits\Models\ProfileScopes;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Profile extends Model
 {
-    use ProfileRelations;
+    use ProfileRelations, ProfileScopes;
 
     /// User status
     const PROFILE_STATUS_ACTIVE = 'ACTIVE';

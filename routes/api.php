@@ -29,6 +29,7 @@ Route::middleware([])->group(function(){
 
     Route::get('/profiles', 'ProfileController@list')->name('profile.list');
     Route::get('/profiles/{profile}', 'ProfileController@get')->name('profile.get');
+    Route::get('/profiles/by-type/{type}', 'ProfileController@byType')->name('profile.tpe');
     Route::post('/profiles', 'ProfileController@store')->name('profile.store');
     Route::put('/profiles/{profile}', 'ProfileController@update')->name('profile.update');
 
