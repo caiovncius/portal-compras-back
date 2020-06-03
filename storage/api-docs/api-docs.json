@@ -41,6 +41,213 @@
                 }
             }
         },
+        "/laboratories": {
+            "get": {
+                "tags": [
+                    "Laboratories"
+                ],
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "example": "01"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "ACTIVE"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "Teste 01"
+                    },
+                    {
+                        "name": "createdAt",
+                        "in": "query",
+                        "example": "2020-01-01"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LaboratoryListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Laboratories"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LaboratoryCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/laboratories/{laboratory}": {
+            "put": {
+                "tags": [
+                    "Laboratories"
+                ],
+                "parameters": [
+                    {
+                        "name": "Laboratory",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LaboratoryUpdaterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório atualizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Laboratories"
+                ],
+                "parameters": [
+                    {
+                        "name": "Laboratory",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/pharmacies": {
             "get": {
                 "tags": [
@@ -888,6 +1095,47 @@
     },
     "components": {
         "schemas": {
+            "LaboratoryCreatorRequest": {
+                "title": "Laboratory form request",
+                "required": [
+                    "code",
+                    "status",
+                    "name"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "01"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    }
+                },
+                "type": "object"
+            },
+            "LaboratoryUpdaterRequest": {
+                "title": "Laboratory update form request",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "01"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    }
+                },
+                "type": "object"
+            },
             "PharmacyCreatorRequest": {
                 "title": "Pharmacy form request",
                 "required": [
@@ -1104,6 +1352,28 @@
                     },
                     "state": {
                         "$ref": "#/components/schemas/StateResource"
+                    }
+                },
+                "type": "object"
+            },
+            "LaboratoryListResource": {
+                "title": "LaboratoryList Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": "01"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste 02"
                     }
                 },
                 "type": "object"

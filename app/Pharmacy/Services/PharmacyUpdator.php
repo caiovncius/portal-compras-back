@@ -12,27 +12,17 @@ class PharmacyUpdator implements PharmacyUpdatable
 {
     /**
      * @param Pharmacy $parmacy
-     * @param array $parmacyData
+     * @param array $pharmacyData
      * @return bool
      * @throws \Exception
      */
-    public function update(Pharmacy $parmacy, array $parmacyData)
+    public function update(Pharmacy $parmacy, array $pharmacyData)
     {
         try {
-            $parmacy->fill($parmacyData);
+            $parmacy->fill($pharmacyData);
             $parmacy->save();
 
-            if (isset($parmacyData['functions'])) {
-                $parmacy->functionalities()->detach();
-
-                foreach ($parmacyData['functions'] as $function) {
-                    $permission = Functionality::where('key',$function['key'])->first();
-                    $parmacy->functionalities()->attach($permission->id, ['access_type' => $function['permission']]);
-                }
-            }
-
             return true;
-
         } catch (\Exception $exception) {
             throw $exception;
         }
