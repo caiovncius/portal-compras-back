@@ -337,7 +337,7 @@ class ProfileController extends Controller
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 @OA\Property(property="data", ref="#/components/schemas/ProfileResource"),
+     *                 @OA\Property(property="data", ref="#/components/schemas/ProfileListResource"),
      *             )
      *         )
      *     ),
@@ -356,10 +356,10 @@ class ProfileController extends Controller
 
     /**
      * @param $type
-     * @return ProfileResource
+     * @return ProfileListResource
      */
     public function byType($type)
     {
-        return ProfileResource::collection(Profile::byType($type)->get());
+        return ProfileListResource::collection(Profile::byType($type)->get());
     }
 }

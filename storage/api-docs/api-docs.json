@@ -551,7 +551,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/ProfileResource"
+                                            "$ref": "#/components/schemas/ProfileListResource"
                                         }
                                     },
                                     "type": "object"
