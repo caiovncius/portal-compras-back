@@ -1,6 +1,6 @@
 <?php
 /**
- * /**
+ *
  * @OA\Info(
  *     title="API Portal de compras - Famacias Associadas",
  *     version="1.0.0"
