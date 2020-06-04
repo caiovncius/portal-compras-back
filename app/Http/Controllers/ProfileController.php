@@ -276,7 +276,6 @@ class ProfileController extends Controller
         }
     }
 
-
     /**
      *
      * @OA\GET(

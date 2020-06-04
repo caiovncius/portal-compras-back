@@ -146,6 +146,49 @@ class LaboratoryController extends Controller
 
     /**
      *
+     * @OA\GET(
+     *     tags={"Laboratories"},
+     *     path="/laboratories/{laboratory}",
+     *     @OA\Parameter(
+     *        name="laboratory",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/LaboratoryListResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Laboratory $laboratory
+     * @return LaboratoryResource
+     */
+    public function get(Laboratory $laboratory)
+    {
+        return LaboratoryListResource::make($laboratory);
+    }
+
+    /**
+     *
      * @OA\Post(
      *     tags={"Laboratories"},
      *     path="/laboratories",

@@ -157,6 +157,49 @@ class PharmacyController extends Controller
         }
     }
 
+    /**
+     *
+     * @OA\GET(
+     *     tags={"Pharmacies"},
+     *     path="/pharmacies/{pharmacy}",
+     *     @OA\Parameter(
+     *        name="pharmacy",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/PharmacyListResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Pharmacy $pharmacy
+     * @return PharmacyResource
+     */
+    public function get(Pharmacy $pharmacy)
+    {
+        return PharmacyListResource::make($pharmacy);
+    }
+
 
     /**
      *
