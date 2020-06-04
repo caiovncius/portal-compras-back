@@ -47,8 +47,8 @@ class UserCreatorRequest extends FormRequest
             'type' => 'required|in:' . User::USER_TYPE_SUPPLIER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
             'status' => 'required|in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
             'profileId' => 'required|exists:profiles,id',
-            'phone1' => 'string',
-            'phone2' => 'string',
+            'phone1' => 'string|nullable',
+            'phone2' => 'string|nullable',
         ];
     }
 }
