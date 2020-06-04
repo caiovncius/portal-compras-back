@@ -136,6 +136,45 @@
                 }
             }
         },
+        "/laboratories/active": {
+            "get": {
+                "tags": [
+                    "Laboratories"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/LaboratoryListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/laboratories/{laboratory}": {
             "put": {
                 "tags": [

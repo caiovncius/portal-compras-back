@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Models\LaboratoryScopes;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Laboratory extends Model
 {
+    use LaboratoryScopes;
+    
     protected $fillable = [
         'code',
         'name',

@@ -109,6 +109,43 @@ class LaboratoryController extends Controller
 
     /**
      *
+     * @OA\GET(
+     *     tags={"Laboratories"},
+     *     path="/laboratories/active",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/LaboratoryListResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param $type
+     * @return LaboratoryListResource
+     */
+    public function active()
+    {
+        return LaboratoryListResource::collection(Laboractory::active()->get());
+    }
+
+    /**
+     *
      * @OA\Post(
      *     tags={"Laboratories"},
      *     path="/laboratories",
