@@ -2,7 +2,7 @@
 /**
  * /**
  * @OA\Info(
- *     title="API Portal de compras - Famacias Associadas",
+ *     title="API Portal de compras - Farmácias Associadas",
  *     version="1.0.0"
  * )
  *
