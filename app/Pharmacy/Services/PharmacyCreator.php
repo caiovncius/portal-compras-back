@@ -18,7 +18,7 @@ class PharmacyCreator implements PharmacyCreatable
     public function store(array $pharmacyData)
     {
         try {
-            $Pharmacy = Pharmacy::create($pharmacyData);
+            $pharmacy = Pharmacy::create($pharmacyData);
 
             return true;
         } catch (\Exception $e) {

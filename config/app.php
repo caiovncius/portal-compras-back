@@ -178,6 +178,7 @@ return [
         App\Providers\ProfileServiceProvider::class,
         App\Providers\PharmacyServiceProvider::class,
         App\Providers\LaboratoryServiceProvider::class,
+        App\Providers\ProductServiceProvider::class,
 
     ],
 
