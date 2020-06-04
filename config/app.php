@@ -174,9 +174,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        \App\Providers\UserServiceProvider::class,
-        \App\Providers\ProfileServiceProvider::class,
-        \App\Providers\PharmacyServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
+        App\Providers\ProfileServiceProvider::class,
+        App\Providers\PharmacyServiceProvider::class,
+        App\Providers\LaboratoryServiceProvider::class,
+        App\Providers\ProductServiceProvider::class,
 
     ],
 

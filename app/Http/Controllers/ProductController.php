@@ -2,59 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PharmacyCreatorRequest;
-use App\Http\Requests\PharmacyUpdatorRequest;
-use App\Http\Resources\PharmacyListResource;
-use App\Pharmacy;
-use App\Pharmacy\Contracts\PharmacyCreatable;
-use App\Pharmacy\Contracts\PharmacyUpdatable;
-use App\Pharmacy\Contracts\PharmacyRemovable;
-use App\Pharmacy\Contracts\PharmacyRetrievable;
+use App\Http\Requests\ProductCreatorRequest;
+use App\Http\Requests\ProductUpdatorRequest;
+use App\Http\Resources\ProductListResource;
+use App\Product;
+use App\Product\Contracts\ProductCreatable;
+use App\Product\Contracts\ProductUpdatable;
+use App\Product\Contracts\ProductRemovable;
+use App\Product\Contracts\ProductRetrievable;
 use Illuminate\Http\Request;
 
-class PharmacyController extends Controller
+class ProductController extends Controller
 {
     /**
-     * @var PharmacyCreatable
+     * @var ProductCreatable
      */
     private $creatorService;
 
     /**
-     * @var PharmacyUpdatable
+     * @var ProductUpdatable
      */
     private $updaterService;
 
     /**
-     * @var PharmacyRemovable
+     * @var ProductRemovable
      */
     private $removerService;
 
     /**
-     * @var PharmacyRetrievable
+     * @var ProductRetrievable
      */
     private $retreiverService;
 
     public function __construct()
     {
-        $this->creatorService = app()->make(PharmacyCreatable::class);
-        $this->updaterService = app()->make(PharmacyUpdatable::class);
-        $this->removerService = app()->make(PharmacyRemovable::class);
-        $this->retreiverService = app()->make(PharmacyRetrievable::class);
+        $this->creatorService = app()->make(ProductCreatable::class);
+        $this->updaterService = app()->make(ProductUpdatable::class);
+        $this->removerService = app()->make(ProductRemovable::class);
+        $this->retreiverService = app()->make(ProductRetrievable::class);
     }
 
     /**
      * @OA\Get(
-     *     tags={"Pharmacies"},
-     *     path="/pharmacies",
+     *     tags={"Products"},
+     *     path="/products",
      *     @OA\Parameter(
      *        name="code",
      *        in="query",
      *        example="01",
      *     ),
      *     @OA\Parameter(
-     *        name="cnpj",
+     *        name="code_ean",
      *        in="query",
-     *        example="99.999.999/0001-91",
+     *        example="02",
+     *     ),
+     *     @OA\Parameter(
+     *        name="description",
+     *        in="query",
+     *        example="teste",
      *     ),
      *     @OA\Parameter(
      *        name="status",
@@ -62,14 +67,9 @@ class PharmacyController extends Controller
      *        example="ACTIVE",
      *     ),
      *     @OA\Parameter(
-     *        name="city_id",
+     *        name="laboratory_id",
      *        in="query",
-     *        example="02",
-     *     ),
-     *     @OA\Parameter(
-     *        name="commercial",
-     *        in="query",
-     *        example="Teste 03",
+     *        example="COMMERCIAL",
      *     ),
      *     @OA\Parameter(
      *        name="createdAt",
@@ -85,7 +85,7 @@ class PharmacyController extends Controller
      *                 @OA\Property(
      *                     property="data",
      *                     type="array",
-     *                     @OA\Items(ref="#/components/schemas/PharmacyListResource"),
+     *                     @OA\Items(ref="#/components/schemas/ProductListResource"),
      *                 ),
      *                 @OA\Property(
      *                     property="links",
@@ -111,7 +111,7 @@ class PharmacyController extends Controller
      */
     public function list(Request $request) {
         try {
-            return PharmacyListResource::collection($this->retreiverService->pharmacies($request->query())->paginate(20));
+            return ProductListResource::collection($this->retreiverService->getProducts($request->query())->paginate(20));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -120,11 +120,11 @@ class PharmacyController extends Controller
     /**
      *
      * @OA\Post(
-     *     tags={"Pharmacies"},
-     *     path="/pharmacies",
+     *     tags={"Products"},
+     *     path="/products",
      *     @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/PharmacyCreatorRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/ProductCreatorRequest")
      *      ),
      *     @OA\Response(
      *         response=200,
@@ -134,7 +134,7 @@ class PharmacyController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Farmácia criada com sucesso"
+     *                     example ="Produto criado com sucesso"
      *                 )
      *             )
      *         )
@@ -143,27 +143,14 @@ class PharmacyController extends Controller
      * )
      */
 
-    /**
-     * @param PharmacyCreatorRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(PharmacyCreatorRequest $request)
-    {
-        try {
-            $this->creatorService->store($request->all());
-            return response()->json(['message' => 'Farmácia criada com sucesso'], 200);
-        } catch (\Exception $exception) {
-            return response()->json(['error' => $exception->getMessage()], 400);
-        }
-    }
 
     /**
      *
      * @OA\GET(
-     *     tags={"Pharmacies"},
-     *     path="/pharmacies/{pharmacy}",
+     *     tags={"Products"},
+     *     path="/products/{product}",
      *     @OA\Parameter(
-     *        name="pharmacy",
+     *        name="product",
      *        in="path",
      *        example="2",
      *        required=true
@@ -174,7 +161,7 @@ class PharmacyController extends Controller
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 @OA\Property(property="data", ref="#/components/schemas/PharmacyListResource"),
+     *                 @OA\Property(property="data", ref="#/components/schemas/ProductListResource"),
      *             )
      *         )
      *     ),
@@ -192,26 +179,40 @@ class PharmacyController extends Controller
      */
 
     /**
-     * @param Pharmacy $pharmacy
-     * @return PharmacyResource
+     * @param Product $product
+     * @return ProductListResource
      */
-    public function get(Pharmacy $pharmacy)
+    public function get(Product $product)
     {
-        return PharmacyListResource::make($pharmacy);
+        return ProductListResource::make($product);
+    }
+
+    /**
+     * @param ProductCreatorRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(ProductCreatorRequest $request)
+    {
+        try {
+            $this->creatorService->store($request->all());
+            return response()->json(['message' => 'Produto criado com sucesso'], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
     }
 
 
     /**
      *
      * @OA\Put(
-     *     tags={"Pharmacies"},
-     *     path="/pharmacies/{pharmacy}",
+     *     tags={"Products"},
+     *     path="/products/{product}",
      *     @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/PharmacyUpdaterRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/ProductUpdaterRequest")
      *      ),
      *     @OA\Parameter(
-     *        name="pharmacy",
+     *        name="product",
      *        in="path",
      *        example="2",
      *        required=true
@@ -224,7 +225,7 @@ class PharmacyController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Farmácia atualizada com sucesso"
+     *                     example ="Produto atualizado com sucesso"
      *                 )
      *             )
      *         )
@@ -248,14 +249,14 @@ class PharmacyController extends Controller
      */
 
     /**
-     * @param PharmacyCreatorRequest $request
+     * @param ProductCreatorRequest $request
      * @return mixed
      */
-    public function update(Pharmacy $pharmacy, PharmacyUpdatorRequest $request)
+    public function update(Product $product, ProductUpdatorRequest $request)
     {
         try {
-            $this->updaterService->update($pharmacy, $request->all());
-            return response()->json(['message' => 'Farmácia atualizada com sucesso'], 200);
+            $this->updaterService->update($product, $request->all());
+            return response()->json(['message' => 'Produto atualizado com sucesso'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
@@ -264,10 +265,10 @@ class PharmacyController extends Controller
     /**
      *
      * @OA\Delete(
-     *     tags={"Pharmacies"},
-     *     path="/pharmacies/{pharmacy}",
+     *     tags={"Products"},
+     *     path="/products/{product}",
      *     @OA\Parameter(
-     *        name="pharmacy",
+     *        name="product",
      *        in="path",
      *        example="2",
      *        required=true
@@ -280,7 +281,7 @@ class PharmacyController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Farmácia removida com sucesso"
+     *                     example ="Produto removido com sucesso"
      *                 )
      *             )
      *         )
@@ -299,14 +300,14 @@ class PharmacyController extends Controller
      */
 
     /**
-     * @param Pharmacy $pharmacy
+     * @param Product $product
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Pharmacy $pharmacy)
+    public function delete(Product $product)
     {
         try {
-            $this->removerService->delete($pharmacy);
-            return response()->json(['message' => 'Farmácia removida com sucesso'], 200);
+            $this->removerService->delete($product);
+            return response()->json(['message' => 'Produto removido com sucesso'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }

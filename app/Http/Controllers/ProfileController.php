@@ -276,7 +276,6 @@ class ProfileController extends Controller
         }
     }
 
-
     /**
      *
      * @OA\GET(
@@ -318,5 +317,48 @@ class ProfileController extends Controller
     public function get(Profile $profile)
     {
         return ProfileResource::make($profile);
+    }
+
+    /**
+     *
+     * @OA\GET(
+     *     tags={"Profiles"},
+     *     path="/profiles/by-type/{type}",
+     *     @OA\Parameter(
+     *        name="type",
+     *        in="path",
+     *        example="PHARMACY",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/ProfileListResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param $type
+     * @return ProfileListResource
+     */
+    public function byType($type)
+    {
+        return ProfileListResource::collection(Profile::byType($type)->get());
     }
 }

@@ -29,11 +29,27 @@ Route::middleware([])->group(function(){
 
     Route::get('/profiles', 'ProfileController@list')->name('profile.list');
     Route::get('/profiles/{profile}', 'ProfileController@get')->name('profile.get');
+    Route::get('/profiles/by-type/{type}', 'ProfileController@byType')->name('profile.tpe');
     Route::post('/profiles', 'ProfileController@store')->name('profile.store');
     Route::put('/profiles/{profile}', 'ProfileController@update')->name('profile.update');
+    Route::delete('/profiles/{profile}', 'ProfileController@delete')->name('profile.delete');
 
     Route::get('/pharmacies', 'PharmacyController@list')->name('pharmacy.list');
     Route::get('/pharmacies/{pharmacy}', 'PharmacyController@get')->name('pharmacy.get');
     Route::post('/pharmacies', 'PharmacyController@store')->name('pharmacy.store');
     Route::put('/pharmacies/{pharmacy}', 'PharmacyController@update')->name('pharmacy.update');
+    Route::delete('/pharmacies/{pharmacy}', 'PharmacyController@delete')->name('pharmacy.delete');
+
+    Route::get('/laboratories/active', 'LaboratoryController@active')->name('laboratory.active');
+    Route::get('/laboratories', 'LaboratoryController@list')->name('laboratory.list');
+    Route::get('/laboratories/{laboratory}', 'LaboratoryController@get')->name('laboratory.get');
+    Route::post('/laboratories', 'LaboratoryController@store')->name('laboratory.store');
+    Route::put('/laboratories/{laboratory}', 'LaboratoryController@update')->name('laboratory.update');
+    Route::delete('/laboratories/{laboratory}', 'LaboratoryController@delete')->name('laboratory.delete');
+
+    Route::get('/products', 'ProductController@list')->name('laboratory.list');
+    Route::get('/products/{product}', 'ProductController@get')->name('product.get');
+    Route::post('/products', 'ProductController@store')->name('product.store');
+    Route::put('/products/{product}', 'ProductController@update')->name('laboratory.update');
+    Route::delete('/products/{product}', 'ProductController@delete')->name('product.delete');
 });
