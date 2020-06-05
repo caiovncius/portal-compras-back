@@ -23,6 +23,7 @@ Route::middleware([])->group(function(){
     Route::get('/cities/by-state/{state}', 'CityController@allCities')->name('cities.byState');
 
     Route::get('/users', 'UserController@list')->name('user.list');
+    Route::get('/users/{user}', 'UserController@get')->name('user.get');
     Route::post('/users', 'UserController@store')->name('user.store');
     Route::put('/users/{user}', 'UserController@update')->name('user.update');
     Route::delete('/users/{user}', 'UserController@delete')->name('user.delete');
@@ -46,10 +47,4 @@ Route::middleware([])->group(function(){
     Route::post('/laboratories', 'LaboratoryController@store')->name('laboratory.store');
     Route::put('/laboratories/{laboratory}', 'LaboratoryController@update')->name('laboratory.update');
     Route::delete('/laboratories/{laboratory}', 'LaboratoryController@delete')->name('laboratory.delete');
-
-    Route::get('/products', 'ProductController@list')->name('laboratory.list');
-    Route::get('/products/{product}', 'ProductController@get')->name('product.get');
-    Route::post('/products', 'ProductController@store')->name('product.store');
-    Route::put('/products/{product}', 'ProductController@update')->name('laboratory.update');
-    Route::delete('/products/{product}', 'ProductController@delete')->name('product.delete');
 });

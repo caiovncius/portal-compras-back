@@ -1309,6 +1309,51 @@
             }
         },
         "/users/{user}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "Users"
@@ -1422,7 +1467,6 @@
         },
         "/": {
             "get": {
-                "summary": "/**",
                 "description": "Status da API",
                 "responses": {
                     "200": {
@@ -1436,7 +1480,6 @@
                 "tags": [
                     "Users"
                 ],
-                "summary": "/**",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1455,22 +1498,18 @@
                                 "schema": {
                                     "properties": {
                                         "token_type": {
-                                            "description": "/**",
                                             "type": "string",
                                             "example": "Bearer"
                                         },
                                         "expires_in": {
-                                            "description": "/**",
                                             "type": "int",
                                             "example": "35999"
                                         },
                                         "access_token": {
-                                            "description": "/**",
                                             "type": "string",
                                             "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjVjZWRmYTM2NzIxMDg3NjlhYTAzNmI0NzFjZGFlOGI4MWQyZmQ5NDE5MTI1OTUwM2Y0OGQyMTIwZjI4N2U2MDRjM2FlYTNmNmIwZDE0ZTJlIn0.eyJhdWQiOiIzIiwianRpIjoiNWNlZGZhMzY3MjEwODc2OWFhMDM2YjQ3MWNkYWU4YjgxZDJmZDk0MTkxMjU5NTAzZjQ4ZDIxMjBmMjg3ZTYwNGMzYWVhM2Y2YjBkMTRlMmUiLCJpYXQiOjE1OTExMTQyMDAsIm5iZiI6MTU5MTExNDIwMCwiZXhwIjoxNTkxMTUwMjAwLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.lXeOXHDdZs1J6EDs3bCBjhMLTCURFAswfk6plXqFQfJxnEB-JmTyZbFEmB9LvoWzJ8oGeFZ2L7dHBC6vcVgdcBXkxJOWNmSSDK5PZC7F30ppjhAf4oo6WCUKj9YtU8ChUeCuRfGE4kU98KOeBav9iunf9QkJayV6sTCB0zhtky6C30cdBJGNgkOQJU7Lmx0MADXVCtgAVBTJBDAzJDjrjmzkuf_xqTJQdSuTr9xKZB556jbu03hD1fW-ARhhTSQrTeFcSlar5B3db7lBqWtaC7z6geXx_eiQq3aiaDhifvSdHaRIlQGqVwZBjjqSfS4xZIiWX1D-2A2t66Y3S2mzOzPrU7nW58VTEgV82nSPRa9EtMPG63brfTPB2P6HjEzBsnAHQrlCpQ2SvKvrVfIBZQKNbBMAWo14oS-0syL0yZQVaDUF7jZyHp0gB4iwQvFH2IpCicGuFa26HJlBfZuCp4qvu1PRnQFwxX9hSXjFfoBumL0k9kPuJ0SMvkgyE7_IeHQw29dwHF-4Z2uj2yoonxU7qYdB7aFKJXxIrtUmRoIuYn5J-9RQsHzF6stCS_wSQnpc-Pa_xybC_8Cq2mEzDPTU7We5hmKJZwE7se-S0zT4NNnQs78IF1dm11cGY1KrQZKZdACpImUyEclX4Uw4_nYvg0W1bezZN-ET432J3ao"
                                         },
                                         "refresh_token": {
-                                            "description": "/**",
                                             "type": "string",
                                             "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjVjZWRmYTM2NzIxMDg3NjlhYTAzNmI0NzFjZGFlOGI4MWQyZmQ5NDE5MTI1OTUwM2Y0OGQyMTIwZjI4N2U2MDRjM2FlYTNmNmIwZDE0ZTJlIn0.eyJhdWQiOiIzIiwianRpIjoiNWNlZGZhMzY3MjEwODc2OWFhMDM2YjQ3MWNkYWU4YjgxZDJmZDk0MTkxMjU5NTAzZjQ4ZDIxMjBmMjg3ZTYwNGMzYWVhM2Y2YjBkMTRlMmUiLCJpYXQiOjE1OTExMTQyMDAsIm5iZiI6MTU5MTExNDIwMCwiZXhwIjoxNTkxMTUwMjAwLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.lXeOXHDdZs1J6EDs3bCBjhMLTCURFAswfk6plXqFQfJxnEB-JmTyZbFEmB9LvoWzJ8oGeFZ2L7dHBC6vcVgdcBXkxJOWNmSSDK5PZC7F30ppjhAf4oo6WCUKj9YtU8ChUeCuRfGE4kU98KOeBav9iunf9QkJayV6sTCB0zhtky6C30cdBJGNgkOQJU7Lmx0MADXVCtgAVBTJBDAzJDjrjmzkuf_xqTJQdSuTr9xKZB556jbu03hD1fW-ARhhTSQrTeFcSlar5B3db7lBqWtaC7z6geXx_eiQq3aiaDhifvSdHaRIlQGqVwZBjjqSfS4xZIiWX1D-2A2t66Y3S2mzOzPrU7nW58VTEgV82nSPRa9EtMPG63brfTPB2P6HjEzBsnAHQrlCpQ2SvKvrVfIBZQKNbBMAWo14oS-0syL0yZQVaDUF7jZyHp0gB4iwQvFH2IpCicGuFa26HJlBfZuCp4qvu1PRnQFwxX9hSXjFfoBumL0k9kPuJ0SMvkgyE7_IeHQw29dwHF-4Z2uj2yoonxU7qYdB7aFKJXxIrtUmRoIuYn5J-9RQsHzF6stCS_wSQnpc-Pa_xybC_8Cq2mEzDPTU7We5hmKJZwE7se-S0zT4NNnQs78IF1dm11cGY1KrQZKZdACpImUyEclX4Uw4_nYvg0W1bezZN-ET432J3ao"
                                         }
@@ -2031,17 +2070,14 @@
             "PaginationLinks": {
                 "properties": {
                     "first": {
-                        "description": "/**",
                         "type": "string",
                         "example": "http://api.test/api/users?page=1"
                     },
                     "last": {
-                        "description": "/**",
                         "type": "string",
                         "example": "http://api.test/api/users?page=10"
                     },
                     "next": {
-                        "description": "/**",
                         "type": "string",
                         "example": "http://api.test/api/users?page=3"
                     }
@@ -2051,12 +2087,10 @@
             "ProfileFunctions": {
                 "properties": {
                     "key": {
-                        "description": "/**",
                         "type": "string",
                         "example": "users"
                     },
                     "permission": {
-                        "description": "/**",
                         "type": "string",
                         "example": "NO_PERMISSION"
                     }
@@ -2066,22 +2100,18 @@
             "ProfilePermission": {
                 "properties": {
                     "id": {
-                        "description": "/**",
                         "type": "string",
                         "example": "1"
                     },
                     "name": {
-                        "description": "/**",
                         "type": "string",
                         "example": "User module"
                     },
                     "key": {
-                        "description": "/**",
                         "type": "string",
                         "example": "user_module"
                     },
                     "permission": {
-                        "description": "/**",
                         "type": "string",
                         "example": "FREE_ACCESS"
                     }
@@ -2091,37 +2121,30 @@
             "PaginationMeta": {
                 "properties": {
                     "current_page": {
-                        "description": "/**",
                         "type": "integer",
                         "example": "2"
                     },
                     "from": {
-                        "description": "/**",
                         "type": "integer",
                         "example": "1"
                     },
                     "last_page": {
-                        "description": "/**",
                         "type": "integer",
                         "example": "10"
                     },
                     "path": {
-                        "description": "/**",
                         "type": "string",
                         "example": "http://api.test/api/users"
                     },
                     "per_page": {
-                        "description": "/**",
                         "type": "integer",
                         "example": "20"
                     },
                     "to": {
-                        "description": "/**",
                         "type": "integer",
                         "example": "3"
                     },
                     "total": {
-                        "description": "/**",
                         "type": "integer",
                         "example": "10"
                     }
@@ -2131,12 +2154,10 @@
             "ValidationResponse": {
                 "properties": {
                     "message": {
-                        "description": "/**",
                         "type": "string",
                         "example": "The given data was invalid."
                     },
                     "errors": {
-                        "description": "/**",
                         "type": "array",
                         "items": {
                             "type": "array",
@@ -2160,27 +2181,22 @@
                 ],
                 "properties": {
                     "grant_type": {
-                        "description": "/**",
                         "type": "string",
                         "example": "password"
                     },
                     "client_id": {
-                        "description": "/**",
                         "type": "string",
                         "example": " 90b5d935-da48-475d-9eed-ea6e2aad8ca7"
                     },
                     "client_secret": {
-                        "description": "/**",
                         "type": "string",
                         "example": "Wx9DjqnKUFyemOEC04vtFcDTH3on5bVdgJrLIswN"
                     },
                     "username": {
-                        "description": "/**",
                         "type": "string",
                         "example": "my@email.com"
                     },
                     "password": {
-                        "description": "/**",
                         "type": "string",
                         "example": "12345678"
                     }

@@ -114,6 +114,49 @@ class UserController extends Controller
 
     /**
      *
+     * @OA\GET(
+     *     tags={"Users"},
+     *     path="/users/{user}",
+     *     @OA\Parameter(
+     *        name="user",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/UserListResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param User $user
+     * @return UserListResource
+     */
+    public function get(User $user)
+    {
+        return UserListResource::make($user);
+    }
+
+    /**
+     *
      * @OA\Post(
      *     tags={"Users"},
      *     path="/users",
