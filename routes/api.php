@@ -47,4 +47,17 @@ Route::middleware([])->group(function(){
     Route::post('/laboratories', 'LaboratoryController@store')->name('laboratory.store');
     Route::put('/laboratories/{laboratory}', 'LaboratoryController@update')->name('laboratory.update');
     Route::delete('/laboratories/{laboratory}', 'LaboratoryController@delete')->name('laboratory.delete');
+
+
+    Route::get('/contacts', 'ContactController@list')->name('contact.list');
+    Route::get('/contacts/{contact}', 'ContactController@get')->name('contact.get');
+    Route::post('/contacts', 'ContactController@store')->name('contact.store');
+    Route::put('/contacts/{contact}', 'ContactController@update')->name('contact.update');
+    Route::delete('/contacts/{contact}', 'ContactController@delete')->name('contact.delete');
+
+    Route::get('/distributors', 'DistributorController@list')->name('distributor.list');
+    Route::get('/distributors/{distributor}', 'DistributorController@get')->name('distributor.get');
+    Route::post('/distributors', 'DistributorController@store')->name('distributor.store');
+    Route::put('/distributors/{distributor}', 'DistributorController@update')->name('distributor.update');
+    Route::delete('/distributors/{distributor}', 'DistributorController@delete')->name('distributor.delete');
 });

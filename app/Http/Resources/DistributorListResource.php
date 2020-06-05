@@ -6,16 +6,18 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="ProfileListResource",
+ *     schema="DistributorListResource",
  *     type="object",
- *     title="Profile list Response",
+ *     title="Distributor Response",
  *     @OA\Property(property="id", type="integer", example="1"),
- *     @OA\Property(property="name", type="string", example="Manager"),
+ *     @OA\Property(property="code", type="string", example="01"),
+ *     @OA\Property(property="cnpj", type="string", example="00.00001"),
+ *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
- *     @OA\Property(property="type", ref="#/components/schemas/UserType"),
  * )
  */
-class ProfileListResource extends JsonResource
+
+class DistributorListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -27,9 +29,10 @@ class ProfileListResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'code' => $this->code,
+            'cnpj' => $this->cnpj,
             'name' => $this->name,
-            'type' => $this->type,
-            'status' => $this->status,
+            'status' => $this->status
         ];
     }
 }

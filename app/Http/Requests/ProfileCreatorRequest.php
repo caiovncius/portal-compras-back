@@ -26,7 +26,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class ProfileCreatorRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the Profile is authorized to make this request.
      *
      * @return bool
      */
