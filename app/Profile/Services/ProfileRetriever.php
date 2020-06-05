@@ -24,11 +24,11 @@ class ProfileRetriever implements ProfileRetrievable
             }
 
             if (isset($params['type'])) {
-                $query->where('name', $params['type']);
+                $query->where('type', $params['type']);
             }
 
             if (isset($params['status'])) {
-                $query->where('name', $params['status']);
+                $query->where('status', $params['status']);
             }
 
             return $query;
