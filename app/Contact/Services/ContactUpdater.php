@@ -1,10 +1,7 @@
 <?php
 
-
 namespace App\Contact\Services;
 
-
-use App\Contact;
 use App\Contact;
 use App\Contact\Contracts\ContactUpdatable;
 
