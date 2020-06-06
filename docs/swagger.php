@@ -51,6 +51,31 @@
  * )
  *
  * @OA\Schema(
+ *     schema="DistributorContacts",
+ *     type="object",
+ *     @OA\Property(property="id", type="integer", example="1"),
+ *     @OA\Property(property="distributor_id", type="integer", example="1"),
+ *     @OA\Property(property="function", type="string", example="Teste"),
+ *     @OA\Property(property="name", type="string", example="Teste"),
+ *     @OA\Property(property="email", type="string", example="teste@domain.com"),
+ *     @OA\Property(property="telephone", type="string", example="123"),
+ * )
+ *
+ * @OA\Schema(
+ *     schema="DistributorConnection",
+ *     type="object",
+ *     @OA\Property(property="id", type="integer", example="1"),
+ *     @OA\Property(property="distributorId", type="integer", example="1"),
+ *     @OA\Property(property="ftpActive", type="string", example="Teste"),
+ *     @OA\Property(property="transferency", type="string", example="teste"),
+ *     @OA\Property(property="host", type="string", example="localhost"),
+ *     @OA\Property(property="pathSend", type="string", example="123"),
+ *     @OA\Property(property="login", type="string", example="123"),
+ *     @OA\Property(property="password", type="string", example="123"),
+ *     @OA\Property(property="pathReturn", type="string", example="123"),
+ * )
+ *
+ * @OA\Schema(
  *     schema="PaginationMeta",
  *     type="object",
  *     @OA\Property(property="current_page", type="integer", example="2"),

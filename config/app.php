@@ -182,6 +182,7 @@ return [
         App\Providers\DistributorServiceProvider::class,
         App\Providers\DistributorConnectionServiceProvider::class,
         App\Providers\ContactServiceProvider::class,
+        App\Providers\ReturnsServiceProvider::class,
 
     ],
 

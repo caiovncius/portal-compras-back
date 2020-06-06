@@ -63,4 +63,10 @@ Route::middleware([])->group(function(){
 
     Route::post('/distributors/{distributor}/connection', 'DistributorConnectionController@store')->name('distributor.connection.store');
     Route::put('/distributors/{distributor}/connection/{connection}', 'DistributorConnectionController@update')->name('distributor.connection.update');
+
+    Route::get('/returns', 'ReturnsController@list')->name('return.list');
+    Route::get('/returns/{id}', 'ReturnsController@get')->name('return.get');
+    Route::post('/returns', 'ReturnsController@store')->name('return.store');
+    Route::put('/returns/{id}', 'ReturnsController@update')->name('return.update');
+    Route::delete('/returns/{id}', 'ReturnsController@delete')->name('return.delete');
 });

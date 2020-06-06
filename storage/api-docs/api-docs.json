@@ -1874,6 +1874,278 @@
                 }
             }
         },
+        "/returns": {
+            "get": {
+                "tags": [
+                    "Returns"
+                ],
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "example": "01"
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "example": "Teste"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "ACTIVE"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ReturnListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Returns"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReturnCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Retorno criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/returns/{id}": {
+            "get": {
+                "tags": [
+                    "Returns"
+                ],
+                "parameters": [
+                    {
+                        "name": "Returns",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ReturnListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Returns"
+                ],
+                "parameters": [
+                    {
+                        "name": "Returns",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReturnUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Retorno atualizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Returns"
+                ],
+                "parameters": [
+                    {
+                        "name": "Returns",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Retorno removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/states": {
             "get": {
                 "tags": [
@@ -2630,6 +2902,45 @@
                 },
                 "type": "object"
             },
+            "ReturnCreatorRequest": {
+                "title": "Return form request",
+                "required": [
+                    "code",
+                    "desc",
+                    "status"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "desc": {
+                        "type": "integer",
+                        "example": "TESTE"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "ReturnUpdatorRequest": {
+                "title": "Return form request",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "desc": {
+                        "type": "integer",
+                        "example": "TESTE"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
             "UserCreatorRequest": {
                 "title": "User form request",
                 "required": [
@@ -2728,7 +3039,7 @@
                 "type": "object"
             },
             "ContactListResource": {
-                "title": "Profile Response",
+                "title": "Contact Response",
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -2845,6 +3156,19 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DistributorContacts"
+                        }
+                    },
+                    "connection": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/DistributorConnection"
+                            }
+                        ]
                     }
                 },
                 "type": "object"
@@ -2996,6 +3320,28 @@
                 },
                 "type": "object"
             },
+            "ReturnListResource": {
+                "title": "Return Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "desc": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ATIVO"
+                    }
+                },
+                "type": "Return"
+            },
             "StateResource": {
                 "title": "State Response",
                 "properties": {
@@ -3120,6 +3466,76 @@
                     "permission": {
                         "type": "string",
                         "example": "FREE_ACCESS"
+                    }
+                },
+                "type": "object"
+            },
+            "DistributorContacts": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "distributor_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "function": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "teste@domain.com"
+                    },
+                    "telephone": {
+                        "type": "string",
+                        "example": "123"
+                    }
+                },
+                "type": "object"
+            },
+            "DistributorConnection": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "distributorId": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "ftpActive": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "transferency": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "host": {
+                        "type": "string",
+                        "example": "localhost"
+                    },
+                    "pathSend": {
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "login": {
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "pathReturn": {
+                        "type": "string",
+                        "example": "123"
                     }
                 },
                 "type": "object"

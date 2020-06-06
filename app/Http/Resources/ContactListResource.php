@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @OA\Schema(
  *     schema="ContactListResource",
  *     type="Contact",
- *     title="Profile Response",
+ *     title="Contact Response",
  *     @OA\Property(property="id", type="integer", example="1"),
  *     @OA\Property(property="distributor_id", type="integer", example="1"),
  *     @OA\Property(property="function", type="string", example="Teste"),

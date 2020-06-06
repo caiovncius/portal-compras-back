@@ -14,6 +14,15 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="cnpj", type="string", example="00.00001"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/DistributorContacts")
+ *     ),
+ *     @OA\Property(
+ *         property="connection",
+ *         allOf={@OA\Items(ref="#/components/schemas/DistributorConnection")}
+ *     ),
  * )
  */
 
