@@ -69,4 +69,10 @@ Route::middleware([])->group(function(){
     Route::post('/returns', 'ReturnsController@store')->name('return.store');
     Route::put('/returns/{id}', 'ReturnsController@update')->name('return.update');
     Route::delete('/returns/{id}', 'ReturnsController@delete')->name('return.delete');
+
+    Route::get('/conditions', 'ConditionController@list')->name('condition.list');
+    Route::get('/conditions/{id}', 'ConditionController@get')->name('condition.get');
+    Route::post('/conditions', 'ConditionController@store')->name('condition.store');
+    Route::put('/conditions/{id}', 'ConditionController@update')->name('condition.update');
+    Route::delete('/conditions/{id}', 'ConditionController@delete')->name('condition.delete');
 });

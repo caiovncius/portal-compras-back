@@ -2,57 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReturnCreatorRequest;
-use App\Http\Requests\ReturnUpdatorRequest;
-use App\Http\Resources\ReturnListResource;
-use App\Returns;
-use App\Returns\Contracts\ReturnsCreatable;
-use App\Returns\Contracts\ReturnsRetrievable;
-use App\Returns\Contracts\ReturnsUpdatable;
-use App\Returns\Contracts\ReturnsRemovable;
+use App\Http\Requests\ConditionCreatorRequest;
+use App\Http\Requests\ConditionUpdatorRequest;
+use App\Http\Resources\ConditionListResource;
+use App\Condition;
+use App\Condition\Contracts\ConditionCreatable;
+use App\Condition\Contracts\ConditionRetrievable;
+use App\Condition\Contracts\ConditionUpdatable;
+use App\Condition\Contracts\ConditionRemovable;
 use Illuminate\Http\Request;
 
-class ReturnsController extends Controller
+class ConditionController extends Controller
 {
     /**
-     * @var ReturnsRetrievable
+     * @var ConditionRetrievable
      */
     private $retrieverService;
 
     /**
-     * @var ReturnsCreatable
+     * @var ConditionCreatable
      */
     private $creatorService;
 
     /**
-     * @var ReturnsUpdatable
+     * @var ConditionUpdatable
      */
     private $updatorService;
 
     /**
-     * @var ReturnsRemovable
+     * @var ConditionRemovable
      */
     private $removerService;
 
 
     /**
-     * ReturnsController constructor.
+     * ConditionController constructor.
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function __construct()
     {
-        $this->retrieverService = app()->make(ReturnsRetrievable::class);
-        $this->creatorService = app()->make(ReturnsCreatable::class);
-        $this->updatorService = app()->make(ReturnsUpdatable::class);
-        $this->removerService = app()->make(ReturnsRemovable::class);
+        $this->retrieverService = app()->make(ConditionRetrievable::class);
+        $this->creatorService = app()->make(ConditionCreatable::class);
+        $this->updatorService = app()->make(ConditionUpdatable::class);
+        $this->removerService = app()->make(ConditionRemovable::class);
     }
 
     /**
      * @OA\Get(
-     *     tags={"Returns"},
-     *     path="/returns",
+     *     tags={"Conditions"},
+     *     path="/conditions",
      *     @OA\Parameter(
      *        name="code",
+     *        in="query",
+     *        example="01",
+     *     ),
+     *     @OA\Parameter(
+     *        name="pharmacy_id",
      *        in="query",
      *        example="01",
      *     ),
@@ -75,7 +80,7 @@ class ReturnsController extends Controller
      *                 @OA\Property(
      *                     property="data",
      *                     type="array",
-     *                     @OA\Items(ref="#/components/schemas/ReturnListResource"),
+     *                     @OA\Items(ref="#/components/schemas/ConditionListResource"),
      *                 ),
      *                 @OA\Property(
      *                     property="links",
@@ -102,7 +107,7 @@ class ReturnsController extends Controller
     public function list(Request $request)
     {
         try {
-            return ReturnListResource::collection($this->retrieverService->getReturns($request->query())->paginate(20));
+            return ConditionListResource::collection($this->retrieverService->getConditions($request->query())->paginate(20));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -111,11 +116,11 @@ class ReturnsController extends Controller
     /**
      *
      * @OA\Post(
-     *     tags={"Returns"},
-     *     path="/returns",
+     *     tags={"Conditions"},
+     *     path="/conditions",
      *     @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/ReturnCreatorRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/ConditionCreatorRequest")
      *      ),
      *     @OA\Response(
      *         response=200,
@@ -125,7 +130,7 @@ class ReturnsController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Retorno criado com sucesso"
+     *                     example ="Condição criada com sucesso"
      *                 )
      *             )
      *         )
@@ -150,14 +155,14 @@ class ReturnsController extends Controller
      */
 
     /**
-     * @param ReturnCreatorRequest $request
+     * @param ConditionCreatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(ReturnCreatorRequest $request)
+    public function store(ConditionCreatorRequest $request)
     {
         try {
             $this->creatorService->store($request->all());
-            return response()->json(['message' => 'Retorno criado com sucesso'], 200);
+            return response()->json(['message' => 'Condição criada com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -166,14 +171,14 @@ class ReturnsController extends Controller
     /**
      *
      * @OA\Put(
-     *     tags={"Returns"},
-     *     path="/returns/{id}",
+     *     tags={"Conditions"},
+     *     path="/conditions/{id}",
      *     @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/ReturnUpdatorRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/ConditionUpdatorRequest")
      *      ),
      *     @OA\Parameter(
-     *        name="Returns",
+     *        name="id",
      *        in="path",
      *        example="2",
      *        required=true
@@ -186,7 +191,7 @@ class ReturnsController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Retorno atualizado com sucesso"
+     *                     example ="Condição atualizada com sucesso"
      *                 )
      *             )
      *         )
@@ -211,14 +216,14 @@ class ReturnsController extends Controller
      */
 
     /**
-     * @param ReturnUpdatorRequest $request
+     * @param ConditionUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(ReturnUpdatorRequest $request, Returns $returns)
+    public function update(ConditionUpdatorRequest $request, Condition $id)
     {
         try {
-            $this->updatorService->update($returns, $request->all());
-            return response()->json(['message' => 'Retorno atualizado com sucesso'], 200);
+            $this->updatorService->update($id, $request->all());
+            return response()->json(['message' => 'Condição atualizada com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -227,10 +232,10 @@ class ReturnsController extends Controller
     /**
      *
      * @OA\Delete(
-     *     tags={"Returns"},
-     *     path="/returns/{id}",
+     *     tags={"Conditions"},
+     *     path="/conditions/{id}",
      *     @OA\Parameter(
-     *        name="Returns",
+     *        name="id",
      *        in="path",
      *        example="2",
      *        required=true
@@ -243,7 +248,7 @@ class ReturnsController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Retorno removido com sucesso"
+     *                     example ="Condição removida com sucesso"
      *                 )
      *             )
      *         )
@@ -262,14 +267,14 @@ class ReturnsController extends Controller
      */
 
     /**
-     * @param Returns $returns
+     * @param Condition $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Returns $returns)
+    public function delete(Condition $id)
     {
         try {
-            $this->removerService->delete($returns);
-            return response()->json(['message' => 'Retorno removido com sucesso'], 200);
+            $this->removerService->delete($id);
+            return response()->json(['message' => 'Condição removida com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -278,10 +283,10 @@ class ReturnsController extends Controller
     /**
      *
      * @OA\GET(
-     *     tags={"Returns"},
-     *     path="/returns/{id}",
+     *     tags={"Conditions"},
+     *     path="/conditions/{id}",
      *     @OA\Parameter(
-     *        name="Returns",
+     *        name="id",
      *        in="path",
      *        example="2",
      *        required=true
@@ -292,7 +297,7 @@ class ReturnsController extends Controller
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 @OA\Property(property="data", ref="#/components/schemas/ReturnListResource"),
+     *                 @OA\Property(property="data", ref="#/components/schemas/ConditionListResource"),
      *             )
      *         )
      *     ),
@@ -310,12 +315,12 @@ class ReturnsController extends Controller
      */
 
     /**
-     * @param Returns $returns
-     * @return ReturnListResource
+     * @param Condition $id
+     * @return ConditionListResource
      */
-    public function get(Returns $returns)
+    public function get(Condition $id)
     {
-        return ReturnListResource::make($returns);
+        return ConditionListResource::make($id);
     }
 
 }

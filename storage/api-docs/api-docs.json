@@ -41,6 +41,283 @@
                 }
             }
         },
+        "/conditions": {
+            "get": {
+                "tags": [
+                    "Conditions"
+                ],
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "example": "01"
+                    },
+                    {
+                        "name": "pharmacy_id",
+                        "in": "query",
+                        "example": "01"
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "example": "Teste"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "ACTIVE"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ConditionListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Conditions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConditionCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Condição criada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/conditions/{id}": {
+            "get": {
+                "tags": [
+                    "Conditions"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ConditionListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Conditions"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConditionUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Condição atualizada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Conditions"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Condição removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/contacts": {
             "get": {
                 "tags": [
@@ -2496,6 +2773,63 @@
     },
     "components": {
         "schemas": {
+            "ConditionCreatorRequest": {
+                "title": "Condition form request",
+                "required": [
+                    "code",
+                    "pharmacy_id",
+                    "desc",
+                    "status",
+                    "visible"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "pharmacy_id": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "desc": {
+                        "type": "integer",
+                        "example": "Teste"
+                    },
+                    "visible": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "ConditionUpdatorRequest": {
+                "title": "Condition form request",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "pharmacy_id": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "desc": {
+                        "type": "integer",
+                        "example": "Teste"
+                    },
+                    "visible": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
             "ContactCreatorRequest": {
                 "title": "Contact form request",
                 "required": [
@@ -3034,6 +3368,39 @@
                     },
                     "state": {
                         "$ref": "#/components/schemas/StateResource"
+                    }
+                },
+                "type": "object"
+            },
+            "ConditionListResource": {
+                "title": "Condition Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "pharmacyId": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "pharmacyName": {
+                        "type": "integer",
+                        "example": "Teste"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "desc": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "visible": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
                     }
                 },
                 "type": "object"
