@@ -27,4 +27,9 @@ class Distributor extends Model
     {
         return $this->hasMany(Contact::class, 'distributor_id');
     }
+
+    public function connection()
+    {
+        return $this->hasOne(DistributorConnection::class, 'distributor_id');
+    }
 }

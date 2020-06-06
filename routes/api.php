@@ -60,4 +60,7 @@ Route::middleware([])->group(function(){
     Route::post('/distributors', 'DistributorController@store')->name('distributor.store');
     Route::put('/distributors/{distributor}', 'DistributorController@update')->name('distributor.update');
     Route::delete('/distributors/{distributor}', 'DistributorController@delete')->name('distributor.delete');
+
+    Route::post('/distributors/{distributor}/connection', 'DistributorConnectionController@store')->name('distributor.connection.store');
+    Route::put('/distributors/{distributor}/connection/{connection}', 'DistributorConnectionController@update')->name('distributor.connection.update');
 });

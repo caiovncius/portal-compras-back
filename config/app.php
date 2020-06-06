@@ -180,6 +180,7 @@ return [
         App\Providers\LaboratoryServiceProvider::class,
         App\Providers\ProductServiceProvider::class,
         App\Providers\DistributorServiceProvider::class,
+        App\Providers\DistributorConnectionServiceProvider::class,
         App\Providers\ContactServiceProvider::class,
 
     ],

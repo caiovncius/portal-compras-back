@@ -323,6 +323,146 @@
                 }
             }
         },
+        "/distributors/{distributor}/connection": {
+            "post": {
+                "tags": [
+                    "Distributors"
+                ],
+                "parameters": [
+                    {
+                        "name": "distributor",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DistributorConnectionCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Conexão criada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/distributors/{distributor}/connection/{connection}": {
+            "put": {
+                "tags": [
+                    "Distributors"
+                ],
+                "parameters": [
+                    {
+                        "name": "distributor",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    },
+                    {
+                        "name": "connection",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DistributorConnectionUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Distribuidor atualizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/distributors": {
             "get": {
                 "tags": [
@@ -2094,10 +2234,6 @@
                     "telephone"
                 ],
                 "properties": {
-                    "code": {
-                        "type": "integer",
-                        "example": "001"
-                    },
                     "function": {
                         "type": "integer",
                         "example": "00.0001/0004.14"
@@ -2139,6 +2275,88 @@
                     "telephone": {
                         "type": "string",
                         "example": "112345647"
+                    }
+                },
+                "type": "object"
+            },
+            "DistributorConnectionCreatorRequest": {
+                "title": "DistributorConnection form request",
+                "required": [
+                    "distributor_id",
+                    "ftp_active",
+                    "transferency",
+                    "host",
+                    "path_send",
+                    "login",
+                    "password",
+                    "path_return"
+                ],
+                "properties": {
+                    "distributor_id": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "ftp_active": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "transferency": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "host": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "path_send": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "login": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "path_return": {
+                        "type": "string",
+                        "example": "teste"
+                    }
+                },
+                "type": "object"
+            },
+            "DistributorConnectionUpdatorRequest": {
+                "title": "DistributorConnection form request",
+                "properties": {
+                    "ftp_active": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "transferency": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "host": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "path_send": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "login": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "path_return": {
+                        "type": "string",
+                        "example": "teste"
                     }
                 },
                 "type": "object"
@@ -2516,7 +2734,15 @@
                         "type": "integer",
                         "example": "1"
                     },
+                    "distributor_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
                     "function": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "name": {
                         "type": "string",
                         "example": "Teste"
                     },
@@ -2530,6 +2756,48 @@
                     }
                 },
                 "type": "Contact"
+            },
+            "DistributorConnectionListResource": {
+                "title": "Profile Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "distributorId": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "ftpActive": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "transferency": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "host": {
+                        "type": "string",
+                        "example": "localhost"
+                    },
+                    "pathSend": {
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "login": {
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "pathReturn": {
+                        "type": "string",
+                        "example": "123"
+                    }
+                },
+                "type": "DistributorConnection"
             },
             "DistributorListResource": {
                 "title": "Distributor Response",

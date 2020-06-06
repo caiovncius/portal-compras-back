@@ -12,7 +12,6 @@ use Illuminate\Foundation\Http\FormRequest;
  *     type="object",
  *     title="Contact form request",
  *     required={"distributor_id", "function", "name", "email", "telephone"},
- *     @OA\Property(property="code", type="integer", example="001"),
  *     @OA\Property(property="function", type="integer", example="00.0001/0004.14"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="email", type="string", example="teste@domain.com"),

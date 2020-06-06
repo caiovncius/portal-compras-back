@@ -33,7 +33,8 @@ class DistributorListResource extends JsonResource
             'cnpj' => $this->cnpj,
             'name' => $this->name,
             'status' => $this->status,
-            'contacts' => ContactListResource::collection($this->contacts)
+            'contacts' => ContactListResource::collection($this->contacts),
+            'connection' => DistributorConnectionListResource::collection($this->connection),
         ];
     }
 }
