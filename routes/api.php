@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware([])->group(function(){
+Route::middleware('auth:api')->group(function(){
     Route::get('/states', 'StateController@allStates')->name('state.all');
     Route::get('/cities/by-state/{state}', 'CityController@allCities')->name('cities.byState');
 
