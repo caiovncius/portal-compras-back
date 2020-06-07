@@ -33,8 +33,8 @@ class ContactListResource extends JsonResource
             'distributor_id' => $this->distributor_id,
             'function' => $this->function,
             'name' => $this->name,
-            'email,' => $this->email,
-            'telephone,' => $this->telephone,
+            'email' => $this->email,
+            'telephone' => $this->telephone,
         ];
     }
 }

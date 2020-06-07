@@ -5,6 +5,298 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/accompaniments": {
+            "get": {
+                "tags": [
+                    "Accompaniments"
+                ],
+                "parameters": [
+                    {
+                        "name": "code_order",
+                        "in": "query",
+                        "example": "001"
+                    },
+                    {
+                        "name": "code_pharmacy",
+                        "in": "query",
+                        "example": "Teste"
+                    },
+                    {
+                        "name": "date_create",
+                        "in": "query",
+                        "example": "1992-10-11"
+                    },
+                    {
+                        "name": "date_publish",
+                        "in": "query",
+                        "example": "1992-10-11"
+                    },
+                    {
+                        "name": "commercial",
+                        "in": "query",
+                        "example": "Teste"
+                    },
+                    {
+                        "name": "type_send",
+                        "in": "query",
+                        "example": "TESTE"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "Ativo"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/AccompanimentListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Accompaniments"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AccompanimentCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Condição criada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accompaniments/{id}": {
+            "get": {
+                "tags": [
+                    "Accompaniments"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/AccompanimentListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Accompaniments"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AccompanimentUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Condição atualizada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Accompaniments"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Condição removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/cities/by-state/{state}": {
             "get": {
                 "tags": [
@@ -2151,6 +2443,283 @@
                 }
             }
         },
+        "/publicities": {
+            "get": {
+                "tags": [
+                    "Publicities"
+                ],
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "example": "01"
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "example": "Teste"
+                    },
+                    {
+                        "name": "date_create",
+                        "in": "query",
+                        "example": "1992-10-11"
+                    },
+                    {
+                        "name": "date_publish",
+                        "in": "query",
+                        "example": "1992-10-11"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/PublicityListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Publicities"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublicityCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Condição criada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/publicities/{id}": {
+            "get": {
+                "tags": [
+                    "Publicities"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PublicityListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Publicities"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublicityUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Condição atualizada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Publicities"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Condição removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/returns": {
             "get": {
                 "tags": [
@@ -2773,6 +3342,83 @@
     },
     "components": {
         "schemas": {
+            "AccompanimentCreatorRequest": {
+                "title": "Accompaniment form request",
+                "required": [
+                    "code_order",
+                    "code_pharmacy",
+                    "date_create",
+                    "date_publish",
+                    "commercial",
+                    "type_send",
+                    "status"
+                ],
+                "properties": {
+                    "code_order": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "code_pharmacy": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "date_create": {
+                        "type": "date",
+                        "example": "1992-01-87"
+                    },
+                    "date_publish": {
+                        "type": "date",
+                        "example": "1992-10-87"
+                    },
+                    "commercial": {
+                        "type": "string",
+                        "example": "TESTE"
+                    },
+                    "type_send": {
+                        "type": "string",
+                        "example": "TESTE"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "Enviado"
+                    }
+                },
+                "type": "object"
+            },
+            "AccompanimentUpdatorRequest": {
+                "title": "Accompaniment form request",
+                "properties": {
+                    "code_order": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "code_pharmacy": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "date_create": {
+                        "type": "date",
+                        "example": "1992-01-87"
+                    },
+                    "date_publish": {
+                        "type": "date",
+                        "example": "1992-10-87"
+                    },
+                    "commercial": {
+                        "type": "string",
+                        "example": "TESTE"
+                    },
+                    "type_send": {
+                        "type": "string",
+                        "example": "TESTE"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "Enviado"
+                    }
+                },
+                "type": "object"
+            },
             "ConditionCreatorRequest": {
                 "title": "Condition form request",
                 "required": [
@@ -3236,6 +3882,65 @@
                 },
                 "type": "object"
             },
+            "PublicityCreatorRequest": {
+                "title": "Publicity form request",
+                "required": [
+                    "code",
+                    "desc",
+                    "date_create",
+                    "date_publish",
+                    "image"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "desc": {
+                        "type": "integer",
+                        "example": "Teste"
+                    },
+                    "date_create": {
+                        "type": "date",
+                        "example": "1992-01-87"
+                    },
+                    "date_publish": {
+                        "type": "date",
+                        "example": "1992-10-87"
+                    },
+                    "image": {
+                        "type": "boolean",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "PublicityUpdatorRequest": {
+                "title": "Publicity form request",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "desc": {
+                        "type": "integer",
+                        "example": "Teste"
+                    },
+                    "date_create": {
+                        "type": "date",
+                        "example": "1992-01-87"
+                    },
+                    "date_publish": {
+                        "type": "date",
+                        "example": "1992-10-87"
+                    },
+                    "image": {
+                        "type": "boolean",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
             "ReturnCreatorRequest": {
                 "title": "Return form request",
                 "required": [
@@ -3354,6 +4059,44 @@
                     }
                 },
                 "type": "object"
+            },
+            "AccompanimentListResource": {
+                "title": "Accompaniment Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code_order": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "code_pharmacy": {
+                        "type": "integer",
+                        "example": "002"
+                    },
+                    "date_create": {
+                        "type": "date",
+                        "example": "1992-01-12"
+                    },
+                    "date_publish": {
+                        "type": "date",
+                        "example": "2010-10-11"
+                    },
+                    "commercial": {
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "type_send": {
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "Ativo"
+                    }
+                },
+                "type": "Accompaniment"
             },
             "CityResource": {
                 "title": "City Response",
@@ -3686,6 +4429,36 @@
                     }
                 },
                 "type": "object"
+            },
+            "PublicityListResource": {
+                "title": "Publicity Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "desc": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "date_create": {
+                        "type": "date",
+                        "example": "1992-01-12"
+                    },
+                    "date_publish": {
+                        "type": "date",
+                        "example": "2010-10-11"
+                    },
+                    "image": {
+                        "type": "string",
+                        "example": "123"
+                    }
+                },
+                "type": "Publicity"
             },
             "ReturnListResource": {
                 "title": "Return Response",

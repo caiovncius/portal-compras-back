@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $distributor_id
- * @property string $name
  * @property string $function
+ * @property string $name
  * @property string $email
  * @property string $telephone
  */

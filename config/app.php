@@ -184,6 +184,8 @@ return [
         App\Providers\ContactServiceProvider::class,
         App\Providers\ReturnsServiceProvider::class,
         App\Providers\ConditionServiceProvider::class,
+        App\Providers\PublicityServiceProvider::class,
+        App\Providers\AccompanimentServiceProvider::class,
 
     ],
 

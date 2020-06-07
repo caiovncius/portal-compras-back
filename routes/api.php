@@ -75,4 +75,16 @@ Route::middleware([])->group(function(){
     Route::post('/conditions', 'ConditionController@store')->name('condition.store');
     Route::put('/conditions/{id}', 'ConditionController@update')->name('condition.update');
     Route::delete('/conditions/{id}', 'ConditionController@delete')->name('condition.delete');
+
+    Route::get('/publicities', 'PublicityController@list')->name('publicity.list');
+    Route::get('/publicities/{id}', 'PublicityController@get')->name('publicity.get');
+    Route::post('/publicities', 'PublicityController@store')->name('publicity.store');
+    Route::put('/publicities/{id}', 'PublicityController@update')->name('publicity.update');
+    Route::delete('/publicities/{id}', 'PublicityController@delete')->name('publicity.delete');
+
+    Route::get('/accompaniments', 'AccompanimentController@list')->name('accompaniment.list');
+    Route::get('/accompaniments/{id}', 'AccompanimentController@get')->name('accompaniment.get');
+    Route::post('/accompaniments', 'AccompanimentController@store')->name('accompaniment.store');
+    Route::put('/accompaniments/{id}', 'AccompanimentController@update')->name('accompaniment.update');
+    Route::delete('/accompaniments/{id}', 'AccompanimentController@delete')->name('accompaniment.delete');
 });
