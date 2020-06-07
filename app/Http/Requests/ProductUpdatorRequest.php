@@ -17,7 +17,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="laboratory_id", type="integer", example="2"),
  * )
  */
-class UserUpdatorRequest extends FormRequest
+class ProductUpdatorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
