@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\User\Contracts;
-
 
 interface UserRetrievable
 {

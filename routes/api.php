@@ -23,6 +23,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/cities/by-state/{state}', 'CityController@allCities')->name('cities.byState');
 
     Route::get('/users', 'UserController@list')->name('user.list');
+    Route::post('/users/password', 'UserController@password')->name('user.password');
     Route::get('/users/{user}', 'UserController@get')->name('user.get');
     Route::post('/users', 'UserController@store')->name('user.store');
     Route::put('/users/{user}', 'UserController@update')->name('user.update');

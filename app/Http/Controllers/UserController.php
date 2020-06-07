@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserCreatorRequest;
 use App\Http\Requests\UserUpdatorRequest;
 use App\Http\Resources\UserListResource;
+use App\Notifications\PasswordReseted;
 use App\User;
 use App\User\Contracts\UserCreatable;
-use App\User\Contracts\UserUpdatable;
 use App\User\Contracts\UserRemovable;
 use App\User\Contracts\UserRetrievable;
+use App\User\Contracts\UserUpdatable;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -152,6 +153,73 @@ class UserController extends Controller
      */
     public function get(User $user)
     {
+        return UserListResource::make($user);
+    }
+
+    /**
+     *
+     * @OA\POST(
+     *     tags={"Users"},
+     *     path="/users/password",
+     *     @OA\Parameter(
+     *        name="email",
+     *        in="path",
+     *        example="teste@domain.com",
+     *        required=false
+     *     ),
+     *     @OA\Parameter(
+     *        name="username",
+     *        in="path",
+     *        example="teste",
+     *        required=false
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/UserListResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function password(Request $request)
+    {
+        try {
+            $user = $this->retreiverService->getUsers($request->query())
+                                           ->first();
+            if (!$user) {
+                return response()->json(['error' => 'Usuário não existe'], 400);
+            }
+
+            $password = 'N3WP$SS123';
+            $user->password = bcrypt($password);
+            $user->save();
+
+            $user->notify(new PasswordReseted($password));
+
+            return response()->json(['message' => 'Usuário criado com sucesso'], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+
         return UserListResource::make($user);
     }
 
