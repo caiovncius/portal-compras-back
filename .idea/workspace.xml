@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProductUpdatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProductUpdatorRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Laboratory/Contracts/PharmacyRetrievable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/DistributorResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/DistributorResource.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +195,7 @@
       <workItem from="1591311712033" duration="447000" />
       <workItem from="1591363598296" duration="347000" />
       <workItem from="1591499298429" duration="401000" />
-      <workItem from="1591508662607" duration="156000" />
+      <workItem from="1591508662607" duration="307000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://grupoitss.visualstudio.com/Associados/_git/portal-compras-back&#10;&#10;# Conflicts:&#10;#&#9;README.md">
       <created>1589895176923</created>
@@ -359,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591311865769</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Correção de classes">
+      <created>1591508883056</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1591508883056</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -401,7 +407,8 @@
     <MESSAGE value="Ajuste na documentação" />
     <MESSAGE value="Corrigido request de usuários" />
     <MESSAGE value="Correção da listagem de perfis" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correção da listagem de perfis" />
+    <MESSAGE value="Correção de classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correção de classes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="456" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590685640307">
@@ -412,12 +419,12 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590679558111" />
-    <state x="228" y="23" key="CommitChangelistDialog2" timestamp="1591311865451">
+    <state x="228" y="23" key="CommitChangelistDialog2" timestamp="1591508882778">
       <screen x="0" y="23" width="2560" height="1011" />
     </state>
     <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1591269409470" />
     <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114643839" />
-    <state x="228" y="23" key="CommitChangelistDialog2/0.23.2560.1011@0.23.2560.1011" timestamp="1591311865451" />
+    <state x="228" y="23" key="CommitChangelistDialog2/0.23.2560.1011@0.23.2560.1011" timestamp="1591508882778" />
     <state x="100" y="122" width="1479" height="811" key="DiffContextDialog" timestamp="1591114597201">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -442,12 +449,12 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="348" y="167" key="SettingsEditor/0.23.1920.1011@0.23.1920.1011" timestamp="1589999400094" />
-    <state x="480" y="168" key="Vcs.Push.Dialog.v2" timestamp="1591311867325">
+    <state x="480" y="168" key="Vcs.Push.Dialog.v2" timestamp="1591508884354">
       <screen x="0" y="23" width="2560" height="1011" />
     </state>
     <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1591269411415" />
     <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114679421" />
-    <state x="480" y="168" key="Vcs.Push.Dialog.v2/0.23.2560.1011@0.23.2560.1011" timestamp="1591311867325" />
+    <state x="480" y="168" key="Vcs.Push.Dialog.v2/0.23.2560.1011@0.23.2560.1011" timestamp="1591508884354" />
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591059078375">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>

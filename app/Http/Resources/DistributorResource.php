@@ -26,7 +26,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * )
  */
 
-class DistributorListResource extends JsonResource
+class DistributorResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
