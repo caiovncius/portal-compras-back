@@ -44,10 +44,10 @@ class DistributorConnectionUpdatorRequest extends FormRequest
             'ftp_active' => 'required|boolean',
             'transferency' => 'required|string',
             'host' => 'required|string',
-            'path_send' => 'required|string'
-            'login' => 'required|string'
-            'password' => 'required|string'
-            'path_return' => 'required|string'
+            'path_send' => 'required|string',
+            'login' => 'required|string',
+            'password' => 'required|string',
+            'path_return' => 'required|string',
         ];
     }
 }

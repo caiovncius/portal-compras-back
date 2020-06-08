@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     title="Porfile Response",
  *     @OA\Property(property="id", type="integer", example="1"),
  *     @OA\Property(property="code", type="string", example="01"),
- *     @OA\Property(property="cnpj", type="string", example="00.00001"),
+ *     @OA\Property(property="cnpj", type="string", example="00.000.000/0001-91"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  *     @OA\Property(
