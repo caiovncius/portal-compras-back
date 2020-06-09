@@ -6,9 +6,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="ProfileFunctionsResource",
+ *     schema="ProfilePermissionsResource",
  *     type="object",
- *     title="PorfileFunctions Response",
+ *     title="Porfile Permissions Response",
  *     @OA\Property(
  *         property="permissions",
  *         type="array",
@@ -16,7 +16,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     ),
  * )
  */
-class ProfileFunctionsResource extends JsonResource
+
+class ProfilePermissionsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -27,8 +28,7 @@ class ProfileFunctionsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'functionality' => $this->name,
-            'permission' => $this->pivot->access_type
+            'permissions' => ProfileFunctionsResource::collection($this->functionalities)
         ];
     }
 }

@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->group(function(){
+Route::middleware([])->group(function(){
     Route::get('/states', 'StateController@allStates')->name('state.all');
     Route::get('/cities/by-state/{state}', 'CityController@allCities')->name('cities.byState');
 
@@ -30,6 +30,7 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/users/{user}', 'UserController@delete')->name('user.delete');
 
     Route::get('/profiles', 'ProfileController@list')->name('profile.list');
+    Route::get('/profiles/functions', 'ProfileController@functions')->name('profile.functions');
     Route::get('/profiles/{profile}', 'ProfileController@get')->name('profile.get');
     Route::get('/profiles/by-type/{type}', 'ProfileController@byType')->name('profile.tpe');
     Route::post('/profiles', 'ProfileController@store')->name('profile.store');
@@ -70,6 +71,12 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/returns', 'ReturnsController@store')->name('return.store');
     Route::put('/returns/{id}', 'ReturnsController@update')->name('return.update');
     Route::delete('/returns/{id}', 'ReturnsController@delete')->name('return.delete');
+
+    Route::get('/products', 'ProductController@list')->name('product.list');
+    Route::get('/products/{id}', 'ProductController@get')->name('product.get');
+    Route::post('/products', 'ProductController@store')->name('product.store');
+    Route::put('/products/{id}', 'ProductController@update')->name('product.update');
+    Route::delete('/products/{id}', 'ProductController@delete')->name('product.delete');
 
     Route::get('/conditions', 'ConditionController@list')->name('condition.list');
     Route::get('/conditions/{id}', 'ConditionController@get')->name('condition.get');

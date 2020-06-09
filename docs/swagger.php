@@ -44,9 +44,7 @@
  * @OA\Schema(
  *     schema="ProfilePermission",
  *     type="object",
- *     @OA\Property(property="id", type="string", example="1"),
- *     @OA\Property(property="name", type="string", example="User module"),
- *     @OA\Property(property="key", type="string", example="user_module"),
+ *     @OA\Property(property="functionality", type="string", example="Permissão 1"),
  *     @OA\Property(property="permission", type="string", example="FREE_ACCESS"),
  * )
  *

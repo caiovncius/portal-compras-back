@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileCreatorRequest;
 use App\Http\Requests\ProfileUpdatorRequest;
+use App\Http\Resources\ProfilePermissionsResource;
 use App\Http\Resources\ProfileListResource;
 use App\Http\Resources\ProfileResource;
 use App\Profile;
 use App\Profile\Contracts\ProfileCreatable;
+use App\Profile\Contracts\ProfileRemovable;
 use App\Profile\Contracts\ProfileRetrievable;
 use App\Profile\Contracts\ProfileUpdatable;
-use App\Profile\Contracts\ProfileRemovable;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -317,6 +318,42 @@ class ProfileController extends Controller
     public function get(Profile $profile)
     {
         return ProfileResource::make($profile);
+    }
+
+    /**
+     *
+     * @OA\GET(
+     *     tags={"Profiles"},
+     *     path="/profiles/functions",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/ProfilePermissionsResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @return ProfilePermissionsResource
+     */
+    public function functions()
+    {        
+        return ProfilePermissionsResource::make(Profile::first());
     }
 
     /**

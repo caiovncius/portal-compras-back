@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserCreatorRequest;
 use App\Http\Requests\UserUpdatorRequest;
 use App\Http\Resources\UserListResource;
+use App\Http\Resources\UserResource;
 use App\Notifications\PasswordReseted;
 use App\User;
 use App\User\Contracts\UserCreatable;
@@ -130,7 +131,7 @@ class UserController extends Controller
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 @OA\Property(property="data", ref="#/components/schemas/UserListResource"),
+     *                 @OA\Property(property="data", ref="#/components/schemas/UserResource"),
      *             )
      *         )
      *     ),
@@ -149,11 +150,11 @@ class UserController extends Controller
 
     /**
      * @param User $user
-     * @return UserListResource
+     * @return UserResource
      */
     public function get(User $user)
     {
-        return UserListResource::make($user);
+        return UserResource::make($user);
     }
 
     /**

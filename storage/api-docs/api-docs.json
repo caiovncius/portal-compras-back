@@ -2396,6 +2396,45 @@
                 }
             }
         },
+        "/profiles/functions": {
+            "get": {
+                "tags": [
+                    "Profiles"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProfilePermissionsResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/profiles/by-type/{type}": {
             "get": {
                 "tags": [
@@ -3146,7 +3185,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/UserListResource"
+                                            "$ref": "#/components/schemas/UserResource"
                                         }
                                     },
                                     "type": "object"
@@ -4311,7 +4350,7 @@
                     },
                     "cnpj": {
                         "type": "string",
-                        "example": "00.00001"
+                        "example": "00.000.000/0001-91"
                     },
                     "name": {
                         "type": "string",
@@ -4332,6 +4371,24 @@
                                 "$ref": "#/components/schemas/DistributorConnection"
                             }
                         ]
+                    }
+                },
+                "type": "object"
+            },
+            "FunctionalityResource": {
+                "title": "FunctionalityList Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste 02"
+                    },
+                    "key": {
+                        "type": "integer",
+                        "example": "002W"
                     }
                 },
                 "type": "object"
@@ -4437,6 +4494,18 @@
                 },
                 "type": "object"
             },
+            "ProfileFunctionsResource": {
+                "title": "PorfileFunctions Response",
+                "properties": {
+                    "permissions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProfilePermission"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ProfileListResource": {
                 "title": "Profile list Response",
                 "properties": {
@@ -4453,6 +4522,18 @@
                     },
                     "type": {
                         "$ref": "#/components/schemas/UserType"
+                    }
+                },
+                "type": "object"
+            },
+            "ProfilePermissionsResource": {
+                "title": "Porfile Permissions Response",
+                "properties": {
+                    "permissions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProfilePermission"
+                        }
                     }
                 },
                 "type": "object"
@@ -4597,6 +4678,50 @@
                 },
                 "type": "object"
             },
+            "UserResource": {
+                "title": "User Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "user01"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Meu Nome"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "meu@email.com"
+                    },
+                    "phone1": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "phone2": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "profileId": {
+                        "type": "integer",
+                        "example": "14"
+                    },
+                    "createdAt": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    }
+                },
+                "type": "object"
+            },
             "UserStatus": {
                 "type": "string",
                 "enum": [
@@ -4644,17 +4769,9 @@
             },
             "ProfilePermission": {
                 "properties": {
-                    "id": {
+                    "functionality": {
                         "type": "string",
-                        "example": "1"
-                    },
-                    "name": {
-                        "type": "string",
-                        "example": "User module"
-                    },
-                    "key": {
-                        "type": "string",
-                        "example": "user_module"
+                        "example": "Permissão 1"
                     },
                     "permission": {
                         "type": "string",
