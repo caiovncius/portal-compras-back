@@ -10,8 +10,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     type="object",
  *     title="PorfileFunctions Response",
  *     @OA\Property(property="id", type="integer", example="1"),
- *     @OA\Property(property="key", type="integer", example="2"),
- *     @OA\Property(property="name", type="string", example="TESTE"),
+ *     @OA\Property(property="key", type="string", example="test_function"),
+ *     @OA\Property(property="functionality", type="string", example="Teste"),
  * )
  */
 class ProfileFunctionsResource extends JsonResource
@@ -26,7 +26,7 @@ class ProfileFunctionsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'functionality' => $this->name,
             'key' => $this->key
         ];
     }
