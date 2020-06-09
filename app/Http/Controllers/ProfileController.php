@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Functionality;
 use App\Http\Requests\ProfileCreatorRequest;
 use App\Http\Requests\ProfileUpdatorRequest;
-use App\Http\Resources\ProfilePermissionsResource;
+use App\Http\Resources\ProfileFunctionsResource;
 use App\Http\Resources\ProfileListResource;
 use App\Http\Resources\ProfileResource;
 use App\Profile;
@@ -323,18 +324,23 @@ class ProfileController extends Controller
     /**
      *
      * @OA\GET(
-     *     tags={"Profiles"},
-     *     path="/profiles/functions",
+     *     tags={"Functions"},
+     *     path="/functions",
      *     @OA\Response(
      *         response=200,
      *         description="",
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 @OA\Property(property="data", ref="#/components/schemas/ProfilePermissionsResource"),
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/ProfileFunctionsResource"),
+     *                 ),
      *             )
      *         )
      *     ),
+     
      *     @OA\Response(
      *         response=400,
      *         description="",
@@ -349,11 +355,11 @@ class ProfileController extends Controller
      */
 
     /**
-     * @return ProfilePermissionsResource
+     * @return ProfileFunctionsResource
      */
     public function functions()
-    {        
-        return ProfilePermissionsResource::make(Profile::first());
+    {
+        return ProfileFunctionsResource::collection(Functionality::all());
     }
 
     /**

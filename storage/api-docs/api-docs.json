@@ -2396,10 +2396,10 @@
                 }
             }
         },
-        "/profiles/functions": {
+        "/functions": {
             "get": {
                 "tags": [
-                    "Profiles"
+                    "Functions"
                 ],
                 "responses": {
                     "200": {
@@ -2409,7 +2409,10 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/ProfilePermissionsResource"
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProfileFunctionsResource"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -4497,11 +4500,17 @@
             "ProfileFunctionsResource": {
                 "title": "PorfileFunctions Response",
                 "properties": {
-                    "permissions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/ProfilePermission"
-                        }
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "key": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "TESTE"
                     }
                 },
                 "type": "object"
@@ -4756,19 +4765,31 @@
             },
             "ProfileFunctions": {
                 "properties": {
-                    "key": {
-                        "type": "string",
-                        "example": "users"
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
                     },
-                    "permission": {
+                    "key": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "name": {
                         "type": "string",
-                        "example": "NO_PERMISSION"
+                        "example": "teste"
                     }
                 },
                 "type": "object"
             },
             "ProfilePermission": {
                 "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "key": {
+                        "type": "string",
+                        "example": "2"
+                    },
                     "functionality": {
                         "type": "string",
                         "example": "Permissão 1"

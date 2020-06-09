@@ -37,13 +37,16 @@
  * @OA\Schema(
  *     schema="ProfileFunctions",
  *     type="object",
- *     @OA\Property(property="key", type="string", example="users"),
- *     @OA\Property(property="permission", type="string", example="NO_PERMISSION"),
+ *     @OA\Property(property="id", type="integer", example="1"),
+ *     @OA\Property(property="key", type="integer", example="2"),
+ *     @OA\Property(property="name", type="string", example="teste"),
  * )
  *
  * @OA\Schema(
  *     schema="ProfilePermission",
  *     type="object",
+ *     @OA\Property(property="id", type="string", example="1"),
+ *     @OA\Property(property="key", type="string", example="2"),
  *     @OA\Property(property="functionality", type="string", example="Permissão 1"),
  *     @OA\Property(property="permission", type="string", example="FREE_ACCESS"),
  * )

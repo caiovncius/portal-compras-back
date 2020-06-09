@@ -9,11 +9,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     schema="ProfileFunctionsResource",
  *     type="object",
  *     title="PorfileFunctions Response",
- *     @OA\Property(
- *         property="permissions",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/ProfilePermission")
- *     ),
+ *     @OA\Property(property="id", type="integer", example="1"),
+ *     @OA\Property(property="key", type="integer", example="2"),
+ *     @OA\Property(property="name", type="string", example="TESTE"),
  * )
  */
 class ProfileFunctionsResource extends JsonResource
@@ -27,8 +25,9 @@ class ProfileFunctionsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'functionality' => $this->name,
-            'permission' => $this->pivot->access_type
+            'id' => $this->id,
+            'name' => $this->name,
+            'key' => $this->key
         ];
     }
 }

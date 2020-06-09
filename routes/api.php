@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware([])->group(function(){
+
+    Route::get('/functions', 'ProfileController@functions')->name('functions');
     Route::get('/states', 'StateController@allStates')->name('state.all');
     Route::get('/cities/by-state/{state}', 'CityController@allCities')->name('cities.byState');
 
@@ -30,7 +32,6 @@ Route::middleware([])->group(function(){
     Route::delete('/users/{user}', 'UserController@delete')->name('user.delete');
 
     Route::get('/profiles', 'ProfileController@list')->name('profile.list');
-    Route::get('/profiles/functions', 'ProfileController@functions')->name('profile.functions');
     Route::get('/profiles/{profile}', 'ProfileController@get')->name('profile.get');
     Route::get('/profiles/by-type/{type}', 'ProfileController@byType')->name('profile.tpe');
     Route::post('/profiles', 'ProfileController@store')->name('profile.store');
