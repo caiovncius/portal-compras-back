@@ -4,11 +4,6 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": ""
-        }
-    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -4438,7 +4433,7 @@
                         "type": "string",
                         "example": "99.999.999/0001-91"
                     },
-                    "companyName": {
+                    "socialName": {
                         "type": "string",
                         "example": "Teste"
                     },
@@ -4446,13 +4441,8 @@
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "cityId": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "cityName": {
-                        "type": "string",
-                        "example": "Suzano"
+                    "city": {
+                        "$ref": "#/components/schemas/CityResource"
                     },
                     "commercial": {
                         "type": "string",
@@ -4977,9 +4967,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://portal-compras-back.test/oauth/authorize",
-                        "tokenUrl": "http://portal-compras-back.test/oauth/token",
-                        "refreshUrl": "http://portal-compras-back.test/token/refresh",
+                        "authorizationUrl": "http://localhost/oauth/authorize",
+                        "tokenUrl": "http://localhost/oauth/token",
+                        "refreshUrl": "http://localhost/token/refresh",
                         "scopes": []
                     }
                 }
