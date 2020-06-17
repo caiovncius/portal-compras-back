@@ -40,8 +40,7 @@ class UserListResource extends JsonResource
             'phone2' => $this->phone2,
             'type' => $this->type,
             'status' => $this->status,
-            'profileName' => $this->profile->name,
-            'manager' => 'none',
+            'manager' => $this->manager_id,
             'createdAt' => $this->created_at
         ];
     }
