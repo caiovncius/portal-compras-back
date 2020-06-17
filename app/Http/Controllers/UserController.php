@@ -115,6 +115,44 @@ class UserController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     tags={"Users"},
+     *     path="/users/managers",
+     *     @OA\Parameter(
+     *        name="name",
+     *        in="query",
+     *        example="nome",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/UserListResource"),
+     *                 ),
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function managers(Request $request) {
+        try {
+            return UserListResource::collection($this->retreiverService->getUsers($request->query())->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
      *
      * @OA\GET(
      *     tags={"Users"},

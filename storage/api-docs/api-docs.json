@@ -3167,6 +3167,40 @@
                 }
             }
         },
+        "/users/managers": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "nome"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserListResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/users/{user}": {
             "get": {
                 "tags": [
@@ -4499,13 +4533,13 @@
                         "type": "integer",
                         "example": "1"
                     },
-                    "key": {
-                        "type": "string",
-                        "example": "test_function"
-                    },
                     "functionality": {
                         "type": "string",
                         "example": "Teste"
+                    },
+                    "permission": {
+                        "type": "string",
+                        "example": "test_function"
                     }
                 },
                 "type": "object"
@@ -4579,15 +4613,15 @@
                         "type": "integer",
                         "example": "001"
                     },
-                    "desc": {
+                    "description": {
                         "type": "string",
                         "example": "Teste"
                     },
-                    "date_create": {
+                    "startDate": {
                         "type": "date",
                         "example": "1992-01-12"
                     },
-                    "date_publish": {
+                    "endDate": {
                         "type": "date",
                         "example": "2010-10-11"
                     },
@@ -4609,7 +4643,7 @@
                         "type": "integer",
                         "example": "1"
                     },
-                    "desc": {
+                    "description": {
                         "type": "string",
                         "example": "Teste"
                     },

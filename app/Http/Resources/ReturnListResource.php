@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     title="Return Response",
  *     @OA\Property(property="id", type="integer", example="1"),
  *     @OA\Property(property="code", type="integer", example="1"),
- *     @OA\Property(property="desc", type="string", example="Teste"),
+ *     @OA\Property(property="description", type="string", example="Teste"),
  *     @OA\Property(property="status", type="string", example="ATIVO"),
  * )
  */
@@ -29,7 +29,7 @@ class ReturnListResource extends JsonResource
         return [
             'id' => $this->id,
             'code' => $this->code,
-            'desc' => $this->desc,
+            'description' => $this->desc,
             'status' => $this->status
         ];
     }
