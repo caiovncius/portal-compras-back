@@ -4,6 +4,11 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": ""
+        }
+    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -4533,11 +4538,11 @@
                         "type": "integer",
                         "example": "1"
                     },
-                    "functionality": {
+                    "name": {
                         "type": "string",
                         "example": "Teste"
                     },
-                    "permission": {
+                    "functionality": {
                         "type": "string",
                         "example": "test_function"
                     }
@@ -5001,9 +5006,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://localhost/oauth/authorize",
-                        "tokenUrl": "http://localhost/oauth/token",
-                        "refreshUrl": "http://localhost/token/refresh",
+                        "authorizationUrl": "http://portal-compras-back.test/oauth/authorize",
+                        "tokenUrl": "http://portal-compras-back.test/oauth/token",
+                        "refreshUrl": "http://portal-compras-back.test/token/refresh",
                         "scopes": []
                     }
                 }
