@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Functionality;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -27,7 +28,10 @@ class ProfileFunctionsResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'functionality' => $this->key
+            'functionality' => $this->key,
+            'permission' =>  $this->whenPivotLoaded('functionalities', function () {
+                return $this->pivot->access_type;
+            }),
         ];
     }
 }
