@@ -48,7 +48,7 @@ class ProfileCreatorRequest extends FormRequest
                 . User::USER_TYPE_PHARMACY,
             'status' => 'required|in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
             'functions' => 'required|array|min:1',
-            'functions.*.functionality' => 'required|exists:functionalities,key',
+            'functions.*.functionality' => 'required|functionalities,key',
             'functions.*.permission' => 'required|in:' . Profile::PERMISSION_TYPE_NO_ACCESS . ','
                 . Profile::PERMISSION_TYPE_READ_ACCESS . ','
                 . Profile::PERMISSION_TYPE_FREE_ACCESS
