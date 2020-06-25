@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware([''])->group(function(){
+Route::middleware([])->group(function(){
 
     Route::get('/functions', 'ProfileController@functions')->name('functions');
     Route::get('/states', 'StateController@allStates')->name('state.all');
