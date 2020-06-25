@@ -17,10 +17,9 @@ return [
 
     'paths' => ['api/*' => [
         'allowedOrigins' => array('*'),
-        'allowedHeaders' => array('Content-Type', 'X-Requested-With'),
+        'allowedHeaders' => array('authorization','x-requested-with','apiKey'),
         'allowedMethods' => array('POST', 'PUT', 'GET', 'DELETE'),
         'maxAge' => 3600,
-        'hosts' => array('api.*')
     ]],
 
     'allowed_methods' => ['*'],
