@@ -15,7 +15,13 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
+    'paths' => ['api/*' => [
+        'allowedOrigins' => array('*'),
+        'allowedHeaders' => array('Content-Type', 'X-Requested-With'),
+        'allowedMethods' => array('POST', 'PUT', 'GET', 'DELETE'),
+        'maxAge' => 3600,
+        'hosts' => array('api.*')
+    ]],
 
     'allowed_methods' => ['*'],
 
