@@ -20,8 +20,8 @@ class ProfileCreator implements ProfileCreatable
         try {
             $profile = Profile::create($profileData);
 
-            foreach ($profileData['functions'] as $function) {
-                $permission = Functionality::where('key',$function['key'])->first();
+            foreach ($profileData['permissions'] as $function) {
+                $permission = Functionality::where('key', $function['functionality'])->first();
                 $profile->functionalities()->attach($permission->id, ['access_type' => $function['permission']]);
             }
             return true;

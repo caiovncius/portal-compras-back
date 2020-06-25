@@ -45,9 +45,9 @@ class ProfileUpdatorRequest extends FormRequest
             'name' => 'string|required',
             'type' => 'required|in:' . User::USER_TYPE_SUPPLIER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
             'status' => 'required|in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
-            'functions' => 'array|min:1',
-            'functions.functionality' => 'exists:functionalities,key',
-            'functions.permission' => 'in:' . Profile::PERMISSION_TYPE_NO_ACCESS . ','
+            'permissions' => 'array|min:1',
+            'permissions.functionality' => 'required',
+            'permissions.permission' => 'in:' . Profile::PERMISSION_TYPE_NO_ACCESS . ','
                 . Profile::PERMISSION_TYPE_READ_ACCESS . ','
                 . Profile::PERMISSION_TYPE_FREE_ACCESS
         ];

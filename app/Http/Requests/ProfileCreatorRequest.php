@@ -47,9 +47,9 @@ class ProfileCreatorRequest extends FormRequest
             'type' => 'required|in:' . User::USER_TYPE_SUPPLIER . ',' . User::USER_TYPE_COMMERCIAL . ','
                 . User::USER_TYPE_PHARMACY,
             'status' => 'required|in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
-            'functions' => 'required|array|min:1',
-            'functions.*.functionality' => 'required',
-            'functions.*.permission' => 'required|in:' . Profile::PERMISSION_TYPE_NO_ACCESS . ','
+            'permissions' => 'required|array|min:1',
+            'permissions.*.functionality' => 'required',
+            'permissions.*.permission' => 'required|in:' . Profile::PERMISSION_TYPE_NO_ACCESS . ','
                 . Profile::PERMISSION_TYPE_READ_ACCESS . ','
                 . Profile::PERMISSION_TYPE_FREE_ACCESS
         ];
