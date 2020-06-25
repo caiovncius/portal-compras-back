@@ -29,9 +29,7 @@ class ProfileFunctionsResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'functionality' => $this->key,
-            'permission' =>  $this->whenPivotLoaded('functionalities', function () {
-                return $this->pivot->access_type;
-            }),
+            'permission' =>  $this->pivot->access_type
         ];
     }
 }

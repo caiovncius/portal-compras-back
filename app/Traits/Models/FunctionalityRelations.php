@@ -10,6 +10,7 @@ trait FunctionalityRelations
 {
     public function profiles()
     {
-        return $this->belongsToMany(Profile::class, 'profile_functionalities');
+        return $this->belongsToMany(Profile::class, 'profile_functionalities', 'functionality_id')
+            ->withPivot('access_type');
     }
 }
