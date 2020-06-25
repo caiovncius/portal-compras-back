@@ -26,7 +26,7 @@ class FunctionalityResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'key' => $this->key
+            'functionality' => $this->key,
         ];
     }
 }

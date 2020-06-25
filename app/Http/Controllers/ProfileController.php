@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Functionality;
 use App\Http\Requests\ProfileCreatorRequest;
 use App\Http\Requests\ProfileUpdatorRequest;
+use App\Http\Resources\FunctionalityResource;
 use App\Http\Resources\ProfileFunctionsResource;
 use App\Http\Resources\ProfileListResource;
 use App\Http\Resources\ProfileResource;
@@ -340,7 +341,7 @@ class ProfileController extends Controller
      *             )
      *         )
      *     ),
-     
+
      *     @OA\Response(
      *         response=400,
      *         description="",
@@ -359,7 +360,7 @@ class ProfileController extends Controller
      */
     public function functions()
     {
-        return ProfileFunctionsResource::collection(Functionality::all());
+        return FunctionalityResource::collection(Functionality::all());
     }
 
     /**
