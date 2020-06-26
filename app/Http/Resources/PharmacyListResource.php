@@ -36,7 +36,8 @@ class PharmacyListResource extends JsonResource
             'cnpj' => $this->cnpj,
             'socialName' => $this->company_name,
             'status' => $this->status,
-            'city' => CityResource::make($this->city_id),
+            'city' => $this->city->name,
+            'state' => $this->city->state->name,
             'commercial' => $this->commercial,
             'createdAt' => $this->created_at
         ];
