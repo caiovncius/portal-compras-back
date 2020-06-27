@@ -24,7 +24,6 @@ class PharmacyUpdator implements PharmacyUpdatable
             $pharmacy->city_id = $pharmacyData['cityId'];
             $pharmacy->commercial = $pharmacyData['commercial'];
             $pharmacy->save();
-            $pharmacy->save();
 
             return true;
         } catch (\Exception $exception) {

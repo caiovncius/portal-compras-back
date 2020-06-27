@@ -113,6 +113,7 @@ class PharmacyController extends Controller
         try {
             return PharmacyListResource::collection($this->retreiverService->pharmacies($request->query())->paginate(20));
         } catch (\Exception $exception) {
+            dd($exception);
             return response()->json(['error' => $exception->getMessage()], 400);
         }
     }

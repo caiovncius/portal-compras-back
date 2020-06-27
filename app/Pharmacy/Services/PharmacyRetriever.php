@@ -17,7 +17,7 @@ class PharmacyRetriever implements PharmacyRetrievable
     public function pharmacies(array $params)
     {
         try {
-            $query = Pharmacy::query();
+            $query = Pharmacy::with(['city']);
 
             if (isset($params['code'])) {
                 $query->where('code', 'like', '%' . $params['code'] . '%');

@@ -29,6 +29,6 @@ class Pharmacy extends Model
 
     public function city()
     {
-        return $this->belongsTo(City::name, 'city');
+        return $this->belongsTo(City::class);
     }
 }
