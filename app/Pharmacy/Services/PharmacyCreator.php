@@ -18,9 +18,15 @@ class PharmacyCreator implements PharmacyCreatable
     public function store(array $pharmacyData)
     {
         try {
-            $pharmacyData['company_name'] = $pharmacyData['socialName'];
-            unset($pharmacyData['socialName']);
-            $pharmacy = Pharmacy::create($pharmacyData);
+            $pharmacy = new Pharmacy();
+            $pharmacy->code = $pharmacyData['code'];
+            $pharmacy->cnpj = $pharmacyData['cnpj'];
+            $pharmacy->company_name = $pharmacyData['socialName'];
+            $pharmacy->status = $pharmacyData['status'];
+            $pharmacy->city_id = $pharmacyData['cityId'];
+            $pharmacy->commercial = $pharmacyData['commercial'];
+            $pharmacy->save();
+
 
             return true;
         } catch (\Exception $e) {

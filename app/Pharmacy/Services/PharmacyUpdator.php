@@ -17,9 +17,13 @@ class PharmacyUpdator implements PharmacyUpdatable
     public function update(Pharmacy $pharmacy, array $pharmacyData)
     {
         try {
-            $pharmacyData['company_name'] = $pharmacyData['socialName'];
-            unset($pharmacyData['socialName']);
-            $pharmacy->fill($pharmacyData);
+            $pharmacy->code = $pharmacyData['code'];
+            $pharmacy->cnpj = $pharmacyData['cnpj'];
+            $pharmacy->company_name = $pharmacyData['socialName'];
+            $pharmacy->status = $pharmacyData['status'];
+            $pharmacy->city_id = $pharmacyData['cityId'];
+            $pharmacy->commercial = $pharmacyData['commercial'];
+            $pharmacy->save();
             $pharmacy->save();
 
             return true;
