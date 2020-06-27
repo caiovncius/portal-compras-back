@@ -89,8 +89,10 @@ Route::middleware(['cors'])->group(function(){
     Route::get('/publicities', 'PublicityController@list')->name('publicity.list');
     Route::get('/publicities/{id}', 'PublicityController@get')->name('publicity.get');
     Route::post('/publicities', 'PublicityController@store')->name('publicity.store');
+    Route::post('/publicities/attach-image', 'PublicityController@attachImage')->name('publicity.attach.image');
     Route::put('/publicities/{id}', 'PublicityController@update')->name('publicity.update');
     Route::delete('/publicities/{id}', 'PublicityController@delete')->name('publicity.delete');
+    Route::delete('/publicities/remove-image/{index}', 'PublicityController@removeImage')->name('publicity.remove.image');
 
     Route::get('/accompaniments', 'AccompanimentController@list')->name('accompaniment.list');
     Route::get('/accompaniments/{id}', 'AccompanimentController@get')->name('accompaniment.get');

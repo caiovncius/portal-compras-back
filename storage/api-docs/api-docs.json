@@ -2767,6 +2767,114 @@
                 }
             }
         },
+        "/publicities/attach-image": {
+            "post": {
+                "tags": [
+                    "Publicities"
+                ],
+                "operationId": "App\\Http\\Controllers\\PublicityController::attachImage",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PublicityAttachImageRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Imagem adicionada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "publicities/remove-image/{index}": {
+            "delete": {
+                "tags": [
+                    "Publicities"
+                ],
+                "operationId": "App\\Http\\Controllers\\PublicityController::removeImage",
+                "parameters": [
+                    {
+                        "name": "index",
+                        "in": "path",
+                        "required": true,
+                        "example": "0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Imagem removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/returns": {
             "get": {
                 "tags": [
@@ -4034,17 +4142,27 @@
                         "type": "integer",
                         "example": "Teste"
                     },
-                    "date_create": {
+                    "createDate": {
                         "type": "date",
                         "example": "1992-01-87"
                     },
-                    "date_publish": {
+                    "publishDate": {
                         "type": "date",
                         "example": "1992-10-87"
                     },
                     "image": {
                         "type": "boolean",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "PublicityAttachImageRequest": {
+                "title": "Publicity form request",
+                "properties": {
+                    "image": {
+                        "type": "string",
+                        "example": "data:image/png;base64,iVBORw0K...."
                     }
                 },
                 "type": "object"
@@ -4669,17 +4787,13 @@
                         "type": "string",
                         "example": "Teste"
                     },
-                    "startDate": {
+                    "createDate": {
                         "type": "date",
                         "example": "1992-01-12"
                     },
-                    "endDate": {
+                    "publishDate": {
                         "type": "date",
                         "example": "2010-10-11"
-                    },
-                    "image": {
-                        "type": "string",
-                        "example": "123"
                     }
                 },
                 "type": "Publicity"
@@ -5053,9 +5167,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://portal-compras-back.test/oauth/authorize",
-                        "tokenUrl": "http://portal-compras-back.test/oauth/token",
-                        "refreshUrl": "http://portal-compras-back.test/token/refresh",
+                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
+                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
+                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
                         "scopes": []
                     }
                 }

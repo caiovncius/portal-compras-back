@@ -12,7 +12,7 @@ class CreateInitialUser extends Seeder
     public function run()
     {
         $email = 'admin@associados.com';
-        if (is_null(\App\User::where('email')->first())) {
+        if (is_null(\App\User::where('email', $email)->first())) {
 
             $masterProfile = \App\Profile::where('type', \App\Profile::PROFILE_TYPE_MASTER)->first();
 

@@ -15,11 +15,11 @@ class CreatePublicitiesTable extends Migration
     {
         Schema::create('publicities', function (Blueprint $table) {
             $table->id();
-            $table->integer('code');
-            $table->string('desc');
-            $table->date('date_create');
-            $table->date('date_publish');
-            $table->longText('image');
+            $table->integer('code')->nullable();
+            $table->string('desc')->nullable();
+            $table->date('date_create')->nullable();
+            $table->date('date_publish')->nullable();
+            $table->longText('images')->nullable();
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $desc
  * @property string $date_create
  * @property string $date_publish
- * @property string $image
+ * @property string $images
  */
 class Publicity extends Model
 {
@@ -22,6 +22,6 @@ class Publicity extends Model
         'desc',
         'date_create',
         'date_publish',
-        'image'
+        'images'
     ];
 }

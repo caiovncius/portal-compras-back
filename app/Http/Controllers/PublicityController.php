@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FileUploader;
 use App\Http\Requests\PublicityCreatorRequest;
+use App\Http\Requests\PublicityImageRequest;
 use App\Http\Requests\PublicityUpdatorRequest;
 use App\Http\Resources\PublicityListResource;
 use App\Publicity;
@@ -11,6 +13,7 @@ use App\Publicity\Contracts\PublicityRetrievable;
 use App\Publicity\Contracts\PublicityUpdatable;
 use App\Publicity\Contracts\PublicityRemovable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PublicityController extends Controller
 {
@@ -323,4 +326,112 @@ class PublicityController extends Controller
         return PublicityListResource::make($id);
     }
 
+    /**
+     *
+     * @OA\Post(
+     *     tags={"Publicities"},
+     *     path="/publicities/attach-image",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/PublicityAttachImageRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Imagem adicionada com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *     response=422,
+     *     description="",
+     *     @OA\JsonContent(ref="#/components/schemas/ValidationResponse")
+     * ),
+     * @OA\Response(
+     *     response=400,
+     *     description="",
+     *     @OA\JsonContent(
+     *         @OA\Property(
+     *             property="error",
+     *             example ="Mensagem de erro"
+     *         )
+     *     )
+     * )
+     *
+     * )
+     */
+    public function attachImage(PublicityImageRequest $request)
+    {
+        $publicity = Publicity::first();
+        $images = !is_null($publicity->images) ? json_decode($publicity->images) : [];
+        $newImages = FileUploader::uploadFile($request->image);
+        array_push($images, $newImages);
+
+        $publicity->images = json_encode($images);
+        $publicity->save();
+
+        return response()->json(['message' => 'Imagem adicionada com sucesso!']);
+    }
+
+    /**
+     *
+     * @OA\Delete(
+     *     tags={"Publicities"},
+     *     path="publicities/remove-image/{index}",
+     *     @OA\Parameter(
+     *        name="index",
+     *        in="path",
+     *        example="0",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Imagem removida com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+    public function removeImage(int $index)
+    {
+        $publicity = Publicity::first();
+
+        if (is_null($publicity->images)) {
+            return response()->json(['message' => 'Nenhuma imagem a ser removida']);
+        }
+
+        $images = json_decode($publicity->images);
+
+        if (isset($images[$index])) {
+            Storage::delete($images[$index]);
+            unset($images[$index]);
+            $publicity->images = json_encode(array_values($images));
+            $publicity->save();
+        }
+
+        return response()->json(['message' => 'Imagem removida com sucesso!']);
+    }
 }

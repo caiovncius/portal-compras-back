@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="Ajustes nos endpoints">
-      <change afterPath="$PROJECT_DIR$/app/Helpers/FileUploader.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/PublicityImageRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/CreatePublicity.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PublicityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PublicityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/PublicityCreatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/PublicityCreatorRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/PublicityUpdatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/PublicityUpdatorRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/PublicityListResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/PublicityListResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Publicity/Services/PublicityCreator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Publicity/Services/PublicityCreator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Publicity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Publicity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_06_07_014054_create_publicities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_06_07_014054_create_publicities_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/CreateInitialUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CreateInitialUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,14 +213,7 @@
       <workItem from="1593088760193" duration="1484000" />
       <workItem from="1593094236889" duration="7687000" />
       <workItem from="1593201749647" duration="2033000" />
-      <workItem from="1593261434082" duration="4287000" />
-    </task>
-    <task id="LOCAL-00005" summary="Adicionado seed de estados e cidades">
-      <created>1589996639100</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1589996639100</updated>
+      <workItem from="1593261434082" duration="6763000" />
     </task>
     <task id="LOCAL-00006" summary="Adicionado endpoint de listagem de estados e cidades por estado">
       <created>1589997941866</created>
@@ -554,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593265347316</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Ajustes nos endpoints">
+      <created>1593267813748</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1593267813748</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,10 +616,10 @@
     </state>
     <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590679558111" />
     <state x="576" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.2560.1011@0.23.2560.1011" timestamp="1593098557029" />
-    <state x="114" y="23" key="CommitChangelistDialog2" timestamp="1593265346999">
+    <state x="114" y="23" key="CommitChangelistDialog2" timestamp="1593267813549">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1593265346999" />
+    <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1593267813549" />
     <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114643839" />
     <state x="228" y="23" key="CommitChangelistDialog2/0.23.2560.1011@0.23.2560.1011" timestamp="1593202113154" />
     <state x="100" y="122" width="1479" height="811" key="DiffContextDialog" timestamp="1591114597201">
@@ -642,10 +646,10 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="348" y="167" key="SettingsEditor/0.23.1920.1011@0.23.1920.1011" timestamp="1589999400094" />
-    <state x="240" y="128" key="Vcs.Push.Dialog.v2" timestamp="1593265348459">
+    <state x="240" y="128" key="Vcs.Push.Dialog.v2" timestamp="1593267814651">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1593265348459" />
+    <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1593267814651" />
     <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114679421" />
     <state x="480" y="168" key="Vcs.Push.Dialog.v2/0.23.2560.1011@0.23.2560.1011" timestamp="1593202115066" />
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591059078375">
@@ -662,10 +666,10 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="513" y="285" width="639" height="486" key="find.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1590672878026" />
-    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup" timestamp="1593267756734">
+    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup" timestamp="1593278547644">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1593267756734" />
+    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1593278547644" />
     <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1591117386617" />
     <state x="610" y="99" width="1340" height="935" key="search.everywhere.popup/0.23.2560.1011@0.23.2560.1011" timestamp="1593203339348" />
   </component>
