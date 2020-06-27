@@ -34,7 +34,19 @@ class PublicityListResource extends JsonResource
             'description' => $this->desc,
             'createDate' => $this->date_create,
             'publishDate' => $this->date_publish,
-            'images' => json_decode($this->images)
+            'images' => $this->when(true,  function() {
+                $images = [];
+                $imagesDecoded = json_decode($this->images);
+
+                if (count($imagesDecoded) > 0) {
+                    foreach ($imagesDecoded as $image) {
+                        $url = env('APP_URL') . $image;
+                        array_push($images, $url);
+                    }
+                }
+
+                return $images;
+            })
         ];
     }
 }
