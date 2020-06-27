@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PharmacyCreatorRequest;
 use App\Http\Requests\PharmacyUpdatorRequest;
 use App\Http\Resources\PharmacyListResource;
+use App\Http\Resources\PharmacyResource;
 use App\Pharmacy;
 use App\Pharmacy\Contracts\PharmacyCreatable;
 use App\Pharmacy\Contracts\PharmacyUpdatable;
@@ -175,7 +176,7 @@ class PharmacyController extends Controller
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 @OA\Property(property="data", ref="#/components/schemas/PharmacyListResource"),
+     *                 @OA\Property(property="data", ref="#/components/schemas/PharmacyResource"),
      *             )
      *         )
      *     ),
@@ -198,7 +199,7 @@ class PharmacyController extends Controller
      */
     public function get(Pharmacy $pharmacy)
     {
-        return PharmacyListResource::make($pharmacy);
+        return PharmacyResource::make($pharmacy);
     }
 
 

@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="Ajustes nos endpoints">
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/PharmacyResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PharmacyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PharmacyController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/PublicityUpdatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/PublicityUpdatorRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Pharmacy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Pharmacy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Pharmacy/Services/PharmacyRetriever.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Pharmacy/Services/PharmacyRetriever.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Pharmacy/Services/PharmacyUpdator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Pharmacy/Services/PharmacyUpdator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Publicity/Services/PublicityCreator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Publicity/Services/PublicityCreator.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -208,14 +206,7 @@
       <workItem from="1593088760193" duration="1484000" />
       <workItem from="1593094236889" duration="7687000" />
       <workItem from="1593201749647" duration="2033000" />
-      <workItem from="1593261434082" duration="1343000" />
-    </task>
-    <task id="LOCAL-00003" summary="Adicionado pltaforma de documentação">
-      <created>1589985145915</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1589985145915</updated>
+      <workItem from="1593261434082" duration="2104000" />
     </task>
     <task id="LOCAL-00004" summary="Criado modelos de dados e seus relacinamentos&#10;Configurado passport para login">
       <created>1589991096165</created>
@@ -553,7 +544,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593263237249</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Ajustes nos endpoints">
+      <created>1593263710765</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1593263710765</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,24 +594,25 @@
     <MESSAGE value="Melhorias no retorno" />
     <MESSAGE value="Teste de cors" />
     <MESSAGE value="Fix farmacias" />
-    <MESSAGE value="Ajustes nos endpoints" />
     <MESSAGE value="Fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix" />
+    <MESSAGE value="Ajustes nos endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes nos endpoints" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="456" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590685640307">
-      <screen x="0" y="23" width="1920" height="1011" />
+    <state x="224" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1593265308479">
+      <screen x="0" y="23" width="1280" height="731" />
     </state>
+    <state x="224" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1280.731@0.23.1280.731" timestamp="1593265308479" />
     <state x="456" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590685640307" />
     <state x="576" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593098557029">
       <screen x="0" y="23" width="2560" height="1011" />
     </state>
     <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590679558111" />
     <state x="576" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.2560.1011@0.23.2560.1011" timestamp="1593098557029" />
-    <state x="114" y="23" key="CommitChangelistDialog2" timestamp="1593263236997">
+    <state x="114" y="23" key="CommitChangelistDialog2" timestamp="1593263710435">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1593263236997" />
+    <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1593263710435" />
     <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114643839" />
     <state x="228" y="23" key="CommitChangelistDialog2/0.23.2560.1011@0.23.2560.1011" timestamp="1593202113154" />
     <state x="100" y="122" width="1479" height="811" key="DiffContextDialog" timestamp="1591114597201">
@@ -640,10 +639,10 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="348" y="167" key="SettingsEditor/0.23.1920.1011@0.23.1920.1011" timestamp="1589999400094" />
-    <state x="240" y="128" key="Vcs.Push.Dialog.v2" timestamp="1593263238348">
+    <state x="240" y="128" key="Vcs.Push.Dialog.v2" timestamp="1593263712089">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1593263238348" />
+    <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1593263712089" />
     <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114679421" />
     <state x="480" y="168" key="Vcs.Push.Dialog.v2/0.23.2560.1011@0.23.2560.1011" timestamp="1593202115066" />
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591059078375">
@@ -660,10 +659,10 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="513" y="285" width="639" height="486" key="find.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1590672878026" />
-    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup" timestamp="1593263522566">
+    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup" timestamp="1593265047369">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1593263522566" />
+    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1593265047369" />
     <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1591117386617" />
     <state x="610" y="99" width="1340" height="935" key="search.everywhere.popup/0.23.2560.1011@0.23.2560.1011" timestamp="1593203339348" />
   </component>

@@ -1731,7 +1731,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/PharmacyListResource"
+                                            "$ref": "#/components/schemas/PharmacyResource"
                                         }
                                     },
                                     "type": "object"
@@ -4487,6 +4487,48 @@
                     "state": {
                         "type": "string",
                         "example": "São Paulo"
+                    },
+                    "commercial": {
+                        "type": "string",
+                        "example": "Teste 02"
+                    },
+                    "createdAt": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "PharmacyResource": {
+                "title": "PharmacyList Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": "01"
+                    },
+                    "cnpj": {
+                        "type": "string",
+                        "example": "99.999.999/0001-91"
+                    },
+                    "socialName": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    },
+                    "cityId": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "stateId": {
+                        "type": "integer",
+                        "example": "10"
                     },
                     "commercial": {
                         "type": "string",
