@@ -3855,7 +3855,7 @@
                         "type": "string",
                         "example": "99.999.999/0001-91"
                     },
-                    "company_name": {
+                    "socialName": {
                         "type": "string",
                         "example": "Teste"
                     },
@@ -3885,7 +3885,7 @@
                         "type": "string",
                         "example": "99.999.999/0001-91"
                     },
-                    "company_name": {
+                    "socialName": {
                         "type": "string",
                         "example": "Teste"
                     },
@@ -4481,7 +4481,12 @@
                         "example": "ACTIVE"
                     },
                     "city": {
-                        "$ref": "#/components/schemas/CityResource"
+                        "type": "string",
+                        "example": "São Paulo"
+                    },
+                    "state": {
+                        "type": "string",
+                        "example": "São Paulo"
                     },
                     "commercial": {
                         "type": "string",

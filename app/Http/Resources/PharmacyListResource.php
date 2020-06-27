@@ -15,7 +15,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="cnpj", type="string", example="99.999.999/0001-91"),
  *     @OA\Property(property="socialName", type="string", example="Teste"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
- *     @OA\Property(property="city", ref="#/components/schemas/CityResource"),
+ *     @OA\Property(property="city", type="string", example="São Paulo"),
+ *     @OA\Property(property="state", type="string", example="São Paulo"),
  *     @OA\Property(property="commercial", type="string", example="Teste 02"),
  *     @OA\Property(property="createdAt",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
  * )
