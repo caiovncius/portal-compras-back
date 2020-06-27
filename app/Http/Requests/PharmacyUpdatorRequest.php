@@ -14,7 +14,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="cnpj", type="string", example="99.999.999/0001-91"),
  *     @OA\Property(property="socialName", type="string", example="Teste"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
- *     @OA\Property(property="city_id", type="integer", example="10"),
+ *     @OA\Property(property="cityId", type="integer", example="10"),
  *     @OA\Property(property="commercial", type="string", example="Teste 02"),
  * )
  */

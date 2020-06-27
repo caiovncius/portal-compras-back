@@ -3863,7 +3863,7 @@
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "city_id": {
+                    "cityId": {
                         "type": "integer",
                         "example": "10"
                     },
@@ -3893,7 +3893,7 @@
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "city_id": {
+                    "cityId": {
                         "type": "integer",
                         "example": "10"
                     },
