@@ -14,8 +14,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *     required={"code", "desc", "date_create", "date_publish", "image"},
  *     @OA\Property(property="code", type="integer", example="001"),
  *     @OA\Property(property="desc", type="integer", example="Teste"),
- *     @OA\Property(property="date_create", type="date", example="1992-01-87"),
- *     @OA\Property(property="date_publish", type="date", example="1992-10-87"),
+ *     @OA\Property(property="createDate", type="date", example="1992-01-87"),
+ *     @OA\Property(property="publishDate", type="date", example="1992-10-87"),
  *     @OA\Property(property="image", type="boolean", example="1"),
  * )
  */
@@ -41,8 +41,8 @@ class PublicityCreatorRequest extends FormRequest
         return [
             'code' => 'required|integer',
             'desc' => 'required|string',
-            'date_create' => 'required|string',
-            'date_publish' => 'required|string',
+            'createDate' => 'required|string',
+            'publishDate' => 'required|string',
             'image' => 'required|string',
         ];
     }

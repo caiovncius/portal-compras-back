@@ -40,8 +40,8 @@ class PublicityUpdatorRequest extends FormRequest
         return [
             'code' => 'required|integer',
             'desc' => 'required|string',
-            'date_create' => 'required|string',
-            'date_publish' => 'required|string',
+            'createDate' => 'required|string',
+            'publishDate' => 'required|string',
             'image' => 'required|string',
         ];
     }

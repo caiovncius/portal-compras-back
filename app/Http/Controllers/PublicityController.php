@@ -161,11 +161,8 @@ class PublicityController extends Controller
     public function store(PublicityCreatorRequest $request)
     {
         try {
-            $input = $request->all();
-            $input['image'] = base64_encode(file_get_contents($request->file('image')->path()));
-
-            $this->creatorService->store($input);
-            return response()->json(['message' => 'Condição criada com sucesso'], 200);
+            $this->creatorService->store($request->all());
+            return response()->json(['message' => 'Atualizado com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
