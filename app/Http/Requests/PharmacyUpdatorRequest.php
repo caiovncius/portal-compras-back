@@ -42,7 +42,7 @@ class PharmacyUpdatorRequest extends FormRequest
             'cnpj' => 'required|cnpj',
             'socialName' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
-            'city_id' => 'required|integer|exists:cities,id',
+            'cityId' => 'required|integer|exists:cities,id',
             'commercial' => 'required|string',
         ];
     }
