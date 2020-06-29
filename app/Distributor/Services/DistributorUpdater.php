@@ -21,13 +21,12 @@ class DistributorUpdater implements DistributorUpdatable
             $model->save();
 
             if (isset($data['contacts'])) {
-                $model->contacts()->detach();
-
                 foreach ($data['contacts'] as $data) {
-                    $model->contacts()->attach($data);
+                    $data['distributor_id'] = $model->id;
+                    Contact::create($data);
                 }
             }
-            
+
             return true;
         } catch (\Exception $e) {
             throw $e;

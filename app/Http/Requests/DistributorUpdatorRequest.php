@@ -39,7 +39,12 @@ class DistributorUpdatorRequest extends FormRequest
             'code' => 'required|integer',
             'cnpj' => 'required|cnpj',
             'name' => 'required|string',
-            'status' => 'required|in:ACTIVE,INACTIVE'
+            'status' => 'required|in:ACTIVE,INACTIVE',
+            'contacts' => 'array',
+            'contacts.*.function' => 'required|string',
+            'contacts.*.name' => 'required|string',
+            'contacts.*.email' => 'required|email',
+            'contacts.*.telephone' => 'required|string',
         ];
     }
 }
