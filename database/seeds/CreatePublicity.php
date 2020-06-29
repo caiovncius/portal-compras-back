@@ -14,7 +14,7 @@ class CreatePublicity extends Seeder
         $publicity = \App\Publicity::query()->first();
 
         if (is_null($publicity)) {
-            \App\Publicity::create();
+            \App\Publicity::create([]);
         }
     }
 }

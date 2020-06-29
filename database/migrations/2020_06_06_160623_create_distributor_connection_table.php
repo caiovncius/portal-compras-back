@@ -13,7 +13,7 @@ class CreateDistributorConnectionTable extends Migration
      */
     public function up()
     {
-        Schema::create('distributor_connection', function (Blueprint $table) {
+        Schema::create('distributor_connections', function (Blueprint $table) {
             $table->id();
             $table->boolean('ftp_active');
             $table->string('transferency');
