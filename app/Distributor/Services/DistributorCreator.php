@@ -22,7 +22,6 @@ class DistributorCreator implements DistributorCreatable
                 foreach ($data['contacts'] as $data) {
                     $data['distributor_id'] = $model->id;
                     $newContact = Contact::create($data);
-                    $model->contacts()->attach($newContact->id);
                 }
             }
 
