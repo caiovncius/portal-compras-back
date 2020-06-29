@@ -15,9 +15,9 @@ class DistributorRemover implements DistributorRemovable
     public function delete(Distributor $model)
     {
         try {
-            $model->dettach();
+            $model->contacts()->delete();
             $model->delete();
-            
+
             return true;
         } catch (\Exception $e) {
             throw  $e;
