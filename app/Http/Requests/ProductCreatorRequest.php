@@ -10,12 +10,12 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="ProductCreatorRequest",
  *     type="object",
  *     title="Product form request",
- *     required={"code", "code_ean", "description", "status", "laboratory_id"},
+ *     required={"code", "codeEan", "description", "status", "laboratory_id"},
  *     @OA\Property(property="code", type="integer", example="001"),
- *     @OA\Property(property="code_ean", type="integer", example="002"),
+ *     @OA\Property(property="codeEan", type="integer", example="002"),
  *     @OA\Property(property="description", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
- *     @OA\Property(property="laboratory_id", type="integer", example="2"),
+ *     @OA\Property(property="laboratoryId", type="integer", example="2"),
  * )
  */
 class ProductCreatorRequest extends FormRequest
@@ -39,10 +39,10 @@ class ProductCreatorRequest extends FormRequest
     {
         return [
             'code' => 'required|integer',
-            'code_ean' => 'required|integer',
+            'codeEan' => 'required|integer',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
-            'laboratory_id' => 'required|exists:laboratories,id',
+            'laboratoryId' => 'required|exists:laboratories,id',
         ];
     }
 }

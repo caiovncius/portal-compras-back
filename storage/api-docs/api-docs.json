@@ -1879,7 +1879,7 @@
                         "example": "01"
                     },
                     {
-                        "name": "code_ean",
+                        "name": "codeEan",
                         "in": "query",
                         "example": "02"
                     },
@@ -1894,7 +1894,7 @@
                         "example": "ACTIVE"
                     },
                     {
-                        "name": "laboratory_id",
+                        "name": "laboratoryId",
                         "in": "query",
                         "example": "COMMERCIAL"
                     },
@@ -4016,7 +4016,7 @@
                 "title": "Product form request",
                 "required": [
                     "code",
-                    "code_ean",
+                    "codeEan",
                     "description",
                     "status",
                     "laboratory_id"
@@ -4026,7 +4026,7 @@
                         "type": "integer",
                         "example": "001"
                     },
-                    "code_ean": {
+                    "codeEan": {
                         "type": "integer",
                         "example": "002"
                     },
@@ -4037,7 +4037,7 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
-                    "laboratory_id": {
+                    "laboratoryId": {
                         "type": "integer",
                         "example": "2"
                     }
@@ -4051,7 +4051,7 @@
                         "type": "integer",
                         "example": "001"
                     },
-                    "code_ean": {
+                    "codeEan": {
                         "type": "integer",
                         "example": "002"
                     },
@@ -4062,7 +4062,7 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
-                    "laboratory_id": {
+                    "laboratoryId": {
                         "type": "integer",
                         "example": "2"
                     }
@@ -4794,6 +4794,13 @@
                     "publishDate": {
                         "type": "date",
                         "example": "2010-10-11"
+                    },
+                    "images": {
+                        "type": "array",
+                        "items": {
+                            "type": "date",
+                            "example": "http://example.com/storage/image.jpg"
+                        }
                     }
                 },
                 "type": "Publicity"

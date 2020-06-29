@@ -16,7 +16,12 @@ class ProductCreator implements ProductCreatable
     public function store(array $productData)
     {
         try {
-            $product = Product::create($productData);
+            $product = new Product();
+            $product->code = $productData['code'];
+            $product->code_ean = $productData['codeEan'];
+            $product->description = $productData['description'];
+            $product->laboratory_id = $productData['laboratoryId'];
+            $product->save();
 
             return true;
         } catch (\Exception $exception) {

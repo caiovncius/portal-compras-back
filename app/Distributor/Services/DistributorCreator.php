@@ -2,6 +2,7 @@
 
 namespace App\Distributor\Services;
 
+use App\Contact;
 use App\Distributor;
 use App\Distributor\Contracts\DistributorCreatable;
 
@@ -19,7 +20,9 @@ class DistributorCreator implements DistributorCreatable
 
             if (isset($data['contacts'])) {
                 foreach ($data['contacts'] as $data) {
-                    $model->contacts()->attach($data);
+                    $data['distributor_id'] = $model->id;
+                    $newContact = Contact::create($data);
+                    $model->contacts()->attach($newContact->id);
                 }
             }
 

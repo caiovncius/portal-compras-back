@@ -23,8 +23,8 @@ class ProductRetriever implements ProductRetrievable
                 $query->where('code', $params['code']);
             }
 
-            if (isset($params['code_ean']) && !empty($params['code_ean'])) {
-                $query->where('code_ean', $params['code_ean']);
+            if (isset($params['codeEan']) && !empty($params['codeEan'])) {
+                $query->where('code_ean', $params['codeEan']);
             }
 
             if (isset($params['description']) && !empty($params['description'])) {
@@ -39,8 +39,8 @@ class ProductRetriever implements ProductRetrievable
                 $query->where('status', $params['status']);
             }
 
-            if (isset($params['laboratory_id']) && !empty($params['laboratory_id'])) {
-                $query->where('laboratory_id', $params['laboratory_id']);
+            if (isset($params['laboratoryId']) && !empty($params['laboratoryId'])) {
+                $query->where('laboratory_id', $params['laboratoryId']);
             }
 
             return $query;

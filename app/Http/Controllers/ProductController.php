@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductCreatorRequest;
 use App\Http\Requests\ProductUpdatorRequest;
 use App\Http\Resources\ProductListResource;
+use App\Http\Resources\ProductResource;
 use App\Product;
 use App\Product\Contracts\ProductCreatable;
 use App\Product\Contracts\ProductUpdatable;
@@ -52,7 +53,7 @@ class ProductController extends Controller
      *        example="01",
      *     ),
      *     @OA\Parameter(
-     *        name="code_ean",
+     *        name="codeEan",
      *        in="query",
      *        example="02",
      *     ),
@@ -67,7 +68,7 @@ class ProductController extends Controller
      *        example="ACTIVE",
      *     ),
      *     @OA\Parameter(
-     *        name="laboratory_id",
+     *        name="laboratoryId",
      *        in="query",
      *        example="COMMERCIAL",
      *     ),
@@ -143,6 +144,20 @@ class ProductController extends Controller
      * )
      */
 
+    /**
+     * @param ProductCreatorRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(ProductCreatorRequest $request)
+    {
+        try {
+            $this->creatorService->store($request->all());
+            return response()->json(['message' => 'Produto criado com sucesso'], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
 
     /**
      *
@@ -184,23 +199,8 @@ class ProductController extends Controller
      */
     public function get(Product $product)
     {
-        return ProductListResource::make($product);
+        return ProductResource::make($product);
     }
-
-    /**
-     * @param ProductCreatorRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function store(ProductCreatorRequest $request)
-    {
-        try {
-            $this->creatorService->store($request->all());
-            return response()->json(['message' => 'Produto criado com sucesso'], 200);
-        } catch (\Exception $exception) {
-            return response()->json(['error' => $exception->getMessage()], 400);
-        }
-    }
-
 
     /**
      *
