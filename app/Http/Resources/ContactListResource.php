@@ -30,7 +30,7 @@ class ContactListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'distributor_id' => $this->distributor_id,
+            'distributorId' => $this->distributor_id,
             'function' => $this->function,
             'name' => $this->name,
             'email' => $this->email,

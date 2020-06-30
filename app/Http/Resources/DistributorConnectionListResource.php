@@ -34,13 +34,13 @@ class DistributorConnectionListResource extends JsonResource
         return [
             'id' => $this->id,
             'distributorId' => $this->distributor_id,
-            'ftpActive' => $this->ftp_active,
-            'transferency' => $this->transferency,
+            'isFtpActive' => $this->ftp_active,
+            'transferMode' => $this->transferency,
             'host' => $this->host,
-            'pathSend' => $this->path_send,
+            'sendDirectory' => $this->path_send,
             'login' => $this->login,
             'password' => $this->password,
-            'pathReturn' => $this->path_return,
+            'returnDirectory' => $this->path_return,
         ];
     }
 }
