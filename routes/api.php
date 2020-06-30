@@ -75,10 +75,10 @@ Route::middleware(['cors'])->group(function(){
     Route::delete('/returns/{id}', 'ReturnsController@delete')->name('return.delete');
 
     Route::get('/products', 'ProductController@list')->name('product.list');
-    Route::get('/products/{id}', 'ProductController@get')->name('product.get');
+    Route::get('/products/{product}', 'ProductController@get')->name('product.get');
     Route::post('/products', 'ProductController@store')->name('product.store');
-    Route::put('/products/{id}', 'ProductController@update')->name('product.update');
-    Route::delete('/products/{id}', 'ProductController@delete')->name('product.delete');
+    Route::put('/products/{product}', 'ProductController@update')->name('product.update');
+    Route::delete('/products/{product}', 'ProductController@delete')->name('product.delete');
 
     Route::get('/conditions', 'ConditionController@list')->name('condition.list');
     Route::get('/conditions/{id}', 'ConditionController@get')->name('condition.get');
