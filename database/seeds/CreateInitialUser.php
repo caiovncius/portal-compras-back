@@ -32,12 +32,12 @@ class CreateInitialUser extends Seeder
 
         if (is_null(\App\User::where('email', $managerEmail)->first())) {
 
-            $managerProfile = \App\Profile::where('type', \App\Profile::PROFILE_TYPE_COMMERCIAL)->first();
+            $managerProfile = \App\Profile::where('type', \App\Profile::PROFILE_TYPE_PHARMACY)->first();
 
             if (is_null($managerProfile)) return;
 
             \App\User::create([
-                'type' => \App\User::USER_TYPE_COMMERCIAL,
+                'type' => \App\User::USER_TYPE_PHARMACY,
                 'name' => 'Usuário Gerente',
                 'username' => 'gerente',
                 'email' => $managerEmail,

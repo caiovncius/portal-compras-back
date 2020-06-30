@@ -17,5 +17,12 @@ class CreateMasterProfile extends Seeder
                 'type' => \App\Profile::PROFILE_TYPE_MASTER
             ]);
         }
+
+        if (is_null(\App\Profile::where('type', \App\Profile::PROFILE_TYPE_PHARMACY)->first())) {
+            \App\Profile::create([
+                'name' => 'Farmacia',
+                'type' => \App\Profile::PROFILE_TYPE_PHARMACY
+            ]);
+        }
     }
 }
