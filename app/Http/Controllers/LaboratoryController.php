@@ -141,7 +141,7 @@ class LaboratoryController extends Controller
      */
     public function active()
     {
-        return LaboratoryListResource::collection(Laboractory::active()->get());
+        return LaboratoryListResource::collection(Laboratory::active()->get());
     }
 
     /**
