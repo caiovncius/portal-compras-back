@@ -12,6 +12,8 @@ class CreateInitialUser extends Seeder
     public function run()
     {
         $email = 'admin@associados.com';
+        $managerEmail = 'manager@associados.com';
+
         if (is_null(\App\User::where('email', $email)->first())) {
 
             $masterProfile = \App\Profile::where('type', \App\Profile::PROFILE_TYPE_MASTER)->first();
@@ -25,6 +27,22 @@ class CreateInitialUser extends Seeder
                 'email' => $email,
                 'password' => \Illuminate\Support\Facades\Hash::make('12345678'),
                 'profile_id' => $masterProfile->id
+            ]);
+        }
+
+        if (is_null(\App\User::where('email', $managerEmail)->first())) {
+
+            $managerProfile = \App\Profile::where('type', \App\Profile::PROFILE_TYPE_COMMERCIAL)->first();
+
+            if (is_null($managerProfile)) return;
+
+            \App\User::create([
+                'type' => \App\User::USER_TYPE_COMMERCIAL,
+                'name' => 'Usuário Gerente',
+                'username' => 'gerente',
+                'email' => $managerEmail,
+                'password' => \Illuminate\Support\Facades\Hash::make('12345678'),
+                'profile_id' => $managerProfile->id
             ]);
         }
     }
