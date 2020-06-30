@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LaboratoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LaboratoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,14 +206,7 @@
       <workItem from="1593201749647" duration="2033000" />
       <workItem from="1593261434082" duration="7672000" />
       <workItem from="1593465549989" duration="3768000" />
-      <workItem from="1593518626528" duration="161000" />
-    </task>
-    <task id="LOCAL-00014" summary="fix">
-      <created>1590455787090</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1590455787090</updated>
+      <workItem from="1593518626528" duration="629000" />
     </task>
     <task id="LOCAL-00015" summary="Melhorado documentação">
       <created>1590670911359</created>
@@ -551,7 +544,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593469456626</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Fix">
+      <created>1593518804874</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1593518804874</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +588,6 @@
     <MESSAGE value="Melhorias no retorno" />
     <MESSAGE value="Teste de cors" />
     <MESSAGE value="Fix farmacias" />
-    <MESSAGE value="Fix" />
     <MESSAGE value="Ajustes nos endpoints" />
     <MESSAGE value="Anexo de imagens" />
     <MESSAGE value="Adicionado full url das imagens" />
@@ -596,7 +595,8 @@
     <MESSAGE value="Correção da migration" />
     <MESSAGE value="fix" />
     <MESSAGE value="Edição de distribuidor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edição de distribuidor" />
+    <MESSAGE value="Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="224" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1593265308479">
@@ -609,10 +609,10 @@
     </state>
     <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590679558111" />
     <state x="576" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.2560.1011@0.23.2560.1011" timestamp="1593098557029" />
-    <state x="228" y="23" key="CommitChangelistDialog2" timestamp="1593469456336">
-      <screen x="0" y="23" width="2560" height="1011" />
+    <state x="114" y="23" key="CommitChangelistDialog2" timestamp="1593518804410">
+      <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1593279751788" />
+    <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1593518804410" />
     <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114643839" />
     <state x="228" y="23" key="CommitChangelistDialog2/0.23.2560.1011@0.23.2560.1011" timestamp="1593469456336" />
     <state x="100" y="122" width="1479" height="811" key="DiffContextDialog" timestamp="1591114597201">
@@ -639,10 +639,10 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="348" y="167" key="SettingsEditor/0.23.1920.1011@0.23.1920.1011" timestamp="1589999400094" />
-    <state x="480" y="168" key="Vcs.Push.Dialog.v2" timestamp="1593469457737">
-      <screen x="0" y="23" width="2560" height="1011" />
+    <state x="240" y="128" key="Vcs.Push.Dialog.v2" timestamp="1593518808194">
+      <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1593279753694" />
+    <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1593518808194" />
     <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114679421" />
     <state x="480" y="168" key="Vcs.Push.Dialog.v2/0.23.2560.1011@0.23.2560.1011" timestamp="1593469457737" />
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591059078375">
@@ -659,10 +659,10 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="513" y="285" width="639" height="486" key="find.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1590672878026" />
-    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup" timestamp="1593518649622">
+    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup" timestamp="1593519363051">
       <screen x="0" y="23" width="1280" height="731" />
     </state>
-    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1593518649622" />
+    <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1593519363051" />
     <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1591117386617" />
     <state x="610" y="99" width="1340" height="935" key="search.everywhere.popup/0.23.2560.1011@0.23.2560.1011" timestamp="1593469326265" />
   </component>
