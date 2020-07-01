@@ -17,28 +17,28 @@ class AccompanimentRetriever implements AccompanimentRetrievable
         try {
             $query = Accompaniment::query();
 
-            if (isset($params['code_order']) && !empty($params['code_order'])) {
-                $query->where('code_order', $params['code_order']);
+            if (isset($params['codeOrder']) && !empty($params['codeOrder'])) {
+                $query->where('code_order', $params['codeOrder']);
             }
 
-            if (isset($params['code_pharmacy']) && !empty($params['code_pharmacy'])) {
-                $query->where('code_pharmacy', $params['code_pharmacy']);
+            if (isset($params['codePharmacy']) && !empty($params['codePharmacy'])) {
+                $query->where('code_pharmacy', $params['codePharmacy']);
             }
 
-            if (isset($params['date_create']) && !empty($params['date_create'])) {
-                $query->where('date_create', $params['date_create']);
+            if (isset($params['createDate']) && !empty($params['createDate'])) {
+                $query->where('date_create', $params['createDate']);
             }
 
-            if (isset($params['date_publish']) && !empty($params['date_publish'])) {
-                $query->where('date_publish', $params['date_publish']);
+            if (isset($params['publishDate']) && !empty($params['publishDate'])) {
+                $query->where('date_publish', $params['publishDate']);
             }
 
             if (isset($params['commercial']) && !empty($params['commercial'])) {
                 $query->where('commercial', $params['commercial']);
             }
 
-            if (isset($params['type_send']) && !empty($params['type_send'])) {
-                $query->where('type_send', $params['type_send']);
+            if (isset($params['sendType']) && !empty($params['sendType'])) {
+                $query->where('type_send', $params['sendType']);
             }
 
             if (isset($params['status']) && !empty($params['status'])) {
