@@ -10,11 +10,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     type="object",
  *     title="Condition Response",
  *     @OA\Property(property="id", type="integer", example="1"),
- *     @OA\Property(property="pharmacyId", type="integer", example="1"),
- *     @OA\Property(property="pharmacyName", type="integer", example="Teste"),
  *     @OA\Property(property="code", type="string", example="01"),
- *     @OA\Property(property="desc", type="string", example="Teste"),
- *     @OA\Property(property="visible", type="boolean", example="1"),
+ *     @OA\Property(property="description", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  * )
  */
@@ -31,11 +28,8 @@ class ConditionListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'pharmacyId' => $this->pharmacy_id,
-            'pharmacyName' => $this->pharmacy->name,
             'code' => $this->code,
-            'desc' => $this->desc,
-            'visible' => $this->visible,
+            'description' => $this->desc,
             'status' => $this->status
         ];
     }

@@ -25,8 +25,8 @@ class ConditionRetriever implements ConditionRetrievable
                 $query->where('pharmacy_id', $params['pharmacy_id']);
             }
 
-            if (isset($params['desc']) && !empty($params['desc'])) {
-                $query->where('desc', 'like', '%' . $params['desc'] . '%');
+            if (isset($params['description']) && !empty($params['description'])) {
+                $query->where('desc', 'like', '%' . $params['description'] . '%');
             }
 
             if (isset($params['status']) && !empty($params['status'])) {

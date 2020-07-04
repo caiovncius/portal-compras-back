@@ -57,12 +57,7 @@ class ConditionController extends Controller
      *        example="01",
      *     ),
      *     @OA\Parameter(
-     *        name="pharmacy_id",
-     *        in="query",
-     *        example="01",
-     *     ),
-     *     @OA\Parameter(
-     *        name="desc",
+     *        name="description",
      *        in="query",
      *        example="Teste",
      *     ),

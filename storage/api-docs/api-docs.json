@@ -109,7 +109,7 @@
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "example": "Condição criada com sucesso"
+                                            "example": "Acompanhamento criado com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -221,7 +221,7 @@
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "example": "Condição atualizada com sucesso"
+                                            "example": "Acompanhamento atualizado com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -276,7 +276,7 @@
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "example": "Condição removida com sucesso"
+                                            "example": "Acompanhamento removido com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -350,12 +350,7 @@
                         "example": "01"
                     },
                     {
-                        "name": "pharmacy_id",
-                        "in": "query",
-                        "example": "01"
-                    },
-                    {
-                        "name": "desc",
+                        "name": "description",
                         "in": "query",
                         "example": "Teste"
                     },
@@ -4387,25 +4382,13 @@
                         "type": "integer",
                         "example": "1"
                     },
-                    "pharmacyId": {
-                        "type": "integer",
-                        "example": "1"
-                    },
-                    "pharmacyName": {
-                        "type": "integer",
-                        "example": "Teste"
-                    },
                     "code": {
                         "type": "string",
                         "example": "01"
                     },
-                    "desc": {
+                    "description": {
                         "type": "string",
                         "example": "Teste"
-                    },
-                    "visible": {
-                        "type": "boolean",
-                        "example": "1"
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
