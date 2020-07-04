@@ -150,7 +150,7 @@ class AccompanimentController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Condição criada com sucesso"
+     *                     example ="Acompanhamento criado com sucesso"
      *                 )
      *             )
      *         )
@@ -182,7 +182,7 @@ class AccompanimentController extends Controller
     {
         try {
             $this->creatorService->store($request->all);
-            return response()->json(['message' => 'Condição criada com sucesso'], 200);
+            return response()->json(['message' => 'Acompanhamento criado com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -211,7 +211,7 @@ class AccompanimentController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Condição atualizada com sucesso"
+     *                     example ="Acompanhamento atualizado com sucesso"
      *                 )
      *             )
      *         )
@@ -243,7 +243,7 @@ class AccompanimentController extends Controller
     {
         try {
             $this->updatorService->update($id, $request->all());
-            return response()->json(['message' => 'Condição atualizada com sucesso'], 200);
+            return response()->json(['message' => 'Acompanhamento atualizado com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -268,7 +268,7 @@ class AccompanimentController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Condição removida com sucesso"
+     *                     example ="Acompanhamento removido com sucesso"
      *                 )
      *             )
      *         )
@@ -294,7 +294,7 @@ class AccompanimentController extends Controller
     {
         try {
             $this->removerService->delete($id);
-            return response()->json(['message' => 'Condição removida com sucesso'], 200);
+            return response()->json(['message' => 'Acompanhamento removido com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
