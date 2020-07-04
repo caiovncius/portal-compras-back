@@ -18,16 +18,13 @@ class DistributorConnectionUpdater implements DistributorConnectionUpdatable
     public function update(Distributor $distributor, DistributorConnection $model, array $data)
     {
         try {
-            $model->distributor_id = $distributor->id;
-            $model->ftp_active = $data['isFtpActive'];
-            $model->transferency = $data['transferMode'];
-            $model->host = $data['host'];
-            $model->path_send = $data['sendDirectory'];
-            $model->login = $data['login'];
-            $model->password = $data['password'];
-            $model->path_return = $data['returnDirectory'];
-            $model->save();
-            $model->save();
+            $data['distributor_id'] = $data['distributorId'];
+            $data['ftp_active'] = $data['isFtpActive'];
+            $data['transferency'] = $data['transferMode'];
+            $data['path_send'] = $data['sendDirectory'];
+            $data['path_return'] = $data['returnDirectory'];
+
+            $distributor->connection()->updateOrCreate(['distributor_id' => $data['distributorId']], $data);
 
             return true;
         } catch (\Exception $e) {

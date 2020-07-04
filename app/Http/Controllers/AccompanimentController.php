@@ -52,22 +52,27 @@ class AccompanimentController extends Controller
      *     tags={"Accompaniments"},
      *     path="/accompaniments",
      *     @OA\Parameter(
-     *        name="code_order",
+     *        name="codeOrder",
      *        in="query",
      *        example="001",
      *     ),
      *     @OA\Parameter(
-     *        name="code_pharmacy",
+     *        name="codeOffer",
      *        in="query",
-     *        example="Teste",
+     *        example="321",
      *     ),
      *     @OA\Parameter(
-     *        name="date_create",
+     *        name="codePharmacy",
+     *        in="query",
+     *        example="321",
+     *     ),
+     *     @OA\Parameter(
+     *        name="startDate",
      *        in="query",
      *        example="1992-10-11",
      *     ),
      *     @OA\Parameter(
-     *        name="date_publish",
+     *        name="endDate",
      *        in="query",
      *        example="1992-10-11",
      *     ),
@@ -77,7 +82,7 @@ class AccompanimentController extends Controller
      *        example="Teste",
      *     ),
      *     @OA\Parameter(
-     *        name="type_send",
+     *        name="sendType",
      *        in="query",
      *        example="TESTE",
      *     ),

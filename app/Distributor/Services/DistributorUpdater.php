@@ -19,11 +19,10 @@ class DistributorUpdater implements DistributorUpdatable
         try {
             $model->fill($data);
             $model->save();
-
             if (isset($data['contacts'])) {
+                $model->contacts()->delete();
                 foreach ($data['contacts'] as $data) {
-                    $data['distributor_id'] = $model->id;
-                    Contact::create($data);
+                    $model->contacts()->create($data);
                 }
             }
 

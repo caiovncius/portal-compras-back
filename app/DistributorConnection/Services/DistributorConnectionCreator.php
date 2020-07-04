@@ -17,16 +17,13 @@ class DistributorConnectionCreator implements DistributorConnectionCreatable
     public function store(Distributor $distributor, array $data)
     {
         try {
-            $connection = new DistributorConnection();
-            $connection->distributor_id = $distributor->id;
-            $connection->ftp_active = $data['isFtpActive'];
-            $connection->transferency = $data['transferMode'];
-            $connection->host = $data['host'];
-            $connection->path_send = $data['sendDirectory'];
-            $connection->login = $data['login'];
-            $connection->password = $data['password'];
-            $connection->path_return = $data['returnDirectory'];
-            $connection->save();
+            $data['distributor_id'] = $data['distributorId'];
+            $data['ftp_active'] = $data['isFtpActive'];
+            $data['transferency'] = $data['transferMode'];
+            $data['path_send'] = $data['sendDirectory'];
+            $data['path_return'] = $data['returnDirectory'];
+
+            $distributor->connection()->updateOrCreate(['distributor_id' => $data['distributorId']], $data);
 
             return true;
         } catch (\Exception $exception) {

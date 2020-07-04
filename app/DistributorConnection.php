@@ -31,6 +31,8 @@ class DistributorConnection extends Model
         'path_return',
     ];
 
+    protected $casts = ['ftp_active' => 'boolean'];
+
     public function distributor()
     {
         return $this->belongsTo(Distributor::class, 'distributor_id');

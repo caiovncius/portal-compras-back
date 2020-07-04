@@ -4,11 +4,6 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": ""
-        }
-    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -17,22 +12,27 @@
                 ],
                 "parameters": [
                     {
-                        "name": "code_order",
+                        "name": "codeOrder",
                         "in": "query",
                         "example": "001"
                     },
                     {
-                        "name": "code_pharmacy",
+                        "name": "codeOffer",
                         "in": "query",
-                        "example": "Teste"
+                        "example": "321"
                     },
                     {
-                        "name": "date_create",
+                        "name": "codePharmacy",
+                        "in": "query",
+                        "example": "321"
+                    },
+                    {
+                        "name": "startDate",
                         "in": "query",
                         "example": "1992-10-11"
                     },
                     {
-                        "name": "date_publish",
+                        "name": "endDate",
                         "in": "query",
                         "example": "1992-10-11"
                     },
@@ -42,7 +42,7 @@
                         "example": "Teste"
                     },
                     {
-                        "name": "type_send",
+                        "name": "sendType",
                         "in": "query",
                         "example": "TESTE"
                     },
@@ -3776,35 +3776,35 @@
             "DistributorConnectionCreatorRequest": {
                 "title": "DistributorConnection form request",
                 "required": [
-                    "distributor_id",
-                    "ftp_active",
-                    "transferency",
+                    "distributorId",
+                    "isFtpActive",
+                    "transferMode",
                     "host",
-                    "path_send",
+                    "sendDirectory",
                     "login",
                     "password",
-                    "path_return"
+                    "returnDirectory"
                 ],
                 "properties": {
-                    "distributor_id": {
+                    "distributorId": {
                         "type": "boolean",
                         "example": "1"
                     },
-                    "ftp_active": {
+                    "isFtpActive": {
                         "type": "boolean",
-                        "example": "1"
+                        "example": "true"
                     },
-                    "transferency": {
+                    "transferMode": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "ASCI"
                     },
                     "host": {
                         "type": "string",
-                        "example": "teste"
+                        "example": "127.0.0.1"
                     },
-                    "path_send": {
+                    "sendDirectory": {
                         "type": "string",
-                        "example": "teste"
+                        "example": "/var/www"
                     },
                     "login": {
                         "type": "string",
@@ -3812,33 +3812,46 @@
                     },
                     "password": {
                         "type": "string",
-                        "example": "teste"
+                        "example": "123456"
                     },
-                    "path_return": {
+                    "returnDirectory": {
                         "type": "string",
-                        "example": "teste"
+                        "example": "/var/www"
                     }
                 },
                 "type": "object"
             },
             "DistributorConnectionUpdatorRequest": {
-                "title": "DistributorConnection form request",
+                "required": [
+                    "distributorId",
+                    "isFtpActive",
+                    "transferMode",
+                    "host",
+                    "sendDirectory",
+                    "login",
+                    "password",
+                    "returnDirectory"
+                ],
                 "properties": {
-                    "ftp_active": {
+                    "distributorId": {
                         "type": "boolean",
                         "example": "1"
                     },
-                    "transferency": {
+                    "isFtpActive": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "transferMode": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "ASCI"
                     },
                     "host": {
                         "type": "string",
-                        "example": "teste"
+                        "example": "127.0.0.1"
                     },
-                    "path_send": {
+                    "sendDirectory": {
                         "type": "string",
-                        "example": "teste"
+                        "example": "/var/www"
                     },
                     "login": {
                         "type": "string",
@@ -3846,11 +3859,11 @@
                     },
                     "password": {
                         "type": "string",
-                        "example": "teste"
+                        "example": "123456"
                     },
-                    "path_return": {
+                    "returnDirectory": {
                         "type": "string",
-                        "example": "teste"
+                        "example": "/var/www"
                     }
                 },
                 "type": "object"
@@ -4319,19 +4332,19 @@
                         "type": "integer",
                         "example": "1"
                     },
-                    "code_order": {
+                    "codeOrder": {
                         "type": "integer",
                         "example": "001"
                     },
-                    "code_pharmacy": {
+                    "codePharmacy": {
                         "type": "integer",
                         "example": "002"
                     },
-                    "date_create": {
+                    "startDate": {
                         "type": "date",
                         "example": "1992-01-12"
                     },
-                    "date_publish": {
+                    "endDate": {
                         "type": "date",
                         "example": "2010-10-11"
                     },
@@ -4339,7 +4352,7 @@
                         "type": "string",
                         "example": "123"
                     },
-                    "type_send": {
+                    "sendType": {
                         "type": "string",
                         "example": "123"
                     },
@@ -4348,7 +4361,7 @@
                         "example": "Ativo"
                     }
                 },
-                "type": "Accompaniment"
+                "type": "object"
             },
             "CityResource": {
                 "title": "City Response",
@@ -5174,9 +5187,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
-                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
-                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
+                        "authorizationUrl": "http://localhost/oauth/authorize",
+                        "tokenUrl": "http://localhost/oauth/token",
+                        "refreshUrl": "http://localhost/token/refresh",
                         "scopes": []
                     }
                 }
