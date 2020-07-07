@@ -19,10 +19,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/DistributorContacts")
  *     ),
- *     @OA\Property(
- *         property="connection",
- *         allOf={@OA\Items(ref="#/components/schemas/DistributorConnection")}
- *     ),
+ *     @OA\Property(property="connection", ref="#/components/schemas/ConnectionListResource"),
  * )
  */
 
@@ -43,7 +40,7 @@ class DistributorResource extends JsonResource
             'name' => $this->name,
             'status' => $this->status,
             'contacts' =>ContactListResource::collection($this->contacts),
-            'connection' => DistributorConnectionListResource::make($this->connection),
+            'connection' => ConnectionListResource::make($this->connection),
         ];
     }
 }

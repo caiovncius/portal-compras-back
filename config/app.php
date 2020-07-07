@@ -180,13 +180,14 @@ return [
         App\Providers\LaboratoryServiceProvider::class,
         App\Providers\ProductServiceProvider::class,
         App\Providers\DistributorServiceProvider::class,
-        App\Providers\DistributorConnectionServiceProvider::class,
+        App\Providers\ConnectionServiceProvider::class,
         App\Providers\ContactServiceProvider::class,
         App\Providers\ReturnsServiceProvider::class,
         App\Providers\ConditionServiceProvider::class,
         App\Providers\PublicityServiceProvider::class,
         App\Providers\AccompanimentServiceProvider::class,
-
+        App\Providers\ProgramServiceProvider::class,
+        App\Providers\OfferServiceProvider::class,
     ],
 
     /*

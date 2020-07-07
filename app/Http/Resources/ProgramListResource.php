@@ -6,22 +6,17 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="ConditionListResource",
+ *     schema="ProgramListResource",
  *     type="object",
- *     title="Condition Response",
+ *     title="Program Response",
  *     @OA\Property(property="id", type="integer", example="1"),
  *     @OA\Property(property="code", type="string", example="01"),
- *     @OA\Property(property="description", type="string", example="Teste"),
+ *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
- *     @OA\Property(
- *         property="partners",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/DistributorContacts")
- *     ),
  * )
  */
 
-class ConditionListResource extends JsonResource
+class ProgramListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -34,10 +29,8 @@ class ConditionListResource extends JsonResource
         return [
             'id' => $this->id,
             'code' => $this->code,
-            'description' => $this->desc,
-            'status' => $this->status,
-            'visible' => $this->visible,
-            'partners' => DistributorListResource::collection($this->partners),
+            'name' => $this->name,
+            'status' => $this->status
         ];
     }
 }

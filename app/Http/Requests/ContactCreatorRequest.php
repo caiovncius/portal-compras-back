@@ -11,7 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="ContactCreatorRequest",
  *     type="object",
  *     title="Contact form request",
- *     required={"distributor_id", "function", "name", "email", "telephone"},
+ *     required={"function", "name", "email", "telephone"},
  *     @OA\Property(property="function", type="integer", example="00.0001/0004.14"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="email", type="string", example="teste@domain.com"),
@@ -38,7 +38,6 @@ class ContactCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'distributor_id' => 'required|integer|exists:distributors,id',
             'function' => 'required|string',
             'name' => 'required|string',
             'email' => 'required|email',

@@ -12,7 +12,6 @@ use Illuminate\Foundation\Http\FormRequest;
  *     type="object",
  *     title="Condition form request",
  *     @OA\Property(property="code", type="integer", example="001"),
- *     @OA\Property(property="pharmacy_id", type="integer", example="2"),
  *     @OA\Property(property="desc", type="integer", example="Teste"),
  *     @OA\Property(property="visible", type="boolean", example="1"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
@@ -38,7 +37,7 @@ class ConditionUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'pharmacy_id' => 'required|integer|exists:pharmacies,id',
+            //'pharmacy_id' => 'required|integer|exists:pharmacies,id',
             'code' => 'required|integer',
             'desc' => 'required|string',
             'visible' => 'required|boolean',

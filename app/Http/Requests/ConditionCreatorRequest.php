@@ -11,9 +11,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="ConditionCreatorRequest",
  *     type="object",
  *     title="Condition form request",
- *     required={"code", "pharmacy_id", "desc", "status", "visible"},
+ *     required={"code", "desc", "status", "visible"},
  *     @OA\Property(property="code", type="integer", example="001"),
- *     @OA\Property(property="pharmacy_id", type="integer", example="2"),
  *     @OA\Property(property="desc", type="integer", example="Teste"),
  *     @OA\Property(property="visible", type="boolean", example="1"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
@@ -39,7 +38,7 @@ class ConditionCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'pharmacy_id' => 'required|integer|exists:pharmacies,id',
+            //'pharmacy_id' => 'required|integer|exists:pharmacies,id',
             'code' => 'required|integer',
             'desc' => 'required|string',
             'visible' => 'required|boolean',

@@ -2,17 +2,15 @@
 
 namespace App\Http\Requests;
 
-use App\DistributorConnection;
+use App\Connection;
 use Illuminate\Foundation\Http\FormRequest;
 
 
 /**
  * @OA\Schema(
- *     schema="DistributorConnectionCreatorRequest",
+ *     schema="ConnectionUpdatorRequest",
  *     type="object",
- *     title="DistributorConnection form request",
- *     required={"distributorId", "isFtpActive", "transferMode", "host", "sendDirectory", "login", "password", "returnDirectory"},
- *     @OA\Property(property="distributorId", type="boolean", example="1"),
+ *     required={"isFtpActive", "transferMode", "host", "sendDirectory", "login", "password", "returnDirectory"},
  *     @OA\Property(property="isFtpActive", type="boolean", example="true"),
  *     @OA\Property(property="transferMode", type="string", example="ASCI"),
  *     @OA\Property(property="host", type="string", example="127.0.0.1"),
@@ -22,7 +20,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="returnDirectory", type="string", example="/var/www"),
  * )
  */
-class DistributorConnectionCreatorRequest extends FormRequest
+class ConnectionUpdatorRequest extends FormRequest
 {
     /**
      * Determine if the DistributorConnection is authorized to make this request.
@@ -42,7 +40,6 @@ class DistributorConnectionCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'distributorId' => 'required|integer|exists:distributors,id',
             'isFtpActive' => 'required|boolean',
             'transferMode' => 'required|string',
             'host' => 'required|string',

@@ -910,7 +910,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/DistributorConnectionCreatorRequest"
+                                "$ref": "#/components/schemas/ConnectionCreatorRequest"
                             }
                         }
                     }
@@ -983,7 +983,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/DistributorConnectionUpdatorRequest"
+                                "$ref": "#/components/schemas/ConnectionUpdatorRequest"
                             }
                         }
                     }
@@ -1575,6 +1575,288 @@
                                     "properties": {
                                         "message": {
                                             "example": "Laboratório removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offers": {
+            "get": {
+                "tags": [
+                    "Offers"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "teste"
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "example": "123"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "active"
+                    },
+                    {
+                        "name": "startDate",
+                        "in": "query",
+                        "example": "2020-05-25 03:00:00"
+                    },
+                    {
+                        "name": "endDate",
+                        "in": "query",
+                        "example": "2020-06-25 03:00:00"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/OfferListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Offers"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OfferCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Offera criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offers/{id}": {
+            "get": {
+                "tags": [
+                    "Offers"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/OfferListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Offers"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OfferUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Offera atualizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Offers"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Offera removido com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -2460,6 +2742,418 @@
                                     "properties": {
                                         "data": {
                                             "$ref": "#/components/schemas/ProfileListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/programs/{id}/connection": {
+            "post": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConnectionCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Conexão criada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/programs/{id}/connection/{connection}": {
+            "put": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    },
+                    {
+                        "name": "connection",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConnectionUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programa Conexão atualizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/programs": {
+            "get": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "teste"
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "example": "123"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "active"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProgramListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Programs"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProgramCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programa criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/programs/{id}": {
+            "get": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProgramListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProgramUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programa atualizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programa removido com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -3660,7 +4354,6 @@
                 "title": "Condition form request",
                 "required": [
                     "code",
-                    "pharmacy_id",
                     "desc",
                     "status",
                     "visible"
@@ -3669,10 +4362,6 @@
                     "code": {
                         "type": "integer",
                         "example": "001"
-                    },
-                    "pharmacy_id": {
-                        "type": "integer",
-                        "example": "2"
                     },
                     "desc": {
                         "type": "integer",
@@ -3695,10 +4384,6 @@
                         "type": "integer",
                         "example": "001"
                     },
-                    "pharmacy_id": {
-                        "type": "integer",
-                        "example": "2"
-                    },
                     "desc": {
                         "type": "integer",
                         "example": "Teste"
@@ -3713,10 +4398,98 @@
                 },
                 "type": "object"
             },
+            "ConnectionCreatorRequest": {
+                "title": "DistributorConnection form request",
+                "required": [
+                    "isFtpActive",
+                    "transferMode",
+                    "host",
+                    "sendDirectory",
+                    "login",
+                    "password",
+                    "returnDirectory"
+                ],
+                "properties": {
+                    "distributorId": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "isFtpActive": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "transferMode": {
+                        "type": "string",
+                        "example": "ASCI"
+                    },
+                    "host": {
+                        "type": "string",
+                        "example": "127.0.0.1"
+                    },
+                    "sendDirectory": {
+                        "type": "string",
+                        "example": "/var/www"
+                    },
+                    "login": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "123456"
+                    },
+                    "returnDirectory": {
+                        "type": "string",
+                        "example": "/var/www"
+                    }
+                },
+                "type": "object"
+            },
+            "ConnectionUpdatorRequest": {
+                "required": [
+                    "isFtpActive",
+                    "transferMode",
+                    "host",
+                    "sendDirectory",
+                    "login",
+                    "password",
+                    "returnDirectory"
+                ],
+                "properties": {
+                    "isFtpActive": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "transferMode": {
+                        "type": "string",
+                        "example": "ASCI"
+                    },
+                    "host": {
+                        "type": "string",
+                        "example": "127.0.0.1"
+                    },
+                    "sendDirectory": {
+                        "type": "string",
+                        "example": "/var/www"
+                    },
+                    "login": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "123456"
+                    },
+                    "returnDirectory": {
+                        "type": "string",
+                        "example": "/var/www"
+                    }
+                },
+                "type": "object"
+            },
             "ContactCreatorRequest": {
                 "title": "Contact form request",
                 "required": [
-                    "distributor_id",
                     "function",
                     "name",
                     "email",
@@ -3764,101 +4537,6 @@
                     "telephone": {
                         "type": "string",
                         "example": "112345647"
-                    }
-                },
-                "type": "object"
-            },
-            "DistributorConnectionCreatorRequest": {
-                "title": "DistributorConnection form request",
-                "required": [
-                    "distributorId",
-                    "isFtpActive",
-                    "transferMode",
-                    "host",
-                    "sendDirectory",
-                    "login",
-                    "password",
-                    "returnDirectory"
-                ],
-                "properties": {
-                    "distributorId": {
-                        "type": "boolean",
-                        "example": "1"
-                    },
-                    "isFtpActive": {
-                        "type": "boolean",
-                        "example": "true"
-                    },
-                    "transferMode": {
-                        "type": "string",
-                        "example": "ASCI"
-                    },
-                    "host": {
-                        "type": "string",
-                        "example": "127.0.0.1"
-                    },
-                    "sendDirectory": {
-                        "type": "string",
-                        "example": "/var/www"
-                    },
-                    "login": {
-                        "type": "string",
-                        "example": "teste"
-                    },
-                    "password": {
-                        "type": "string",
-                        "example": "123456"
-                    },
-                    "returnDirectory": {
-                        "type": "string",
-                        "example": "/var/www"
-                    }
-                },
-                "type": "object"
-            },
-            "DistributorConnectionUpdatorRequest": {
-                "required": [
-                    "distributorId",
-                    "isFtpActive",
-                    "transferMode",
-                    "host",
-                    "sendDirectory",
-                    "login",
-                    "password",
-                    "returnDirectory"
-                ],
-                "properties": {
-                    "distributorId": {
-                        "type": "boolean",
-                        "example": "1"
-                    },
-                    "isFtpActive": {
-                        "type": "boolean",
-                        "example": "true"
-                    },
-                    "transferMode": {
-                        "type": "string",
-                        "example": "ASCI"
-                    },
-                    "host": {
-                        "type": "string",
-                        "example": "127.0.0.1"
-                    },
-                    "sendDirectory": {
-                        "type": "string",
-                        "example": "/var/www"
-                    },
-                    "login": {
-                        "type": "string",
-                        "example": "teste"
-                    },
-                    "password": {
-                        "type": "string",
-                        "example": "123456"
-                    },
-                    "returnDirectory": {
-                        "type": "string",
-                        "example": "/var/www"
                     }
                 },
                 "type": "object"
@@ -3948,6 +4626,121 @@
                     "name": {
                         "type": "string",
                         "example": "Teste"
+                    }
+                },
+                "type": "object"
+            },
+            "OfferCreatorRequest": {
+                "title": "Offer form request",
+                "required": [
+                    "code",
+                    "name",
+                    "status",
+                    "description"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "startDate": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    },
+                    "endDate": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "example": "name"
+                    },
+                    "minimumPrice": {
+                        "type": "string",
+                        "example": "500"
+                    },
+                    "offerType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "noAutomaticSending": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "impound": {
+                        "type": "boolean",
+                        "example": "false"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "asdasd"
+                    },
+                    "emails": {
+                        "$ref": "#/components/schemas/Email"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "OfferUpdatorRequest": {
+                "title": "Offer update form request",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "startDate": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    },
+                    "endDate": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "example": "name"
+                    },
+                    "minimumPrice": {
+                        "type": "string",
+                        "example": "500"
+                    },
+                    "offerType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "noAutomaticSending": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "impound": {
+                        "type": "boolean",
+                        "example": "false"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "asdasd"
+                    },
+                    "emails": {
+                        "$ref": "#/components/schemas/Email"
                     }
                 },
                 "type": "object"
@@ -4128,6 +4921,45 @@
                         "items": {
                             "$ref": "#/components/schemas/ProfileFunctions"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "ProgramCreatorRequest": {
+                "title": "Program form request",
+                "required": [
+                    "code",
+                    "name",
+                    "status"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "ProgramUpdatorRequest": {
+                "title": "Program update form request",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
                     }
                 },
                 "type": "object"
@@ -4392,48 +5224,20 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "partners": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DistributorContacts"
+                        }
                     }
                 },
                 "type": "object"
             },
-            "ContactListResource": {
-                "title": "Contact Response",
-                "properties": {
-                    "id": {
-                        "type": "integer",
-                        "example": "1"
-                    },
-                    "distributor_id": {
-                        "type": "integer",
-                        "example": "1"
-                    },
-                    "function": {
-                        "type": "string",
-                        "example": "Teste"
-                    },
-                    "name": {
-                        "type": "string",
-                        "example": "Teste"
-                    },
-                    "email": {
-                        "type": "string",
-                        "example": "teste@domain.com"
-                    },
-                    "telephone": {
-                        "type": "string",
-                        "example": "123"
-                    }
-                },
-                "type": "Contact"
-            },
-            "DistributorConnectionListResource": {
+            "ConnectionListResource": {
                 "title": "Profile Response",
                 "properties": {
                     "id": {
-                        "type": "integer",
-                        "example": "1"
-                    },
-                    "distributorId": {
                         "type": "integer",
                         "example": "1"
                     },
@@ -4466,7 +5270,33 @@
                         "example": "123"
                     }
                 },
-                "type": "DistributorConnection"
+                "type": "Connection"
+            },
+            "ContactListResource": {
+                "title": "Contact Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "function": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "teste@domain.com"
+                    },
+                    "telephone": {
+                        "type": "string",
+                        "example": "123"
+                    }
+                },
+                "type": "Contact"
             },
             "DistributorListResource": {
                 "title": "Distributor Response",
@@ -4522,11 +5352,7 @@
                         }
                     },
                     "connection": {
-                        "allOf": [
-                            {
-                                "$ref": "#/components/schemas/DistributorConnection"
-                            }
-                        ]
+                        "$ref": "#/components/schemas/ConnectionListResource"
                     }
                 },
                 "type": "object"
@@ -4567,6 +5393,139 @@
                     "name": {
                         "type": "string",
                         "example": "Teste 02"
+                    }
+                },
+                "type": "object"
+            },
+            "OfferListResource": {
+                "title": "Offer List Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "startDate": {
+                        "type": "datetime",
+                        "example": "2019-05-25 03:00:00"
+                    },
+                    "endDate": {
+                        "type": "datetime",
+                        "example": "2019-07-25 03:00:00"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "minimumPrice": {
+                        "type": "string",
+                        "example": "500"
+                    },
+                    "offerType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "noAutomaticSending": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "impound": {
+                        "type": "boolean",
+                        "example": "false"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "asdqwe"
+                    },
+                    "email": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Email"
+                        }
+                    },
+                    "partners": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DistributorListResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "OfferResource": {
+                "title": "Offer Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "image": {
+                        "type": "integer",
+                        "example": "teste.png"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "name": {
+                        "type": "integer",
+                        "example": "teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "startDate": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    },
+                    "endDate": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "example": "name"
+                    },
+                    "minimumPrice": {
+                        "type": "string",
+                        "example": "500"
+                    },
+                    "offerType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "noAutomaticSending": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "impound": {
+                        "type": "boolean",
+                        "example": "false"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "asdasd"
+                    },
+                    "emails": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Email"
+                        }
                     }
                 },
                 "type": "object"
@@ -4764,6 +5723,57 @@
                         "items": {
                             "$ref": "#/components/schemas/ProfilePermission"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "ProgramListResource": {
+                "title": "Program Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "ProgramResource": {
+                "title": "Program Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DistributorContacts"
+                        }
+                    },
+                    "connection": {
+                        "$ref": "#/components/schemas/ConnectionListResource"
                     }
                 },
                 "type": "object"
@@ -4995,6 +6005,32 @@
                     "permission": {
                         "type": "string",
                         "example": "FREE_ACCESS"
+                    }
+                },
+                "type": "object"
+            },
+            "Email": {
+                "properties": {
+                    "send": {
+                        "type": "string",
+                        "example": "TO"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "teste@gmail.com"
+                    }
+                },
+                "type": "object"
+            },
+            "Partner": {
+                "properties": {
+                    "send": {
+                        "type": "string",
+                        "example": "TO"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "teste@gmail.com"
                     }
                 },
                 "type": "object"

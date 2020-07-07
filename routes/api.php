@@ -74,6 +74,21 @@ Route::middleware(['cors'])->group(function(){
     Route::put('/returns/{id}', 'ReturnsController@update')->name('return.update');
     Route::delete('/returns/{id}', 'ReturnsController@delete')->name('return.delete');
 
+    Route::get('/programs', 'ProgramController@list')->name('program.list');
+    Route::get('/programs/{id}', 'ProgramController@get')->name('program.get');
+    Route::post('/programs', 'ProgramController@store')->name('program.store');
+    Route::put('/programs/{id}', 'ProgramController@update')->name('program.update');
+    Route::delete('/programs/{id}', 'ProgramController@delete')->name('program.delete');
+
+    Route::post('/programs/{id}/connection', 'ProgramConnectionController@store')->name('program.connection.store');
+    Route::put('/programs/{id}/connection/{connection}', 'ProgramConnectionController@update')->name('program.connection.update');
+
+    Route::get('/offers', 'OfferController@list')->name('offer.list');
+    Route::get('/offers/{id}', 'OfferController@get')->name('offer.get');
+    Route::post('/offers', 'OfferController@store')->name('offer.store');
+    Route::put('/offers/{id}', 'OfferController@update')->name('offer.update');
+    Route::delete('/offers/{id}', 'OfferController@delete')->name('offer.delete');
+
     Route::get('/products', 'ProductController@list')->name('product.list');
     Route::get('/products/{product}', 'ProductController@get')->name('product.get');
     Route::post('/products', 'ProductController@store')->name('product.store');

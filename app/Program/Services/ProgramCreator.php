@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Distributor\Services;
 
-use App\Contact;
-use App\Distributor;
-use App\Distributor\Contracts\DistributorCreatable;
+namespace App\Program\Services;
 
-class DistributorCreator implements DistributorCreatable
+use App\Program;
+use App\Program\Contracts\ProgramCreatable;
+
+class ProgramCreator implements ProgramCreatable
 {
     /**
      * @param array $data
@@ -16,8 +16,8 @@ class DistributorCreator implements DistributorCreatable
     public function store(array $data)
     {
         try {
-            $model = Distributor::create($data);
-
+            $model = Program::create($data);
+            
             if (isset($data['contacts'])) {
                 foreach ($data['contacts'] as $data) {
                     $model->contacts()->create($data);

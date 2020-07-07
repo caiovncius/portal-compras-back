@@ -5,11 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Contact
+ * Class Connection
  * @package App
  *
  * @property int $id
- * @property string $distributor_id
  * @property string $ftp_active
  * @property string $transferency
  * @property string $host
@@ -18,10 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $password
  * @property string $path_return
  */
-class DistributorConnection extends Model
+class Connection extends Model
 {
     protected $fillable = [
-        'distributor_id',
         'ftp_active',
         'transferency',
         'host',
@@ -33,8 +31,8 @@ class DistributorConnection extends Model
 
     protected $casts = ['ftp_active' => 'boolean'];
 
-    public function distributor()
+    public function connectionable()
     {
-        return $this->belongsTo(Distributor::class, 'distributor_id');
+        return $this->morphTo();
     }
 }

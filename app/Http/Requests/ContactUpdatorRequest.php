@@ -38,7 +38,6 @@ class ContactUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'distributor_id' => 'required|integer|exists:distributors,id',
             'function' => 'required|string',
             'name' => 'required|string',
             'email' => 'required|email',

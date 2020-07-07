@@ -6,11 +6,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="DistributorConnectionListResource",
- *     type="DistributorConnection",
+ *     schema="ConnectionListResource",
+ *     type="Connection",
  *     title="Profile Response",
  *     @OA\Property(property="id", type="integer", example="1"),
- *     @OA\Property(property="distributorId", type="integer", example="1"),
  *     @OA\Property(property="ftpActive", type="string", example="Teste"),
  *     @OA\Property(property="transferency", type="string", example="teste"),
  *     @OA\Property(property="host", type="string", example="localhost"),
@@ -21,7 +20,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * )
  */
 
-class DistributorConnectionListResource extends JsonResource
+class ConnectionListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -33,7 +32,6 @@ class DistributorConnectionListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'distributorId' => $this->distributor_id,
             'isFtpActive' => $this->ftp_active,
             'transferMode' => $this->transferency,
             'host' => $this->host,

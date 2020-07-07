@@ -5,22 +5,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Distributor
+ * Class Program
  * @package App
  *
  * @property int $id
  * @property string $code
- * @property string $cnpj
  * @property string $name
  * @property string $status
  */
-class Distributor extends Model
+class Program extends Model
 {
     protected $fillable = [
         'code',
-        'cnpj',
         'name',
-        'status'
+        'status',
     ];
 
     public function contacts()

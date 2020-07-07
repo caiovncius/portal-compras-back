@@ -52,6 +52,20 @@
  * )
  *
  * @OA\Schema(
+ *     schema="Email",
+ *     type="object",
+ *     @OA\Property(property="send", type="string", example="TO"),
+ *     @OA\Property(property="email", type="string", example="teste@gmail.com"),
+ * )
+ *
+ * @OA\Schema(
+ *     schema="Partner",
+ *     type="object",
+ *     @OA\Property(property="send", type="string", example="TO"),
+ *     @OA\Property(property="email", type="string", example="teste@gmail.com"),
+ * )
+ *
+ * @OA\Schema(
  *     schema="DistributorContacts",
  *     type="object",
  *     @OA\Property(property="id", type="integer", example="1"),

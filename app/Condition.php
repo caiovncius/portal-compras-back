@@ -25,8 +25,15 @@ class Condition extends Model
         'visible'
     ];
 
+    protected $casts = ['visible' => 'boolean'];
+
     public function pharmacy()
     {
         return $this->belongsTo(Pharmacy::class, 'pharmacy_id');
+    }
+
+    public function partners()
+    {
+        return $this->belongsToMany('App\Distributor');
     }
 }

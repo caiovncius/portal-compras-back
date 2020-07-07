@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Distributor;
+use App\Program;
 use App\Connection;
 use App\Connection\Contracts\ConnectionCreatable;
 use App\Connection\Contracts\ConnectionUpdatable;
@@ -11,7 +11,7 @@ use App\Http\Requests\ConnectionUpdatorRequest;
 use App\Http\Resources\ConnectionListResource;
 use Illuminate\Http\Request;
 
-class DistributorConnectionController extends Controller
+class ProgramConnectionController extends Controller
 {
 
     /**
@@ -26,7 +26,7 @@ class DistributorConnectionController extends Controller
 
 
     /**
-     * DistributorConnectionController constructor.
+     * ProgramConnectionController constructor.
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function __construct()
@@ -39,14 +39,14 @@ class DistributorConnectionController extends Controller
     /**
      *
      * @OA\Post(
-     *     tags={"Distributors"},
-     *     path="/distributors/{distributor}/connection",
+     *     tags={"Programs"},
+     *     path="/programs/{id}/connection",
      *     @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/ConnectionCreatorRequest")
      *      ),
      *     @OA\Parameter(
-     *        name="distributor",
+     *        name="id",
      *        in="path",
      *        example="2",
      *        required=true
@@ -84,13 +84,14 @@ class DistributorConnectionController extends Controller
      */
 
     /**
+     * @param Program $model
      * @param ConnectionCreatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Distributor $distributor, ConnectionCreatorRequest $request)
+    public function store(Program $model, ConnectionCreatorRequest $request)
     {
         try {
-            $this->creatorService->store($distributor, $request->all());
+            $this->creatorService->store($model, $request->all());
             return response()->json(['message' => 'Conexão criada com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -100,14 +101,14 @@ class DistributorConnectionController extends Controller
     /**
      *
      * @OA\Put(
-     *     tags={"Distributors"},
-     *     path="/distributors/{distributor}/connection/{connection}",
+     *     tags={"Programs"},
+     *     path="/programs/{id}/connection/{connection}",
      *     @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/ConnectionUpdatorRequest")
      *      ),
      *     @OA\Parameter(
-     *        name="distributor",
+     *        name="id",
      *        in="path",
      *        example="2",
      *        required=true
@@ -126,7 +127,7 @@ class DistributorConnectionController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Distribuidor atualizado com sucesso"
+     *                     example ="Programa Conexão atualizado com sucesso"
      *                 )
      *             )
      *         )
@@ -151,14 +152,15 @@ class DistributorConnectionController extends Controller
      */
 
     /**
+     * @param Program $model
      * @param ConnectionUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Distributor $distributor, ConnectionUpdatorRequest $request)
+    public function update(Program $model, ConnectionUpdatorRequest $request)
     {
         try {
-            $this->updatorService->update($distributor, $request->all());
-            return response()->json(['message' => 'Distribuidor atualizado com sucesso'], 200);
+            $this->updatorService->update($model, $request->all());
+            return response()->json(['message' => 'Programa Conexão atualizado com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
