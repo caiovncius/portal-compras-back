@@ -29,3 +29,4 @@ class Accompaniment extends Model
         'status',
     ];
 }
+
