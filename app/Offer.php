@@ -53,7 +53,7 @@ class Offer extends Model
 
     public function partners()
     {
-        return $this->belongsToMany('App/Distributor')
+        return $this->belongsToMany('App\Distributor')
                     ->withPivot('type');
     }
 }

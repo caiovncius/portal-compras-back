@@ -262,13 +262,13 @@ class ProgramController extends Controller
      */
 
     /**
-     * @param Program $Program
+     * @param Program $model
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Program $Program)
+    public function delete(Program $model)
     {
         try {
-            $this->removerService->delete($Program);
+            $this->removerService->delete($model);
             return response()->json(['message' => 'Programa removido com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);

@@ -239,10 +239,10 @@ class AccompanimentController extends Controller
      * @param AccompanimentUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(AccompanimentUpdatorRequest $request, Accompaniment $id)
+    public function update(AccompanimentUpdatorRequest $request, Accompaniment $model)
     {
         try {
-            $this->updatorService->update($id, $request->all());
+            $this->updatorService->update($model, $request->all());
             return response()->json(['message' => 'Acompanhamento atualizado com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -287,13 +287,13 @@ class AccompanimentController extends Controller
      */
 
     /**
-     * @param Accompaniment $id
+     * @param Accompaniment $model
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Accompaniment $id)
+    public function delete(Accompaniment $model)
     {
         try {
-            $this->removerService->delete($id);
+            $this->removerService->delete($model);
             return response()->json(['message' => 'Acompanhamento removido com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -335,12 +335,12 @@ class AccompanimentController extends Controller
      */
 
     /**
-     * @param Accompaniment $id
+     * @param Accompaniment $model
      * @return AccompanimentListResource
      */
-    public function get(Accompaniment $id)
+    public function get(Accompaniment $model)
     {
-        return AccompanimentListResource::make($id);
+        return AccompanimentListResource::make($model);
     }
 
 }

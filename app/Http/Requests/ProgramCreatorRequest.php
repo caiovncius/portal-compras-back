@@ -40,7 +40,7 @@ class ProgramCreatorRequest extends FormRequest
             'code' => 'required|integer',
             'name' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
-            'contacts' => 'required|array',
+            'contacts' => 'array',
             'contacts.*.function' => 'required|string',
             'contacts.*.name' => 'required|string',
             'contacts.*.email' => 'required|email',

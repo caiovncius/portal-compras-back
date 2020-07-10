@@ -21,7 +21,7 @@ class ConnectionCreator implements ConnectionCreatable
             $data['transferency'] = $data['transferMode'];
             $data['path_send'] = $data['sendDirectory'];
             $data['path_return'] = $data['returnDirectory'];
-
+            
             $model->connection()->create($data);
 
             return true;

@@ -90,7 +90,7 @@ class ProgramConnectionController extends Controller
      */
     public function store(Program $model, ConnectionCreatorRequest $request)
     {
-        try {
+        try {            
             $this->creatorService->store($model, $request->all());
             return response()->json(['message' => 'Conexão criada com sucesso'], 200);
         } catch (\Exception $exception) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\ConnectionListResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -13,6 +14,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="code", type="string", example="01"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(property="connection", ref="#/components/schemas/ConnectionListResource"),
  * )
  */
 
@@ -30,7 +32,8 @@ class ProgramListResource extends JsonResource
             'id' => $this->id,
             'code' => $this->code,
             'name' => $this->name,
-            'status' => $this->status
+            'status' => $this->status,
+            'connection' => ConnectionListResource::make($this->connection)
         ];
     }
 }

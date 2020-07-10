@@ -5744,6 +5744,9 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "connection": {
+                        "$ref": "#/components/schemas/ConnectionListResource"
                     }
                 },
                 "type": "object"

@@ -75,19 +75,19 @@ Route::middleware(['cors'])->group(function(){
     Route::delete('/returns/{id}', 'ReturnsController@delete')->name('return.delete');
 
     Route::get('/programs', 'ProgramController@list')->name('program.list');
-    Route::get('/programs/{id}', 'ProgramController@get')->name('program.get');
+    Route::get('/programs/{model}', 'ProgramController@get')->name('program.get');
     Route::post('/programs', 'ProgramController@store')->name('program.store');
-    Route::put('/programs/{id}', 'ProgramController@update')->name('program.update');
-    Route::delete('/programs/{id}', 'ProgramController@delete')->name('program.delete');
+    Route::put('/programs/{model}', 'ProgramController@update')->name('program.update');
+    Route::delete('/programs/{model}', 'ProgramController@delete')->name('program.delete');
 
-    Route::post('/programs/{id}/connection', 'ProgramConnectionController@store')->name('program.connection.store');
-    Route::put('/programs/{id}/connection/{connection}', 'ProgramConnectionController@update')->name('program.connection.update');
+    Route::post('/programs/{model}/connection', 'ProgramConnectionController@store')->name('program.connection.store');
+    Route::put('/programs/{model}/connection/{connection}', 'ProgramConnectionController@update')->name('program.connection.update');
 
     Route::get('/offers', 'OfferController@list')->name('offer.list');
-    Route::get('/offers/{id}', 'OfferController@get')->name('offer.get');
+    Route::get('/offers/{model}', 'OfferController@get')->name('offer.get');
     Route::post('/offers', 'OfferController@store')->name('offer.store');
-    Route::put('/offers/{id}', 'OfferController@update')->name('offer.update');
-    Route::delete('/offers/{id}', 'OfferController@delete')->name('offer.delete');
+    Route::put('/offers/{model}', 'OfferController@update')->name('offer.update');
+    Route::delete('/offers/{model}', 'OfferController@delete')->name('offer.delete');
 
     Route::get('/products', 'ProductController@list')->name('product.list');
     Route::get('/products/{product}', 'ProductController@get')->name('product.get');
@@ -96,22 +96,22 @@ Route::middleware(['cors'])->group(function(){
     Route::delete('/products/{product}', 'ProductController@delete')->name('product.delete');
 
     Route::get('/conditions', 'ConditionController@list')->name('condition.list');
-    Route::get('/conditions/{id}', 'ConditionController@get')->name('condition.get');
+    Route::get('/conditions/{model}', 'ConditionController@get')->name('condition.get');
     Route::post('/conditions', 'ConditionController@store')->name('condition.store');
-    Route::put('/conditions/{id}', 'ConditionController@update')->name('condition.update');
-    Route::delete('/conditions/{id}', 'ConditionController@delete')->name('condition.delete');
+    Route::put('/conditions/{model}', 'ConditionController@update')->name('condition.update');
+    Route::delete('/conditions/{model}', 'ConditionController@delete')->name('condition.delete');
 
     Route::get('/publicities', 'PublicityController@list')->name('publicity.list');
-    Route::get('/publicities/{id}', 'PublicityController@get')->name('publicity.get');
+    Route::get('/publicities/{model}', 'PublicityController@get')->name('publicity.get');
     Route::post('/publicities', 'PublicityController@store')->name('publicity.store');
     Route::post('/publicities/attach-image', 'PublicityController@attachImage')->name('publicity.attach.image');
-    Route::put('/publicities/{id}', 'PublicityController@update')->name('publicity.update');
-    Route::delete('/publicities/{id}', 'PublicityController@delete')->name('publicity.delete');
+    Route::put('/publicities/{model}', 'PublicityController@update')->name('publicity.update');
+    Route::delete('/publicities/{model}', 'PublicityController@delete')->name('publicity.delete');
     Route::delete('/publicities/remove-image/{index}', 'PublicityController@removeImage')->name('publicity.remove.image');
 
     Route::get('/accompaniments', 'AccompanimentController@list')->name('accompaniment.list');
-    Route::get('/accompaniments/{id}', 'AccompanimentController@get')->name('accompaniment.get');
+    Route::get('/accompaniments/{model}', 'AccompanimentController@get')->name('accompaniment.get');
     Route::post('/accompaniments', 'AccompanimentController@store')->name('accompaniment.store');
-    Route::put('/accompaniments/{id}', 'AccompanimentController@update')->name('accompaniment.update');
-    Route::delete('/accompaniments/{id}', 'AccompanimentController@delete')->name('accompaniment.delete');
+    Route::put('/accompaniments/{model}', 'AccompanimentController@update')->name('accompaniment.update');
+    Route::delete('/accompaniments/{model}', 'AccompanimentController@delete')->name('accompaniment.delete');
 });
