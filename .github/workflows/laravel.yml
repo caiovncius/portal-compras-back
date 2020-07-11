@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  laravel-tests:
+  deploy:
 
     runs-on: self-hosted
     
