@@ -19,4 +19,3 @@ Api do sistema portal de compras.
 5 - Execute as migrations e preechimento de dados iniciais no banco. 
 Execute `php artisan migrate --seed`
 
-Testando deploy de novo
