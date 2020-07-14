@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="Fix">
+    <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Accompaniment/Services/AccompanimentRetriever.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Accompaniment/Services/AccompanimentRetriever.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DistributorConnection/Services/DistributorConnectionCreator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DistributorConnection/Services/DistributorConnectionCreator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DistributorConnection/Services/DistributorConnectionUpdater.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DistributorConnection/Services/DistributorConnectionUpdater.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/DistributorConnectionCreatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/DistributorConnectionCreatorRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/DistributorConnectionUpdatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/DistributorConnectionUpdatorRequest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +135,9 @@
       <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/vendor/lucascudo/laravel-pt-br-localization" />
       <path value="$PROJECT_DIR$/vendor/geekcom/validator-docs" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
     </include_path>
   </component>
   <component name="ProjectId" id="1c7zxJPLcC02Iv4v504aDKzH27G" />
@@ -213,13 +211,7 @@
       <workItem from="1593518626528" duration="5636000" />
       <workItem from="1593538387272" duration="1349000" />
       <workItem from="1593614278033" duration="1122000" />
-    </task>
-    <task id="LOCAL-00020" summary="Chaves">
-      <created>1591114602637</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1591114602637</updated>
+      <workItem from="1594436271250" duration="554000" />
     </task>
     <task id="LOCAL-00021" summary="Ajuste na documentação">
       <created>1591268773346</created>
@@ -557,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593538991624</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="teste deploy">
+      <created>1594436301518</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1594436301519</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +576,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Endpoints de perfil" />
     <MESSAGE value="Corrigido descrição da API" />
     <MESSAGE value="Adicionado constantes" />
     <MESSAGE value="Chaves" />
@@ -602,7 +600,8 @@
     <MESSAGE value="fix" />
     <MESSAGE value="Edição de distribuidor" />
     <MESSAGE value="Fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix" />
+    <MESSAGE value="teste deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="teste deploy" />
   </component>
   <component name="WindowStateProjectService">
     <state x="224" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1593265308479">
@@ -615,12 +614,12 @@
     </state>
     <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590679558111" />
     <state x="576" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.2560.1011@0.23.2560.1011" timestamp="1593098557029" />
-    <state x="228" y="23" key="CommitChangelistDialog2" timestamp="1593615675202">
+    <state x="228" y="23" key="CommitChangelistDialog2" timestamp="1594436301216">
       <screen x="0" y="23" width="2560" height="1011" />
     </state>
     <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1593523828845" />
     <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114643839" />
-    <state x="228" y="23" key="CommitChangelistDialog2/0.23.2560.1011@0.23.2560.1011" timestamp="1593615675202" />
+    <state x="228" y="23" key="CommitChangelistDialog2/0.23.2560.1011@0.23.2560.1011" timestamp="1594436301216" />
     <state x="100" y="122" width="1479" height="811" key="DiffContextDialog" timestamp="1591114597201">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -645,22 +644,22 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="348" y="167" key="SettingsEditor/0.23.1920.1011@0.23.1920.1011" timestamp="1589999400094" />
-    <state x="480" y="168" key="Vcs.Push.Dialog.v2" timestamp="1593538992634">
+    <state x="480" y="168" key="Vcs.Push.Dialog.v2" timestamp="1594436302714">
       <screen x="0" y="23" width="2560" height="1011" />
     </state>
     <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1593523830183" />
     <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114679421" />
-    <state x="480" y="168" key="Vcs.Push.Dialog.v2/0.23.2560.1011@0.23.2560.1011" timestamp="1593538992634" />
+    <state x="480" y="168" key="Vcs.Push.Dialog.v2/0.23.2560.1011@0.23.2560.1011" timestamp="1594436302714" />
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591059078375">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1591059078375" />
-    <state x="782" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591730529755">
+    <state x="782" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594438206577">
       <screen x="0" y="23" width="2560" height="1011" />
     </state>
     <state x="391" y="333" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.731@0.23.1280.731" timestamp="1591268786251" />
     <state x="586" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1011@0.23.1920.1011" timestamp="1590687704732" />
-    <state x="782" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1011@0.23.2560.1011" timestamp="1591730529755" />
+    <state x="782" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1011@0.23.2560.1011" timestamp="1594438206577" />
     <state x="513" y="285" width="639" height="486" key="find.popup" timestamp="1590672878026">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>

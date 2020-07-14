@@ -1,15 +1,15 @@
-name: Laravel
+name: Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master,dev ]
   pull_request:
     branches: [ master ]
 
 jobs:
-  laravel-tests:
+  deploy:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     
     steps:
     - uses: actions/checkout@v2
