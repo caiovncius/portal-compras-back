@@ -36,7 +36,6 @@ class User extends Authenticatable
     /// User types
     const USER_TYPE_COMMERCIAL = 'COMMERCIAL';
     const USER_TYPE_PHARMACY = 'PHARMACY';
-    const USER_TYPE_SUPPLIER = 'SUPPLIER';
     const USER_TYPE_MASTER = 'MASTER';
 
     /**
