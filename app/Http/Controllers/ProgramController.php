@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProgramCreatorRequest;
 use App\Http\Requests\ProgramUpdatorRequest;
 use App\Http\Resources\ProgramListResource;
+use App\Http\Resources\ProgramResource;
 use App\Program;
 use App\Program\Contracts\ProgramCreatable;
+use App\Program\Contracts\ProgramRemovable;
 use App\Program\Contracts\ProgramRetrievable;
 use App\Program\Contracts\ProgramUpdatable;
-use App\Program\Contracts\ProgramRemovable;
 use Illuminate\Http\Request;
 
 class ProgramController extends Controller
@@ -311,11 +312,11 @@ class ProgramController extends Controller
 
     /**
      * @param Program $model
-     * @return ProgramListResource
+     * @return ProgramResource
      */
     public function get(Program $model)
     {
-        return ProgramListResource::make($model);
+        return ProgramResource::make($model);
     }
 
 }

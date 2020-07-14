@@ -153,10 +153,11 @@ class ProgramConnectionController extends Controller
 
     /**
      * @param Program $model
+     * @param Connection $related
      * @param ConnectionUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Program $model, ConnectionUpdatorRequest $request)
+    public function update(Program $model, Connection $related, ConnectionUpdatorRequest $request)
     {
         try {
             $this->updatorService->update($model, $request->all());
