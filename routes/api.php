@@ -60,6 +60,7 @@ Route::middleware(['cors'])->group(function(){
     Route::delete('/contacts/{contact}', 'ContactController@delete')->name('contact.delete');
 
     Route::get('/distributors', 'DistributorController@list')->name('distributor.list');
+    Route::get('/distributors/all', 'DistributorController@all')->name('distributor.all');
     Route::get('/distributors/{distributor}', 'DistributorController@get')->name('distributor.get');
     Route::post('/distributors', 'DistributorController@store')->name('distributor.store');
     Route::put('/distributors/{distributor}', 'DistributorController@update')->name('distributor.update');

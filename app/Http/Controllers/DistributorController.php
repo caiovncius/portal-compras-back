@@ -115,6 +115,40 @@ class DistributorController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     tags={"Distributors"},
+     *     path="/distributors/all",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/DistributorListResource"),
+     *                 ),
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function all(Request $request)
+    {
+        try {
+            return DistributorListResource::collection($this->retrieverService->getDistributors($request->query())->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
      *
      * @OA\Post(
      *     tags={"Distributors"},

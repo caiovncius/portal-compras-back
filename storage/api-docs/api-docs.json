@@ -1152,6 +1152,33 @@
                 }
             }
         },
+        "/distributors/all": {
+            "get": {
+                "tags": [
+                    "Distributors"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/DistributorListResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/distributors/{distributor}": {
             "get": {
                 "tags": [

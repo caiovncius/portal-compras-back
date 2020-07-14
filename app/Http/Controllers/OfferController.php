@@ -67,14 +67,24 @@ class OfferController extends Controller
      *        example="active",
      *     ),
      *     @OA\Parameter(
+     *        name="partner",
+     *        in="query",
+     *        example="1",
+     *     ),
+     *     @OA\Parameter(
+     *        name="partnerType",
+     *        in="query",
+     *        example="DISTRIBUTOR",
+     *     ),
+     *     @OA\Parameter(
      *        name="startDate",
      *        in="query",
-     *        example="2020-05-25 03:00:00",
+     *        example="2020-05-25",
      *     ),
      *     @OA\Parameter(
      *        name="endDate",
      *        in="query",
-     *        example="2020-06-25 03:00:00",
+     *        example="2020-06-25",
      *     ),
      *     @OA\Response(
      *         response=200,

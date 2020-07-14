@@ -29,12 +29,38 @@ class OfferRetriever implements OfferRetrievable
                 $query->where('status', $params['status']);
             }
 
-            if (isset($params['startDate']) && !empty($params['startDate'])) {
-                $query->where('startDate', '>=', $params['startDate']);
+            if (isset($params['sendType']) && !empty($params['sendType'])) {
+                $query->where('sendType', $params['sendType']);
             }
 
-            if (isset($params['endDate']) && !empty($params['endDate'])) {
-                $query->where('endDate', '>=', $params['endDate']);
+            if (isset($params['startDate1']) && !empty($params['startDate1'])) {
+                $math = isset($params['startDate2']) ? '>=' : '=';
+                $query->whereDate('startDate', $math, $params['startDate1']);
+                if (isset($params['startDate2']) && !empty($params['startDate2'])) {
+                    $query->whereDate('startDate', '<=', $params['startDate2']);                    
+                }
+            }
+
+            if (isset($params['endDate1']) && !empty($params['endDate1'])) {
+                $math = isset($params['endDate2']) ? '>=' : '=';
+                $query->whereDate('endDate', $math, $params['endDate1']);
+                if (isset($params['endDate2']) && !empty($params['endDate2'])) {
+                    $query->whereDate('endDate', '<=', $params['endDate2']);                    
+                }
+            }
+
+            if (isset($params['partnerType']) && !empty($params['partnerType'])) {
+                $partnerType = $params['partnerType'];
+                $query->whereHas('partners', function ($related) use($partnerType) {
+                    $related->where('distributor_offer.type', $partnerType);
+                });
+            }
+
+            if (isset($params['partner']) && !empty($params['partner'])) {
+                $partner = $params['partner'];
+                $query->whereHas('partners', function ($related) use($partner) {
+                    $related->where('distributor_offer.distributor_id', $partner);
+                });
             }
 
             return $query;
