@@ -17,3 +17,5 @@ Route::get('/', function () {
     return response()->make('API status ok');
 });
 
+Route::get('/ftp', 'Controller@ftp');
+
