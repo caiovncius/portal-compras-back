@@ -15,4 +15,12 @@ trait UserRelations
     {
         return $this->belongsTo(Profile::class);
     }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function pharmacies()
+    {
+        return $this->belongsToMany(Pharmacy::class);
+    }
 }
