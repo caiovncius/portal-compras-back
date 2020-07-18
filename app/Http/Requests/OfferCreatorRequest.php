@@ -51,6 +51,8 @@ class OfferCreatorRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
+            'startDate' => 'date',
+            'endDate' => 'date|after_or_equal:startDate',
         ];
     }
 }
