@@ -20,7 +20,7 @@ class OfferCreator implements OfferCreatable
             
             if (isset($data['partners'])) {
                 foreach ($data['partners'] as $data) {
-                    $model->partners()->attach($data, ['type' => $data['type']]);
+                    $model->partners()->attach($data['id'], ['type' => $data['type']]);
                 }
             }
 

@@ -32,7 +32,8 @@ class DistributorListResource extends JsonResource
             'code' => $this->code,
             'cnpj' => $this->cnpj,
             'name' => $this->name,
-            'status' => $this->status
+            'status' => $this->status,
+            'type' => $this->pivot ? $this->pivot->type : ''
         ];
     }
 }

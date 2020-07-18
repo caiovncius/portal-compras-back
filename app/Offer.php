@@ -47,7 +47,6 @@ class Offer extends Model
         'emails' => 'json',
         'startDate' => 'datetime',
         'endDate' => 'datetime',
-        'sendType' => 'boolean',
         'noAutomaticSending' => 'boolean',
     ];
 
