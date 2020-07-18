@@ -34,16 +34,14 @@ class OfferRetriever implements OfferRetrievable
             }
 
             if (isset($params['startDate1']) && !empty($params['startDate1'])) {
-                $math = isset($params['startDate2']) ? '>=' : '=';
-                $query->whereDate('startDate', $math, $params['startDate1']);
+                $query->whereDate('startDate', '>=', $params['startDate1']);
                 if (isset($params['startDate2']) && !empty($params['startDate2'])) {
                     $query->whereDate('startDate', '<=', $params['startDate2']);                    
                 }
             }
 
             if (isset($params['endDate1']) && !empty($params['endDate1'])) {
-                $math = isset($params['endDate2']) ? '>=' : '=';
-                $query->whereDate('endDate', $math, $params['endDate1']);
+                $query->whereDate('endDate', '>=', $params['endDate1']);
                 if (isset($params['endDate2']) && !empty($params['endDate2'])) {
                     $query->whereDate('endDate', '<=', $params['endDate2']);                    
                 }
