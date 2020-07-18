@@ -112,7 +112,7 @@ class ProductController extends Controller
      */
     public function list(Request $request) {
         try {
-            return ProductListResource::collection($this->retreiverService->getProducts($request->query())->paginate(20));
+            return ProductListResource::collection($this->retreiverService->getProducts($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

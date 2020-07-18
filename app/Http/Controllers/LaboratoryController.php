@@ -101,7 +101,7 @@ class LaboratoryController extends Controller
      */
     public function list(Request $request) {
         try {
-            return LaboratoryListResource::collection($this->retreiverService->laboratories($request->query())->paginate(20));
+            return LaboratoryListResource::collection($this->retreiverService->laboratories($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

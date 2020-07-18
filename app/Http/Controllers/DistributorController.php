@@ -108,7 +108,7 @@ class DistributorController extends Controller
     public function list(Request $request)
     {
         try {
-            return DistributorListResource::collection($this->retrieverService->getDistributors($request->query())->paginate(20));
+            return DistributorListResource::collection($this->retrieverService->getDistributors($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

@@ -108,7 +108,7 @@ class UserController extends Controller
      */
     public function list(Request $request) {
         try {
-            return UserListResource::collection($this->retreiverService->getUsers($request->query())->paginate(20));
+            return UserListResource::collection($this->retreiverService->getUsers($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

@@ -110,7 +110,7 @@ class PublicityController extends Controller
     public function list(Request $request)
     {
         try {
-            return PublicityListResource::collection($this->retrieverService->getPublicities($request->query())->paginate(20));
+            return PublicityListResource::collection($this->retrieverService->getPublicities($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

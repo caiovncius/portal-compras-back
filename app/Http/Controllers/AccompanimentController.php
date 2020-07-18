@@ -127,7 +127,7 @@ class AccompanimentController extends Controller
     public function list(Request $request)
     {
         try {
-            return AccompanimentListResource::collection($this->retrieverService->getAccompaniments($request->query())->paginate(20));
+            return AccompanimentListResource::collection($this->retrieverService->getAccompaniments($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

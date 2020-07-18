@@ -106,7 +106,7 @@ class ProfileController extends Controller
     public function list(Request $request)
     {
         try {
-            return ProfileListResource::collection($this->retrieverService->profiles($request->query())->paginate(20));
+            return ProfileListResource::collection($this->retrieverService->profiles($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

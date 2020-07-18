@@ -103,7 +103,7 @@ class ProgramController extends Controller
     public function list(Request $request)
     {
         try {
-            return ProgramListResource::collection($this->retrieverService->getPrograms($request->query())->paginate(20));
+            return ProgramListResource::collection($this->retrieverService->getPrograms($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
