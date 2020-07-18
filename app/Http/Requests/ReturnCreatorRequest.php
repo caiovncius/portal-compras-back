@@ -37,7 +37,7 @@ class ReturnCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|integer',
+            'code' => 'required|string',
             'desc' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE'
         ];

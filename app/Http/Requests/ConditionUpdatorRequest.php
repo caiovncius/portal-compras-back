@@ -38,7 +38,7 @@ class ConditionUpdatorRequest extends FormRequest
     {
         return [
             //'pharmacy_id' => 'required|integer|exists:pharmacies,id',
-            'code' => 'required|integer',
+            'code' => 'required|string',
             'desc' => 'required|string',
             'visible' => 'required|boolean',
             'status' => 'required|in:ACTIVE,INACTIVE'
