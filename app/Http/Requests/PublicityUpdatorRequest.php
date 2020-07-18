@@ -38,7 +38,7 @@ class PublicityUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'required|string|unique:publicities',
             'desc' => 'required|string',
             'createDate' => 'required|string',
             'publishDate' => 'required|string',

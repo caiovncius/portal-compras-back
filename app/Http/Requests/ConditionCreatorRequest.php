@@ -39,7 +39,7 @@ class ConditionCreatorRequest extends FormRequest
     {
         return [
             //'pharmacy_id' => 'required|integer|exists:pharmacies,id',
-            'code' => 'required|string',
+            'code' => 'required|string|unique:conditions',
             'desc' => 'required|string',
             'visible' => 'required|boolean',
             'status' => 'required|in:ACTIVE,INACTIVE'

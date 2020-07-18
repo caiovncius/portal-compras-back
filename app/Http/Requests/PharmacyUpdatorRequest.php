@@ -38,7 +38,7 @@ class PharmacyUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'required|string|unique:pharmacies',
             'cnpj' => 'required|cnpj',
             'socialName' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',

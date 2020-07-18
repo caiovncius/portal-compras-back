@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Return;
 use Illuminate\Foundation\Http\FormRequest;
 
 
@@ -37,7 +36,7 @@ class ReturnCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'required|string|unique:returns',
             'desc' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE'
         ];
