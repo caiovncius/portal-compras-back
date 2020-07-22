@@ -48,7 +48,7 @@ class OfferUpdatorRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
-            'sendType' => 'nullable|in:MANUAL,AUTOMATIC',
+            'offerType' => 'in:NORMAL,COMBO,COLLECTIVE_BUYING',
             'startDate' => 'date',
             'endDate' => 'date|after_or_equal:startDate',
         ];
