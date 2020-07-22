@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreatorRequest;
 use App\Http\Requests\UserUpdatorRequest;
+use App\Http\Resources\PharmacyResource;
 use App\Http\Resources\UserListResource;
 use App\Http\Resources\UserResource;
 use App\Notifications\PasswordReseted;
@@ -193,6 +194,51 @@ class UserController extends Controller
     public function get(User $user)
     {
         return UserResource::make($user);
+    }
+
+    /**
+     *
+     * @OA\GET(
+     *     tags={"Users"},
+     *     path="/users/{user}/pharmacies",
+     *     @OA\Parameter(
+     *        name="user",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/PharmacyResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param User $user
+     * @return PharmacyResource
+     */
+    public function pharmacies(User $user)
+    {
+        $data = $user->pharmacies()->active()->paginate(10);
+        
+        return PharmacyResource::collection($data);
     }
 
     /**

@@ -44,7 +44,7 @@ class UserCreatorRequest extends FormRequest
             'name' => 'required|string',
             'username' => 'required|string|unique:users,username',
             'email' => 'required|email|unique:users,email',
-            'type' => 'required|in:' . User::USER_TYPE_SUPPLIER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
+            'type' => 'required|in:' . User::USER_TYPE_MASTER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
             'status' => 'required|in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
             'profileId' => 'required|exists:profiles,id',
             'phone1' => 'string|nullable',

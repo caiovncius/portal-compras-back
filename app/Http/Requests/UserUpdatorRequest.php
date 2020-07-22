@@ -42,7 +42,7 @@ class UserUpdatorRequest extends FormRequest
         return [
             'name' => 'string',
             'email' => 'email|unique:users,email,' . $this->id,
-            'type' => 'in:' . User::USER_TYPE_SUPPLIER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
+            'type' => 'in:' . User::USER_TYPE_MASTER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
             'status' => 'in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
             'profileId' => 'exists:profiles,id',
             'phone1' => 'string|nullable',

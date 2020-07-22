@@ -4,6 +4,7 @@
 namespace App\Traits\Models;
 
 
+use App\Pharmacy;
 use App\Profile;
 
 trait UserRelations
