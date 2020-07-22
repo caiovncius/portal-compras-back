@@ -41,4 +41,18 @@ class LaboratoryCreatorRequest extends FormRequest
             'status' => 'required|in:ACTIVE,INACTIVE'
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'code' => 'Código',
+            'name' => 'Nome',
+            'status' => 'Status',
+        ];
+    }
 }

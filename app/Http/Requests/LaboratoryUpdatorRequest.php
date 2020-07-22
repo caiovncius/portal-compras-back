@@ -40,4 +40,18 @@ class LaboratoryUpdatorRequest extends FormRequest
             'name' => 'required|string',
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'code' => 'Código',
+            'name' => 'Nome',
+            'status' => 'Status',
+        ];
+    }
 }

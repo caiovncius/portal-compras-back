@@ -48,8 +48,27 @@ class OfferUpdatorRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
+            'sendType' => 'nullable|in:MANUAL,AUTOMATIC',
             'startDate' => 'date',
             'endDate' => 'date|after_or_equal:startDate',
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'code' => 'Código',
+            'name' => 'Nome',
+            'status' => 'Status',
+            'description' => 'Descrição',
+            'sendType' => 'Tipo de Envio',
+            'startDate' => 'Data inicial',
+            'endDate' => 'Data final',
         ];
     }
 }

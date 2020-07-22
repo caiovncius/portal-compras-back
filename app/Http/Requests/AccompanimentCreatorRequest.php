@@ -50,4 +50,20 @@ class AccompanimentCreatorRequest extends FormRequest
             'status' => 'required|string',
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'code_order' => 'Código',
+            'code_pharmacy' => 'Código da farmácia',
+            'date_create' => 'Data de criação',
+            'date_publish' => 'Data de publicação',
+            'type_send' => 'Tipo de envio',
+        ];
+    }
 }

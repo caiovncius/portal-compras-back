@@ -49,4 +49,21 @@ class DistributorCreatorRequest extends FormRequest
             'contacts.*.telephone' => 'required|string',
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'code' => 'Código',
+            'name' => 'Nome',
+            'contacts.*.function' => 'Função',
+            'contacts.*.name' => 'Nome',
+            'contacts.*.email' => 'Email',
+            'contacts.*.telephone' => 'Telefone',
+        ];
+    }
 }

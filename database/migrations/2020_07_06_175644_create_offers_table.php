@@ -15,7 +15,7 @@ class CreateOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->nullable();
+            $table->longText('image')->nullable();
             $table->string('code');
             $table->string('name');
             $table->string('status');
@@ -25,7 +25,7 @@ class CreateOffersTable extends Migration
             $table->string('condition')->nullable();
             $table->string('minimumPrice')->nullable();
             $table->string('offerType')->nullable();
-            $table->string('sendType')->nullable();
+            $table->enum('sendType', ['MANUAL', 'AUTOMATIC'])->nullable();
             $table->boolean('noAutomaticSending')->default(1)->nullable();
             $table->boolean('impound')->default(0)->nullable();
             $table->json('emails')->nullable();

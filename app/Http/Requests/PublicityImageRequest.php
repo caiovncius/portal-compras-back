@@ -34,4 +34,16 @@ class PublicityImageRequest extends FormRequest
             'image' => 'required|string'
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'image' => 'Imagem',
+        ];
+    }
 }

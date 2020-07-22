@@ -45,4 +45,19 @@ class ProductCreatorRequest extends FormRequest
             'laboratoryId' => 'required|exists:laboratories,id',
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'code' => 'Código',
+            'codeEan' => 'Código EAN',
+            'description' => 'Descrição',
+            'laboratoryId' => 'Laboratório',
+        ];
+    }
 }

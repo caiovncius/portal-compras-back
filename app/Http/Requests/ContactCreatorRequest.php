@@ -44,4 +44,19 @@ class ContactCreatorRequest extends FormRequest
             'telephone' => 'required|string'
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'function' => 'Função',
+            'name' => 'Nome',
+            'email' => 'Email',
+            'telephone' => 'Telefone',
+        ];
+    }
 }

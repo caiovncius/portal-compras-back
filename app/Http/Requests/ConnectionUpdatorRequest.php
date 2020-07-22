@@ -49,4 +49,20 @@ class ConnectionUpdatorRequest extends FormRequest
             'returnDirectory' => 'required|string',
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'isFtpActive' => 'Ftp ativo',
+            'transferMode' => 'Modo de Transferência',
+            'sendDirectory' => 'Diretório de envio',
+            'password' => 'Senha',
+            'returnDirectory' => 'Diretório de retorno',
+        ];
+    }
 }

@@ -52,4 +52,19 @@ class ProfileUpdatorRequest extends FormRequest
                 . Profile::PERMISSION_TYPE_FREE_ACCESS
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'name' => 'Nome',
+            'type' => 'Tipo',
+            'permissions.*.functionality' => 'Funcionalidade',
+            'permissions.*.permission' => 'Permissão'
+        ];
+    }
 }

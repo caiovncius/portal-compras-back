@@ -46,4 +46,19 @@ class PharmacyUpdatorRequest extends FormRequest
             'commercial' => 'required|string',
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'code' => 'Código',
+            'socialName' => 'Razão social',
+            'cityId' => 'Cidade',
+            'commercial' => 'Comercial',
+        ];
+    }
 }

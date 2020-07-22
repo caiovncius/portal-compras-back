@@ -49,4 +49,21 @@ class UserUpdatorRequest extends FormRequest
             'phone2' => 'string|nullable',
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'name' => 'Nome',
+            'username' => 'Login',
+            'type' => 'Tipo',
+            'profileId' => 'Perfil',
+            'phone1' => 'Telefone',
+            'phone2' => 'Telefone 2',
+        ];
+    }
 }
