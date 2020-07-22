@@ -4310,7 +4310,7 @@
         "/oauth/token": {
             "post": {
                 "tags": [
-                    "Users"
+                    "Oauth"
                 ],
                 "requestBody": {
                     "required": true,

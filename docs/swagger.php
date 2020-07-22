@@ -139,7 +139,7 @@
  * ******** Global requests ********
  *
  * @OA\Post(
- *     tags={"Users"},
+ *     tags={"Oauth"},
  *     path="/oauth/token",
  *     @OA\RequestBody(
  *          required=true,
