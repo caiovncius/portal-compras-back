@@ -36,7 +36,7 @@ class LaboratoryCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:laboratories',
+            'code' => 'required|string|numeric|unique:laboratories',
             'name' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE'
         ];

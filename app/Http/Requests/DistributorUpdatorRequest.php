@@ -36,7 +36,7 @@ class DistributorUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'required|string|numeric',
             'cnpj' => 'required|cnpj',
             'name' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',

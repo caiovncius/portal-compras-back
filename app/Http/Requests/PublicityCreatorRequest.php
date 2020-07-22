@@ -39,7 +39,7 @@ class PublicityCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:publicities',
+            'code' => 'required|string|numeric|unique:publicities',
             'desc' => 'required|string',
             'createDate' => 'required|string',
             'publishDate' => 'required|string',

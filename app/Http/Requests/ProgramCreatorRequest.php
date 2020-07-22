@@ -37,7 +37,7 @@ class ProgramCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:programs',
+            'code' => 'required|string|numeric|unique:programs',
             'name' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'contacts' => 'array',

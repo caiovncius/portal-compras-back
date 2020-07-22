@@ -34,7 +34,7 @@ class ReturnUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'required|string|numeric',
             'desc' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE'
         ];

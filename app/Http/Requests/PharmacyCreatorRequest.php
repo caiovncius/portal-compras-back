@@ -39,7 +39,7 @@ class PharmacyCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:pharmacies',
+            'code' => 'required|string|numeric|unique:pharmacies',
             'cnpj' => 'required|cnpj',
             'socialName' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',

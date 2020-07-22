@@ -24,7 +24,7 @@ class CreateOffersTable extends Migration
             $table->datetime('endDate')->nullable();
             $table->string('condition')->nullable();
             $table->string('minimumPrice')->nullable();
-            $table->string('offerType')->nullable();
+            $table->enum('offerType', ['Normal', 'Combo', 'Compra Coletiva'])->nullable();
             $table->enum('sendType', ['MANUAL', 'AUTOMATIC'])->nullable();
             $table->boolean('noAutomaticSending')->default(1)->nullable();
             $table->boolean('impound')->default(0)->nullable();

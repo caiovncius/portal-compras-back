@@ -35,7 +35,7 @@ class LaboratoryUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'required|string|numeric',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'name' => 'required|string',
         ];

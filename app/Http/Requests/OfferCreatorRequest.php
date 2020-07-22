@@ -47,11 +47,12 @@ class OfferCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:offers',
+            'code' => 'required|string|numeric|unique:offers',
             'name' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'sendType' => 'in:MANUAL,AUTOMATIC',
+            'offerType' => 'in:Normal,Combo,Compra Coletiva',
             'startDate' => 'date',
             'endDate' => 'date|after_or_equal:startDate',
         ];
