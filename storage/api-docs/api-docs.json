@@ -4,11 +4,6 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": ""
-        }
-    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -1654,14 +1649,24 @@
                         "example": "active"
                     },
                     {
+                        "name": "partner",
+                        "in": "query",
+                        "example": "1"
+                    },
+                    {
+                        "name": "partnerType",
+                        "in": "query",
+                        "example": "DISTRIBUTOR"
+                    },
+                    {
                         "name": "startDate",
                         "in": "query",
-                        "example": "2020-05-25 03:00:00"
+                        "example": "2020-05-25"
                     },
                     {
                         "name": "endDate",
                         "in": "query",
-                        "example": "2020-06-25 03:00:00"
+                        "example": "2020-06-25"
                     }
                 ],
                 "responses": {
@@ -4192,6 +4197,53 @@
                 }
             }
         },
+        "/users/{user}/pharmacies": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PharmacyResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/users/password": {
             "post": {
                 "tags": [
@@ -6241,9 +6293,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
-                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
-                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
+                        "authorizationUrl": "http://localhost/oauth/authorize",
+                        "tokenUrl": "http://localhost/oauth/token",
+                        "refreshUrl": "http://localhost/token/refresh",
                         "scopes": []
                     }
                 }
