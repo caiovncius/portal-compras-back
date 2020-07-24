@@ -242,6 +242,48 @@ class UserController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     tags={"Users"},
+     *     path="/users/{user}/pharmacies/all",
+     *     @OA\Parameter(
+     *        name="user",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/PharmacyResource"),
+     *                 ),
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function pharmaciesAll(User $user)
+    {        
+        try {
+            $data = $user->pharmacies()->active()->get();
+            
+            return PharmacyResource::collection($data);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
      *
      * @OA\POST(
      *     tags={"Users"},

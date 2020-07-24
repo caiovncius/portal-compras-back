@@ -16,8 +16,9 @@ class Controller extends BaseController
     public function ftp()
     {
         $model = Program::find(1)->connection;
+
         $connection = (new FtpService)->setConnection($model);
         $list = \Storage::disk('onthefly')->files('/');
-        dd($list);
+        (new FtpService)->readFileRoute($list[4]);
     }
 }

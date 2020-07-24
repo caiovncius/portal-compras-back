@@ -28,6 +28,7 @@ Route::middleware(['cors'])->group(function(){
     Route::get('/users/managers', 'UserController@managers')->name('user.managers');
     Route::post('/users/password', 'UserController@password')->name('user.password');
     Route::get('/users/{user}', 'UserController@get')->name('user.get');
+    Route::get('/users/{user}/pharmacies/all', 'UserController@pharmaciesAll')->name('user.pharmacies.all');
     Route::get('/users/{user}/pharmacies', 'UserController@pharmacies')->name('user.pharmacies');
     Route::post('/users', 'UserController@store')->name('user.store');
     Route::put('/users/{user}', 'UserController@update')->name('user.update');
