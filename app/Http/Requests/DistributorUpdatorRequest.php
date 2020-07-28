@@ -40,7 +40,7 @@ class DistributorUpdatorRequest extends FormRequest
             'cnpj' => 'required|cnpj',
             'name' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
-            'contacts' => 'array',
+            'contacts' => 'nullable|array',
             'contacts.*.function' => 'required|string',
             'contacts.*.name' => 'required|string',
             'contacts.*.email' => 'required|email',

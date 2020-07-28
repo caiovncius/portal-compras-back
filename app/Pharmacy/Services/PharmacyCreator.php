@@ -27,7 +27,6 @@ class PharmacyCreator implements PharmacyCreatable
             $pharmacy->commercial = $pharmacyData['commercial'];
             $pharmacy->save();
 
-
             return true;
         } catch (\Exception $e) {
             throw $e;

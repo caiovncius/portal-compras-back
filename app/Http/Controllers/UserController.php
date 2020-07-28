@@ -6,6 +6,7 @@ use App\Http\Requests\UserCreatorRequest;
 use App\Http\Requests\UserUpdatorRequest;
 use App\Http\Resources\PharmacyResource;
 use App\Http\Resources\UserListResource;
+use App\Http\Resources\UserProfileResource;
 use App\Http\Resources\UserResource;
 use App\Notifications\PasswordReseted;
 use App\User;
@@ -194,6 +195,44 @@ class UserController extends Controller
     public function get(User $user)
     {
         return UserResource::make($user);
+    }
+
+    /**
+     *
+     * @OA\GET(
+     *     tags={"Users"},
+     *     path="/users/profile",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/UserProfileResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @return UserProfileResource
+     */
+    public function profile()
+    {
+        $user = Auth::user();
+
+        return UserProfileResource::make($user);
     }
 
     /**

@@ -33,6 +33,13 @@ class UserCreator implements UserCreatable
             $user->type = $userData['type'];
             $user->profile_id = $userData['profileId'];
             $user->save();
+
+            if (isset($data['pharmacies'])) {
+                foreach ($data['pharmacies'] as $data) {
+                    $user->pharmacies()->create($data['id']);
+                }
+            }
+
             $user->notify(new Wellcome($user, $password));
             return true;
         } catch (\Exception $exception) {

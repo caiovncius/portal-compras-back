@@ -4197,6 +4197,45 @@
                 }
             }
         },
+        "/users/profile": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserProfileResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/users/{user}/pharmacies": {
             "get": {
                 "tags": [
@@ -6013,6 +6052,27 @@
                     "createdAt": {
                         "type": "datetime",
                         "example": "2020-05-25T05:09:15.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "UserProfileResource": {
+                "title": "User Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Meu Nome"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "meu@email.com"
+                    },
+                    "profile": {
+                        "$ref": "#/components/schemas/ProfileResource"
                     }
                 },
                 "type": "object"

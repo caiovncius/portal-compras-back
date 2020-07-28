@@ -157,8 +157,8 @@ class ProgramController extends Controller
     public function store(ProgramCreatorRequest $request)
     {
         try {
-            $this->creatorService->store($request->all());
-            return response()->json(['message' => 'Programa criado com sucesso'], 200);
+            $data = $this->creatorService->store($request->all());
+            return response()->json(['message' => 'Programa criado com sucesso', 'data' => $data], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

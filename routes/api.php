@@ -26,6 +26,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
 
     Route::get('/users', 'UserController@list')->name('user.list');
     Route::get('/users/managers', 'UserController@managers')->name('user.managers');
+    Route::get('/users/profile', 'UserController@profile')->name('user.profile');
     Route::post('/users/password', 'UserController@password')->name('user.password');
     Route::get('/users/{user}', 'UserController@get')->name('user.get');
     Route::get('/users/{user}/pharmacies/all', 'UserController@pharmaciesAll')->name('user.pharmacies.all');

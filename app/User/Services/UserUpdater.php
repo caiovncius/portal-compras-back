@@ -27,6 +27,14 @@ class UserUpdater implements UserUpdatable
             $user->type = $newData['type'];
             $user->profile_id = $newData['profileId'];
             $user->save();
+
+            if (isset($data['pharmacies'])) {
+                $model->pharmacies()->delete();
+                foreach ($data['pharmacies'] as $data) {
+                    $model->pharmacies()->create($data['id']);
+                }
+            }
+
             return true;
         } catch (\Exception $e) {
             throw $e;
