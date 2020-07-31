@@ -26,7 +26,7 @@ class ProgramUpdater implements ProgramUpdatable
                 }
             }
             
-            return true;
+            return $model;
         } catch (\Exception $e) {
             throw $e;
         }

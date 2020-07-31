@@ -36,13 +36,14 @@ class UserResource extends JsonResource
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
-            'phone1' => $this->phone1,
-            'phone2' => $this->phone2,
+            'phone1' => $this->phone_1,
+            'phone2' => $this->phone_2,
             'type' => $this->type,
             'status' => $this->status,
             'profileId' => $this->profile_id,
             'manager' => 'none',
-            'createdAt' => $this->created_at
+            'pharmacies' => PharmacyResource::collection($this->pharmacies),
+            'createdAt' => $this->created_at,
         ];
     }
 }

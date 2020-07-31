@@ -24,7 +24,7 @@ class DistributorCreator implements DistributorCreatable
                 }
             }
 
-            return true;
+            return $model;
         } catch (\Exception $exception) {
             throw $exception;
         }

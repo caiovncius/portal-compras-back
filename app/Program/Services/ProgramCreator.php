@@ -24,7 +24,7 @@ class ProgramCreator implements ProgramCreatable
                 }
             }
 
-            return true;
+            return $model;
         } catch (\Exception $exception) {
             throw $exception;
         }

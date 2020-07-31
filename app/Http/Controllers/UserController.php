@@ -230,7 +230,7 @@ class UserController extends Controller
      */
     public function profile()
     {
-        $user = Auth::user();
+        $user = auth()->user();
 
         return UserProfileResource::make($user);
     }
