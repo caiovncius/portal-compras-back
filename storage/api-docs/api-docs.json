@@ -1931,6 +1931,11 @@
                         "example": "01"
                     },
                     {
+                        "name": "socialName",
+                        "in": "query",
+                        "example": "teste"
+                    },
+                    {
                         "name": "cnpj",
                         "in": "query",
                         "example": "99.999.999/0001-91"

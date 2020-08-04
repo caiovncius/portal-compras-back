@@ -53,6 +53,11 @@ class PharmacyController extends Controller
      *        example="01",
      *     ),
      *     @OA\Parameter(
+     *        name="socialName",
+     *        in="query",
+     *        example="teste",
+     *     ),
+     *     @OA\Parameter(
      *        name="cnpj",
      *        in="query",
      *        example="99.999.999/0001-91",
