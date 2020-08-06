@@ -16,6 +16,14 @@ trait UserRelations
     {
         return $this->belongsTo(Profile::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
+    }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

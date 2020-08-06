@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $date_create
  * @property string $date_publish
  * @property string $images
+ * @property int $updated_id
  */
 class Publicity extends Model
 {
@@ -22,6 +23,12 @@ class Publicity extends Model
         'desc',
         'date_create',
         'date_publish',
-        'images'
+        'images',
+        'updated_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
+    }
 }

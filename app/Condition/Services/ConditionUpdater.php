@@ -18,6 +18,7 @@ class ConditionUpdater implements ConditionUpdatable
     {
         try {
             $model->fill($data);
+            $model->updated_id = auth()->user()->id;
             $model->save();
             
             return true;

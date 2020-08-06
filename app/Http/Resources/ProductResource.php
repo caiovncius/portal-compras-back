@@ -21,7 +21,9 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'laboratoryId' => $this->laboratory->id,
             'status' => $this->status,
-            'createdAt' => $this->created_at
+            'createdAt' => $this->created_at,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

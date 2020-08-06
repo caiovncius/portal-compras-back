@@ -17,6 +17,7 @@ class PublicityUpdater implements PublicityUpdatable
     {
         try {
             $model->fill($data);
+            $model->updated_id = auth()->user()->id;
             $model->save();
             
             return true;

@@ -18,6 +18,7 @@ class DistributorUpdater implements DistributorUpdatable
     {
         try {
             $model->fill($data);
+            $model->updated_id = auth()->user()->id;
             $model->save();
             if (isset($data['contacts'])) {
                 $model->contacts()->delete();

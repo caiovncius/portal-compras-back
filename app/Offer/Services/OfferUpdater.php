@@ -17,6 +17,7 @@ class OfferUpdater implements OfferUpdatable
     {
         try {
             $model->fill($data);
+            $model->updated_id = auth()->user()->id;
             $model->save();
 
             if (isset($data['partners'])) {

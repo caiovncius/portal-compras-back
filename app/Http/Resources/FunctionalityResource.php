@@ -27,6 +27,8 @@ class FunctionalityResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'functionality' => $this->key,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

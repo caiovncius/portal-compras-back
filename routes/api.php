@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['cors', 'auth:api'])->group(function(){
+Route::middleware(['cors'])->group(function(){
 
     Route::get('/functions', 'ProfileController@functions')->name('functions');
     Route::get('/states', 'StateController@allStates')->name('state.all');
@@ -92,6 +92,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::post('/offers', 'OfferController@store')->name('offer.store');
     Route::put('/offers/{model}', 'OfferController@update')->name('offer.update');
     Route::delete('/offers/{model}', 'OfferController@delete')->name('offer.delete');
+    Route::post('offer-products/{offer}', 'OfferProductController@store')->name('offer.product.store');
 
     Route::get('/products', 'ProductController@list')->name('product.list');
     Route::get('/products/{product}', 'ProductController@get')->name('product.get');

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $code
  * @property string $name
  * @property string $status
+ * @property int $updated_id
  */
 class Program extends Model
 {
@@ -19,6 +20,7 @@ class Program extends Model
         'code',
         'name',
         'status',
+        'updated_id'
     ];
 
     public function contacts()
@@ -29,5 +31,10 @@ class Program extends Model
     public function connection()
     {
         return $this->morphOne('App\Connection', 'connectionable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
     }
 }

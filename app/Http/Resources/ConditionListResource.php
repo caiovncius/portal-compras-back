@@ -38,6 +38,8 @@ class ConditionListResource extends JsonResource
             'status' => $this->status,
             'visible' => $this->visible,
             'partners' => DistributorListResource::collection($this->partners),
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

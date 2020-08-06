@@ -39,7 +39,9 @@ class PharmacyResource extends JsonResource
             'cityId' => $this->city->id,
             'stateId' => $this->city->state->id,
             'commercial' => $this->commercial,
-            'createdAt' => $this->created_at
+            'createdAt' => $this->created_at,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

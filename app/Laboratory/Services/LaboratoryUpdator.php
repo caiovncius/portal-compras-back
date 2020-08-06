@@ -16,10 +16,11 @@ class LaboratoryUpdator implements LaboratoryUpdatable
      * @return bool
      * @throws \Exception
      */
-    public function update(Laboratory $laboratory, array $laboratoryData)
+    public function update(Laboratory $model, array $laboratoryData)
     {
         try {
-            $laboratory->fill($laboratoryData);
+            $model->fill($laboratoryData);
+            $model->updated_id = auth()->user()->id;
             $laboratory->save();
 
             return true;

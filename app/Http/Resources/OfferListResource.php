@@ -25,11 +25,16 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         property="email",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/Email")
- *     ), 
+ *     ),
  *     @OA\Property(
  *         property="partners",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/DistributorListResource")
+ *     ),
+ *     @OA\Property(
+ *         property="products",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/OfferProductResource")
  *     ),
  * )
  */
@@ -61,6 +66,9 @@ class OfferListResource extends JsonResource
             'description' => $this->description,
             'emails' => $this->emails,
             'partners' => DistributorListResource::collection($this->partners),
+            'products' => OfferProductResource::collection($this->products),
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

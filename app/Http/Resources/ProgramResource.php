@@ -39,6 +39,8 @@ class ProgramResource extends JsonResource
             'status' => $this->status,
             'contacts' => ContactListResource::collection($this->contacts),
             'connection' => ConnectionListResource::make($this->connection),
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

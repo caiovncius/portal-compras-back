@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $telephone
  * @property string $contactable_id
  * @property string $contactable_type
+ * @property string $updated_id
  */
 class Contact extends Model
 {
@@ -25,10 +26,16 @@ class Contact extends Model
         'telephone',
         'contactable_id',
         'contactable_type',
+        'updated_id'
     ];
 
     public function contactable()
     {
         return $this->morphTo();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
     }
 }

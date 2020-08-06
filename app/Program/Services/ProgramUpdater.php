@@ -17,6 +17,7 @@ class ProgramUpdater implements ProgramUpdatable
     {
         try {
             $model->fill($data);
+            $model->updated_id = auth()->user()->id;
             $model->save();
 
             if (isset($data['contacts'])) {

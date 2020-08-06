@@ -20,6 +20,7 @@ class ProfileUpdator implements ProfileUpdatable
     {
         try {
             $profile->fill($profileData);
+            $profile->updated_id = auth()->user()->id;
             $profile->save();
 
             if (isset($profileData['functions'])) {

@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $noAutomaticSending
  * @property string $impound
  * @property json $emails
+ * @property integer $updated_id
  */
 class Offer extends Model
 {
@@ -41,6 +42,7 @@ class Offer extends Model
         'noAutomaticSending',
         'impound',
         'emails',
+        'updated_id'
     ];
 
     protected $casts = [
@@ -54,5 +56,15 @@ class Offer extends Model
     {
         return $this->belongsToMany('App\Distributor')
                     ->withPivot('type');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany('App\OfferProduct', 'offer_id');
     }
 }

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $commercial
  * @property string $type_send
  * @property string $status
+ * @property string $updated_id
  */
 class Accompaniment extends Model
 {
@@ -27,6 +28,7 @@ class Accompaniment extends Model
         'commercial',
         'type_send',
         'status',
+        'updated_id'
     ];
 }
 

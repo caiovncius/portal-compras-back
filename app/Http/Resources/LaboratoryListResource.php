@@ -30,7 +30,9 @@ class LaboratoryListResource extends JsonResource
             'code' => $this->code,
             'status' => $this->status,
             'name' => $this->name,
-            'createdAt' => $this->created_at
+            'createdAt' => $this->created_at,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

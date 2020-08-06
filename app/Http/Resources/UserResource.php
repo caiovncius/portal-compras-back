@@ -44,6 +44,8 @@ class UserResource extends JsonResource
             'manager' => 'none',
             'pharmacies' => PharmacyResource::collection($this->pharmacies),
             'createdAt' => $this->created_at,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

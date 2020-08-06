@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $code
  * @property string $name
  * @property string $status
+ * @property string $updated_id
  */
 class Laboratory extends Model
 {
@@ -22,5 +23,11 @@ class Laboratory extends Model
         'code',
         'name',
         'status',
+        'updated_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
+    }
 }
