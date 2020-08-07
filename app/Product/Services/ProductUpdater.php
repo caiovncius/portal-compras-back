@@ -22,7 +22,7 @@ class ProductUpdater implements ProductUpdatable
             $product->code_ean = $productData['codeEan'];
             $product->description = $productData['description'];
             $product->laboratory_id = $productData['laboratoryId'];
-            $product->updated_id = auth()->user()->id;
+            $product->updated_id = auth()->guard('api')->user()->id;
             $product->save();
 
             return true;

@@ -41,7 +41,7 @@ class OfferProduct extends Model
         'factoryPrice',
         'priceDeferred',
         'priceOnCash',
-        'productOnName',
+        'productName',
         'quantityMaximum',
         'quantityMinimum',
         'state_id',
