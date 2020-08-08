@@ -16,6 +16,7 @@ class OfferCreator implements OfferCreatable
     public function store(array $data)
     {
         try {
+            $data['updated_id'] = auth()->guard('api')->user()->id;
             $model = Offer::create($data);
             
             if (isset($data['partners'])) {

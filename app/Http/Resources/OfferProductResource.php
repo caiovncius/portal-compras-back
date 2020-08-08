@@ -51,7 +51,7 @@ class OfferProductResource extends JsonResource
             'productName' => $this->productName,
             'quantityMaximum' => $this->quantityMaximum,
             'quantityMinimum' => $this->quantityMinimum,
-            'state_id' => $this->state->name,
+            'state_id' => $this->state_id,
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];

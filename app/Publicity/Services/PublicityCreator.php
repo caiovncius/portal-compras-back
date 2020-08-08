@@ -25,6 +25,7 @@ class PublicityCreator implements PublicityCreatable
                 $publicy->date_create = $data['createDate'];
                 $publicy->date_publish = $data['publishDate'];
                 $publicy->image = FileUploader::uploadFile($data['image']);
+                $publicy->updated_id = auth()->guard('api')->user()->id;
                 $publicy->save();
 
                 return true;

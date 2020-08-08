@@ -15,6 +15,7 @@ class ReturnsCreator implements ReturnsCreatable
     public function store(array $data)
     {
         try {
+            $data['updated_id'] = auth()->guard('api')->user()->id;
             $model = Returns::create($data);
 
             return true;

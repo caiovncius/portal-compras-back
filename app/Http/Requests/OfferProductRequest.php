@@ -85,7 +85,7 @@ class OfferProductRequest extends FormRequest
             'products.*.factoryPrice' => 'Preço de fábrica',
             'products.*.priceDeferred' => 'Preço à prazo',
             'products.*.priceOnCash' => 'Preço à vista',
-            'products.*.productOnName' => 'Nome do produto',
+            'products.*.productName' => 'Nome do produto',
             'products.*.quantityMaximum' => 'QTD máxima',
             'products.*.quantityMinimum' => 'QTD mínima',
             'products.*.state_id' => 'Estado'

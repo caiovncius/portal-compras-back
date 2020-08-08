@@ -25,6 +25,7 @@ class PharmacyCreator implements PharmacyCreatable
             $pharmacy->status = $pharmacyData['status'];
             $pharmacy->city_id = $pharmacyData['cityId'];
             $pharmacy->commercial = $pharmacyData['commercial'];
+            $pharmacy->updated_id = auth()->guard('api')->user()->id;
             $pharmacy->save();
 
             return true;

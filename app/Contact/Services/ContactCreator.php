@@ -16,6 +16,7 @@ class ContactCreator implements ContactCreatable
     public function store(array $data)
     {
         try {
+            $data['updated_id'] = auth()->guard('api')->user()->id;
             $model = Contact::create($data);
 
             return true;
