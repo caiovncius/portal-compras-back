@@ -45,7 +45,9 @@ class UserResource extends JsonResource
             'pharmacies' => PharmacyResource::collection($this->pharmacies),
             'createdAt' => $this->created_at,
             'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'updated_date' => $this->updated_at,
+            'lastLogin' => $this->last_login,
+            'image' => $this->image
         ];
     }
 }

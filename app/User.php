@@ -55,7 +55,9 @@ class User extends Authenticatable
         'phone_2',
         'profile_id',
         'manager_id',
-        'updated_id'
+        'updated_id',
+        'last_login',
+        'image'
     ];
 
     protected $guarded = [
