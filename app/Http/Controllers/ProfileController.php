@@ -6,6 +6,7 @@ use App\Functionality;
 use App\Http\Requests\ProfileCreatorRequest;
 use App\Http\Requests\ProfileUpdatorRequest;
 use App\Http\Resources\FunctionalityResource;
+use App\Http\Resources\PermissionResource;
 use App\Http\Resources\ProfileFunctionsResource;
 use App\Http\Resources\ProfileListResource;
 use App\Http\Resources\ProfileResource;
@@ -361,6 +362,56 @@ class ProfileController extends Controller
     public function functions()
     {
         return FunctionalityResource::collection(Functionality::all());
+    }
+
+    /**
+     *
+     * @OA\GET(
+     *     tags={"Permissions"},
+     *     path="/permissions",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/PermissionResource"),
+     *                 ),
+     *             )
+     *         )
+     *     ),
+
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @return PermissionResource
+     */
+    public function permissions()
+    {
+        $functionalities = Functionality::with('profiles')->get();
+        $permissions = [];
+        foreach($functionalities as $func) {
+            foreach($func->profiles as $profile) {
+                $profile->functionality = $func;
+                $permissions[] = $profile;
+            }
+        }
+
+        return PermissionResource::collection($permissions);
     }
 
     /**

@@ -20,7 +20,11 @@ class Controller extends BaseController
         $model = Program::find(1)->connection;
 
         $connection = (new FtpService)->setConnection($model);
-        $list = \Storage::disk('onthefly')->files('/');
+        try {
+            $list = \Storage::disk('onthefly')->files('/');
+        } catch (Exception $e) {
+            dd($e);
+        }
 
         dd($list);
     }

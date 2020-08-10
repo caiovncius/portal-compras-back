@@ -2829,6 +2829,48 @@
                 }
             }
         },
+        "/permissions": {
+            "get": {
+                "tags": [
+                    "Permissions"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/PermissionResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/profiles/by-type/{type}": {
             "get": {
                 "tags": [
@@ -5820,7 +5862,7 @@
                         "type": "string",
                         "example": "10.51"
                     },
-                    "productOnName": {
+                    "productName": {
                         "type": "string",
                         "example": "Teste"
                     },
@@ -5902,6 +5944,24 @@
                         "items": {
                             "$ref": "#/components/schemas/Email"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "PermissionResource": {
+                "title": "Permission Response",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Usuário"
+                    },
+                    "functionality": {
+                        "type": "string",
+                        "example": "User"
+                    },
+                    "permission": {
+                        "type": "string",
+                        "example": "NO_ACCESS"
                     }
                 },
                 "type": "object"
