@@ -25,7 +25,7 @@ class Acl
                                    ->where('functionality_id', $functionality->id)
                                    ->first();
 
-        if (!$this->check($profile_functionality->access_type, $role, $role2)) {
+        if (!$profile_functionality OR !$this->check($profile_functionality->access_type, $role, $role2)) {
             return response()->json('forbidden', 403);
         }
 
