@@ -17,7 +17,10 @@ class Acl
      */
     public function handle($request, Closure $next, $functionality, $role, $role2 = '')
     {
-        $user = \App\User::find(1);//$request->user();
+        $user = $request->user();
+        if (!$user) {
+            return response()->json('forbidden', 403);
+        }
         $functionality = Functionality::where('key', $functionality)->first();
 
         $profile_functionality = DB::table('profile_functionalities')
