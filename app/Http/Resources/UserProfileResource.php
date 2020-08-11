@@ -31,7 +31,9 @@ class UserProfileResource extends JsonResource
             'name' => $this->name,
             'profile' => ProfileResource::make($this->profile),
             'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'updated_date' => $this->updated_at,
+            'lastLogin' => $this->last_login,
+            'image' => $this->image
         ];
     }
 }
