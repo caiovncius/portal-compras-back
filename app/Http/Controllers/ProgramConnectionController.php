@@ -100,7 +100,7 @@ class ProgramConnectionController extends Controller
 
     /**
      *
-     * @OA\Post(
+     * @OA\Get(
      *     tags={"Programs"},
      *     path="/programs/{id}/connection/test",
      *     @OA\RequestBody(

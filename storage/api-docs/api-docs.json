@@ -960,7 +960,7 @@
             }
         },
         "/distributors/{distributor}/connection/test": {
-            "post": {
+            "get": {
                 "tags": [
                     "Distributors"
                 ],
@@ -3053,7 +3053,7 @@
             }
         },
         "/programs/{id}/connection/test": {
-            "post": {
+            "get": {
                 "tags": [
                     "Programs"
                 ],

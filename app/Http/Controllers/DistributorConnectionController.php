@@ -99,7 +99,7 @@ class DistributorConnectionController extends Controller
 
     /**
      *
-     * @OA\Post(
+     * @OA\Get(
      *     tags={"Distributors"},
      *     path="/distributors/{distributor}/connection/test",
      *     @OA\RequestBody(
