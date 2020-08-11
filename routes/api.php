@@ -150,6 +150,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('distributor.delete')
          ->middleware('acl:Distributor,r,w');
 
+    Route::get('/distributors/{distributor}/connection/test', 'DistributorConnectionController@test')
+         ->name('distributor.connection.test')
+         ->middleware('acl:Connection,r');
     Route::post('/distributors/{distributor}/connection', 'DistributorConnectionController@store')
          ->name('distributor.connection.store')
          ->middleware('acl:Connection,r,w');
@@ -189,6 +192,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('program.delete')
          ->middleware('acl:Program,r,w');
 
+     Route::get('/programs/{model}/connection/test', 'ProgramConnectionController@test')
+         ->name('program.connection.test')
+         ->middleware('acl:Connection,r');
     Route::post('/programs/{model}/connection', 'ProgramConnectionController@store')
          ->name('program.connection.store')
          ->middleware('acl:Connection,r,w');
