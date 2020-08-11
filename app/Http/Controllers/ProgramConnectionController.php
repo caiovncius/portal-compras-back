@@ -100,6 +100,78 @@ class ProgramConnectionController extends Controller
 
     /**
      *
+     * @OA\Post(
+     *     tags={"Programs"},
+     *     path="/programs/{id}/connection/test",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ConnectionCreatorRequest")
+     *      ),
+     *     @OA\Parameter(
+     *        name="id",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="testado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *     response=422,
+     *     description="",
+     *     @OA\JsonContent(ref="#/components/schemas/ValidationResponse")
+     * ),
+     * @OA\Response(
+     *     response=400,
+     *     description="",
+     *     @OA\JsonContent(
+     *         @OA\Property(
+     *             property="error",
+     *             example ="Mensagem de erro"
+     *         )
+     *     )
+     * )
+     *
+     * )
+     */
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function test(Program $model)
+    {
+        $model = $model->connection;
+
+        $data['status'] = false;
+        $data['message'] = 'Problemas na conexão!';
+
+        if ($model) {
+            $isLoggedIn = @ftp_login(
+                ftp_connect($model->host),
+                $model->login,
+                $model->password
+            );
+            if ($isLoggedIn) {
+                $data['status'] = true;
+                $data['message'] = 'Conexão feita com sucesso!';            
+            }
+        }
+
+        return response()->json($data, 201);
+    }
+
+    /**
+     *
      * @OA\Put(
      *     tags={"Programs"},
      *     path="/programs/{id}/connection/{connection}",

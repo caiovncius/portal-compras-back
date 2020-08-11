@@ -151,12 +151,19 @@ class DistributorConnectionController extends Controller
     {
         $model = $distributor->connection;
 
-        try {
-            $connection = (new FtpService)->setConnection($model);
+        $data['status'] = false;
+        $data['message'] = 'Problemas na conexão!';
 
-            $list = \Storage::disk('onthefly')->files('/');
-        } catch (ConnectionRuntimeException $e) {
-            return false;
+        if ($model) {
+            $isLoggedIn = @ftp_login(
+                ftp_connect($model->host),
+                $model->login,
+                $model->password
+            );
+            if ($isLoggedIn) {
+                $data['status'] = true;
+                $data['message'] = 'Conexão feita com sucesso!';            
+            }
         }
     }
 
