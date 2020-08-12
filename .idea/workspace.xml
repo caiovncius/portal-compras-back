@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProgramUpdatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProgramUpdatorRequest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -597,11 +598,11 @@
     <MESSAGE value="Adicionado full url das imagens" />
     <MESSAGE value="Ajustes" />
     <MESSAGE value="Correção da migration" />
-    <MESSAGE value="fix" />
     <MESSAGE value="Edição de distribuidor" />
     <MESSAGE value="Fix" />
     <MESSAGE value="teste deploy" />
-    <option name="LAST_COMMIT_MESSAGE" value="teste deploy" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="224" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1593265308479">

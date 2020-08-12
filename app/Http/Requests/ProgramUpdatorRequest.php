@@ -35,7 +35,7 @@ class ProgramUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|numeric|unique:programs,' . $this->id,
+            'code' => 'required|string|numeric|unique:programs,code,' . $this->id,
             'name' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'contacts' => 'array',
