@@ -21,10 +21,13 @@ class ProfileCreator implements ProfileCreatable
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $profile = Profile::create($data);
 
-            foreach ($data['permissions'] as $function) {
-                $permission = Functionality::where('key', $function['functionality'])->first();
-                $profile->functionalities()->attach($permission->id, ['access_type' => $function['permission']]);
+            if (isset($data['permissions'])) {
+                foreach ($data['permissions'] as $function) {
+                    $permission = Functionality::where('key', $function['functionality'])->first();
+                    $profile->functionalities()->attach($permission->id, ['access_type' => $function['permission']]);
+                }
             }
+            
             return true;
         } catch (\Exception $e) {
             throw $e;

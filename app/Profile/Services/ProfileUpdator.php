@@ -16,18 +16,18 @@ class ProfileUpdator implements ProfileUpdatable
      * @return bool
      * @throws \Exception
      */
-    public function update(Profile $profile, array $profileData)
+    public function update(Profile $profile, array $data)
     {
         try {
-            $profile->fill($profileData);
+            $profile->fill($data);
             $profile->updated_id = auth()->guard('api')->user()->id;
             $profile->save();
 
-            if (isset($profileData['functions'])) {
+            if (isset($data['permissions'])) {
                 $profile->functionalities()->detach();
 
-                foreach ($profileData['functions'] as $function) {
-                    $permission = Functionality::where('key',$function['key'])->first();
+                foreach ($data['permissions'] as $function) {
+                    $permission = Functionality::where('key', $function['functionality'])->first();
                     $profile->functionalities()->attach($permission->id, ['access_type' => $function['permission']]);
                 }
             }
