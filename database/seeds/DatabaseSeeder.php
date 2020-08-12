@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
          $this->call(CreateInitialUser::class);
          $this->call(CreateTestProfile::class);
          $this->call(CreatePublicity::class);
-
+         $this->call(CreateAclSeeder::class);
+         $this->call(AclAdmin::class);
+         $this->call(AclModulePurchase::class);
     }
 }

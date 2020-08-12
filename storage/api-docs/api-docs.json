@@ -3849,6 +3849,288 @@
                 }
             }
         },
+        "/purchases": {
+            "get": {
+                "tags": [
+                    "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "example": "01"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "teste"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "active"
+                    },
+                    {
+                        "name": "validityStart",
+                        "in": "query",
+                        "example": "2020-05-25"
+                    },
+                    {
+                        "name": "validityEnd",
+                        "in": "query",
+                        "example": "2020-06-25"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/PurchaseListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Purchases"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PurchaseRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Compra criada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/purchases/{id}": {
+            "get": {
+                "tags": [
+                    "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/PurchaseListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PurchaseRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Compra atualizada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Compra removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/returns": {
             "get": {
                 "tags": [
@@ -5513,6 +5795,83 @@
                 },
                 "type": "object"
             },
+            "PurchaseRequest": {
+                "title": "Purchase form request",
+                "required": [
+                    "code",
+                    "name",
+                    "status",
+                    "description",
+                    "offer_id"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "image": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "validityStart": {
+                        "type": "date",
+                        "example": "2020-05-25"
+                    },
+                    "validityEnd": {
+                        "type": "date",
+                        "example": "2020-05-25"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "untilBilling": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "setMinimumBillingValue": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "minimumBillingValue": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "setMinimumBillingQuantity": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "minimumBillingQuantity": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "totalIntentionsValue": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "totalIntentionsQuantity": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "relatedQuantity": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
             "ReturnCreatorRequest": {
                 "title": "Return form request",
                 "required": [
@@ -6383,6 +6742,76 @@
                     }
                 },
                 "type": "Publicity"
+            },
+            "PurchaseListResource": {
+                "title": "Purchase Response",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "image": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "validityStart": {
+                        "type": "date",
+                        "example": "2020-05-25"
+                    },
+                    "validityEnd": {
+                        "type": "date",
+                        "example": "2020-05-25"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "untilBilling": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "setMinimumBillingValue": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "minimumBillingValue": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "setMinimumBillingQuantity": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "minimumBillingQuantity": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "totalIntentionsValue": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "totalIntentionsQuantity": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "relatedQuantity": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
             },
             "ReturnListResource": {
                 "title": "Return Response",

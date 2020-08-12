@@ -67,4 +67,9 @@ class Offer extends Model
     {
         return $this->hasMany('App\OfferProduct', 'offer_id');
     }
+
+    public function requests()
+    {
+        return $this->morphMany('App\Request', 'requestable');
+    }
 }

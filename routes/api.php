@@ -202,6 +202,54 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('program.connection.update')
          ->middleware('acl:Connection,r,w');
 
+    Route::get('/purchases', 'PurchaseController@list')
+         ->name('purchase.list')
+         ->middleware('acl:Purchase,r');
+    Route::get('/purchases/{model}', 'PurchaseController@get')
+         ->name('purchase.get')
+         ->middleware('acl:Purchase,r');
+    Route::post('/purchases', 'PurchaseController@store')
+         ->name('purchase.store')
+         ->middleware('acl:Purchase,r,w');
+    Route::put('/purchases/{model}', 'PurchaseController@update')
+         ->name('purchase.update')
+         ->middleware('acl:Purchase,r,w');
+    Route::delete('/purchases/{model}', 'PurchaseController@delete')
+         ->name('purchase.delete')
+         ->middleware('acl:Purchase,r,w');
+
+    Route::get('/purchases', 'PurchaseController@list')
+         ->name('purchase.list')
+         ->middleware('acl:Purchase,r');
+    Route::get('/purchases/{model}', 'PurchaseController@get')
+         ->name('purchase.get')
+         ->middleware('acl:Purchase,r');
+    Route::post('/purchases', 'PurchaseController@store')
+         ->name('purchase.store')
+         ->middleware('acl:Purchase,r,w');
+    Route::put('/purchases/{model}', 'PurchaseController@update')
+         ->name('purchase.update')
+         ->middleware('acl:Purchase,r,w');
+    Route::delete('/purchases/{model}', 'PurchaseController@delete')
+         ->name('purchase.delete')
+         ->middleware('acl:Purchase,r,w');
+
+    Route::get('/requests', 'RequestController@list')
+         ->name('request.list')
+         ->middleware('acl:Request,r');
+    Route::get('/requests/{model}', 'RequestController@get')
+         ->name('request.get')
+         ->middleware('acl:Request,r');
+    Route::post('/requests', 'RequestController@store')
+         ->name('request.store')
+         ->middleware('acl:Request,r,w');
+    Route::put('/requests/{model}', 'RequestController@update')
+         ->name('request.update')
+         ->middleware('acl:Request,r,w');
+    Route::delete('/requests/{model}', 'RequestController@delete')
+         ->name('request.delete')
+         ->middleware('acl:Request,r,w');
+
     Route::get('/offers', 'OfferController@list')
          ->name('offer.list')
          ->middleware('acl:Offer,r');

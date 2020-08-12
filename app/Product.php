@@ -36,4 +36,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\User', 'updated_id');
     }
+
+    public function requests()
+    {
+        return $this->belongsToMany('App\Request')
+                    ->withPivot(['qtd', 'value', 'total']);
+    }
 }
