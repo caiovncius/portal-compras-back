@@ -13,14 +13,12 @@ class CreateProductRequestTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_request', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id');
+        Schema::create('offerProduct_request', function (Blueprint $table) {
+            $table->unsignedBigInteger('offer_product_id');
             $table->unsignedBigInteger('request_id');
             $table->integer('qtd');
-            $table->decimal('value', 10, 2);
-            $table->decimal('total', 10, 2);
 
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('offer_product_id')->references('id')->on('offer_products');
             $table->foreign('request_id')->references('id')->on('requests');
         });
     }

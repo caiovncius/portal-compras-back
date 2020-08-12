@@ -71,4 +71,14 @@ class OfferProduct extends Model
     {
         return $this->belongsTo('App\State', 'state_id');
     }
+
+    public function request()
+    {
+        return $this->belongsToMany(
+                        'App\OfferProduct',
+                        'offerProduct_request',
+                        'offer_product_id',
+                        'request_id',
+                    )->withPivot('qtd');
+    }
 }

@@ -2,61 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PurchaseRequest;
-use App\Http\Resources\PurchaseListResource;
-use App\Purchase;
-use App\Purchase\Contracts\PurchaseCreatable;
-use App\Purchase\Contracts\PurchaseRemovable;
-use App\Purchase\Contracts\PurchaseRetrievable;
-use App\Purchase\Contracts\PurchaseUpdatable;
+use App\Http\Requests\RequestRequest;
+use App\Http\Resources\RequestListResource;
+use App\Http\Resources\RequestResource;
+use App\Request as RequestModel;
+use App\Request\Contracts\RequestCreatable;
+use App\Request\Contracts\RequestRemovable;
+use App\Request\Contracts\RequestRetrievable;
+use App\Request\Contracts\RequestUpdatable;
 use Illuminate\Http\Request;
 
-class PurchaseController extends Controller
+class RequestController extends Controller
 {
     /**
-     * @var PurchaseRetrievable
+     * @var RequestRetrievable
      */
     private $retrieverService;
 
     /**
-     * @var PurchaseCreatable
+     * @var RequestCreatable
      */
     private $creatorService;
 
     /**
-     * @var PurchaseUpdatable
+     * @var RequestUpdatable
      */
     private $updatorService;
 
     /**
-     * @var PurchaseRemovable
+     * @var RequestRemovable
      */
     private $removerService;
 
 
     /**
-     * PurchaseController constructor.
+     * RequestController constructor.
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function __construct()
     {
-        $this->retrieverService = app()->make(PurchaseRetrievable::class);
-        $this->creatorService = app()->make(PurchaseCreatable::class);
-        $this->updatorService = app()->make(PurchaseUpdatable::class);
-        $this->removerService = app()->make(PurchaseRemovable::class);
+        $this->retrieverService = app()->make(RequestRetrievable::class);
+        $this->creatorService = app()->make(RequestCreatable::class);
+        $this->updatorService = app()->make(RequestUpdatable::class);
+        $this->removerService = app()->make(RequestRemovable::class);
     }
 
     /**
      * @OA\Get(
-     *     tags={"Purchases"},
-     *     path="/purchases",
+     *     tags={"Requests"},
+     *     path="/requests",
      *     @OA\Parameter(
-     *        name="code",
+     *        name="offerid",
      *        in="query",
      *        example="01",
      *     ),
      *     @OA\Parameter(
-     *        name="name",
+     *        name="pharmacyId",
      *        in="query",
      *        example="teste",
      *     ),
@@ -66,12 +67,12 @@ class PurchaseController extends Controller
      *        example="active",
      *     ),
      *     @OA\Parameter(
-     *        name="validityStart",
+     *        name="date1",
      *        in="query",
      *        example="2020-05-25",
      *     ),
      *     @OA\Parameter(
-     *        name="validityEnd",
+     *        name="date2",
      *        in="query",
      *        example="2020-06-25",
      *     ),
@@ -84,7 +85,7 @@ class PurchaseController extends Controller
      *                 @OA\Property(
      *                     property="data",
      *                     type="array",
-     *                     @OA\Items(ref="#/components/schemas/PurchaseListResource"),
+     *                     @OA\Items(ref="#/components/schemas/RequestListResource"),
      *                 ),
      *                 @OA\Property(
      *                     property="links",
@@ -111,7 +112,7 @@ class PurchaseController extends Controller
     public function list(Request $request)
     {
         try {
-            return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->paginate(10));
+            return RequestListResource::collection($this->retrieverService->getRequests($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -120,11 +121,11 @@ class PurchaseController extends Controller
     /**
      *
      * @OA\Post(
-     *     tags={"Purchases"},
-     *     path="/purchases",
+     *     tags={"Requests"},
+     *     path="/requests",
      *     @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/PurchaseRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/RequestRequest")
      *      ),
      *     @OA\Response(
      *         response=200,
@@ -159,10 +160,10 @@ class PurchaseController extends Controller
      */
 
     /**
-     * @param PurchaseRequest $request
+     * @param RequestRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(PurchaseRequest $request)
+    public function store(RequestRequest $request)
     {
         try {
             $this->creatorService->store($request->all());
@@ -175,11 +176,11 @@ class PurchaseController extends Controller
     /**
      *
      * @OA\Put(
-     *     tags={"Purchases"},
-     *     path="/purchases/{id}",
+     *     tags={"Requests"},
+     *     path="/requests/{id}",
      *     @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/PurchaseRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/RequestRequest")
      *      ),
      *     @OA\Parameter(
      *        name="id",
@@ -220,10 +221,10 @@ class PurchaseController extends Controller
      */
 
     /**
-     * @param PurchaseRequest $request
+     * @param RequestRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(PurchaseRequest $request, Purchase $model)
+    public function update(RequestRequest $request, RequestModel $model)
     {
         try {
             $this->updatorService->update($model, $request->all());
@@ -236,8 +237,8 @@ class PurchaseController extends Controller
     /**
      *
      * @OA\Delete(
-     *     tags={"Purchases"},
-     *     path="/purchases/{id}",
+     *     tags={"Requests"},
+     *     path="/requests/{id}",
      *     @OA\Parameter(
      *        name="id",
      *        in="path",
@@ -271,13 +272,13 @@ class PurchaseController extends Controller
      */
 
     /**
-     * @param Purchase $Purchase
+     * @param Request $Request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Purchase $Purchase)
+    public function delete(Request $Request)
     {
         try {
-            $this->removerService->delete($Purchase);
+            $this->removerService->delete($Request);
             return response()->json(['message' => 'Compra removida com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -287,8 +288,8 @@ class PurchaseController extends Controller
     /**
      *
      * @OA\GET(
-     *     tags={"Purchases"},
-     *     path="/purchases/{id}",
+     *     tags={"Requests"},
+     *     path="/requests/{id}",
      *     @OA\Parameter(
      *        name="id",
      *        in="path",
@@ -301,7 +302,7 @@ class PurchaseController extends Controller
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 @OA\Property(property="data", ref="#/components/schemas/PurchaseListResource"),
+     *                 @OA\Property(property="data", ref="#/components/schemas/RequestResource"),
      *             )
      *         )
      *     ),
@@ -319,12 +320,12 @@ class PurchaseController extends Controller
      */
 
     /**
-     * @param Purchase $model
-     * @return PurchaseListResource
+     * @param RequestModel $model
+     * @return RequestResource
      */
-    public function get(Purchase $model)
+    public function get(RequestModel $model)
     {
-        return PurchaseListResource::make($model);
+        return RequestResource::make($model);
     }
 
 }

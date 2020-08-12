@@ -4131,6 +4131,288 @@
                 }
             }
         },
+        "/requests": {
+            "get": {
+                "tags": [
+                    "Requests"
+                ],
+                "parameters": [
+                    {
+                        "name": "offerid",
+                        "in": "query",
+                        "example": "01"
+                    },
+                    {
+                        "name": "pharmacyId",
+                        "in": "query",
+                        "example": "teste"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "active"
+                    },
+                    {
+                        "name": "date1",
+                        "in": "query",
+                        "example": "2020-05-25"
+                    },
+                    {
+                        "name": "date2",
+                        "in": "query",
+                        "example": "2020-06-25"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/RequestListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Requests"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Compra criada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/requests/{id}": {
+            "get": {
+                "tags": [
+                    "Requests"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/RequestResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Requests"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Compra atualizada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Requests"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Compra removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/returns": {
             "get": {
                 "tags": [
@@ -5872,6 +6154,29 @@
                 },
                 "type": "object"
             },
+            "RequestRequest": {
+                "title": "Request form request",
+                "required": [
+                    "pharmacy_id",
+                    "offer_id",
+                    "status"
+                ],
+                "properties": {
+                    "pharmacy_id": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "offer_id": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    }
+                },
+                "type": "object"
+            },
             "ReturnCreatorRequest": {
                 "title": "Return form request",
                 "required": [
@@ -6809,6 +7114,69 @@
                     "relatedQuantity": {
                         "type": "integer",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "RequestListResource": {
+                "title": "Request List Response",
+                "properties": {
+                    "pharmacy_id": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "offer_id": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    }
+                },
+                "type": "object"
+            },
+            "RequestProductResource": {
+                "title": "RequestProductResource Response",
+                "properties": {
+                    "offerProduct": {
+                        "$ref": "#/components/schemas/OfferProductResource"
+                    },
+                    "qtd": {
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "10"
+                    },
+                    "total": {
+                        "type": "string",
+                        "example": "20"
+                    }
+                },
+                "type": "object"
+            },
+            "RequestResource": {
+                "title": "Request Response",
+                "properties": {
+                    "pharmacy_id": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "offer_id": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RequestProductResource"
+                        }
                     }
                 },
                 "type": "object"

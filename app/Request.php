@@ -15,6 +15,7 @@ class Request extends Model
 {
     protected $fillable = [
         'pharmacy_id',
+        'offer_id',
         'status',
         'updated_id'
     ];
@@ -29,14 +30,18 @@ class Request extends Model
         return $this->belongsTo('App\Pharmacy', 'pharmacy_id');
     }
 
-    public function requestable()
+    public function offer()
     {
-        return $this->morphTo();
+        return $this->belongsTo('App\Offer', 'offer_id');
     }
 
     public function products()
     {
-        return $this->belongsToMany('App\Product')
-                    ->withPivot(['qtd', 'value', 'total']);
+        return $this->belongsToMany(
+                        'App\OfferProduct',
+                        'offerProduct_request',
+                        'request_id',
+                        'offer_product_id'
+                    )->withPivot('qtd');
     }
 }

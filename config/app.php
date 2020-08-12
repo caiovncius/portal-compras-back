@@ -188,6 +188,8 @@ return [
         App\Providers\AccompanimentServiceProvider::class,
         App\Providers\ProgramServiceProvider::class,
         App\Providers\OfferServiceProvider::class,
+        App\Providers\PurchaseServiceProvider::class,
+        App\Providers\RequestServiceProvider::class,
     ],
 
     /*
