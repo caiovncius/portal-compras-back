@@ -39,6 +39,8 @@ class AccompanimentListResource extends JsonResource
             'commercial' => $this->commercial,
             'sendType' => $this->type_send,
             'status' => $this->status,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

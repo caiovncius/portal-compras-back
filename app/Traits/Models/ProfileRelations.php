@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Traits\Models;
-
 
 use App\Functionality;
 use App\User;
@@ -15,6 +13,11 @@ trait ProfileRelations
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
     }
 
     /**

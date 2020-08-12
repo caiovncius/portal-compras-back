@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $desc
  * @property string $status
  * @property string $visible
+ * @property string $updated_id
  */
 class Condition extends Model
 {
@@ -22,7 +23,8 @@ class Condition extends Model
         'desc',
         'code',
         'status',
-        'visible'
+        'visible',
+        'updated_id'
     ];
 
     protected $casts = ['visible' => 'boolean'];
@@ -35,5 +37,10 @@ class Condition extends Model
     public function partners()
     {
         return $this->belongsToMany('App\Distributor');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
     }
 }

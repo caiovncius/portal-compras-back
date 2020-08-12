@@ -39,6 +39,8 @@ class ConnectionListResource extends JsonResource
             'login' => $this->login,
             'password' => $this->password,
             'returnDirectory' => $this->path_return,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

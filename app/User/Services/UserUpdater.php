@@ -15,18 +15,26 @@ class UserUpdater implements UserUpdatable
      * @return bool
      * @throws \Exception
      */
-    public function update(User $user, array $newData)
+    public function update(User $user, array $data)
     {
         try {
-
-            $user->name = $newData['name'];
-            $user->email = $newData['email'];
-            $user->phone_1 = $newData['phone1'];
-            $user->phone_2 = $newData['phone2'];
-            $user->status = $newData['status'];
-            $user->type = $newData['type'];
-            $user->profile_id = $newData['profileId'];
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->phone_1 = $data['phone1'];
+            $user->phone_2 = $data['phone2'];
+            $user->status = $data['status'];
+            $user->type = $data['type'];
+            $user->profile_id = $data['profileId'];
+            $user->updated_id = auth()->guard('api')->user()->id;
             $user->save();
+
+            if (isset($data['pharmacies'])) {
+                $user->pharmacies()->detach();
+                foreach ($data['pharmacies'] as $data) {
+                    $user->pharmacies()->attach($data['id']);
+                }
+            }
+
             return true;
         } catch (\Exception $e) {
             throw $e;

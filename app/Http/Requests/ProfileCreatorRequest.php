@@ -44,7 +44,7 @@ class ProfileCreatorRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
-            'type' => 'required|in:' . User::USER_TYPE_SUPPLIER . ',' . User::USER_TYPE_COMMERCIAL . ','
+            'type' => 'required|in:' . User::USER_TYPE_MASTER . ',' . User::USER_TYPE_COMMERCIAL . ','
                 . User::USER_TYPE_PHARMACY,
             'status' => 'required|in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
             'permissions' => 'required|array|min:1',

@@ -959,6 +959,73 @@
                 }
             }
         },
+        "/distributors/{distributor}/connection/test": {
+            "get": {
+                "tags": [
+                    "Distributors"
+                ],
+                "parameters": [
+                    {
+                        "name": "distributor",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConnectionCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "testado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/distributors/{distributor}/connection/{connection}": {
             "put": {
                 "tags": [
@@ -1919,6 +1986,73 @@
                 }
             }
         },
+        "/offer-products/{offer}": {
+            "post": {
+                "tags": [
+                    "Offers"
+                ],
+                "parameters": [
+                    {
+                        "name": "offer",
+                        "in": "path",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OfferProductRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Produtos criados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/pharmacies": {
             "get": {
                 "tags": [
@@ -1929,6 +2063,11 @@
                         "name": "code",
                         "in": "query",
                         "example": "01"
+                    },
+                    {
+                        "name": "socialName",
+                        "in": "query",
+                        "example": "teste"
                     },
                     {
                         "name": "cnpj",
@@ -2757,6 +2896,48 @@
                 }
             }
         },
+        "/permissions": {
+            "get": {
+                "tags": [
+                    "Permissions"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/PermissionResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/profiles/by-type/{type}": {
             "get": {
                 "tags": [
@@ -2836,6 +3017,73 @@
                                     "properties": {
                                         "message": {
                                             "example": "Conexão criada com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/programs/{id}/connection/test": {
+            "get": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConnectionCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "testado com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -4197,6 +4445,45 @@
                 }
             }
         },
+        "/users/profile": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserProfileResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/users/{user}/pharmacies": {
             "get": {
                 "tags": [
@@ -4807,6 +5094,80 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "OfferProductRequest": {
+                "title": "Offer update form request",
+                "properties": {
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "discountDeferred": {
+                                    "type": "string",
+                                    "example": "2"
+                                },
+                                "discountOnCash": {
+                                    "type": "string",
+                                    "example": "4"
+                                },
+                                "minimum": {
+                                    "type": "integer",
+                                    "example": "10"
+                                },
+                                "minimumPerFamily": {
+                                    "type": "integer",
+                                    "example": "15"
+                                },
+                                "obrigatory": {
+                                    "type": "boolean",
+                                    "example": "1"
+                                },
+                                "variable": {
+                                    "type": "boolean",
+                                    "example": "1"
+                                },
+                                "family": {
+                                    "type": "boolean",
+                                    "example": "0"
+                                },
+                                "gift": {
+                                    "type": "boolean",
+                                    "example": "0"
+                                },
+                                "factoryPrice": {
+                                    "type": "string",
+                                    "example": "10.00"
+                                },
+                                "priceDeferred": {
+                                    "type": "string",
+                                    "example": "11.00"
+                                },
+                                "priceOnCash": {
+                                    "type": "string",
+                                    "example": "10.51"
+                                },
+                                "productOnName": {
+                                    "type": "string",
+                                    "example": "Teste"
+                                },
+                                "quantityMaximum": {
+                                    "type": "integer",
+                                    "example": "6"
+                                },
+                                "quantityMinimum": {
+                                    "type": "integer",
+                                    "example": "10"
+                                },
+                                "state_id": {
+                                    "type": "string",
+                                    "example": "5"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
@@ -5578,6 +5939,78 @@
                         "items": {
                             "$ref": "#/components/schemas/DistributorListResource"
                         }
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OfferProductResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "OfferProductResource": {
+                "title": "Offer Product Response",
+                "properties": {
+                    "discountDeferred": {
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "discountOnCash": {
+                        "type": "string",
+                        "example": "4"
+                    },
+                    "minimum": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "minimumPerFamily": {
+                        "type": "integer",
+                        "example": "15"
+                    },
+                    "obrigatory": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "variable": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "family": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "gift": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "factoryPrice": {
+                        "type": "string",
+                        "example": "10.00"
+                    },
+                    "priceDeferred": {
+                        "type": "string",
+                        "example": "11.00"
+                    },
+                    "priceOnCash": {
+                        "type": "string",
+                        "example": "10.51"
+                    },
+                    "productName": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "quantityMaximum": {
+                        "type": "integer",
+                        "example": "6"
+                    },
+                    "quantityMinimum": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "state_id": {
+                        "type": "string",
+                        "example": "5"
                     }
                 },
                 "type": "object"
@@ -5645,6 +6078,24 @@
                         "items": {
                             "$ref": "#/components/schemas/Email"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "PermissionResource": {
+                "title": "Permission Response",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Usuário"
+                    },
+                    "functionality": {
+                        "type": "string",
+                        "example": "User"
+                    },
+                    "permission": {
+                        "type": "string",
+                        "example": "NO_ACCESS"
                     }
                 },
                 "type": "object"
@@ -6013,6 +6464,27 @@
                     "createdAt": {
                         "type": "datetime",
                         "example": "2020-05-25T05:09:15.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "UserProfileResource": {
+                "title": "User Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Meu Nome"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "meu@email.com"
+                    },
+                    "profile": {
+                        "$ref": "#/components/schemas/ProfileResource"
                     }
                 },
                 "type": "object"

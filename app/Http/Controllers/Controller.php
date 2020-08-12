@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Program;
+use App\Services\FileOrder;
+use App\Services\FileReturn;
 use App\Services\FtpService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -18,7 +20,12 @@ class Controller extends BaseController
         $model = Program::find(1)->connection;
 
         $connection = (new FtpService)->setConnection($model);
-        $list = \Storage::disk('onthefly')->files('/');
-        (new FtpService)->readFileRoute($list[4]);
+        try {
+            $list = \Storage::disk('onthefly')->files('/');
+        } catch (Exception $e) {
+            dd($e);
+        }
+
+        dd($list);
     }
 }

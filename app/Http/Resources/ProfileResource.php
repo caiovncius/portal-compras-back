@@ -36,7 +36,9 @@ class ProfileResource extends JsonResource
             'name' => $this->name,
             'type' => $this->type,
             'status' => $this->status,
-            'permissions' => ProfileFunctionsResource::collection($this->functionalities)
+            'permissions' => ProfileFunctionsResource::collection($this->functionalities),
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

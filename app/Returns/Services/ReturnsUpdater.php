@@ -17,6 +17,7 @@ class ReturnsUpdater implements ReturnsUpdatable
     {
         try {
             $model->fill($data);
+            $model->updated_id = auth()->guard('api')->user()->id;
             $model->save();
             
             return true;

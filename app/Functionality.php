@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $key
  * @property string $name
+ * @property string $updated_id
  */
 class Functionality extends Model
 {
@@ -23,6 +24,12 @@ class Functionality extends Model
 
     protected $fillable = [
         'name',
-        'key'
+        'key',
+        'updated_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
+    }
 }

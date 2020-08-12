@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $login
  * @property string $password
  * @property string $path_return
+ * @property string $updated_id
  */
 class Connection extends Model
 {
@@ -27,6 +28,7 @@ class Connection extends Model
         'login',
         'password',
         'path_return',
+        'updated_id'
     ];
 
     protected $casts = ['ftp_active' => 'boolean'];
@@ -34,5 +36,10 @@ class Connection extends Model
     public function connectionable()
     {
         return $this->morphTo();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
     }
 }

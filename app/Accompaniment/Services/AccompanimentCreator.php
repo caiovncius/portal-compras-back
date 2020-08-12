@@ -15,6 +15,7 @@ class AccompanimentCreator implements AccompanimentCreatable
     public function store(array $data)
     {
         try {
+            $data['updated_id'] = auth()->guard('api')->user()->id;
             $model = Accompaniment::create($data);
 
             return true;

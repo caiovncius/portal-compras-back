@@ -9,14 +9,15 @@ use App\Laboratory\Contracts\LaboratoryCreatable;
 class LaboratoryCreator implements LaboratoryCreatable
 {
     /**
-     * @param array $laboratoryData
+     * @param array $data
      * @return bool
      * @throws \Exception
      */
-    public function store(array $laboratoryData)
+    public function store(array $data)
     {
         try {
-            $Laboratory = Laboratory::create($laboratoryData);
+            $data['updated_id'] = auth()->guard('api')->user()->id;
+            $Laboratory = Laboratory::create($data);
 
             return true;
         } catch (\Exception $e) {

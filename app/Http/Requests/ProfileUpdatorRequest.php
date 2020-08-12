@@ -43,7 +43,7 @@ class ProfileUpdatorRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
-            'type' => 'required|in:' . User::USER_TYPE_SUPPLIER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
+            'type' => 'required|in:' . User::USER_TYPE_MASTER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
             'status' => 'required|in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
             'permissions' => 'array|min:1',
             'permissions.*.functionality' => 'required',

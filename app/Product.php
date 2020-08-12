@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string $status
  * @property int $laboratory_id
+ * @property int $updated_id
  */
 class Product extends Model
 {
@@ -22,11 +23,17 @@ class Product extends Model
         'code_ean',
         'description',
         'status',
-        'laboratory_id'
+        'laboratory_id',
+        'updated_id'
     ];
 
     public function laboratory()
     {
         return $this->belongsTo(Laboratory::class, 'laboratory_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
     }
 }

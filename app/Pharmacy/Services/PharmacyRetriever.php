@@ -27,8 +27,8 @@ class PharmacyRetriever implements PharmacyRetrievable
                 $query->where('cnpj', $params['cnpj']);
             }
 
-            if (isset($params['company_name'])) {
-                $query->where('company_name', $params['company_name']);
+            if (isset($params['socialName'])) {
+                $query->where('company_name', 'like', '%'.$params['socialName'].'%');
             }
 
             if (isset($params['status'])) {

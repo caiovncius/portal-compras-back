@@ -30,7 +30,9 @@ class ReturnListResource extends JsonResource
             'id' => $this->id,
             'code' => $this->code,
             'description' => $this->desc,
-            'status' => $this->status
+            'status' => $this->status,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

@@ -17,6 +17,7 @@ class AccompanimentUpdater implements AccompanimentUpdatable
     {
         try {
             $model->fill($data);
+            $model->updated_id = auth()->guard('api')->user()->id;
             $model->save();
             
             return true;

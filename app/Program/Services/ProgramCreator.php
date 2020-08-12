@@ -16,6 +16,7 @@ class ProgramCreator implements ProgramCreatable
     public function store(array $data)
     {
         try {
+            $data['updated_id'] = auth()->guard('api')->user()->id;
             $model = Program::create($data);
             
             if (isset($data['contacts'])) {
@@ -24,7 +25,7 @@ class ProgramCreator implements ProgramCreatable
                 }
             }
 
-            return true;
+            return $model;
         } catch (\Exception $exception) {
             throw $exception;
         }

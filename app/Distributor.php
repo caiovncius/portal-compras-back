@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $cnpj
  * @property string $name
  * @property string $status
+ * @property string $updated_id
  */
 class Distributor extends Model
 {
@@ -20,7 +21,8 @@ class Distributor extends Model
         'code',
         'cnpj',
         'name',
-        'status'
+        'status',
+        'updated_id'
     ];
 
     public function contacts()
@@ -31,5 +33,10 @@ class Distributor extends Model
     public function connection()
     {
         return $this->morphOne('App\Connection', 'connectionable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
     }
 }

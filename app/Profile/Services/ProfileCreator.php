@@ -11,16 +11,17 @@ use App\Profile\Contracts\ProfileCreatable;
 class ProfileCreator implements ProfileCreatable
 {
     /**
-     * @param array $profileData
+     * @param array $data
      * @return bool
      * @throws \Exception
      */
-    public function store(array $profileData)
+    public function store(array $data)
     {
         try {
-            $profile = Profile::create($profileData);
+            $data['updated_id'] = auth()->guard('api')->user()->id;
+            $profile = Profile::create($data);
 
-            foreach ($profileData['permissions'] as $function) {
+            foreach ($data['permissions'] as $function) {
                 $permission = Functionality::where('key', $function['functionality'])->first();
                 $profile->functionalities()->attach($permission->id, ['access_type' => $function['permission']]);
             }

@@ -33,6 +33,8 @@ class ContactListResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'telephone' => $this->telephone,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

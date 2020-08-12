@@ -12,12 +12,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $code
  * @property string $desc
  * @property string $status
+ * @property int $updated_id
  */
 class Returns extends Model
 {
     protected $fillable = [
         'code',
         'desc',
-        'status'
+        'status',
+        'updated_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
+    }
 }

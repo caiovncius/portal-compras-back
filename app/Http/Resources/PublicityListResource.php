@@ -51,7 +51,9 @@ class PublicityListResource extends JsonResource
                 }
 
                 return $images;
-            })
+            }),
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

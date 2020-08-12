@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $type
  * @property string $status
+ * @property int $updated_id
  */
 class Profile extends Model
 {

@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $status
  * @property int $city_id
  * @property string $commercial
+ * @property int $updated_id
  */
 class Pharmacy extends Model
 {
@@ -24,7 +25,8 @@ class Pharmacy extends Model
         'company_name',
         'status',
         'city_id',
-        'commercial'
+        'commercial',
+        'updated_id'
     ];
 
     public function city()
@@ -43,5 +45,10 @@ class Pharmacy extends Model
     public function scopeActive($query)
     {
         return $query->where('status', 'ACTIVE');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'updated_id');
     }
 }

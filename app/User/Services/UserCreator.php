@@ -17,22 +17,29 @@ class UserCreator implements UserCreatable
      * @return bool|mixed
      * @throws \Exception
      */
-    public function store(array $userData)
+    public function store(array $data)
     {
         try {
             $password = Str::random(8);
-            $userData['password'] = Hash::make($password);
+            $data['password'] = Hash::make($password);
             $user = new User();
-            $user->name = $userData['name'];
-            $user->username = $userData['username'];
-            $user->email = $userData['email'];
+            $user->name = $data['name'];
+            $user->username = $data['username'];
+            $user->email = $data['email'];
             $user->password = Hash::make($password);
-            $user->phone_1 = isset($userData['phone1']) ? $userData['phone1'] : null;
-            $user->phone_2 = isset($userData['phone2']) ? $userData['phone2'] : null;
-            $user->status = $userData['status'];
-            $user->type = $userData['type'];
-            $user->profile_id = $userData['profileId'];
+            $user->phone_1 = isset($data['phone1']) ? $data['phone1'] : null;
+            $user->phone_2 = isset($data['phone2']) ? $data['phone2'] : null;
+            $user->status = $data['status'];
+            $user->type = $data['type'];
+            $user->profile_id = $data['profileId'];
             $user->save();
+
+            if (isset($data['pharmacies'])) {
+                foreach ($data['pharmacies'] as $data) {
+                    $user->pharmacies()->attach($data['id']);
+                }
+            }
+
             $user->notify(new Wellcome($user, $password));
             return true;
         } catch (\Exception $exception) {

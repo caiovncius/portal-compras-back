@@ -2,11 +2,13 @@
 
 namespace App;
 
+use App\Functionality;
 use App\Traits\Models\UserRelations;
 use App\Traits\Models\UserScopes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 
 /**
@@ -24,6 +26,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string $phone_2
  * @property string $profile_2
  * @property int $manager_id
+ * @property int $updated_id
  */
 class User extends Authenticatable
 {
@@ -54,6 +57,9 @@ class User extends Authenticatable
         'phone_2',
         'profile_id',
         'manager_id',
+        'updated_id',
+        'last_login',
+        'image'
     ];
 
     protected $guarded = [
