@@ -41,8 +41,7 @@ class PublicityUpdatorRequest extends FormRequest
             'code' => 'required|string|numeric',
             'desc' => 'required|string',
             'createDate' => 'required|string',
-            'publishDate' => 'required|string',
-            'image' => 'required|string',
+            'publishDate' => 'required|string'
         ];
     }
 
@@ -57,8 +56,7 @@ class PublicityUpdatorRequest extends FormRequest
             'code' => 'Código',
             'desc' => 'Descrição',
             'createDate' => 'Data criação',
-            'publishDate' => 'Data publicação',
-            'image' => 'Imagem',
+            'publishDate' => 'Data publicação'
         ];
     }
 }

@@ -27,6 +27,10 @@ class Publicity extends Model
         'updated_id'
     ];
 
+    protected $casts = [
+        'images' => 'array'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User', 'updated_id');

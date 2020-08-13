@@ -77,10 +77,12 @@ class PublicityController extends Controller
      * @param PublicityUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(PublicityUpdatorRequest $request, Publicity $id)
+    public function update(PublicityUpdatorRequest $request)
     {
         try {
-            $this->updatorService->update($id, $request->all());
+            $model = Publicity::find(1);
+
+            $this->updatorService->update($model, $request->all());
             return response()->json(['message' => 'Condição atualizada com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -122,12 +124,13 @@ class PublicityController extends Controller
      */
 
     /**
-     * @param Publicity $id
      * @return PublicityListResource
      */
-    public function get(Publicity $id)
+    public function get()
     {
-        return PublicityListResource::make($id);
+        $model = Publicity::find(1);
+
+        return PublicityListResource::make($model);
     }
 
     /**
