@@ -317,23 +317,14 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('condition.delete')
          ->middleware('acl:Condition,r,w');
 
-    Route::get('/publicities', 'PublicityController@list')
-         ->name('publicity.list')
-         ->middleware('acl:Publicity,r');
-    Route::get('/publicities/{model}', 'PublicityController@get')
+    Route::get('/publicities', 'PublicityController@get')
          ->name('publicity.get')
          ->middleware('acl:Publicity,r');
-    Route::post('/publicities', 'PublicityController@store')
-         ->name('publicity.store')
-         ->middleware('acl:Publicity,r,w');
     Route::post('/publicities/attach-image', 'PublicityController@attachImage')
          ->name('publicity.attach.image')
          ->middleware('acl:Publicity,r,w');
-    Route::put('/publicities/{model}', 'PublicityController@update')
+    Route::put('/publicities', 'PublicityController@update')
          ->name('publicity.update')
-         ->middleware('acl:Publicity,r,w');
-    Route::delete('/publicities/{model}', 'PublicityController@delete')
-         ->name('publicity.delete')
          ->middleware('acl:Publicity,r,w');
     Route::delete('/publicities/remove-image/{index}', 'PublicityController@removeImage')
          ->name('publicity.remove.image')
