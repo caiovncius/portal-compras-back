@@ -30,7 +30,7 @@ class PublicityController extends Controller
      *
      * @OA\Put(
      *     tags={"Publicities"},
-     *     path="/publicities/{id}",
+     *     path="/publicities",
      *     @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/PublicityUpdatorRequest")
@@ -93,7 +93,7 @@ class PublicityController extends Controller
      *
      * @OA\GET(
      *     tags={"Publicities"},
-     *     path="/publicities/{id}",
+     *     path="/publicities",
      *     @OA\Parameter(
      *        name="id",
      *        in="path",
