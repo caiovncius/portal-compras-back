@@ -23,6 +23,10 @@ class Acl
         }
         $functionality = Functionality::where('key', $functionality)->first();
 
+        if (is_null($functionality)) {
+            return response()->json('forbidden', 403);
+        }
+
         $profile_functionality = DB::table('profile_functionalities')
                                    ->where('profile_id', $user->profile_id)
                                    ->where('functionality_id', $functionality->id)
