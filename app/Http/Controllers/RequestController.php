@@ -166,7 +166,8 @@ class RequestController extends Controller
     public function store(RequestRequest $request)
     {
         try {
-            $this->creatorService->store($request->all());
+            $model = $this->creatorService->store($request->all());
+
             return response()->json(['message' => 'Compra criada com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);

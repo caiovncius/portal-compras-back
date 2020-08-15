@@ -38,7 +38,7 @@ class FileOrder
             'orderDistributor'  => substr($line, 35, 5),
             'versionPE'         => substr($line, 40, 5),
             'offer'             => substr($line, 45, 5),
-            'offerDate'         => substr($line, 50, 3),
+            'deadline'         => substr($line, 50, 3),
             'consult'           => substr($line, 53, 1),
             'cnpj'              => substr($line, 54, 14),
         ];
