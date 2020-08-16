@@ -26,6 +26,7 @@ class UserUpdater implements UserUpdatable
             $user->type = $data['type'];
             $user->profile_id = $data['profileId'];
             $user->updated_id = auth()->guard('api')->user()->id;
+            $user->updated_at = date('Y-m-d H:i:s');
             $user->save();
 
             if (isset($data['pharmacies'])) {

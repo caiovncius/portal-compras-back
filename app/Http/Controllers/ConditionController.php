@@ -214,10 +214,10 @@ class ConditionController extends Controller
      * @param ConditionUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(ConditionUpdatorRequest $request, Condition $id)
+    public function update(ConditionUpdatorRequest $request, Condition $model)
     {
         try {
-            $this->updatorService->update($id, $request->all());
+            $this->updatorService->update($model, $request->all());
             return response()->json(['message' => 'Condição atualizada com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -262,13 +262,13 @@ class ConditionController extends Controller
      */
 
     /**
-     * @param Condition $id
+     * @param Condition $model
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Condition $id)
+    public function delete(Condition $model)
     {
         try {
-            $this->removerService->delete($id);
+            $this->removerService->delete($model);
             return response()->json(['message' => 'Condição removida com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -310,12 +310,12 @@ class ConditionController extends Controller
      */
 
     /**
-     * @param Condition $id
+     * @param Condition $model
      * @return ConditionListResource
      */
-    public function get(Condition $id)
+    public function get(Condition $model)
     {
-        return ConditionListResource::make($id);
+        return ConditionListResource::make($model);
     }
 
 }

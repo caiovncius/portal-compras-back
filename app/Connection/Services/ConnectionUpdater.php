@@ -21,6 +21,7 @@ class ConnectionUpdater implements ConnectionUpdatable
             $data['path_send'] = $data['sendDirectory'];
             $data['path_return'] = $data['returnDirectory'];
             $data['updated_id'] = auth()->guard('api')->user()->id;
+            $data['updated_at'] = date('Y-m-d H:i:s');
             unset($data['programId']);
             unset($data['isFtpActive']);
             unset($data['transferMode']);

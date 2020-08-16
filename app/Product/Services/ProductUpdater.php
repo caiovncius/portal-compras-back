@@ -10,20 +10,21 @@ use App\Product\Contracts\ProductUpdatable;
 class ProductUpdater implements ProductUpdatable
 {
     /**
-     * @param Product $product
-     * @param array $newData
+     * @param Product $model
+     * @param array $data
      * @return bool
      * @throws \Exception
      */
-    public function update(Product $product, array $productData)
+    public function update(Product $model, array $data)
     {
         try {
-            $product->code = $productData['code'];
-            $product->code_ean = $productData['codeEan'];
-            $product->description = $productData['description'];
-            $product->laboratory_id = $productData['laboratoryId'];
-            $product->updated_id = auth()->guard('api')->user()->id;
-            $product->save();
+            $model->code = $data['code'];
+            $model->code_ean = $data['codeEan'];
+            $model->description = $data['description'];
+            $model->laboratory_id = $data['laboratoryId'];
+            $model->updated_id = auth()->guard('api')->user()->id;
+            $model->updated_at = date('Y-m-d H:i:s');
+            $model->save();
 
             return true;
         } catch (\Exception $e) {

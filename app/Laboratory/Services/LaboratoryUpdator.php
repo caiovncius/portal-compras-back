@@ -21,6 +21,7 @@ class LaboratoryUpdator implements LaboratoryUpdatable
         try {
             $model->fill($laboratoryData);
             $model->updated_id = auth()->guard('api')->user()->id;
+            $model->updated_at = date('Y-m-d H:i:s');
             $model->save();
 
             return true;

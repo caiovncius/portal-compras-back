@@ -21,6 +21,7 @@ class ProfileUpdator implements ProfileUpdatable
         try {
             $profile->fill($data);
             $profile->updated_id = auth()->guard('api')->user()->id;
+            $profile->updated_at = date('Y-m-d H:i:s');
             $profile->save();
 
             if (isset($data['permissions'])) {

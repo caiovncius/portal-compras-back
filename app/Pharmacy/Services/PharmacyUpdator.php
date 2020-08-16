@@ -9,22 +9,23 @@ use App\Pharmacy\Contracts\PharmacyUpdatable;
 class PharmacyUpdator implements PharmacyUpdatable
 {
     /**
-     * @param Pharmacy $pharmacy
-     * @param array $pharmacyData
+     * @param Pharmacy $model
+     * @param array $data
      * @return bool
      * @throws \Exception
      */
-    public function update(Pharmacy $pharmacy, array $pharmacyData)
+    public function update(Pharmacy $model, array $data)
     {
         try {
-            $pharmacy->code = $pharmacyData['code'];
-            $pharmacy->cnpj = $pharmacyData['cnpj'];
-            $pharmacy->company_name = $pharmacyData['socialName'];
-            $pharmacy->status = $pharmacyData['status'];
-            $pharmacy->city_id = $pharmacyData['cityId'];
-            $pharmacy->commercial = $pharmacyData['commercial'];
-            $pharmacy->updated_id = auth()->guard('api')->user()->id;
-            $pharmacy->save();
+            $model->code = $data['code'];
+            $model->cnpj = $data['cnpj'];
+            $model->company_name = $data['socialName'];
+            $model->status = $data['status'];
+            $model->city_id = $data['cityId'];
+            $model->commercial = $data['commercial'];
+            $model->updated_id = auth()->guard('api')->user()->id;
+            $model->updated_at = date('Y-m-d H:i:s');
+            $model->save();
 
             return true;
         } catch (\Exception $exception) {

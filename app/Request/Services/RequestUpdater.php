@@ -20,6 +20,7 @@ class RequestUpdater implements RequestUpdatable
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->pharmacy_id = $data['pharmacyId'];
             $model->offer_id = $data['offerId'];
+            $model->updated_at = date('Y-m-d H:i:s');
             $model->save();
 
             if (isset($data['products'])) {
