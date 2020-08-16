@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProgramUpdatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProgramUpdatorRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Acl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Acl.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -665,11 +665,12 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="513" y="285" width="639" height="486" key="find.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1590672878026" />
-    <state x="610" y="99" width="1340" height="935" key="search.everywhere.popup" timestamp="1593540151619">
-      <screen x="0" y="23" width="2560" height="1011" />
+    <state x="1890" y="-178" width="1340" height="978" key="search.everywhere.popup" timestamp="1597528767791">
+      <screen x="1280" y="-257" width="2560" height="1057" />
     </state>
     <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1593523575609" />
     <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1591117386617" />
     <state x="610" y="99" width="1340" height="935" key="search.everywhere.popup/0.23.2560.1011@0.23.2560.1011" timestamp="1593540151619" />
+    <state x="1890" y="-178" width="1340" height="978" key="search.everywhere.popup/1280.-257.2560.1057/0.23.1280.731@1280.-257.2560.1057" timestamp="1597528767791" />
   </component>
 </project>
