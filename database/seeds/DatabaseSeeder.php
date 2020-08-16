@@ -20,6 +20,5 @@ class DatabaseSeeder extends Seeder
          $this->call(CreatePublicity::class);
          $this->call(CreateAclSeeder::class);
          $this->call(AclAdmin::class);
-         $this->call(AclModulePurchase::class);
     }
 }

@@ -15,6 +15,7 @@ class ConditionCreator implements ConditionCreatable
     public function store(array $data)
     {
         try {
+            $data['updated_id'] = auth()->guard('api')->user()->id;
             $model = Condition::create($data);
 
             return true;

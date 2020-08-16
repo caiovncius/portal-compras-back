@@ -16,7 +16,10 @@ class AclAdmin extends Seeder
         $profile = Profile::where('type', 'MASTER')->first();
         $functionalities = Functionality::all();
         foreach($functionalities as $func) {
-            $func->profiles()->attach($profile->id, ['access_type' => 'FREE_ACCESS']);
+            $model = $func->profiles()->where('profile_id', $profile->id)->first();
+            if (! $model) {
+                $func->profiles()->attach($profile->id, ['access_type' => 'FREE_ACCESS']);
+            }
         }
     }
 }

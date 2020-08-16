@@ -77,13 +77,23 @@ class CreateAclSeeder extends Seeder
                 'pt' => 'Perfil',
                 'en' => 'Profile',
             ],
+            [
+                'pt' => 'Compra coletiva',
+                'en' => 'Purchase',
+            ],
+            [
+                'pt' => 'Pedido',
+                'en' => 'Request',
+            ]
         ];
 
         foreach($models as $model) {
-            Functionality::create([
-                'name' => $model['pt'],
-                'key' => $model['en'],
-            ]);
+            if (! Functionality::where('name', $model['pt'])->first()) {
+                Functionality::create([
+                    'name' => $model['pt'],
+                    'key' => $model['en'],
+                ]);
+            }
         }
     }
 }
