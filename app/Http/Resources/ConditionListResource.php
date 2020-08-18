@@ -34,7 +34,7 @@ class ConditionListResource extends JsonResource
         return [
             'id' => $this->id,
             'code' => $this->code,
-            'description' => $this->desc,
+            'description' => $this->description,
             'status' => $this->status,
             'visible' => $this->visible,
             'partners' => DistributorListResource::collection($this->partners),

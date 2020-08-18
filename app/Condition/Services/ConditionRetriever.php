@@ -26,7 +26,7 @@ class ConditionRetriever implements ConditionRetrievable
             }
 
             if (isset($params['description']) && !empty($params['description'])) {
-                $query->where('desc', 'like', '%' . $params['description'] . '%');
+                $query->where('description', 'like', '%' . $params['description'] . '%');
             }
 
             if (isset($params['status']) && !empty($params['status'])) {

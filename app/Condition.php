@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $pharmacy_id
  * @property string $code
- * @property string $desc
+ * @property string $description
  * @property string $status
  * @property string $visible
  * @property string $updated_id
@@ -20,7 +20,7 @@ class Condition extends Model
 {
     protected $fillable = [
         'pharmacy_id',
-        'desc',
+        'description',
         'code',
         'status',
         'visible',

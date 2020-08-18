@@ -15,7 +15,6 @@ class ConditionRemover implements ConditionRemovable
     public function delete(Condition $model)
     {
         try {
-            $model->detach();
             $model->delete();
             
             return true;
