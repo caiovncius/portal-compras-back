@@ -14,9 +14,7 @@ class UpdateOfferProductsTable extends Migration
     public function up()
     {
         Schema::table('offer_products', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id');
 
-            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
