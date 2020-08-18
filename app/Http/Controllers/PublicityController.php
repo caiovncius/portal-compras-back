@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\FileUploader;
 use App\Http\Requests\PublicityUpdatorRequest;
+use App\Http\Resources\PublicityListResource;
 use App\Publicity;
 use App\Publicity\Contracts\PublicityUpdatable;
 use Illuminate\Http\Request;

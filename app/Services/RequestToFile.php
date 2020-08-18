@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Http\File;
 
-class FileOrder
+class RequestToFile
 {
     public function createFile($model) {        
         $html = $this->header($model);
