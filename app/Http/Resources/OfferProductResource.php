@@ -24,6 +24,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="quantityMaximum", type="integer", example="6"),
  *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
  *     @OA\Property(property="state_id", type="string", example="5"),
+ *     @OA\Property(property="product_id", type="string", example="5"),
  * )
  */
 class OfferProductResource extends JsonResource
@@ -48,10 +49,11 @@ class OfferProductResource extends JsonResource
             'factoryPrice' => $this->factoryPrice,
             'priceDeferred' => $this->priceDeferred,
             'priceOnCash' => $this->priceOnCash,
-            'productName' => $this->productName,
             'quantityMaximum' => $this->quantityMaximum,
             'quantityMinimum' => $this->quantityMinimum,
             'state_id' => $this->state_id,
+            'product_id' => $this->product_id,
+            'productName' => $this->product->name,
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];

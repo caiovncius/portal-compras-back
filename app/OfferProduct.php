@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  *
  * @property int offer_id
+ * @property int product_id
  * @property int discountDeferred
  * @property int discountOnCash
  * @property int minimum
@@ -30,6 +31,7 @@ class OfferProduct extends Model
 {
     protected $fillable = [
         'offer_id',
+        'product_id',
         'discountDeferred',
         'discountOnCash',
         'minimum',
@@ -65,6 +67,11 @@ class OfferProduct extends Model
     public function offer()
     {
         return $this->belongsTo('App\Offer', 'offer_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Product', 'product_id');
     }
 
     public function state()

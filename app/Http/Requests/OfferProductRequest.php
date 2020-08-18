@@ -28,6 +28,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="quantityMaximum", type="integer", example="6"),
  *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
  *     @OA\Property(property="state_id", type="string", example="5"),
+ *     @OA\Property(property="product_id", type="string", example="5"),
            )
  *     ),
 
@@ -54,6 +55,7 @@ class OfferProductRequest extends FormRequest
     {
         return [
             'products' => 'array',
+            'products.*.product_id' => 'required',
             'products.*.discountDeferred' => 'required',
             'products.*.discountOnCash' => 'required',
             'products.*.minimum' => 'required',
@@ -62,7 +64,6 @@ class OfferProductRequest extends FormRequest
             'products.*.factoryPrice' => 'required',
             'products.*.priceDeferred' => 'required',
             'products.*.priceOnCash' => 'required',
-            'products.*.productName' => 'required',
             'products.*.quantityMaximum' => 'required',
             'products.*.quantityMinimum' => 'required',
             'products.*.state_id' => 'required',
@@ -77,6 +78,7 @@ class OfferProductRequest extends FormRequest
     public function attributes()
     {
         return [
+            'products.*.product_id' => 'Produto',
             'products.*.discountDeferred' => 'Desconto à prazo',
             'products.*.discountOnCash' => 'Desconto à vista',
             'products.*.minimum' => 'Qtd mínima de compra',
@@ -85,7 +87,6 @@ class OfferProductRequest extends FormRequest
             'products.*.factoryPrice' => 'Preço de fábrica',
             'products.*.priceDeferred' => 'Preço à prazo',
             'products.*.priceOnCash' => 'Preço à vista',
-            'products.*.productName' => 'Nome do produto',
             'products.*.quantityMaximum' => 'QTD máxima',
             'products.*.quantityMinimum' => 'QTD mínima',
             'products.*.state_id' => 'Estado'
