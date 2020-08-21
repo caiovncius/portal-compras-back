@@ -61,6 +61,20 @@ class OfferRetriever implements OfferRetrievable
                 });
             }
 
+            if (isset($params['partnerType']) && !empty($params['partnerType'])) {
+                $partner = $params['partnerType'];
+                $query->whereHas('partners', function ($related) use($partner) {
+                    $related->where('type', $partner);
+                });
+            }
+
+            if (isset($params['product']) && !empty($params['product'])) {
+                $product = $params['product'];
+                $query->whereHas('products', function ($related) use($product) {
+                    $related->where('description', 'like', "%$product%");
+                });
+            }
+
             return $query;
 
         } catch (\Exception $exception) {

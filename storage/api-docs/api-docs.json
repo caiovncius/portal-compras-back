@@ -1793,7 +1793,7 @@
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "example": "Offera criado com sucesso"
+                                            "example": "Oferta criado com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -1819,6 +1819,40 @@
                                     "properties": {
                                         "error": {
                                             "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/offers/{id}/products": {
+            "get": {
+                "tags": [
+                    "Offers"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "teste"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/OfferProductResource"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -3464,7 +3498,7 @@
                 }
             }
         },
-        "/publicities/{id}": {
+        "/publicities": {
             "get": {
                 "tags": [
                     "Publicities"
@@ -5159,7 +5193,7 @@
                 "title": "Condition form request",
                 "required": [
                     "code",
-                    "desc",
+                    "description",
                     "status",
                     "visible"
                 ],
@@ -5168,7 +5202,7 @@
                         "type": "integer",
                         "example": "001"
                     },
-                    "desc": {
+                    "description": {
                         "type": "integer",
                         "example": "Teste"
                     },
@@ -5189,7 +5223,7 @@
                         "type": "integer",
                         "example": "001"
                     },
-                    "desc": {
+                    "description": {
                         "type": "integer",
                         "example": "Teste"
                     },
@@ -5561,6 +5595,10 @@
                                     "example": "10"
                                 },
                                 "state_id": {
+                                    "type": "string",
+                                    "example": "5"
+                                },
+                                "product_id": {
                                     "type": "string",
                                     "example": "5"
                                 }
@@ -6508,6 +6546,10 @@
                         "example": "10"
                     },
                     "state_id": {
+                        "type": "string",
+                        "example": "5"
+                    },
+                    "product_id": {
                         "type": "string",
                         "example": "5"
                     }

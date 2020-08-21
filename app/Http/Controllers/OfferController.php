@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OfferCreatorRequest;
 use App\Http\Requests\OfferUpdatorRequest;
 use App\Http\Resources\OfferListResource;
+use App\Http\Resources\OfferProductResource;
 use App\Offer;
 use App\Offer\Contracts\OfferCreatable;
+use App\Offer\Contracts\OfferProductRetrievable;
+use App\Offer\Contracts\OfferRemovable;
 use App\Offer\Contracts\OfferRetrievable;
 use App\Offer\Contracts\OfferUpdatable;
-use App\Offer\Contracts\OfferRemovable;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -18,6 +20,11 @@ class OfferController extends Controller
      * @var OfferRetrievable
      */
     private $retrieverService;
+
+    /**
+     * @var OfferProductRetrievable
+     */
+    private $productRetrieverService;
 
     /**
      * @var OfferCreatable
@@ -42,6 +49,7 @@ class OfferController extends Controller
     public function __construct()
     {
         $this->retrieverService = app()->make(OfferRetrievable::class);
+        $this->productRetrieverService = app()->make(OfferProductRetrievable::class);
         $this->creatorService = app()->make(OfferCreatable::class);
         $this->updatorService = app()->make(OfferUpdatable::class);
         $this->removerService = app()->make(OfferRemovable::class);
@@ -86,6 +94,11 @@ class OfferController extends Controller
      *        in="query",
      *        example="2020-06-25",
      *     ),
+     *     @OA\Parameter(
+     *        name="product",
+     *        in="query",
+     *        example="1",
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="",
@@ -129,6 +142,46 @@ class OfferController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     tags={"Offers"},
+     *     path="/offers/{id}/products",
+     *     @OA\Parameter(
+     *        name="name",
+     *        in="query",
+     *        example="teste",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/OfferProductResource"),
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @param Offer $model
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function products(Offer $model, Request $request)
+    {
+        try {
+            return OfferProductResource::collection($this->productRetrieverService->getProducts($model, $request->query())->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
      *
      * @OA\Post(
      *     tags={"Offers"},
@@ -145,7 +198,7 @@ class OfferController extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="message",
-     *                     example ="Offera criado com sucesso"
+     *                     example ="Oferta criado com sucesso"
      *                 )
      *             )
      *         )

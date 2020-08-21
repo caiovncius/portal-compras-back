@@ -266,6 +266,10 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('request.delete')
          ->middleware('acl:Request,r,w');
 
+
+    Route::get('/offers/{model}/products', 'OfferController@products')
+         ->name('offer.products')
+         ->middleware('acl:Offer,r');
     Route::get('/offers', 'OfferController@list')
          ->name('offer.list')
          ->middleware('acl:Offer,r');

@@ -53,7 +53,7 @@ class OfferProductResource extends JsonResource
             'quantityMinimum' => $this->quantityMinimum,
             'state_id' => $this->state_id,
             'product_id' => $this->product_id,
-            'productName' => $this->product->name,
+            'productName' => $this->product ? $this->product->name : '',
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];
