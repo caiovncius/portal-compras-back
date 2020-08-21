@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Acl.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Acl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_05_174545_create_offer_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_05_174545_create_offer_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_18_181322_update_offer_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_18_181322_update_offer_products_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +140,13 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/league/flysystem-sftp" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
     </include_path>
   </component>
   <component name="ProjectId" id="1c7zxJPLcC02Iv4v504aDKzH27G" />

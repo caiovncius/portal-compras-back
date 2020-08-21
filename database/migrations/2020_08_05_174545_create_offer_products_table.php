@@ -16,6 +16,7 @@ class CreateOfferProductsTable extends Migration
         Schema::create('offer_products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('offer_id');
+            $table->unsignedBigInteger('product_id');
             $table->integer('discountDeferred');
             $table->integer('discountOnCash');
             $table->integer('minimum');
@@ -36,6 +37,7 @@ class CreateOfferProductsTable extends Migration
 
             $table->foreign('offer_id')->references('id')->on('offers');
             $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
