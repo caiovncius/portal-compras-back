@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Offer;
 use Illuminate\Foundation\Http\FormRequest;
 
-
 /**
  * @OA\Schema(
  *     schema="OfferCreatorRequest",
@@ -25,6 +24,36 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="description",  type="string", example="asdasd"),
  *     @OA\Property(property="emails", ref="#/components/schemas/Email"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(
+ *         property="partners",
+ *         type="array",
+ *         @OA\Items(
+ *     @OA\Property(property="id", type="string", example="1"),
+ *     @OA\Property(property="type", type="string", example="PROVIDER"),
+ *         )
+ *     ),
+ *     @OA\Property(
+ *         property="products",
+ *         type="array",
+ *         @OA\Items(
+ *     @OA\Property(property="discountDeferred", type="string", example="2"),
+ *     @OA\Property(property="discountOnCash", type="string", example="4"),
+ *     @OA\Property(property="minimum", type="integer", example="10"),
+ *     @OA\Property(property="minimumPerFamily", type="integer", example="15"),
+ *     @OA\Property(property="obrigatory", type="boolean", example="1"),
+ *     @OA\Property(property="variable", type="boolean", example="1"),
+ *     @OA\Property(property="family", type="boolean", example="0"),
+ *     @OA\Property(property="gift", type="boolean", example="0"),
+ *     @OA\Property(property="factoryPrice", type="string", example="10.00"),
+ *     @OA\Property(property="priceDeferred", type="string", example="11.00"),
+ *     @OA\Property(property="priceOnCash", type="string", example="10.51"),
+ *     @OA\Property(property="productOnName", type="string", example="Teste"),
+ *     @OA\Property(property="quantityMaximum", type="integer", example="6"),
+ *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
+ *     @OA\Property(property="state_id", type="string", example="5"),
+ *     @OA\Property(property="product_id", type="string", example="5"),
+           )
+ *     ),
  * )
  */
 class OfferCreatorRequest extends FormRequest
@@ -55,6 +84,19 @@ class OfferCreatorRequest extends FormRequest
             'offerType' => 'nullable|in:NORMAL,COMBO,COLLECTIVE_BUYING',
             'startDate' => 'date',
             'endDate' => 'date|after_or_equal:startDate',
+            'products' => 'array|nullable',
+            'products.*.product_id' => 'required',
+            'products.*.discountDeferred' => 'required',
+            'products.*.discountOnCash' => 'required',
+            'products.*.minimum' => 'required',
+            'products.*.minimumPerFamily' => 'required',
+            'products.*.obrigatory' => 'required',
+            'products.*.factoryPrice' => 'required',
+            'products.*.priceDeferred' => 'required',
+            'products.*.priceOnCash' => 'required',
+            'products.*.quantityMaximum' => 'required',
+            'products.*.quantityMinimum' => 'required',
+            'products.*.state_id' => 'required',
         ];
     }
 
@@ -75,6 +117,18 @@ class OfferCreatorRequest extends FormRequest
             'sendType' => 'Tipo de Envio',
             'startDate' => 'Data inicial',
             'endDate' => 'Data final',
+            'products.*.product_id' => 'Produto',
+            'products.*.discountDeferred' => 'Desconto à prazo',
+            'products.*.discountOnCash' => 'Desconto à vista',
+            'products.*.minimum' => 'Qtd mínima de compra',
+            'products.*.minimumPerFamily' => 'QTD mínima por família',
+            'products.*.obrigatory' => 'Obrigatório',
+            'products.*.factoryPrice' => 'Preço de fábrica',
+            'products.*.priceDeferred' => 'Preço à prazo',
+            'products.*.priceOnCash' => 'Preço à vista',
+            'products.*.quantityMaximum' => 'QTD máxima',
+            'products.*.quantityMinimum' => 'QTD mínima',
+            'products.*.state_id' => 'Estado'
         ];
     }
 }

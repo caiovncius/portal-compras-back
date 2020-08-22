@@ -9,11 +9,11 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="OfferProductRequest",
  *     type="object",
  *     title="Offer update form request",
- @OA\Property(
+ *     @OA\Property(
  *         property="products",
  *         type="array",
  *         @OA\Items(
-                 *     @OA\Property(property="discountDeferred", type="string", example="2"),
+ *     @OA\Property(property="discountDeferred", type="string", example="2"),
  *     @OA\Property(property="discountOnCash", type="string", example="4"),
  *     @OA\Property(property="minimum", type="integer", example="10"),
  *     @OA\Property(property="minimumPerFamily", type="integer", example="15"),

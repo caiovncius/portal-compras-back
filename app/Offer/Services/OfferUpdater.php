@@ -27,6 +27,13 @@ class OfferUpdater implements OfferUpdatable
                     $model->partners()->attach($data['id'], ['type' => $data['type']]);
                 }
             }
+
+            if (isset($data['products'])) {
+                $model->products()->detach();
+                foreach ($data['products'] as $data) {
+                    $model->products()->attach($data['id'], ['type' => $data['type']]);
+                }
+            }
             
             return true;
         } catch (\Exception $e) {

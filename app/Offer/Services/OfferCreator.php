@@ -24,6 +24,13 @@ class OfferCreator implements OfferCreatable
                     $model->partners()->attach($data['id'], ['type' => $data['type']]);
                 }
             }
+            
+            if (isset($data['products'])) {
+                $model->products()->delete();
+                foreach ($data['products'] as $item) {
+                    $model->products()->create($item);
+                }
+            }
 
             return true;
         } catch (\Exception $exception) {
