@@ -18,6 +18,12 @@ class ConditionCreator implements ConditionCreatable
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $model = Condition::create($data);
 
+            if (isset($data['partners'])) {
+                foreach ($data['partners'] as $data) {
+                    $model->partners()->create($data);
+                }
+            }
+
             return true;
         } catch (\Exception $exception) {
             throw $exception;

@@ -19,6 +19,8 @@ class PublicityUpdater implements PublicityUpdatable
             $model->fill($data);
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
+            $model->date_create = $data['createDate'];
+            $model->date_publish = $data['publishDate'];
             $model->save();
             
             return true;

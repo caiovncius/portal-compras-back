@@ -31,7 +31,7 @@ class Condition extends Model
 
     public function pharmacy()
     {
-        return $this->belongsTo(Pharmacy::class, 'pharmacy_id');
+        return $this->belongsTo('App\Pharmacy', 'pharmacy_id');
     }
 
     public function partners()
