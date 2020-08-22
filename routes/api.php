@@ -156,6 +156,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::post('/distributors/{distributor}/connection', 'DistributorConnectionController@store')
          ->name('distributor.connection.store')
          ->middleware('acl:Connection,r,w');
+    Route::post('/distributors/{distributor}/returns', 'DistributorController@returns')
+         ->name('distributor.return.store')
+         ->middleware('acl:Distributor,r,w');
     Route::put('/distributors/{distributor}/connection/{connection}', 'DistributorConnectionController@update')
          ->name('distributor.connection.update')
          ->middleware('acl:Connection,r,w');
@@ -192,9 +195,13 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('program.delete')
          ->middleware('acl:Program,r,w');
 
-     Route::get('/programs/{model}/connection/test', 'ProgramConnectionController@test')
-         ->name('program.connection.test')
-         ->middleware('acl:Connection,r');
+
+    Route::post('/programs/{model}/returns', 'ProgramController@returns')
+         ->name('program.return.store')
+         ->middleware('acl:Program,r,w');
+    Route::get('/programs/{model}/connection/test', 'ProgramConnectionController@test')
+        ->name('program.connection.test')
+        ->middleware('acl:Connection,r');
     Route::post('/programs/{model}/connection', 'ProgramConnectionController@store')
          ->name('program.connection.store')
          ->middleware('acl:Connection,r,w');

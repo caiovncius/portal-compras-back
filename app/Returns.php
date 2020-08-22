@@ -23,6 +23,11 @@ class Returns extends Model
         'updated_id'
     ];
 
+    public function returnable()
+    {
+        return $this->morphTo();
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User', 'updated_id');

@@ -28,6 +28,11 @@ class Program extends Model
         return $this->morphMany('App\Contact', 'contactable');
     }
 
+    public function returns()
+    {
+        return $this->morphMany('App\Returns', 'returnable');
+    }
+
     public function connection()
     {
         return $this->morphOne('App\Connection', 'connectionable');

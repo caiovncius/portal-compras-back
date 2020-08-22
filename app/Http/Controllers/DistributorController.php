@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DistributorCreatorRequest;
-use App\Http\Requests\DistributorUpdatorRequest;
-use App\Http\Resources\DistributorListResource;
-use App\Http\Resources\DistributorResource;
 use App\Distributor;
 use App\Distributor\Contracts\DistributorCreatable;
+use App\Distributor\Contracts\DistributorRemovable;
 use App\Distributor\Contracts\DistributorRetrievable;
 use App\Distributor\Contracts\DistributorUpdatable;
-use App\Distributor\Contracts\DistributorRemovable;
+use App\Http\Requests\DistributorCreatorRequest;
+use App\Http\Requests\DistributorUpdatorRequest;
+use App\Http\Requests\ReturnMorphRequest;
+use App\Http\Resources\DistributorListResource;
+use App\Http\Resources\DistributorResource;
+use App\Returns\Contracts\ReturnsMorphCreatable;
 use Illuminate\Http\Request;
 
 class DistributorController extends Controller
@@ -24,6 +26,11 @@ class DistributorController extends Controller
      * @var DistributorCreatable
      */
     private $creatorService;
+
+    /**
+    * @var ReturnMorphCreatable
+    */
+    private $returnService;
 
     /**
      * @var DistributorUpdatable
@@ -44,6 +51,7 @@ class DistributorController extends Controller
     {
         $this->retrieverService = app()->make(DistributorRetrievable::class);
         $this->creatorService = app()->make(DistributorCreatable::class);
+        $this->returnService = app()->make(ReturnsMorphCreatable::class);
         $this->updatorService = app()->make(DistributorUpdatable::class);
         $this->removerService = app()->make(DistributorRemovable::class);
     }
@@ -198,6 +206,68 @@ class DistributorController extends Controller
         try {
             $data = $this->creatorService->store($request->all());
             return response()->json(['message' => 'Distribuidor criado com sucesso', 'data' => $data], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Post(
+     *     tags={"Distributors"},
+     *     path="/distributors/{distributor}/returns",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ReturnMorphRequest")
+     *      ),
+     *     @OA\Parameter(
+     *        name="distributor",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="retornos criados com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *     response=422,
+     *     description="",
+     *     @OA\JsonContent(ref="#/components/schemas/ValidationResponse")
+     * ),
+     * @OA\Response(
+     *     response=400,
+     *     description="",
+     *     @OA\JsonContent(
+     *         @OA\Property(
+     *             property="error",
+     *             example ="Mensagem de erro"
+     *         )
+     *     )
+     * )
+     *
+     * )
+     */
+
+    /**
+     * @param ReturnMorphRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function returns(Distributor $distributor, ReturnMorphRequest $request)
+    {
+        try {
+            $this->returnService->returns($distributor, $request->all());
+
+            return response()->json(['message' => 'retornos criados com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

@@ -1246,6 +1246,73 @@
                 }
             }
         },
+        "/distributors/{distributor}/returns": {
+            "post": {
+                "tags": [
+                    "Distributors"
+                ],
+                "parameters": [
+                    {
+                        "name": "distributor",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReturnMorphRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "retornos criados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/distributors/{distributor}": {
             "get": {
                 "tags": [
@@ -1734,6 +1801,11 @@
                         "name": "endDate",
                         "in": "query",
                         "example": "2020-06-25"
+                    },
+                    {
+                        "name": "product",
+                        "in": "query",
+                        "example": "1"
                     }
                 ],
                 "responses": {
@@ -3306,6 +3378,73 @@
                                     "properties": {
                                         "message": {
                                             "example": "Programa criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/programs/{model}/returns": {
+            "post": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "model",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReturnMorphRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "retornos criados com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -6072,6 +6211,31 @@
                 },
                 "type": "object"
             },
+            "ReturnMorphRequest": {
+                "title": "Return morph form request",
+                "properties": {
+                    "returns": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "example": "001"
+                                },
+                                "desc": {
+                                    "type": "integer",
+                                    "example": "TESTE"
+                                },
+                                "status": {
+                                    "$ref": "#/components/schemas/UserStatus"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ReturnUpdatorRequest": {
                 "title": "Return form request",
                 "properties": {
@@ -7474,9 +7638,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://localhost/oauth/authorize",
-                        "tokenUrl": "http://localhost/oauth/token",
-                        "refreshUrl": "http://localhost/token/refresh",
+                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
+                        "tokenUrl": "http://localhost:8000/oauth/token",
+                        "refreshUrl": "http://localhost:8000/token/refresh",
                         "scopes": []
                     }
                 }

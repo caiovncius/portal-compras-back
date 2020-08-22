@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProgramCreatorRequest;
 use App\Http\Requests\ProgramUpdatorRequest;
+use App\Http\Requests\ReturnMorphRequest;
 use App\Http\Resources\ProgramListResource;
 use App\Http\Resources\ProgramResource;
 use App\Program;
@@ -11,6 +12,7 @@ use App\Program\Contracts\ProgramCreatable;
 use App\Program\Contracts\ProgramRemovable;
 use App\Program\Contracts\ProgramRetrievable;
 use App\Program\Contracts\ProgramUpdatable;
+use App\Returns\Contracts\ReturnsMorphCreatable;
 use Illuminate\Http\Request;
 
 class ProgramController extends Controller
@@ -24,6 +26,11 @@ class ProgramController extends Controller
      * @var ProgramCreatable
      */
     private $creatorService;
+
+    /**
+    * @var ReturnsMorphCreatable
+    */
+    private $returnService;
 
     /**
      * @var ProgramUpdatable
@@ -44,6 +51,7 @@ class ProgramController extends Controller
     {
         $this->retrieverService = app()->make(ProgramRetrievable::class);
         $this->creatorService = app()->make(ProgramCreatable::class);
+        $this->returnService = app()->make(ReturnsMorphCreatable::class);
         $this->updatorService = app()->make(ProgramUpdatable::class);
         $this->removerService = app()->make(ProgramRemovable::class);
     }
@@ -159,6 +167,68 @@ class ProgramController extends Controller
         try {
             $data = $this->creatorService->store($request->all());
             return response()->json(['message' => 'Programa criado com sucesso', 'data' => $data], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Post(
+     *     tags={"Programs"},
+     *     path="/programs/{model}/returns",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ReturnMorphRequest")
+     *      ),
+     *     @OA\Parameter(
+     *        name="model",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="retornos criados com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *     response=422,
+     *     description="",
+     *     @OA\JsonContent(ref="#/components/schemas/ValidationResponse")
+     * ),
+     * @OA\Response(
+     *     response=400,
+     *     description="",
+     *     @OA\JsonContent(
+     *         @OA\Property(
+     *             property="error",
+     *             example ="Mensagem de erro"
+     *         )
+     *     )
+     * )
+     *
+     * )
+     */
+
+    /**
+     * @param ReturnMorphRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function returns(Program $model, ReturnMorphRequest $request)
+    {
+        try {
+            $this->returnService->returns($model, $request->all());
+
+            return response()->json(['message' => 'retornos criados com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
