@@ -5885,6 +5885,94 @@
                     },
                     "emails": {
                         "$ref": "#/components/schemas/Email"
+                    },
+                    "partners": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "1"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "PROVIDER"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "discountDeferred": {
+                                    "type": "string",
+                                    "example": "2"
+                                },
+                                "discountOnCash": {
+                                    "type": "string",
+                                    "example": "4"
+                                },
+                                "minimum": {
+                                    "type": "integer",
+                                    "example": "10"
+                                },
+                                "minimumPerFamily": {
+                                    "type": "integer",
+                                    "example": "15"
+                                },
+                                "obrigatory": {
+                                    "type": "boolean",
+                                    "example": "1"
+                                },
+                                "variable": {
+                                    "type": "boolean",
+                                    "example": "1"
+                                },
+                                "family": {
+                                    "type": "boolean",
+                                    "example": "0"
+                                },
+                                "gift": {
+                                    "type": "boolean",
+                                    "example": "0"
+                                },
+                                "factoryPrice": {
+                                    "type": "string",
+                                    "example": "10.00"
+                                },
+                                "priceDeferred": {
+                                    "type": "string",
+                                    "example": "11.00"
+                                },
+                                "priceOnCash": {
+                                    "type": "string",
+                                    "example": "10.51"
+                                },
+                                "productOnName": {
+                                    "type": "string",
+                                    "example": "Teste"
+                                },
+                                "quantityMaximum": {
+                                    "type": "integer",
+                                    "example": "6"
+                                },
+                                "quantityMinimum": {
+                                    "type": "integer",
+                                    "example": "10"
+                                },
+                                "state_id": {
+                                    "type": "string",
+                                    "example": "5"
+                                },
+                                "product_id": {
+                                    "type": "string",
+                                    "example": "5"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
