@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/City.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/cities.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/cities.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_20_145734_create_cities_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_145734_create_cities_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/CreateCities.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CreateCities.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CityResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CityResource.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,14 +221,7 @@
       <workItem from="1593614278033" duration="1122000" />
       <workItem from="1594436271250" duration="554000" />
       <workItem from="1598123706801" duration="7000" />
-      <workItem from="1598123737477" duration="2218000" />
-    </task>
-    <task id="LOCAL-00022" summary="Corrigido request de usuários">
-      <created>1591269409816</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1591269409816</updated>
+      <workItem from="1598123737477" duration="2316000" />
     </task>
     <task id="LOCAL-00023" summary="Correção da listagem de perfis">
       <created>1591311865769</created>
@@ -569,7 +559,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598116008884</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Adicionado códigos do ibge na tabela de cidades">
+      <created>1598126416642</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1598126416643</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +586,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Corrigido descrição da API" />
     <MESSAGE value="Adicionado constantes" />
     <MESSAGE value="Chaves" />
     <MESSAGE value="Ajuste na documentação" />
@@ -614,7 +610,8 @@
     <MESSAGE value="Fix" />
     <MESSAGE value="teste deploy" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="Adicionado códigos do ibge na tabela de cidades" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adicionado códigos do ibge na tabela de cidades" />
   </component>
   <component name="WindowStateProjectService">
     <state x="224" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1593265308479">
@@ -627,13 +624,13 @@
     </state>
     <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590679558111" />
     <state x="576" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.2560.1011@0.23.2560.1011" timestamp="1593098557029" />
-    <state x="1508" y="-257" key="CommitChangelistDialog2" timestamp="1598116008479">
+    <state x="1508" y="-257" key="CommitChangelistDialog2" timestamp="1598126416207">
       <screen x="1280" y="-257" width="2560" height="1011" />
     </state>
     <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1593523828845" />
     <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114643839" />
     <state x="228" y="23" key="CommitChangelistDialog2/0.23.2560.1011@0.23.2560.1011" timestamp="1594436301216" />
-    <state x="1508" y="-257" key="CommitChangelistDialog2/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598116008479" />
+    <state x="1508" y="-257" key="CommitChangelistDialog2/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598126416207" />
     <state x="100" y="122" width="1479" height="811" key="DiffContextDialog" timestamp="1591114597201">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -658,13 +655,13 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="348" y="167" key="SettingsEditor/0.23.1920.1011@0.23.1920.1011" timestamp="1589999400094" />
-    <state x="1760" y="-112" key="Vcs.Push.Dialog.v2" timestamp="1598116012149">
+    <state x="1760" y="-112" key="Vcs.Push.Dialog.v2" timestamp="1598126418879">
       <screen x="1280" y="-257" width="2560" height="1011" />
     </state>
     <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1593523830183" />
     <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114679421" />
     <state x="480" y="168" key="Vcs.Push.Dialog.v2/0.23.2560.1011@0.23.2560.1011" timestamp="1594436302714" />
-    <state x="1760" y="-112" key="Vcs.Push.Dialog.v2/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598116012149" />
+    <state x="1760" y="-112" key="Vcs.Push.Dialog.v2/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598126418879" />
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591059078375">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
