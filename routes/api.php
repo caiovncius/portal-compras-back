@@ -36,8 +36,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('user.managers')
          ->middleware('acl:User,r');
     Route::get('/users/profile', 'UserController@profile')
-         ->name('user.profile')
-         ->middleware('acl:User,r');
+         ->name('user.profile');
     Route::post('/users/password', 'UserController@password')
          ->name('user.password')
          ->middleware('acl:User,r,w');
