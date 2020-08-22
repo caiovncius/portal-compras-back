@@ -28,6 +28,7 @@ class City extends Model
      */
     protected $fillable = [
         'name',
-        'state_id'
+        'state_id',
+        'ibge_code',
     ];
 }
