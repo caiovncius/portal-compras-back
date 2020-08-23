@@ -12,6 +12,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="id", type="integer", example="1"),
  *     @OA\Property(property="code", type="integer", example="01"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
+ *     *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ContactListResource")
+ *     ),
  *     @OA\Property(property="name", type="string", example="Teste 02"),
  * )
  */
