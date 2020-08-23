@@ -34,7 +34,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(
  *         property="products",
  *         type="array",
- *         @OA\Items(ref="#/components/schemas/OfferProductResource")
+ *         @OA\Items(ref="#/components/schemas/ProductDetailResource")
  *     ),
  * )
  */
@@ -66,7 +66,7 @@ class OfferListResource extends JsonResource
             'description' => $this->description,
             'emails' => $this->emails,
             'partners' => DistributorListResource::collection($this->partners),
-            'products' => OfferProductResource::collection($this->products),
+            'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];

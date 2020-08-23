@@ -1986,7 +1986,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/OfferProductResource"
+                                                "$ref": "#/components/schemas/ProductDetailResource"
                                             }
                                         }
                                     },
@@ -4170,6 +4170,40 @@
                                                     "$ref": "#/components/schemas/PaginationMeta"
                                                 }
                                             ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/purchases/{id}/products": {
+            "get": {
+                "tags": [
+                    "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "teste"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProductDetailResource"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -7106,7 +7140,7 @@
                     "products": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/OfferProductResource"
+                            "$ref": "#/components/schemas/ProductDetailResource"
                         }
                     }
                 },
@@ -7162,76 +7196,6 @@
                     "description": {
                         "type": "string",
                         "example": "asdqwe"
-                    }
-                },
-                "type": "object"
-            },
-            "OfferProductResource": {
-                "title": "Offer Product Response",
-                "properties": {
-                    "discountDeferred": {
-                        "type": "string",
-                        "example": "2"
-                    },
-                    "discountOnCash": {
-                        "type": "string",
-                        "example": "4"
-                    },
-                    "minimum": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "minimumPerFamily": {
-                        "type": "integer",
-                        "example": "15"
-                    },
-                    "obrigatory": {
-                        "type": "boolean",
-                        "example": "1"
-                    },
-                    "variable": {
-                        "type": "boolean",
-                        "example": "1"
-                    },
-                    "family": {
-                        "type": "boolean",
-                        "example": "0"
-                    },
-                    "gift": {
-                        "type": "boolean",
-                        "example": "0"
-                    },
-                    "factoryPrice": {
-                        "type": "string",
-                        "example": "10.00"
-                    },
-                    "priceDeferred": {
-                        "type": "string",
-                        "example": "11.00"
-                    },
-                    "priceOnCash": {
-                        "type": "string",
-                        "example": "10.51"
-                    },
-                    "productName": {
-                        "type": "string",
-                        "example": "Teste"
-                    },
-                    "quantityMaximum": {
-                        "type": "integer",
-                        "example": "6"
-                    },
-                    "quantityMinimum": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "state_id": {
-                        "type": "string",
-                        "example": "5"
-                    },
-                    "product_id": {
-                        "type": "string",
-                        "example": "5"
                     }
                 },
                 "type": "object"
@@ -7401,6 +7365,76 @@
                     "createdAt": {
                         "type": "datetime",
                         "example": "2020-05-25T05:09:15.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductDetailResource": {
+                "title": "Product detail Response",
+                "properties": {
+                    "discountDeferred": {
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "discountOnCash": {
+                        "type": "string",
+                        "example": "4"
+                    },
+                    "minimum": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "minimumPerFamily": {
+                        "type": "integer",
+                        "example": "15"
+                    },
+                    "obrigatory": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "variable": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "family": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "gift": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "factoryPrice": {
+                        "type": "string",
+                        "example": "10.00"
+                    },
+                    "priceDeferred": {
+                        "type": "string",
+                        "example": "11.00"
+                    },
+                    "priceOnCash": {
+                        "type": "string",
+                        "example": "10.51"
+                    },
+                    "productName": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "quantityMaximum": {
+                        "type": "integer",
+                        "example": "6"
+                    },
+                    "quantityMinimum": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "state_id": {
+                        "type": "string",
+                        "example": "5"
+                    },
+                    "product_id": {
+                        "type": "string",
+                        "example": "5"
                     }
                 },
                 "type": "object"
@@ -7696,8 +7730,8 @@
             "RequestProductResource": {
                 "title": "RequestProductResource Response",
                 "properties": {
-                    "offerProduct": {
-                        "$ref": "#/components/schemas/OfferProductResource"
+                    "product": {
+                        "$ref": "#/components/schemas/ProductListResource"
                     },
                     "qtd": {
                         "type": "string",

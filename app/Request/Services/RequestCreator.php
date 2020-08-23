@@ -18,6 +18,7 @@ class RequestCreator implements RequestCreatable
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $data['offer_id'] = $data['offerId'];
             $data['pharmacy_id'] = $data['pharmacyId'];
+            $data['status'] = 0;
             $model = Request::create($data);
 
             if (isset($data['products'])) {

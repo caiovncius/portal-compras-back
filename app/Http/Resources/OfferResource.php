@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\OfferProductResource;
+use App\Http\Resources\ProductDetailResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -57,7 +57,7 @@ class OfferResource extends JsonResource
             'impound' => $this->impound,
             'description' => $this->description,
             'emails' => $this->emails,
-            'products' => OfferProductResource::collection($this->products),
+            'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];
