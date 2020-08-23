@@ -22,6 +22,7 @@ class CreateCities extends Seeder
                 ->first();
             if (is_null($existCity)) {
                 \App\City::create([
+                    'ibge_code' => $city['ibge_code'],
                     'name' => $city['name'],
                     'state_id' => $state->id
                 ]);
