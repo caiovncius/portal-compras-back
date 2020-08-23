@@ -41,7 +41,7 @@ class OfferPortalResource extends JsonResource
             'name' => $this->name,
             'startDate' => $this->startDate,
             'endDate' => $this->endDate,
-            'condition' => $this->condition->description,
+            'condition' => $this->condition ? $this->condition->description : '',
             'minimumPrice' => $this->minimumPrice,
             'offerType' => $this->offerType,
             'sendType' => $this->sendType,

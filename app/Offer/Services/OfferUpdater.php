@@ -20,7 +20,9 @@ class OfferUpdater implements OfferUpdatable
             $model->fill($data);
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
-            $model->image = FileUploader::uploadFile($data['image']);
+            if (strpos($data['image'], 'base64') !== false) {
+                $model->image = FileUploader::uploadFile($data['image']);
+            }
             $model->condition_id = $data['condition'];
             $model->save();
 

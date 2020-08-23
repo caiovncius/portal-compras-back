@@ -18,7 +18,9 @@ class OfferCreator implements OfferCreatable
     {
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
-            $data['image'] = FileUploader::uploadFile($data['image']);
+            if (strpos($data['image'], 'base64') !== false) {
+                $data['image'] = FileUploader::uploadFile($data['image']);
+            }
             $data['condition_id'] = $data['condition'];
             $model = Offer::create($data);
             

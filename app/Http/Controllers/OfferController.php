@@ -202,8 +202,10 @@ class OfferController extends Controller
     public function portal(Request $request)
     {
         try {
-            $request->merge(['status' => 'ACTIVE']);
-            return OfferPortalResource::collection($this->retrieverService->getOffers($request->query())->paginate(10));
+            $input = $request->all();
+            $input['status'] = 'ACTIVE';
+
+            return OfferPortalResource::collection($this->retrieverService->getOffers($input)->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
