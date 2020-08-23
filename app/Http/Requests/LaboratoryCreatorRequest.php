@@ -38,7 +38,12 @@ class LaboratoryCreatorRequest extends FormRequest
         return [
             'code' => 'required|string|numeric|unique:laboratories',
             'name' => 'required|string',
-            'status' => 'required|in:ACTIVE,INACTIVE'
+            'status' => 'required|in:ACTIVE,INACTIVE',
+            'conatacts' => 'array',
+            'conatacts.*.name' => 'string|required',
+            'conatacts.*.email' => 'email|required',
+            'conatacts.*.function' => 'string|required',
+            'conatacts.*.telephone' => 'string|required',
         ];
     }
 

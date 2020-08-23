@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 class Laboratory extends Model
 {
     use LaboratoryScopes;
-    
+
     protected $fillable = [
         'code',
         'name',
@@ -26,8 +26,19 @@ class Laboratory extends Model
         'updated_id'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User', 'updated_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function contacts()
+    {
+        return $this->morphMany('App\Contact', 'contactable');
     }
 }

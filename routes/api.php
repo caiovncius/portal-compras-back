@@ -135,6 +135,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/laboratories/{laboratory}', 'LaboratoryController@delete')
          ->name('laboratory.delete')
          ->middleware('acl:Laboratory,r,w');
+    Route::post('/laboratories/{laboratory}/add-contact', 'LaboratoryController@addContact')
+        ->name('laboratory.contacts.add')
+        ->middleware('acl:Laboratory,r,w');
 
 
     Route::get('/contacts', 'ContactController@list')
@@ -262,7 +265,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/purchases/{model}', 'PurchaseController@delete')
          ->name('purchase.delete')
          ->middleware('acl:Purchase,r,w');
-    
+
     Route::get('/offers', 'OfferController@list')
          ->name('offer.list')
          ->middleware('acl:Offer,r');

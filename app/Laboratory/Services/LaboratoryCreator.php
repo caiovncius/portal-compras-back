@@ -17,9 +17,16 @@ class LaboratoryCreator implements LaboratoryCreatable
     {
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
-            $Laboratory = Laboratory::create($data);
+            $laboratory = Laboratory::create($data);
 
-            return true;
+            if (isset($data['contacts']) && !empty($data['contacts'])) {
+                foreach($data['contacts'] as $contact) {
+                    $contact['updated_id'] = auth()->guard('api')->user()->id;
+                    $laboratory->contacts()->create($contact);
+                }
+            }
+
+            return $laboratory;
         } catch (\Exception $e) {
             throw $e;
         }
