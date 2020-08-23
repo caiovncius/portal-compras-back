@@ -21,10 +21,18 @@ class DistributorUpdater implements DistributorUpdatable
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
             $model->save();
+            
             if (isset($data['contacts'])) {
                 $model->contacts()->delete();
                 foreach ($data['contacts'] as $data) {
                     $model->contacts()->create($data);
+                }
+            }
+            
+            if (isset($data['returns'])) {
+                $model->returns()->delete();
+                foreach ($data['returns'] as $data) {
+                    $model->returns()->create($data);
                 }
             }
 

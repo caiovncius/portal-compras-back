@@ -31,4 +31,19 @@ class Condition extends Model
     {
         return $this->belongsTo('App\User', 'updated_id');
     }
+
+    public function partners()
+    {
+        return $this->hasMany('App\ConditionPartner', 'condition_id');
+    }
+
+    public function getPartners()
+    {
+        $data = [];
+        foreach($this->partners as $partner) {
+            $data[] = $partner->partner;
+        }
+
+        return (object) $data;
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Distributor;
+use App\Program;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,5 +26,12 @@ class ConditionPartner extends Model
     public function condition()
     {
         return $this->belongsTo('App\Condition', 'condition_id');
+    }
+
+    public function getPartnerAttribute()
+    {
+    	$model = $this->partnerType == 'DISTRIBUTOR' ? Distributor::find($this->partnerId) : Program::find($this->partnerId);
+
+    	return $model;
     }
 }

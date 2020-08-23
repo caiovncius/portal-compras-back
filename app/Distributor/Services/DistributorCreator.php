@@ -24,6 +24,13 @@ class DistributorCreator implements DistributorCreatable
                     $model->contacts()->create($data);
                 }
             }
+            
+            if (isset($data['returns'])) {
+                $model->returns()->delete();
+                foreach ($data['returns'] as $data) {
+                    $model->returns()->create($data);
+                }
+            }
 
             return $model;
         } catch (\Exception $exception) {

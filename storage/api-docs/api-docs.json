@@ -5583,6 +5583,22 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "partners": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "partnerId": {
+                                    "type": "integer",
+                                    "example": "1"
+                                },
+                                "partnerType": {
+                                    "type": "string",
+                                    "example": "DISTRIBUTOR"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
@@ -5604,6 +5620,22 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "partners": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "partnerId": {
+                                    "type": "integer",
+                                    "example": "1"
+                                },
+                                "partnerType": {
+                                    "type": "string",
+                                    "example": "DISTRIBUTOR"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
@@ -6905,7 +6937,7 @@
                     "partners": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/DistributorContacts"
+                            "$ref": "#/components/schemas/PartnerResource"
                         }
                     }
                 },
@@ -7263,6 +7295,32 @@
                         "items": {
                             "$ref": "#/components/schemas/Email"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "PartnerResource": {
+                "title": "Partner Response",
+                "properties": {
+                    "partnerId": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "partnerType": {
+                        "type": "string",
+                        "example": "DISTRIBUTOR"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "cnpj": {
+                        "type": "string",
+                        "example": "Teste"
                     }
                 },
                 "type": "object"
