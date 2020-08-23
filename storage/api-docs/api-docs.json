@@ -4,6 +4,11 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": ""
+        }
+    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -1751,6 +1756,73 @@
                                     "properties": {
                                         "error": {
                                             "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/laboratories/{laboratory}/add-contact": {
+            "post": {
+                "tags": [
+                    "Laboratories"
+                ],
+                "parameters": [
+                    {
+                        "name": "Laboratory",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ContactCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Contato adicionado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
                                         }
                                     },
                                     "type": "object"
@@ -5740,7 +5812,7 @@
                 "properties": {
                     "function": {
                         "type": "integer",
-                        "example": "00.0001/0004.14"
+                        "example": "Test"
                     },
                     "name": {
                         "type": "string",
@@ -5752,7 +5824,7 @@
                     },
                     "telephone": {
                         "type": "string",
-                        "example": "112345647"
+                        "example": "(62) 9 9999-9999"
                     }
                 },
                 "type": "object"
@@ -6891,6 +6963,14 @@
                     "status": {
                         "type": "string",
                         "example": "Ativo"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "object"
@@ -6933,6 +7013,14 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     },
                     "partners": {
                         "type": "array",
@@ -6977,6 +7065,14 @@
                     "pathReturn": {
                         "type": "string",
                         "example": "123"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "Connection"
@@ -7054,6 +7150,14 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
+                    },
                     "contacts": {
                         "type": "array",
                         "items": {
@@ -7080,6 +7184,14 @@
                     "key": {
                         "type": "integer",
                         "example": "002W"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "object"
@@ -7098,6 +7210,20 @@
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactListResource"
+                        }
                     },
                     "name": {
                         "type": "string",
@@ -7156,6 +7282,14 @@
                     "description": {
                         "type": "string",
                         "example": "asdqwe"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     },
                     "email": {
                         "type": "array",
@@ -7290,6 +7424,14 @@
                         "type": "string",
                         "example": "asdasd"
                     },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
+                    },
                     "emails": {
                         "type": "array",
                         "items": {
@@ -7423,6 +7565,14 @@
                     "createdAt": {
                         "type": "datetime",
                         "example": "2020-05-25T05:09:15.000000Z"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "object"
@@ -7493,6 +7643,14 @@
                     "product_id": {
                         "type": "string",
                         "example": "5"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "object"
@@ -7601,6 +7759,14 @@
                     "type": {
                         "$ref": "#/components/schemas/UserType"
                     },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
+                    },
                     "permissions": {
                         "type": "array",
                         "items": {
@@ -7652,6 +7818,14 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
+                    },
                     "contacts": {
                         "type": "array",
                         "items": {
@@ -7686,6 +7860,14 @@
                     "publishDate": {
                         "type": "date",
                         "example": "2010-10-11"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     },
                     "images": {
                         "type": "array",
@@ -7763,6 +7945,14 @@
                     "relatedQuantity": {
                         "type": "integer",
                         "example": "1"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "object"
@@ -7781,6 +7971,14 @@
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "object"
@@ -7821,6 +8019,14 @@
                         "type": "string",
                         "example": "ACTIVE"
                     },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
+                    },
                     "products": {
                         "type": "array",
                         "items": {
@@ -7848,6 +8054,14 @@
                     "status": {
                         "type": "string",
                         "example": "ATIVO"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "Return"
@@ -7975,6 +8189,14 @@
                     "createdAt": {
                         "type": "datetime",
                         "example": "2020-05-25T05:09:15.000000Z"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "object"
@@ -8246,9 +8468,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
-                        "tokenUrl": "http://localhost:8000/oauth/token",
-                        "refreshUrl": "http://localhost:8000/token/refresh",
+                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
+                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
+                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
                         "scopes": []
                     }
                 }

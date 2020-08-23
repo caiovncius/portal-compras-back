@@ -13,6 +13,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="code", type="integer", example="1"),
  *     @OA\Property(property="description", type="string", example="Teste"),
  *     @OA\Property(property="status", type="string", example="ATIVO"),
+ *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
  * )
  */
 
@@ -31,8 +33,8 @@ class ReturnListResource extends JsonResource
             'code' => $this->code,
             'description' => $this->desc,
             'status' => $this->status,
-            'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'updatedUser' => $this->user ? $this->user->name : '',
+            'updatedDate' => $this->updated_at
         ];
     }
 }

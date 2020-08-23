@@ -21,11 +21,27 @@ class LaboratoryUpdator implements LaboratoryUpdatable
         try {
             $model->fill($laboratoryData);
             $model->updated_id = auth()->guard('api')->user()->id;
-            $model->updated_at = date('Y-m-d H:i:s');
             $model->save();
 
             return true;
 
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    /**
+     * @param Laboratory $laboratory
+     * @param array $contactData
+     * @return bool
+     * @throws \Exception
+     */
+    public function addContact(Laboratory $laboratory, array $contactData)
+    {
+        try {
+            $contactData['updated_id'] = auth()->guard('api')->user()->id;
+            $laboratory->contacts()->create($contactData);
+            return true;
         } catch (\Exception $exception) {
             throw $exception;
         }
