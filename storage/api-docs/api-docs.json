@@ -5780,7 +5780,7 @@
                 "properties": {
                     "function": {
                         "type": "integer",
-                        "example": "00.0001/0004.14"
+                        "example": "Test"
                     },
                     "name": {
                         "type": "string",
@@ -5792,7 +5792,7 @@
                     },
                     "telephone": {
                         "type": "string",
-                        "example": "112345647"
+                        "example": "(62) 9 9999-9999"
                     }
                 },
                 "type": "object"

@@ -12,10 +12,10 @@ use Illuminate\Foundation\Http\FormRequest;
  *     type="object",
  *     title="Contact form request",
  *     required={"function", "name", "email", "telephone"},
- *     @OA\Property(property="function", type="integer", example="00.0001/0004.14"),
+ *     @OA\Property(property="function", type="integer", example="Test"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="email", type="string", example="teste@domain.com"),
- *     @OA\Property(property="telephone", type="string", example="112345647"),
+ *     @OA\Property(property="telephone", type="string", example="(62) 9 9999-9999"),
  * )
  */
 class ContactCreatorRequest extends FormRequest
