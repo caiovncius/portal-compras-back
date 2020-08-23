@@ -1784,7 +1784,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/LaboratoryCreatorRequest"
+                                "$ref": "#/components/schemas/ContactCreatorRequest"
                             }
                         }
                     }
@@ -1797,7 +1797,7 @@
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "example": "Laboratório atualizado com sucesso"
+                                            "example": "Contato adicionado com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -1822,7 +1822,7 @@
                                 "schema": {
                                     "properties": {
                                         "error": {
-                                            "example": "Mensagem de error"
+                                            "example": "Mensagem de erro"
                                         }
                                     },
                                     "type": "object"

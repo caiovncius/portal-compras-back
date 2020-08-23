@@ -347,7 +347,7 @@ class LaboratoryController extends Controller
      *     path="/laboratories/{laboratory}/add-contact",
      *     @OA\RequestBody(
      *          required=true,
-     *          @@OA\JsonContent(ref="#/components/schemas/ContactCreatorRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/ContactCreatorRequest")
      *      ),
      *     @OA\Parameter(
      *        name="Laboratory",
