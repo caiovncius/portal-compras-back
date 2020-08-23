@@ -6,9 +6,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="OfferListResource",
+ *     schema="OfferPortalResource",
  *     type="object",
- *     title="Offer List Response",
+ *     title="Offer Portal Response",
  *     @OA\Property(property="id", type="integer", example="1"),
  *     @OA\Property(property="code", type="string", example="01"),
  *     @OA\Property(property="name", type="string", example="Teste"),
@@ -21,25 +21,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="noAutomaticSending", type="boolean", example="true"),
  *     @OA\Property(property="impound", type="boolean", example="false"),
  *     @OA\Property(property="description", type="string", example="asdqwe"),
- *     @OA\Property(
- *         property="email",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Email")
- *     ),
- *     @OA\Property(
- *         property="partners",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/DistributorListResource")
- *     ),
- *     @OA\Property(
- *         property="products",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/OfferProductResource")
- *     ),
  * )
  */
 
-class OfferListResource extends JsonResource
+class OfferPortalResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -54,21 +39,15 @@ class OfferListResource extends JsonResource
             'image' => $this->image,
             'code' => $this->code,
             'name' => $this->name,
-            'status' => $this->status,
             'startDate' => $this->startDate,
             'endDate' => $this->endDate,
-            'condition' => $this->condition_id,
+            'condition' => $this->condition->description,
             'minimumPrice' => $this->minimumPrice,
             'offerType' => $this->offerType,
             'sendType' => $this->sendType,
             'noAutomaticSending' => $this->noAutomaticSending,
             'impound' => $this->impound,
-            'description' => $this->description,
-            'emails' => $this->emails,
-            'partners' => DistributorListResource::collection($this->partners),
-            'products' => OfferProductResource::collection($this->products),
-            'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'description' => $this->description
         ];
     }
 }

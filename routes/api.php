@@ -279,6 +279,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/offers', 'OfferController@list')
          ->name('offer.list')
          ->middleware('acl:Offer,r');
+    Route::get('/offers/portal', 'OfferController@portal')
+         ->name('offer.list')
+         ->middleware('acl:Offer,r');
     Route::get('/offers/{model}', 'OfferController@get')
          ->name('offer.get')
          ->middleware('acl:Offer,r');

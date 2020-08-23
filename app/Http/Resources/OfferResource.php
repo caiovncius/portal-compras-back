@@ -49,7 +49,7 @@ class OfferResource extends JsonResource
             'status' => $this->status,
             'startDate' => $this->startDate,
             'endDate' => $this->endDate,
-            'condition' => $this->condition,
+            'condition' => $this->condition_id,
             'minimumPrice' => $this->minimumPrice,
             'offerType' => $this->offerType,
             'sendType' => $this->sendType,

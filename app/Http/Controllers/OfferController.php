@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OfferCreatorRequest;
 use App\Http\Requests\OfferUpdatorRequest;
 use App\Http\Resources\OfferListResource;
+use App\Http\Resources\OfferPortalResource;
 use App\Http\Resources\OfferProductResource;
 use App\Offer;
 use App\Offer\Contracts\OfferCreatable;
@@ -136,6 +137,73 @@ class OfferController extends Controller
     {
         try {
             return OfferListResource::collection($this->retrieverService->getOffers($request->query())->paginate(10));
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *     tags={"Offers"},
+     *     path="/offers/portal",
+     *     @OA\Parameter(
+     *        name="name",
+     *        in="query",
+     *        example="teste",
+     *     ),
+     *     @OA\Parameter(
+     *        name="partner",
+     *        in="query",
+     *        example="1",
+     *     ),
+     *     @OA\Parameter(
+     *        name="partnerType",
+     *        in="query",
+     *        example="DISTRIBUTOR",
+     *     ),
+     *     @OA\Parameter(
+     *        name="product",
+     *        in="query",
+     *        example="1",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/OfferPortalResource"),
+     *                 ),
+     *                 @OA\Property(
+     *                     property="links",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationLinks"),
+     *                     }
+     *                 ),
+     *                  @OA\Property(
+     *                     property="meta",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationMeta"),
+     *                     }
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function portal(Request $request)
+    {
+        try {
+            $request->merge(['status' => 'ACTIVE']);
+            return OfferPortalResource::collection($this->retrieverService->getOffers($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

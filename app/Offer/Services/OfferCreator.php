@@ -3,6 +3,7 @@
 
 namespace App\Offer\Services;
 
+use App\Helpers\FileUploader;
 use App\Offer;
 use App\Offer\Contracts\OfferCreatable;
 
@@ -17,6 +18,8 @@ class OfferCreator implements OfferCreatable
     {
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
+            $data['image'] = FileUploader::uploadFile($data['image']);
+            $data['condition_id'] = $data['condition'];
             $model = Offer::create($data);
             
             if (isset($data['partners'])) {

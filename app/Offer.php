@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property date $startDate
  * @property date $endDate
- * @property string $condition
+ * @property string $condition_id
  * @property string $minimumPrice
  * @property string $offerType
  * @property bool $sendType
@@ -35,7 +35,7 @@ class Offer extends Model
         'description',
         'startDate',
         'endDate',
-        'condition',
+        'condition_id',
         'minimumPrice',
         'offerType',
         'sendType',
@@ -61,6 +61,11 @@ class Offer extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'updated_id');
+    }
+
+    public function condition()
+    {
+        return $this->belongsTo('App\Condition', 'condition_id');
     }
 
     public function products()

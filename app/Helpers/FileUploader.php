@@ -27,7 +27,7 @@ class FileUploader
         );
         $fileSource = substr($source, strpos($source, ",") + 1);
         $fileName = "{$name}.{$extension}";
-        Storage::disk('local')->put(
+        Storage::disk('public')->put(
             $fileName,
             base64_decode($fileSource),
             ['visibility' => 'public']
