@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Listeners\RegisterAuthTime;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Laravel\Passport\Passport;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        \Laravel\Passport\Events\AccessTokenCreated::class => [
+            RegisterAuthTime::class
+        ]
     ];
 
     /**
