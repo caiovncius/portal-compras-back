@@ -18,6 +18,27 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
+    Route::get('offers', 'OfferController@portal')
+         ->name('offer.portal');
+    Route::get('offers/{model}/products', 'OfferController@products')
+         ->name('offer.products');
+    Route::get('purchases', 'PurchaseController@portal')
+         ->name('purchase.portal');
+
+    Route::get('requests', 'RequestController@list')
+         ->name('request.list');
+    Route::get('requests/{model}', 'RequestController@get')
+         ->name('request.get');
+    Route::post('requests', 'RequestController@store')
+         ->name('request.store');
+    Route::put('requests/{model}', 'RequestController@update')
+         ->name('request.update');
+    Route::delete('requests/{model}', 'RequestController@delete')
+         ->name('request.delete');
+});
+
 Route::middleware(['cors', 'auth:api'])->group(function(){
 
     Route::get('/functions', 'ProfileController@functions')
@@ -224,22 +245,6 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('purchase.delete')
          ->middleware('acl:Purchase,r,w');
 
-    Route::get('/requests', 'RequestController@list')
-         ->name('request.list')
-         ->middleware('acl:Request,r');
-    Route::get('/requests/{model}', 'RequestController@get')
-         ->name('request.get')
-         ->middleware('acl:Request,r');
-    Route::post('/requests', 'RequestController@store')
-         ->name('request.store')
-         ->middleware('acl:Request,r,w');
-    Route::put('/requests/{model}', 'RequestController@update')
-         ->name('request.update')
-         ->middleware('acl:Request,r,w');
-    Route::delete('/requests/{model}', 'RequestController@delete')
-         ->name('request.delete')
-         ->middleware('acl:Request,r,w');
-
     Route::get('/purchases', 'PurchaseController@list')
          ->name('purchase.list')
          ->middleware('acl:Purchase,r');
@@ -255,31 +260,8 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/purchases/{model}', 'PurchaseController@delete')
          ->name('purchase.delete')
          ->middleware('acl:Purchase,r,w');
-
-    Route::get('/requests', 'RequestController@list')
-         ->name('request.list')
-         ->middleware('acl:Request,r');
-    Route::get('/requests/{model}', 'RequestController@get')
-         ->name('request.get')
-         ->middleware('acl:Request,r');
-    Route::post('/requests', 'RequestController@store')
-         ->name('request.store')
-         ->middleware('acl:Request,r,w');
-    Route::put('/requests/{model}', 'RequestController@update')
-         ->name('request.update')
-         ->middleware('acl:Request,r,w');
-    Route::delete('/requests/{model}', 'RequestController@delete')
-         ->name('request.delete')
-         ->middleware('acl:Request,r,w');
-
-
-    Route::get('/offers/{model}/products', 'OfferController@products')
-         ->name('offer.products')
-         ->middleware('acl:Offer,r');
+    
     Route::get('/offers', 'OfferController@list')
-         ->name('offer.list')
-         ->middleware('acl:Offer,r');
-    Route::get('/offers/portal', 'OfferController@portal')
          ->name('offer.list')
          ->middleware('acl:Offer,r');
     Route::get('/offers/{model}', 'OfferController@get')

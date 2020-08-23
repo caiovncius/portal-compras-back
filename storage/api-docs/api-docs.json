@@ -1901,6 +1901,69 @@
                 }
             }
         },
+        "/offers/portal": {
+            "get": {
+                "tags": [
+                    "Offers"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "teste"
+                    },
+                    {
+                        "name": "partner",
+                        "in": "query",
+                        "example": "1"
+                    },
+                    {
+                        "name": "partnerType",
+                        "in": "query",
+                        "example": "DISTRIBUTOR"
+                    },
+                    {
+                        "name": "product",
+                        "in": "query",
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/OfferPortalResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/offers/{id}/products": {
             "get": {
                 "tags": [
@@ -3972,6 +4035,74 @@
                                     "properties": {
                                         "error": {
                                             "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/purchases/portal": {
+            "get": {
+                "tags": [
+                    "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "example": "01"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "example": "teste"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "active"
+                    },
+                    {
+                        "name": "validityStart",
+                        "in": "query",
+                        "example": "2020-05-25"
+                    },
+                    {
+                        "name": "validityEnd",
+                        "in": "query",
+                        "example": "2020-06-25"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/PurchaseListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
                                         }
                                     },
                                     "type": "object"
@@ -6361,6 +6492,22 @@
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "product_id": {
+                                    "type": "integer",
+                                    "example": "1"
+                                },
+                                "qtd": {
+                                    "type": "integer",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
@@ -6557,6 +6704,10 @@
                     "name": {
                         "type": "string",
                         "example": "Goiânia"
+                    },
+                    "ibgeCode": {
+                        "type": "integer",
+                        "example": "123213"
                     },
                     "state": {
                         "$ref": "#/components/schemas/StateResource"
@@ -6822,6 +6973,60 @@
                         "items": {
                             "$ref": "#/components/schemas/OfferProductResource"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "OfferPortalResource": {
+                "title": "Offer Portal Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "startDate": {
+                        "type": "datetime",
+                        "example": "2019-05-25 03:00:00"
+                    },
+                    "endDate": {
+                        "type": "datetime",
+                        "example": "2019-07-25 03:00:00"
+                    },
+                    "condition": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "minimumPrice": {
+                        "type": "string",
+                        "example": "500"
+                    },
+                    "offerType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "noAutomaticSending": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "impound": {
+                        "type": "boolean",
+                        "example": "false"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "asdqwe"
                     }
                 },
                 "type": "object"

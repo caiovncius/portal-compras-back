@@ -118,6 +118,77 @@ class PurchaseController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     tags={"Purchases"},
+     *     path="/purchases/portal",
+     *     @OA\Parameter(
+     *        name="code",
+     *        in="query",
+     *        example="01",
+     *     ),
+     *     @OA\Parameter(
+     *        name="name",
+     *        in="query",
+     *        example="teste",
+     *     ),
+     *     @OA\Parameter(
+     *        name="status",
+     *        in="query",
+     *        example="active",
+     *     ),
+     *     @OA\Parameter(
+     *        name="validityStart",
+     *        in="query",
+     *        example="2020-05-25",
+     *     ),
+     *     @OA\Parameter(
+     *        name="validityEnd",
+     *        in="query",
+     *        example="2020-06-25",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/PurchaseListResource"),
+     *                 ),
+     *                 @OA\Property(
+     *                     property="links",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationLinks"),
+     *                     }
+     *                 ),
+     *                  @OA\Property(
+     *                     property="meta",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationMeta"),
+     *                     }
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function portal(Request $request)
+    {
+        try {
+            return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->paginate(10));
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
      *
      * @OA\Post(
      *     tags={"Purchases"},

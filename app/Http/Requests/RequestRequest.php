@@ -14,6 +14,14 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="pharmacy_id", type="integer", example="001"),
  *     @OA\Property(property="offer_id", type="string", example="Teste"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
+ *     @OA\Property(
+ *         property="products",
+ *         type="array",
+ *         @OA\Items(
+ *     @OA\Property(property="product_id", type="integer", example="1"),
+ *     @OA\Property(property="qtd", type="integer", example="1"),
+ *         )
+ *     ),
  * )
  */
 class RequestRequest extends FormRequest
