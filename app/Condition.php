@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  *
  * @property int $id
- * @property string $pharmacy_id
  * @property string $code
  * @property string $description
  * @property string $status
@@ -19,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
 class Condition extends Model
 {
     protected $fillable = [
-        'pharmacy_id',
         'description',
         'code',
         'status',
@@ -28,16 +26,6 @@ class Condition extends Model
     ];
 
     protected $casts = ['visible' => 'boolean'];
-
-    public function pharmacy()
-    {
-        return $this->belongsTo('App\Pharmacy', 'pharmacy_id');
-    }
-
-    public function partners()
-    {
-        return $this->belongsToMany('App\Distributor');
-    }
 
     public function user()
     {
