@@ -18,6 +18,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="stateId", type="integer", example="10"),
  *     @OA\Property(property="commercial", type="string", example="Teste 02"),
  *     @OA\Property(property="createdAt",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
+ *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
  * )
  */
 class PharmacyResource extends JsonResource
@@ -40,8 +42,8 @@ class PharmacyResource extends JsonResource
             'stateId' => $this->city->state->id,
             'commercial' => $this->commercial,
             'createdAt' => $this->created_at,
-            'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'updatedUser' => $this->user ? $this->user->name : '',
+            'updatedDate' => $this->updated_at
         ];
     }
 }

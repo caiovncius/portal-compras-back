@@ -21,19 +21,32 @@ class Pharmacy extends Model
 {
     protected $fillable = [
         'code',
-        'cnpj',
         'company_name',
+        'name',
         'status',
+        'cnpj',
+        'state_registration',
+        'email',
+        'phone',
+        'supervisor_id',
+        'partner_priority',
+        'address',
+        'address_2',
+        'address_number',
+        'district',
+        'zip_code',
         'city_id',
-        'commercial',
         'updated_id'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function city()
     {
         return $this->belongsTo(City::class);
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -42,13 +55,28 @@ class Pharmacy extends Model
         return $this->belongsToMany(User::class);
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeActive($query)
     {
         return $query->where('status', 'ACTIVE');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User', 'updated_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function contacts()
+    {
+        return $this->morphMany(Contact::class, 'contactable');
     }
 }

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
  *     @OA\Property(property="description", type="string", example="Teste"),
  *     @OA\Property(property="createDate", type="date", example="1992-01-12"),
  *     @OA\Property(property="publishDate", type="date", example="2010-10-11"),
+ *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
  *     @OA\Property(
  *         property="images",
  *         type="array",
@@ -40,8 +42,8 @@ class PublicityListResource extends JsonResource
             'createDate' => $this->date_create,
             'publishDate' => $this->date_publish,
             'images' => $this->images,
-            'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'updatedUser' => $this->user ? $this->user->name : '',
+            'updatedDate' => $this->updated_at
         ];
     }
 }

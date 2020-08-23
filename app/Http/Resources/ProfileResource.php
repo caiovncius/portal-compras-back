@@ -13,6 +13,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="name", type="string", example="Manager"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  *     @OA\Property(property="type", ref="#/components/schemas/UserType"),
+ *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
  *     @OA\Property(
  *         property="permissions",
  *         type="array",
@@ -37,8 +39,8 @@ class ProfileResource extends JsonResource
             'type' => $this->type,
             'status' => $this->status,
             'permissions' => ProfileFunctionsResource::collection($this->functionalities),
-            'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'updatedUser' => $this->user ? $this->user->name : '',
+            'updatedDate' => $this->updated_at
         ];
     }
 }

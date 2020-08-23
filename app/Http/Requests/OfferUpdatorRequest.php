@@ -74,7 +74,7 @@ class OfferUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|numeric',
+            'code' => 'required|string',
             'name' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',

@@ -72,7 +72,7 @@ class PurchaseRequest extends FormRequest
     {
         return [
             'offerId' => 'required|exists:offers,id',
-            'code' => 'required|string|numeric|unique:offers',
+            'code' => 'required|string|unique:offers',
             'name' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',

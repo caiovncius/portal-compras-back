@@ -76,7 +76,7 @@ class OfferCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|numeric|unique:offers',
+            'code' => 'required|string|unique:offers',
             'name' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
