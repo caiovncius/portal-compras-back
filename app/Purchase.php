@@ -60,6 +60,11 @@ class Purchase extends Model
         return $this->belongsTo('App\Offer', 'offer_id');
     }
 
+    public function products()
+    {
+        return $this->morphMany('App\ProductDetail', 'productable');
+    }
+
     public function requests()
     {
         return $this->morphMany('App\Request', 'requestable');

@@ -6,10 +6,10 @@ use App\Http\Requests\OfferCreatorRequest;
 use App\Http\Requests\OfferUpdatorRequest;
 use App\Http\Resources\OfferListResource;
 use App\Http\Resources\OfferPortalResource;
-use App\Http\Resources\OfferProductResource;
+use App\Http\Resources\ProductDetailResource;
 use App\Offer;
 use App\Offer\Contracts\OfferCreatable;
-use App\Offer\Contracts\OfferProductRetrievable;
+use App\Product\Contracts\ProductDetailRetrievable;
 use App\Offer\Contracts\OfferRemovable;
 use App\Offer\Contracts\OfferRetrievable;
 use App\Offer\Contracts\OfferUpdatable;
@@ -23,7 +23,7 @@ class OfferController extends Controller
     private $retrieverService;
 
     /**
-     * @var OfferProductRetrievable
+     * @var ProductDetailRetrievable
      */
     private $productRetrieverService;
 
@@ -50,7 +50,7 @@ class OfferController extends Controller
     public function __construct()
     {
         $this->retrieverService = app()->make(OfferRetrievable::class);
-        $this->productRetrieverService = app()->make(OfferProductRetrievable::class);
+        $this->productRetrieverService = app()->make(ProductDetailRetrievable::class);
         $this->creatorService = app()->make(OfferCreatable::class);
         $this->updatorService = app()->make(OfferUpdatable::class);
         $this->removerService = app()->make(OfferRemovable::class);
@@ -229,7 +229,7 @@ class OfferController extends Controller
      *                 @OA\Property(
      *                     property="data",
      *                     type="array",
-     *                     @OA\Items(ref="#/components/schemas/OfferProductResource"),
+     *                     @OA\Items(ref="#/components/schemas/ProductDetailResource"),
      *                 )
      *             )
      *         )
@@ -245,7 +245,7 @@ class OfferController extends Controller
     public function products(Offer $model, Request $request)
     {
         try {
-            return OfferProductResource::collection($this->productRetrieverService->getProducts($model, $request->query())->get());
+            return ProductDetailResource::collection($this->productRetrieverService->getProducts($model, $request->query())->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

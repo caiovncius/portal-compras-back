@@ -6,9 +6,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="OfferProductResource",
+ *     schema="ProductDetailResource",
  *     type="object",
- *     title="Offer Product Response",
+ *     title="Product detail Response",
  *     @OA\Property(property="discountDeferred", type="string", example="2"),
  *     @OA\Property(property="discountOnCash", type="string", example="4"),
  *     @OA\Property(property="minimum", type="integer", example="10"),
@@ -27,7 +27,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="product_id", type="string", example="5"),
  * )
  */
-class OfferProductResource extends JsonResource
+class ProductDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

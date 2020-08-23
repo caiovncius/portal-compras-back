@@ -70,7 +70,7 @@ class Offer extends Model
 
     public function products()
     {
-        return $this->hasMany('App\OfferProduct', 'offer_id');
+        return $this->morphMany('App\ProductDetail', 'productable');
     }
 
     public function requests()

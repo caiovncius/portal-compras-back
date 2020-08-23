@@ -26,6 +26,8 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
          ->name('offer.products');
     Route::get('purchases', 'PurchaseController@portal')
          ->name('purchase.portal');
+    Route::get('purchases/{model}/products', 'PurchaseController@products')
+         ->name('purchase.products');
 
     Route::get('requests', 'RequestController@list')
          ->name('request.list');
@@ -276,9 +278,12 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/offers/{model}', 'OfferController@delete')
          ->name('offer.delete')
          ->middleware('acl:Offer,r,w');
-    Route::post('offer-products/{offer}', 'OfferProductController@store')
+    Route::post('offer-products/{offer}', 'ProductDetailController@offer')
          ->name('offer.product.store')
          ->middleware('acl:Offer,r,w');
+    Route::post('purchase-products/{purchase}', 'ProductDetailController@purchase')
+         ->name('purchase.product.store')
+         ->middleware('acl:Purchase,r,w');
 
     Route::get('/products', 'ProductController@list')
          ->name('product.list')

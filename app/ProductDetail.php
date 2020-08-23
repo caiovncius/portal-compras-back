@@ -5,10 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class OfferProduct
+ * Class ProductDetail
  * @package App
  *
- * @property int offer_id
  * @property int product_id
  * @property int discountDeferred
  * @property int discountOnCash
@@ -27,10 +26,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string state_id
  * @property string updated_id
  */
-class OfferProduct extends Model
+class ProductDetail extends Model
 {
     protected $fillable = [
-        'offer_id',
         'product_id',
         'discountDeferred',
         'discountOnCash',
@@ -72,6 +70,11 @@ class OfferProduct extends Model
     public function product()
     {
         return $this->belongsTo('App\Product', 'product_id');
+    }
+
+    public function productable()
+    {
+        return $this->morphTo();
     }
 
     public function state()

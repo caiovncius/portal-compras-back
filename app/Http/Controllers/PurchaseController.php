@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseRequest;
+use App\Http\Resources\ProductDetailResource;
 use App\Http\Resources\PurchaseListResource;
+use App\Product\Contracts\ProductDetailRetrievable;
 use App\Purchase;
 use App\Purchase\Contracts\PurchaseCreatable;
 use App\Purchase\Contracts\PurchaseRemovable;
@@ -17,6 +19,11 @@ class PurchaseController extends Controller
      * @var PurchaseRetrievable
      */
     private $retrieverService;
+
+    /**
+     * @var ProductDetailRetrievable
+     */
+    private $productRetrieverService;
 
     /**
      * @var PurchaseCreatable
@@ -41,6 +48,7 @@ class PurchaseController extends Controller
     public function __construct()
     {
         $this->retrieverService = app()->make(PurchaseRetrievable::class);
+        $this->productRetrieverService = app()->make(ProductDetailRetrievable::class);
         $this->creatorService = app()->make(PurchaseCreatable::class);
         $this->updatorService = app()->make(PurchaseUpdatable::class);
         $this->removerService = app()->make(PurchaseRemovable::class);
@@ -183,6 +191,46 @@ class PurchaseController extends Controller
     {
         try {
             return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->paginate(10));
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *     tags={"Purchases"},
+     *     path="/purchases/{id}/products",
+     *     @OA\Parameter(
+     *        name="name",
+     *        in="query",
+     *        example="teste",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/ProductDetailResource"),
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @param Purchase $model
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function products(Purchase $model, Request $request)
+    {
+        try {
+            return ProductDetailResource::collection($this->productRetrieverService->getProducts($model, $request->query())->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

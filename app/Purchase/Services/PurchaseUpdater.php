@@ -21,6 +21,13 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->offer_id = $data['offerId'];
             $model->updated_at = date('Y-m-d H:i:s');
             $model->save();
+            
+            if (isset($data['products'])) {
+                $model->products()->delete();
+                foreach ($data['products'] as $item) {
+                    $model->products()->create($item);
+                }
+            }
 
             return true;
         } catch (\Exception $e) {

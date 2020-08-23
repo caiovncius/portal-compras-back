@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Offer\Services;
+namespace App\Product\Services;
 
-use App\Offer;
-use App\Offer\Contracts\OfferProductCreatable;
+use App\Product\Contracts\ProductDetailCreatable;
 
-class OfferProductCreator implements OfferProductCreatable
+class ProductDetailCreator implements ProductDetailCreatable
 {
     /**
-     * @param Offer $model
+     * @param int $model
      * @param array $data
      * @return bool
      * @throws \Exception
      */
-    public function store(Offer $model, array $data)
+    public function store($model, array $data)
     {
         try {
             if (isset($data['products'])) {
