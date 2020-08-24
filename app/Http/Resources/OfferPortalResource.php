@@ -36,7 +36,7 @@ class OfferPortalResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'image' => config('app.url').$this->image,
+            'image' => $this->image ? config('app.url').$this->image : '',
             'code' => $this->code,
             'name' => $this->name,
             'startDate' => $this->startDate,
