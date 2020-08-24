@@ -30,7 +30,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(
  *         property="contacts",
  *         type="array",
- *         @OA\Items(ref="#/components/schemas/ContactListResource")
+ *         @OA\Items(ref="#/components/schemas/ContactCreatorRequest")
  *     ),
  * )
  */

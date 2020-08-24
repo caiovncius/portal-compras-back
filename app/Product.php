@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+    /**
+     * @var array
+     */
     protected $fillable = [
         'code',
         'code_ean',
@@ -27,13 +30,27 @@ class Product extends Model
         'updated_id'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function laboratory()
     {
         return $this->belongsTo(Laboratory::class, 'laboratory_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User', 'updated_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function secondaryEanCodes()
+    {
+        return $this->hasMany(SecondaryEanCode::class);
     }
 }

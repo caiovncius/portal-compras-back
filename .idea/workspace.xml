@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="31008ebc-d013-4e07-b545-47ed525f1477" name="Default Changelist" comment="fix docs">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/SecondaryEanCodeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/SecondaryEanCodeRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Providers/SecondaryEanCodeServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/SecondaryEacCode/Contracts/SecondaryEanCodeCreatorable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/SecondaryEacCode/Contracts/SecondaryEanCodeRemovable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/SecondaryEacCode/Services/SecondaryEanCodeCreator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/SecondaryEacCode/Services/SecondaryEanCodeRemover.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/SecondaryEanCode.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_08_24_005813_create_secondary_ean_codes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/laravel.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LaboratoryCreatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/LaboratoryCreatorRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/PharmacyCreatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/PharmacyCreatorRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ProductCreatorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ProductCreatorRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Product/Services/ProductCreator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product/Services/ProductCreator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +185,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/SecondaryEacCode/Contracts" />
       <recent name="$PROJECT_DIR$/storage/app/public" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -222,55 +241,6 @@
       <workItem from="1594436271250" duration="554000" />
       <workItem from="1598123706801" duration="7000" />
       <workItem from="1598123737477" duration="2316000" />
-    </task>
-    <task id="LOCAL-00024" summary="Correção de classes">
-      <created>1591508883056</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1591508883056</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Correção de classes de novo">
-      <created>1591508989558</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1591508989558</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Removido passport dos endpoints">
-      <created>1591713541337</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1591713541337</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Ajustes">
-      <created>1591729250370</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1591729250370</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Ajustes em ednpoints">
-      <created>1593004432663</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1593004432664</updated>
-    </task>
-    <task id="LOCAL-00029" summary="docs">
-      <created>1593004793244</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1593004793245</updated>
-    </task>
-    <task id="LOCAL-00030" summary="fix">
-      <created>1593094409814</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1593094409814</updated>
     </task>
     <task id="LOCAL-00031" summary="fix">
       <created>1593094460338</created>
@@ -566,7 +536,56 @@
       <option name="project" value="LOCAL" />
       <updated>1598207918487</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Adicionado relacionamento de laboratóriso com contatos">
+      <created>1598216804480</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1598216804480</updated>
+    </task>
+    <task id="LOCAL-00074" summary="fix doc">
+      <created>1598217213578</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1598217213578</updated>
+    </task>
+    <task id="LOCAL-00075" summary="fix docs">
+      <created>1598217295917</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1598217295917</updated>
+    </task>
+    <task id="LOCAL-00076" summary="fix docs">
+      <created>1598217372049</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1598217372049</updated>
+    </task>
+    <task id="LOCAL-00077" summary="fix docs">
+      <created>1598217578327</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1598217578328</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Corrigido validação de code&#10;Corrigido atributo de updatedId&#10;Corrigido banco de farmacias">
+      <created>1598220922220</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1598220922220</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Alterado farmacias">
+      <created>1598229905414</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1598229905414</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -586,11 +605,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Chaves" />
-    <MESSAGE value="Ajuste na documentação" />
-    <MESSAGE value="Corrigido request de usuários" />
-    <MESSAGE value="Correção da listagem de perfis" />
-    <MESSAGE value="Correção de classes" />
     <MESSAGE value="Correção de classes de novo" />
     <MESSAGE value="Removido passport dos endpoints" />
     <MESSAGE value="Ajustes em ednpoints" />
@@ -611,26 +625,32 @@
     <MESSAGE value="fix" />
     <MESSAGE value="Adicionado códigos do ibge na tabela de cidades" />
     <MESSAGE value="Adicionado população da coluna de last login sempre que gerar um token" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adicionado população da coluna de last login sempre que gerar um token" />
+    <MESSAGE value="Adicionado relacionamento de laboratóriso com contatos" />
+    <MESSAGE value="fix doc" />
+    <MESSAGE value="fix docs" />
+    <MESSAGE value="Corrigido validação de code&#10;Corrigido atributo de updatedId&#10;Corrigido banco de farmacias" />
+    <MESSAGE value="Alterado farmacias" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alterado farmacias" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="224" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1593265308479">
-      <screen x="0" y="23" width="1280" height="731" />
+    <state x="1728" y="-257" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598232592059">
+      <screen x="1280" y="-257" width="2560" height="1011" />
     </state>
     <state x="224" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1280.731@0.23.1280.731" timestamp="1593265308479" />
     <state x="456" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590685640307" />
+    <state x="1728" y="-257" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598232592059" />
     <state x="576" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593098557029">
       <screen x="0" y="23" width="2560" height="1011" />
     </state>
     <state x="432" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590679558111" />
     <state x="576" y="290" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.2560.1011@0.23.2560.1011" timestamp="1593098557029" />
-    <state x="1508" y="-257" key="CommitChangelistDialog2" timestamp="1598207918219">
+    <state x="1508" y="-257" key="CommitChangelistDialog2" timestamp="1598229905118">
       <screen x="1280" y="-257" width="2560" height="1011" />
     </state>
     <state x="114" y="23" key="CommitChangelistDialog2/0.23.1280.731@0.23.1280.731" timestamp="1593523828845" />
     <state x="171" y="23" key="CommitChangelistDialog2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114643839" />
     <state x="228" y="23" key="CommitChangelistDialog2/0.23.2560.1011@0.23.2560.1011" timestamp="1594436301216" />
-    <state x="1508" y="-257" key="CommitChangelistDialog2/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598207918219" />
+    <state x="1508" y="-257" key="CommitChangelistDialog2/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598229905118" />
     <state x="100" y="122" width="1479" height="811" key="DiffContextDialog" timestamp="1591114597201">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -639,10 +659,11 @@
       <screen x="0" y="23" width="1280" height="731" />
     </state>
     <state x="356" y="111" key="MultipleFileMergeDialog/0.23.1280.731@0.23.1280.731" timestamp="1589894795509" />
-    <state x="351" y="352" key="NewPhpClassDialog" timestamp="1590685616184">
-      <screen x="0" y="23" width="1920" height="1011" />
+    <state x="1748" y="72" key="NewPhpClassDialog" timestamp="1598232328162">
+      <screen x="1280" y="-257" width="2560" height="1011" />
     </state>
     <state x="351" y="352" key="NewPhpClassDialog/0.23.1920.1011@0.23.1920.1011" timestamp="1590685616184" />
+    <state x="1748" y="72" key="NewPhpClassDialog/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598232328162" />
     <state x="518" y="459" key="NewPhpFileDialog" timestamp="1590670415730">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -655,13 +676,13 @@
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
     <state x="348" y="167" key="SettingsEditor/0.23.1920.1011@0.23.1920.1011" timestamp="1589999400094" />
-    <state x="1760" y="-112" key="Vcs.Push.Dialog.v2" timestamp="1598207919454">
+    <state x="1760" y="-112" key="Vcs.Push.Dialog.v2" timestamp="1598229906982">
       <screen x="1280" y="-257" width="2560" height="1011" />
     </state>
     <state x="240" y="128" key="Vcs.Push.Dialog.v2/0.23.1280.731@0.23.1280.731" timestamp="1593523830183" />
     <state x="360" y="168" key="Vcs.Push.Dialog.v2/0.23.1920.1011@0.23.1920.1011" timestamp="1591114679421" />
     <state x="480" y="168" key="Vcs.Push.Dialog.v2/0.23.2560.1011@0.23.2560.1011" timestamp="1594436302714" />
-    <state x="1760" y="-112" key="Vcs.Push.Dialog.v2/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598207919454" />
+    <state x="1760" y="-112" key="Vcs.Push.Dialog.v2/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598229906982" />
     <state x="100" y="123" width="1478" height="811" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591059078375">
       <screen x="0" y="23" width="1920" height="1011" />
     </state>
@@ -673,18 +694,18 @@
     <state x="586" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1011@0.23.1920.1011" timestamp="1590687704732" />
     <state x="782" y="452" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.2560.1011@0.23.2560.1011" timestamp="1594438206577" />
     <state x="2062" y="172" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598208028598" />
-    <state x="1964" y="5" width="852" height="486" key="find.popup" timestamp="1598207620949">
+    <state x="1964" y="5" width="852" height="486" key="find.popup" timestamp="1598214906581">
       <screen x="1280" y="-257" width="2560" height="1011" />
     </state>
     <state x="513" y="285" width="639" height="486" key="find.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1590672878026" />
-    <state x="1964" y="5" width="852" height="486" key="find.popup/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598207620949" />
-    <state x="1890" y="-181" width="1340" height="936" key="search.everywhere.popup" timestamp="1598207852747">
+    <state x="1964" y="5" width="852" height="486" key="find.popup/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598214906581" />
+    <state x="1890" y="-181" width="1340" height="936" key="search.everywhere.popup" timestamp="1598233314102">
       <screen x="1280" y="-257" width="2560" height="1011" />
     </state>
     <state x="305" y="78" width="670" height="676" key="search.everywhere.popup/0.23.1280.731@0.23.1280.731" timestamp="1593523575609" />
     <state x="458" y="99" width="1005" height="935" key="search.everywhere.popup/0.23.1920.1011@0.23.1920.1011" timestamp="1591117386617" />
     <state x="610" y="99" width="1340" height="935" key="search.everywhere.popup/0.23.2560.1011@0.23.2560.1011" timestamp="1593540151619" />
-    <state x="1890" y="-181" width="1340" height="936" key="search.everywhere.popup/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598207852747" />
+    <state x="1890" y="-181" width="1340" height="936" key="search.everywhere.popup/1280.-257.2560.1011/0.23.1280.777@1280.-257.2560.1011" timestamp="1598233314102" />
     <state x="1890" y="-178" width="1340" height="978" key="search.everywhere.popup/1280.-257.2560.1057/0.23.1280.731@1280.-257.2560.1057" timestamp="1597528767791" />
   </component>
 </project>

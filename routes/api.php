@@ -307,6 +307,14 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('product.delete')
          ->middleware('acl:Product,r,w');
 
+    Route::post('/products/{product}/add-secondary-ean-code', 'SecondaryEanCodeController@store')
+        ->name('product.eancode.add')
+        ->middleware('acl:Product,r,w');
+
+    Route::delete('/secondary-ean-code/{secondaryEanCode}', 'SecondaryEanCodeController@delete')
+        ->name('product.eancode.delete')
+        ->middleware('acl:Product,r,w');
+
     Route::get('/conditions', 'ConditionController@list')
          ->name('condition.list')
          ->middleware('acl:Condition,r');

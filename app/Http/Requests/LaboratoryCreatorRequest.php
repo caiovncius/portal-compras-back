@@ -14,6 +14,11 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="code", type="integer", example="01"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
  *     @OA\Property(property="name", type="string", example="Teste"),
+ *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ContactCreatorRequest")
+ *     ),
  * )
  */
 class LaboratoryCreatorRequest extends FormRequest
