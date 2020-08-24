@@ -36,6 +36,11 @@ class Request extends Model
         return $this->belongsTo('App\Offer', 'offer_id');
     }
 
+    public function partner()
+    {
+        return $this->belongsTo('App\Distributor', 'partner_id');
+    }
+
     public function requestable()
     {
         return $this->morphTo();

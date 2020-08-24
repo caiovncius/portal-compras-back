@@ -36,9 +36,9 @@ class DistributorListResource extends JsonResource
             'cnpj' => $this->cnpj,
             'name' => $this->name,
             'status' => $this->status,
-            'type' => $this->pivot ? $this->pivot->type : ''
-            'ol' => $this->pivot ? $this->pivot->ol : ''
-            'priority' => $this->pivot ? $this->pivot->priority : ''
+            'type' => $this->pivot ? $this->pivot->type : '',
+            'ol' => $this->pivot ? $this->pivot->ol : '',
+            'priority' => $this->pivot ? $this->pivot->priority : '',
         ];
     }
 }
