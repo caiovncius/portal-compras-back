@@ -3,15 +3,16 @@
 namespace App\Services;
 
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class RequestToFile
 {
     public function createFile($model) {        
         $html = $this->header($model);
-        $filename = $this->setFilename($model);
+        $filename = $this->filename($model);
         $arr = ['qtd' => 0, 'total' => 0];
 
-        $file = fopen(url($filename), 'wb');
+        $file = fopen(storage_path('app/public/requests/'.$filename), 'wb');
 
         foreach ($file->products as $product) {
             $arr['qtd'] += 1;
@@ -22,13 +23,22 @@ class RequestToFile
 
         fwrite($file, $html);
         fclose($file);
-
-        $file = \Storage::disk('onthefly')->put('', new File(url($filename)), 'public');
         
-        return $arr;
+        return storage_path('app/public/requests/'.$filename);
     }
 
-    public function setFilename($model)
+    public function updloadFile($file, $path)
+    {
+        Storage::disk('onthefly')->put(
+            $path.'/'.$file,
+            new File(storage_path('app/public/requests/'.$file)),
+            ['visibility' => 'public']
+        );
+
+        return true;
+    }
+
+    public function filename($model)
     {
         $file = $model->id; //order
         $file .= '.ped.'.date('dmY').'-';

@@ -28,6 +28,13 @@ class ProgramUpdater implements ProgramUpdatable
                 }
             }
             
+            if (isset($data['returns'])) {
+                $model->returns()->delete();
+                foreach ($data['returns'] as $data) {
+                    $model->returns()->create($data);
+                }
+            }
+            
             return $model;
         } catch (\Exception $e) {
             throw $e;

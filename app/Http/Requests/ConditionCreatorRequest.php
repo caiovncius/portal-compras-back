@@ -16,6 +16,14 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="description", type="integer", example="Teste"),
  *     @OA\Property(property="visible", type="boolean", example="1"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(
+ *         property="partners",
+ *         type="array",
+ *         @OA\Items(
+ *     @OA\Property(property="partnerId", type="integer", example="1"),
+ *     @OA\Property(property="partnerType", type="string", example="DISTRIBUTOR"),
+ *         )
+ *     ),
  * )
  */
 class ConditionCreatorRequest extends FormRequest

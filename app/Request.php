@@ -15,9 +15,10 @@ class Request extends Model
 {
     protected $fillable = [
         'pharmacy_id',
-        'offer_id',
         'status',
         'updated_id'
+        'partner_id',
+        'priority',
     ];
 
     public function user()
@@ -33,6 +34,16 @@ class Request extends Model
     public function offer()
     {
         return $this->belongsTo('App\Offer', 'offer_id');
+    }
+
+    public function partner()
+    {
+        return $this->belongsTo('App\Distributor', 'partner_id');
+    }
+
+    public function requestable()
+    {
+        return $this->morphTo();
     }
 
     public function products()

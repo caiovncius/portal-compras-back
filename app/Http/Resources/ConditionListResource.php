@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\PartnerResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -18,7 +19,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(
  *         property="partners",
  *         type="array",
- *         @OA\Items(ref="#/components/schemas/DistributorContacts")
+ *         @OA\Items(ref="#/components/schemas/PartnerResource")
  *     ),
  * )
  */
@@ -39,9 +40,9 @@ class ConditionListResource extends JsonResource
             'description' => $this->description,
             'status' => $this->status,
             'visible' => $this->visible,
-            'partners' => DistributorListResource::collection($this->partners),
-            'updatedUser' => $this->user ? $this->user->name : '',
-            'updatedDate' => $this->updated_at
+            'partners' => PartnerResource::collection($this->partners),
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

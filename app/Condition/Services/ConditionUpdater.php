@@ -22,6 +22,13 @@ class ConditionUpdater implements ConditionUpdatable
             $model->updated_at = date('Y-m-d H:i:s');
             $model->save();
             
+            if (isset($data['partners'])) {
+                $model->partners()->delete();
+                foreach ($data['partners'] as $data) {
+                    $model->partners()->create($data);
+                }
+            }
+            
             return true;
         } catch (\Exception $e) {
             throw $e;
