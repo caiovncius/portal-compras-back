@@ -13,6 +13,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="code", type="string", example="01"),
  *     @OA\Property(property="cnpj", type="string", example="00.00001"),
  *     @OA\Property(property="name", type="string", example="Teste"),
+ *     @OA\Property(property="type", type="string", example="DISTRIBUTOR"),
+ *     @OA\Property(property="ol", type="integer", example="1"),
+ *     @OA\Property(property="priority", type="integer", example="1"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  * )
  */
@@ -34,6 +37,8 @@ class DistributorListResource extends JsonResource
             'name' => $this->name,
             'status' => $this->status,
             'type' => $this->pivot ? $this->pivot->type : ''
+            'ol' => $this->pivot ? $this->pivot->ol : ''
+            'priority' => $this->pivot ? $this->pivot->priority : ''
         ];
     }
 }

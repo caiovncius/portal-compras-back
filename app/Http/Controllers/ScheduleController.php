@@ -9,7 +9,7 @@ class ScheduleController extends Controller
 {
     public function send(Request $request)
     {
-        $request->offer->partners()->orderBy('piority')->first();
+        $request->offer->partners()->orderBy('piority', 'ASC')->first();
         
         $model = Program::find(1)->connection;
 
