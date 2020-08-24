@@ -9,9 +9,7 @@ class ScheduleController extends Controller
 {
     public function send(Request $request)
     {
-        foreach($request->offer->partners as $partner) {
-            
-        }
+        $request->offer->partners()->orderBy('piority')->first();
         
         $model = Program::find(1)->connection;
 
