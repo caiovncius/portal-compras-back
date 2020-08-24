@@ -1833,6 +1833,108 @@
                 }
             }
         },
+        "/mass-actions/laboratory/create": {
+            "post": {
+                "tags": [
+                    "LaboratoriesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LaboratoryMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/laboratory/update": {
+            "put": {
+                "tags": [
+                    "LaboratoriesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LaboratoryMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/laboratory/delete": {
+            "delete": {
+                "tags": [
+                    "LaboratoriesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LaboratoryMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/offers": {
             "get": {
                 "tags": [
@@ -2561,6 +2663,108 @@
                 }
             }
         },
+        "/mass-actions/pharmacies/create": {
+            "post": {
+                "tags": [
+                    "PharmaciesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PharmacyMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/pharmacies/update": {
+            "put": {
+                "tags": [
+                    "PharmaciesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PharmacyMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/pharmacies/delete": {
+            "delete": {
+                "tags": [
+                    "PharmaciesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PharmacyMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/products": {
             "get": {
                 "tags": [
@@ -2813,6 +3017,108 @@
                                     "properties": {
                                         "error": {
                                             "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/products/create": {
+            "post": {
+                "tags": [
+                    "ProductMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/products/update": {
+            "put": {
+                "tags": [
+                    "ProductMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/products/delete": {
+            "delete": {
+                "tags": [
+                    "ProductMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -6056,6 +6362,21 @@
                 },
                 "type": "object"
             },
+            "LaboratoryMassCreatorRequest": {
+                "title": "Laboratory mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LaboratoryCreatorRequest"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "LaboratoryUpdaterRequest": {
                 "title": "Laboratory update form request",
                 "properties": {
@@ -6449,6 +6770,21 @@
                 },
                 "type": "object"
             },
+            "PharmacyMassCreatorRequest": {
+                "title": "Pharmacy mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PharmacyCreatorRequest"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "PharmacyUpdaterRequest": {
                 "title": "Pharmacy update form request",
                 "properties": {
@@ -6626,6 +6962,21 @@
                                 }
                             },
                             "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ProductMassCreatorRequest": {
+                "title": "Product mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProductCreatorRequest"
                         }
                     }
                 },

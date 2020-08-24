@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactCreatorRequest;
 use App\Http\Requests\LaboratoryCreatorRequest;
+use App\Http\Requests\LaboratoryMassCreateRequest;
 use App\Http\Requests\LaboratoryUpdatorRequest;
 use App\Http\Resources\LaboratoryListResource;
 use App\Laboratory;
@@ -396,6 +397,156 @@ class LaboratoryController extends Controller
         try {
             $this->updaterService->addContact($laboratory, $request->all());
             return response()->json(['message' => 'Contato adicionado com sucesso!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Post(
+     *     tags={"LaboratoriesMassActions"},
+     *     path="/mass-actions/laboratory/create",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/LaboratoryMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param LaboratoryMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massStore(LaboratoryMassCreateRequest $request)
+    {
+        try {
+            foreach ($request->data as $laboratory) {
+                $this->creatorService->store($laboratory);
+            }
+            return response()->json(['message' => 'Laboratorios adicionados com sucesso!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Put(
+     *     tags={"LaboratoriesMassActions"},
+     *     path="/mass-actions/laboratory/update",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/LaboratoryMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param LaboratoryMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massUpdate(LaboratoryMassCreateRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $laboratory) {
+                $localData = Laboratory::where('code', $laboratory['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->updaterService->update($localData, $laboratory);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Atualizados: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Delete(
+     *     tags={"LaboratoriesMassActions"},
+     *     path="/mass-actions/laboratory/delete",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/LaboratoryMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param LaboratoryMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massDelete(LaboratoryMassCreateRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $laboratory) {
+                $localData = Laboratory::where('code', $laboratory['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->removerService->delete($localData);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }

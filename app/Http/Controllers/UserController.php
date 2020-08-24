@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreatorRequest;
+use App\Http\Requests\UserMassCreateRequest;
 use App\Http\Requests\UserUpdatorRequest;
 use App\Http\Resources\PharmacyResource;
 use App\Http\Resources\UserListResource;
@@ -276,7 +277,7 @@ class UserController extends Controller
     public function pharmacies(User $user)
     {
         $data = $user->pharmacies()->active()->paginate(10);
-        
+
         return PharmacyResource::collection($data);
     }
 
@@ -312,10 +313,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function pharmaciesAll(User $user)
-    {        
+    {
         try {
             $data = $user->pharmacies()->active()->get();
-            
+
             return PharmacyResource::collection($data);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -536,6 +537,156 @@ class UserController extends Controller
         try {
             $this->removerService->delete($user);
             return response()->json(['message' => 'Usuário removido com sucesso'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Post(
+     *     tags={"UserMassActions"},
+     *     path="/mass-actions/user/create",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UserMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param UserMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massStore(UserMassCreateRequest $request)
+    {
+        try {
+            foreach ($request->data as $user) {
+                $this->creatorService->store($user);
+            }
+            return response()->json(['message' => 'Usuários criados com sucesso!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Put(
+     *     tags={"UserMassActions"},
+     *     path="/mass-actions/user/update",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UserMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Usuário criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param UserMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massUpdate(UserMassCreateRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $user) {
+                $localData = User::where('username', $user['username'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->updaterService->update($localData, $user);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Atualizados: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Delete(
+     *     tags={"UserMassActions"},
+     *     path="/mass-actions/user/delete",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UserMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param UserMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massDelete(UserMassCreateRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $user) {
+                $localData = User::where('code', $user['username'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->removerService->delete($localData);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }

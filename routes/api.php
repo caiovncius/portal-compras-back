@@ -359,4 +359,32 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/accompaniments/{model}', 'AccompanimentController@delete')
          ->name('accompaniment.delete')
          ->middleware('acl:Accompaniment,r,w');
+
+    Route::post('/mass-actions/laboratory/create', 'LaboratoryController@massStore')
+        ->name('laboratory.mass.create');
+    Route::put('/mass-actions/laboratory/update', 'LaboratoryController@massUpdate')
+        ->name('laboratory.mass.update');
+    Route::delete('/mass-actions/laboratory/delete', 'LaboratoryController@massDelete')
+        ->name('laboratory.mass.delete');
+
+    Route::post('/mass-actions/pharmacy/create', 'PharmacyController@massStore')
+        ->name('pharmacy.mass.create');
+    Route::put('/mass-actions/pharmacy/update', 'PharmacyController@massUpdate')
+        ->name('pharmacy.mass.update');
+    Route::delete('/mass-actions/pharmacy/delete', 'PharmacyController@massDelete')
+        ->name('pharmacy.mass.delete');
+
+    Route::post('/mass-actions/product/create', 'ProductController@massStore')
+        ->name('product.mass.create');
+    Route::put('/mass-actions/product/update', 'ProductController@massUpdate')
+        ->name('product.mass.update');
+    Route::delete('/mass-actions/product/delete', 'ProductController@massDelete')
+        ->name('product.mass.delete');
+
+    Route::post('/mass-actions/user/create', 'UserController@massStore')
+        ->name('user.mass.create');
+    Route::put('/mass-actions/user/update', 'UserController@massUpdate')
+        ->name('user.mass.update');
+    Route::delete('/mass-actions/user/delete', 'UserController@massDelete')
+        ->name('user.mass.delete');
 });

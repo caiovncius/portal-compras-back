@@ -48,6 +48,8 @@ class ProductCreatorRequest extends FormRequest
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'laboratoryId' => 'required|exists:laboratories,id',
+            'secondaryEanCodes' => 'array',
+            'secondaryEanCodes.*.name' => 'string|required',
         ];
     }
 

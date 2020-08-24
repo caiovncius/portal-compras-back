@@ -20,13 +20,14 @@ class UserCreator implements UserCreatable
     public function store(array $data)
     {
         try {
+
             $password = Str::random(8);
-            $data['password'] = Hash::make($password);
+
             $user = new User();
             $user->name = $data['name'];
             $user->username = $data['username'];
             $user->email = $data['email'];
-            $user->password = Hash::make($password);
+            $user->password = isset($data['password']) ? $data['password'] : Hash::make($password);
             $user->phone_1 = isset($data['phone1']) ? $data['phone1'] : null;
             $user->phone_2 = isset($data['phone2']) ? $data['phone2'] : null;
             $user->status = $data['status'];
@@ -40,7 +41,10 @@ class UserCreator implements UserCreatable
                 }
             }
 
-            $user->notify(new Wellcome($user, $password));
+            if (!isset($data['password'])) {
+                $user->notify(new Wellcome($user, $password));
+            }
+
             return true;
         } catch (\Exception $exception) {
             throw $exception;

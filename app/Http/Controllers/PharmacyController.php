@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactCreatorRequest;
 use App\Http\Requests\PharmacyCreatorRequest;
+use App\Http\Requests\PharmacyMassCreateRequest;
 use App\Http\Requests\PharmacyUpdatorRequest;
 use App\Http\Resources\PharmacyListResource;
 use App\Http\Resources\PharmacyResource;
@@ -376,6 +377,156 @@ class PharmacyController extends Controller
         try {
             $this->updaterService->addContact($pharmacy, $request->all());
             return response()->json(['message' => 'Contato adicionado com sucesso'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Post(
+     *     tags={"PharmaciesMassActions"},
+     *     path="/mass-actions/pharmacies/create",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/PharmacyMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param PharmacyMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massStore(PharmacyMassCreateRequest $request)
+    {
+        try {
+            foreach ($request->data as $pharmacy) {
+                $this->creatorService->store($pharmacy);
+            }
+            return response()->json(['message' => 'Farmacias criadas com sucesso!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Put(
+     *     tags={"PharmaciesMassActions"},
+     *     path="/mass-actions/pharmacies/update",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/PharmacyMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param PharmacyMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massUpdate(PharmacyMassCreateRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $pharmacy) {
+                $localData = Pharmacy::where('code', $pharmacy['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->updaterService->update($localData, $pharmacy);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Atualizados: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Delete(
+     *     tags={"PharmaciesMassActions"},
+     *     path="/mass-actions/pharmacies/delete",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/PharmacyMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param LaboratoryMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massDelete(PharmacyMassCreateRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $pharmacy) {
+                $localData = Laboratory::where('code', $pharmacy['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->removerService->delete($localData);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
