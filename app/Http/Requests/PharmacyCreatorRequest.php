@@ -10,13 +10,28 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="PharmacyCreatorRequest",
  *     type="object",
  *     title="Pharmacy form request",
- *     required={"code", "cnpj", "company_name", "status", "city_id", "commercial"},
- *     @OA\Property(property="code", type="integer", example="01"),
- *     @OA\Property(property="cnpj", type="string", example="99.999.999/0001-91"),
- *     @OA\Property(property="socialName", type="string", example="Teste"),
+ *     required={"code", "cnpj", "company_name", "name", "status", "city_id"},
+ *     @OA\Property(property="code", type="string", example="234234"),
+ *     @OA\Property(property="socialName", type="string", example="Company ltda"),
+ *     @OA\Property(property="name", type="string", example="My Company"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
- *     @OA\Property(property="cityId", type="integer", example="10"),
- *     @OA\Property(property="commercial", type="string", example="Teste 02"),
+ *     @OA\Property(property="cnpj", type="string", example="99.999.999/0001-91"),
+ *     @OA\Property(property="stateRegistration", type="string", example="424343"),
+ *     @OA\Property(property="email", type="string", example="email@example.com"),
+ *     @OA\Property(property="phone", type="string", example="(11) 9 9999-9999"),
+ *     @OA\Property(property="supervisorId", type="string", example="1"),
+ *     @OA\Property(property="partnerPriority", type="string", example="12"),
+ *     @OA\Property(property="address", type="string", example="Rua 12"),
+ *     @OA\Property(property="address2", type="string", example="Complemento"),
+ *     @OA\Property(property="addressNumber", type="string", example="12"),
+ *     @OA\Property(property="district", type="string", example="Bairro"),
+ *     @OA\Property(property="zipCode", type="string", example="74000-00"),
+ *     @OA\Property(property="cityId", type="int", example="3"),
+ *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ContactListResource")
+ *     ),
  * )
  */
 class PharmacyCreatorRequest extends FormRequest
@@ -40,11 +55,26 @@ class PharmacyCreatorRequest extends FormRequest
     {
         return [
             'code' => 'required|string|unique:pharmacies',
-            'cnpj' => 'required|cnpj',
             'socialName' => 'required|string',
+            'name' => 'required|string',
+            'cnpj' => 'required|cnpj',
+            'email' => 'email',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'cityId' => 'required|integer|exists:cities,id',
-            'commercial' => 'required|string',
+            'stateRegistration' => 'string',
+            'phone' => 'string',
+            'supervisorId' => 'exists:users,id',
+            'partnerPriority' => 'string',
+            'address' => 'string|nullable',
+            'address2' => 'string|nullable',
+            'addressNumber' => 'string|nullable',
+            'district' => 'string|nullable',
+            'zipCode' => 'string|nullable',
+            'contacts' => 'array',
+            'contacts.*.name' => 'string|required',
+            'contacts.*.email' => 'email|required',
+            'contacts.*.function' => 'string|required',
+            'contacts.*.telephone' => 'string|required'
         ];
     }
 

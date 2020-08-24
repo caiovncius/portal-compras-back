@@ -2494,6 +2494,73 @@
                 }
             }
         },
+        "/pharmacies/{pharmacy}/add-contact": {
+            "post": {
+                "tags": [
+                    "Laboratories"
+                ],
+                "parameters": [
+                    {
+                        "name": "Pharmacy",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ContactCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Contato adicionado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/products": {
             "get": {
                 "tags": [
@@ -6209,34 +6276,80 @@
                     "code",
                     "cnpj",
                     "company_name",
+                    "name",
                     "status",
-                    "city_id",
-                    "commercial"
+                    "city_id"
                 ],
                 "properties": {
                     "code": {
-                        "type": "integer",
-                        "example": "01"
-                    },
-                    "cnpj": {
                         "type": "string",
-                        "example": "99.999.999/0001-91"
+                        "example": "234234"
                     },
                     "socialName": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "Company ltda"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "My Company"
                     },
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "cityId": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "commercial": {
+                    "cnpj": {
                         "type": "string",
-                        "example": "Teste 02"
+                        "example": "99.999.999/0001-91"
+                    },
+                    "stateRegistration": {
+                        "type": "string",
+                        "example": "424343"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "email@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "(11) 9 9999-9999"
+                    },
+                    "supervisorId": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "partnerPriority": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Rua 12"
+                    },
+                    "address2": {
+                        "type": "string",
+                        "example": "Complemento"
+                    },
+                    "addressNumber": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "district": {
+                        "type": "string",
+                        "example": "Bairro"
+                    },
+                    "zipCode": {
+                        "type": "string",
+                        "example": "74000-00"
+                    },
+                    "cityId": {
+                        "type": "int",
+                        "example": "3"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactListResource"
+                        }
                     }
                 },
                 "type": "object"
@@ -6245,28 +6358,68 @@
                 "title": "Pharmacy update form request",
                 "properties": {
                     "code": {
-                        "type": "integer",
-                        "example": "01"
-                    },
-                    "cnpj": {
                         "type": "string",
-                        "example": "99.999.999/0001-91"
+                        "example": "234234"
                     },
                     "socialName": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "Company ltda"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "My Company"
                     },
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "cityId": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "commercial": {
+                    "cnpj": {
                         "type": "string",
-                        "example": "Teste 02"
+                        "example": "99.999.999/0001-91"
+                    },
+                    "stateRegistration": {
+                        "type": "string",
+                        "example": "424343"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "email@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "(11) 9 9999-9999"
+                    },
+                    "supervisorId": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "partnerPriority": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Rua 12"
+                    },
+                    "address2": {
+                        "type": "string",
+                        "example": "Complemento"
+                    },
+                    "addressNumber": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "district": {
+                        "type": "string",
+                        "example": "Bairro"
+                    },
+                    "zipCode": {
+                        "type": "string",
+                        "example": "74000-00"
+                    },
+                    "cityId": {
+                        "type": "int",
+                        "example": "3"
                     }
                 },
                 "type": "object"
@@ -7175,6 +7328,10 @@
                         "type": "integer",
                         "example": "01"
                     },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste 02"
+                    },
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
@@ -7192,10 +7349,6 @@
                         "items": {
                             "$ref": "#/components/schemas/ContactListResource"
                         }
-                    },
-                    "name": {
-                        "type": "string",
-                        "example": "Teste 02"
                     }
                 },
                 "type": "object"
@@ -7431,24 +7584,68 @@
                 "title": "PharmacyList Response",
                 "properties": {
                     "id": {
-                        "type": "integer",
-                        "example": "1"
+                        "type": "int",
+                        "example": "2"
                     },
                     "code": {
-                        "type": "integer",
-                        "example": "01"
+                        "type": "string",
+                        "example": "234234"
+                    },
+                    "socialName": {
+                        "type": "string",
+                        "example": "Company ltda"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "My Company"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
                     },
                     "cnpj": {
                         "type": "string",
                         "example": "99.999.999/0001-91"
                     },
-                    "socialName": {
+                    "stateRegistration": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "424343"
                     },
-                    "status": {
+                    "email": {
                         "type": "string",
-                        "example": "ACTIVE"
+                        "example": "email@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "(11) 9 9999-9999"
+                    },
+                    "supervisorId": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "partnerPriority": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Rua 12"
+                    },
+                    "address2": {
+                        "type": "string",
+                        "example": "Complemento"
+                    },
+                    "addressNumber": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "district": {
+                        "type": "string",
+                        "example": "Bairro"
+                    },
+                    "zipCode": {
+                        "type": "string",
+                        "example": "74000-00"
                     },
                     "city": {
                         "type": "string",
@@ -7458,13 +7655,19 @@
                         "type": "string",
                         "example": "São Paulo"
                     },
-                    "commercial": {
-                        "type": "string",
-                        "example": "Teste 02"
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactListResource"
+                        }
                     },
-                    "createdAt": {
-                        "type": "datetime",
-                        "example": "2020-05-25T05:09:15.000000Z"
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "User name"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-21 12:00:11"
                     }
                 },
                 "type": "object"
@@ -7473,48 +7676,90 @@
                 "title": "PharmacyList Response",
                 "properties": {
                     "id": {
-                        "type": "integer",
-                        "example": "1"
+                        "type": "int",
+                        "example": "2"
                     },
                     "code": {
-                        "type": "integer",
-                        "example": "01"
-                    },
-                    "cnpj": {
                         "type": "string",
-                        "example": "99.999.999/0001-91"
+                        "example": "234234"
                     },
                     "socialName": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "Company ltda"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "My Company"
                     },
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "cityId": {
-                        "type": "integer",
+                    "cnpj": {
+                        "type": "string",
+                        "example": "99.999.999/0001-91"
+                    },
+                    "stateRegistration": {
+                        "type": "string",
+                        "example": "424343"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "email@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "(11) 9 9999-9999"
+                    },
+                    "supervisorId": {
+                        "type": "string",
                         "example": "1"
                     },
-                    "stateId": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "commercial": {
+                    "partnerPriority": {
                         "type": "string",
-                        "example": "Teste 02"
+                        "example": "12"
                     },
-                    "createdAt": {
-                        "type": "datetime",
-                        "example": "2020-05-25T05:09:15.000000Z"
+                    "address": {
+                        "type": "string",
+                        "example": "Rua 12"
+                    },
+                    "address2": {
+                        "type": "string",
+                        "example": "Complemento"
+                    },
+                    "addressNumber": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "district": {
+                        "type": "string",
+                        "example": "Bairro"
+                    },
+                    "zipCode": {
+                        "type": "string",
+                        "example": "74000-00"
+                    },
+                    "cityId": {
+                        "type": "string",
+                        "example": "3"
+                    },
+                    "stateId": {
+                        "type": "string",
+                        "example": "3"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactListResource"
+                        }
                     },
                     "updatedUser": {
                         "type": "string",
-                        "example": "Nome usuário"
+                        "example": "User name"
                     },
                     "updatedDate": {
                         "type": "string",
-                        "example": "2020-05-01 10:00:00"
+                        "example": "2020-05-21 12:00:11"
                     }
                 },
                 "type": "object"

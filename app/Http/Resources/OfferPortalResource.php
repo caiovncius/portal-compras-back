@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @OA\Schema(
@@ -36,7 +37,7 @@ class OfferPortalResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'image' => $this->image,
+            'image' => Storage::url($this->image),
             'code' => $this->code,
             'name' => $this->name,
             'startDate' => $this->startDate,

@@ -12,7 +12,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $code
  * @property string $cnpj
  * @property string $company_name
+ * @property string $name
  * @property string $status
+ * @property string $state_registration
+ * @property string $email
+ * @property string $phone
+ * @property int $supervisor_id
+ * @property string $partner_priority
+ * @property string $address
+ * @property string $address_2
+ * @property string $address_number
+ * @property string $district
+ * @property string $zip_code
  * @property int $city_id
  * @property string $commercial
  * @property int $updated_id

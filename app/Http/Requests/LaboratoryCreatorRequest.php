@@ -39,11 +39,11 @@ class LaboratoryCreatorRequest extends FormRequest
             'code' => 'required|string|unique:laboratories',
             'name' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
-            'conatacts' => 'array',
-            'conatacts.*.name' => 'string|required',
-            'conatacts.*.email' => 'email|required',
-            'conatacts.*.function' => 'string|required',
-            'conatacts.*.telephone' => 'string|required',
+            'contacts' => 'array',
+            'contacts.*.name' => 'string|required',
+            'contacts.*.email' => 'email|required',
+            'contacts.*.function' => 'string|required',
+            'contacts.*.telephone' => 'string|required',
         ];
     }
 

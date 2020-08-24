@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactCreatorRequest;
 use App\Http\Requests\PharmacyCreatorRequest;
 use App\Http\Requests\PharmacyUpdatorRequest;
 use App\Http\Resources\PharmacyListResource;
@@ -314,6 +315,67 @@ class PharmacyController extends Controller
         try {
             $this->removerService->delete($pharmacy);
             return response()->json(['message' => 'Farmácia removida com sucesso'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Post(
+     *     tags={"Laboratories"},
+     *     path="/pharmacies/{pharmacy}/add-contact",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ContactCreatorRequest")
+     *      ),
+     *     @OA\Parameter(
+     *        name="Pharmacy",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Contato adicionado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="",
+     *         @OA\JsonContent(ref="#/components/schemas/ValidationResponse")
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de erro"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param ContactCreatorRequest $request
+     * @param Pharmacy $pharmacy
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addContact(ContactCreatorRequest $request, Pharmacy $pharmacy)
+    {
+        try {
+            $this->updaterService->addContact($pharmacy, $request->all());
+            return response()->json(['message' => 'Contato adicionado com sucesso'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
