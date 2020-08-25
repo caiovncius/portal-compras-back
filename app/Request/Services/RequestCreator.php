@@ -15,9 +15,13 @@ class RequestCreator implements RequestCreatable
     public function store(array $data)
     {
         try {
+            $type = $data['modelType'] == 'OFFER' ? 'App\Offer' : 'App\Purchase';
+
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $data['offer_id'] = $data['offerId'];
             $data['pharmacy_id'] = $data['pharmacyId'];
+            $data['requestable_id'] = $data['modelId'];
+            $data['requestable_type'] = $type;
             $data['status'] = 0;
             $model = Request::create($data);
 

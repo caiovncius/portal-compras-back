@@ -4,11 +4,6 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": ""
-        }
-    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -7122,6 +7117,18 @@
                         "type": "string",
                         "example": "Teste"
                     },
+                    "type": {
+                        "type": "string",
+                        "example": "DISTRIBUTOR"
+                    },
+                    "ol": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "example": "1"
+                    },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     }
@@ -7957,6 +7964,32 @@
                 },
                 "type": "object"
             },
+            "RequestHistoricResource": {
+                "title": "Request History Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "user": {
+                        "type": "string",
+                        "example": "teste"
+                    },
+                    "action": {
+                        "type": "string",
+                        "example": "Criado"
+                    },
+                    "status": {
+                        "type": "datetime",
+                        "example": "ENVIADO"
+                    },
+                    "createAt": {
+                        "type": "datetime",
+                        "example": "2019-07-25 03:00:00"
+                    }
+                },
+                "type": "object"
+            },
             "RequestListResource": {
                 "title": "Request List Response",
                 "properties": {
@@ -8031,6 +8064,12 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/RequestProductResource"
+                        }
+                    },
+                    "historic": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RequestHistoricResource"
                         }
                     }
                 },
@@ -8468,9 +8507,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
-                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
-                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
+                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
+                        "tokenUrl": "http://localhost:8000/oauth/token",
+                        "refreshUrl": "http://localhost:8000/token/refresh",
                         "scopes": []
                     }
                 }

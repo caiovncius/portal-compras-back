@@ -21,6 +21,10 @@ class RequestRetriever implements RequestRetrievable
                 $query->where('offer_id', $params['offerId']);
             }
 
+            if (isset($params['code']) && !empty($params['code'])) {
+                $query->where('id', $params['code']);
+            }
+
             if (isset($params['pharmacyId']) && !empty($params['pharmacyId'])) {
                 $query->where('pharmacy_id', $params['pharmacyId']);
             }

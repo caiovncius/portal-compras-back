@@ -24,6 +24,12 @@ class OfferCreator implements OfferCreatable
             $data['condition_id'] = $data['condition'];
             $model = Offer::create($data);
             
+            $model->historics()->create([
+                'user' => auth()->guard('api')->user()->name,
+                'action' => 'Pedido criado',
+                'status' => 'ENVIADO'
+            ]);
+            
             if (isset($data['partners'])) {
                 foreach ($data['partners'] as $data) {
                     $model->partners()->attach($data['id'], [
@@ -41,7 +47,7 @@ class OfferCreator implements OfferCreatable
                 }
             }
 
-            return true;
+            return $model;
         } catch (\Exception $exception) {
             throw $exception;
         }

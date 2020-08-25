@@ -31,14 +31,14 @@ class Request extends Model
         return $this->belongsTo('App\Pharmacy', 'pharmacy_id');
     }
 
-    public function offer()
-    {
-        return $this->belongsTo('App\Offer', 'offer_id');
-    }
-
     public function partner()
     {
         return $this->belongsTo('App\Distributor', 'partner_id');
+    }
+
+    public function historics()
+    {
+        return $this->morphMany('App\RequestHistoric', 'request_id');
     }
 
     public function requestable()

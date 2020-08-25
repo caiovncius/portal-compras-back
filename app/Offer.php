@@ -73,6 +73,7 @@ class Offer extends Model
         return $this->morphMany('App\ProductDetail', 'productable');
     }
 
+
     public function requests()
     {
         return $this->morphMany('App\Request', 'requestable');

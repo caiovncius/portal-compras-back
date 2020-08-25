@@ -14,6 +14,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="pharmacy_id", type="integer", example="001"),
  *     @OA\Property(property="offer_id", type="string", example="Teste"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
+ *     @OA\Property(property="modelId", type="string", example="1"),
+ *     @OA\Property(property="modelType", type="string", example="OFFER"),
  *     @OA\Property(
  *         property="products",
  *         type="array",
@@ -45,6 +47,8 @@ class RequestRequest extends FormRequest
     {
         return [
             'offerId' => 'required|exists:offers,id',
+            'modelId' => 'required',
+            'modelType' => 'required',
             'pharmacyId' => 'required|exists:pharmacies,id',
             'status' => 'required|in:ACTIVE,INACTIVE',
         ];
@@ -59,6 +63,8 @@ class RequestRequest extends FormRequest
     {
         return [
             'offerId' => 'Oferta',
+            'modelId' => 'Model(enviar via formhidden)',
+            'modelType' => 'Model(enviar via formhidden(OFFER ou PURCHASE))',
             'pharmacyId' => 'Farmácia',
             'status' => 'Status',
         ];

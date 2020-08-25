@@ -12,8 +12,8 @@ class ScheduleController extends Controller
 {
     public function send(Request $request)
     {
-        $distributor = $request->offer->partners()->first();
-        //foreach($request->offer->partners as $distributor) {
+        $distributor = $request->requestable->partners()->first();
+        //foreach($request->requestable->partners as $distributor) {
             $model = Distributor::find($distributor->id)->connection;
             $connection = (new FtpService)->setConnection($model);
             $file = (new RequestToFile)->createFile($request);
@@ -26,7 +26,15 @@ class ScheduleController extends Controller
         */
         $request->partner_id = $distributor->id;
         $request->priority = $distributor->pivot->priority;
+        $request->status = 0;
         $request->save();
+            
+        $request->historics()->create([
+            'user' => 'Sistema',
+            'action' => 'Pedido enviado para faturamento',
+            'status' => 'Aguardando Retorno'
+        ]);
+        
         return true;
     }
 

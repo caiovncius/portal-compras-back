@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\RequestHistoricResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -18,6 +19,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         property="products",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/RequestProductResource")
+ *     ),
+ *     @OA\Property(
+ *         property="historic",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/RequestHistoricResource")
  *     ),
  * )
  */
@@ -38,6 +44,7 @@ class RequestResource extends JsonResource
             'pharmacyId' => $this->pharmacy_id,
             'status' => $this->status,
             'products' => RequestProductResource::collection($this->products),
+            'historic' => RequestHistoricResource::collection($this->historics),
             'updatedUser' => $this->user ? $this->user->name : '',
             'updatedDate' => $this->updated_at
         ];
