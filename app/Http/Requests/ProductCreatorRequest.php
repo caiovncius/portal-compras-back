@@ -16,6 +16,11 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="description", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  *     @OA\Property(property="laboratoryId", type="integer", example="2"),
+ *     @OA\Property(
+ *         property="secondaryEanCodes",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/SecondaryEanCodeCreatorRequest")
+ *     ),
  * )
  */
 class ProductCreatorRequest extends FormRequest
@@ -43,6 +48,8 @@ class ProductCreatorRequest extends FormRequest
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'laboratoryId' => 'required|exists:laboratories,id',
+            'secondaryEanCodes' => 'array',
+            'secondaryEanCodes.*.name' => 'string|required',
         ];
     }
 

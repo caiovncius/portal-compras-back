@@ -1828,6 +1828,108 @@
                 }
             }
         },
+        "/mass-actions/laboratory/create": {
+            "post": {
+                "tags": [
+                    "LaboratoriesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LaboratoryMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/laboratory/update": {
+            "put": {
+                "tags": [
+                    "LaboratoriesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LaboratoryMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/laboratory/delete": {
+            "delete": {
+                "tags": [
+                    "LaboratoriesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LaboratoryMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/offers": {
             "get": {
                 "tags": [
@@ -2489,6 +2591,175 @@
                 }
             }
         },
+        "/pharmacies/{pharmacy}/add-contact": {
+            "post": {
+                "tags": [
+                    "Laboratories"
+                ],
+                "parameters": [
+                    {
+                        "name": "Pharmacy",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ContactCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Contato adicionado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/pharmacies/create": {
+            "post": {
+                "tags": [
+                    "PharmaciesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PharmacyMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/pharmacies/update": {
+            "put": {
+                "tags": [
+                    "PharmaciesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PharmacyMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/pharmacies/delete": {
+            "delete": {
+                "tags": [
+                    "PharmaciesMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PharmacyMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/products": {
             "get": {
                 "tags": [
@@ -2741,6 +3012,108 @@
                                     "properties": {
                                         "error": {
                                             "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/products/create": {
+            "post": {
+                "tags": [
+                    "ProductMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/products/update": {
+            "put": {
+                "tags": [
+                    "ProductMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/products/delete": {
+            "delete": {
+                "tags": [
+                    "ProductMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -4992,6 +5365,95 @@
                 }
             }
         },
+        "/products/{product}/add-secondary-ean-code": {
+            "post": {
+                "tags": [
+                    "SecondaryEanCode"
+                ],
+                "parameters": [
+                    {
+                        "name": "product",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SecondaryEanCodeCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Código EAN secundário criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/secondary-ean-code/{secondaryEanCode}": {
+            "delete": {
+                "tags": [
+                    "SecondaryEanCode"
+                ],
+                "parameters": [
+                    {
+                        "name": "secondaryEanCode",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Produto removido com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/states": {
             "get": {
                 "tags": [
@@ -5917,6 +6379,27 @@
                     "name": {
                         "type": "string",
                         "example": "Teste"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactCreatorRequest"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "LaboratoryMassCreatorRequest": {
+                "title": "Laboratory mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LaboratoryCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -6236,34 +6719,95 @@
                     "code",
                     "cnpj",
                     "company_name",
+                    "name",
                     "status",
-                    "city_id",
-                    "commercial"
+                    "city_id"
                 ],
                 "properties": {
                     "code": {
-                        "type": "integer",
-                        "example": "01"
-                    },
-                    "cnpj": {
                         "type": "string",
-                        "example": "99.999.999/0001-91"
+                        "example": "234234"
                     },
                     "socialName": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "Company ltda"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "My Company"
                     },
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "cityId": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "commercial": {
+                    "cnpj": {
                         "type": "string",
-                        "example": "Teste 02"
+                        "example": "99.999.999/0001-91"
+                    },
+                    "stateRegistration": {
+                        "type": "string",
+                        "example": "424343"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "email@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "(11) 9 9999-9999"
+                    },
+                    "supervisorId": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "partnerPriority": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Rua 12"
+                    },
+                    "address2": {
+                        "type": "string",
+                        "example": "Complemento"
+                    },
+                    "addressNumber": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "district": {
+                        "type": "string",
+                        "example": "Bairro"
+                    },
+                    "zipCode": {
+                        "type": "string",
+                        "example": "74000-00"
+                    },
+                    "cityId": {
+                        "type": "int",
+                        "example": "3"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactCreatorRequest"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PharmacyMassCreatorRequest": {
+                "title": "Pharmacy mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PharmacyCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -6272,28 +6816,68 @@
                 "title": "Pharmacy update form request",
                 "properties": {
                     "code": {
-                        "type": "integer",
-                        "example": "01"
-                    },
-                    "cnpj": {
                         "type": "string",
-                        "example": "99.999.999/0001-91"
+                        "example": "234234"
                     },
                     "socialName": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "Company ltda"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "My Company"
                     },
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "cityId": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "commercial": {
+                    "cnpj": {
                         "type": "string",
-                        "example": "Teste 02"
+                        "example": "99.999.999/0001-91"
+                    },
+                    "stateRegistration": {
+                        "type": "string",
+                        "example": "424343"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "email@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "(11) 9 9999-9999"
+                    },
+                    "supervisorId": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "partnerPriority": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Rua 12"
+                    },
+                    "address2": {
+                        "type": "string",
+                        "example": "Complemento"
+                    },
+                    "addressNumber": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "district": {
+                        "type": "string",
+                        "example": "Bairro"
+                    },
+                    "zipCode": {
+                        "type": "string",
+                        "example": "74000-00"
+                    },
+                    "cityId": {
+                        "type": "int",
+                        "example": "3"
                     }
                 },
                 "type": "object"
@@ -6326,6 +6910,12 @@
                     "laboratoryId": {
                         "type": "integer",
                         "example": "2"
+                    },
+                    "secondaryEanCodes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SecondaryEanCodeCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -6399,6 +6989,21 @@
                                 }
                             },
                             "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ProductMassCreatorRequest": {
+                "title": "Product mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProductCreatorRequest"
                         }
                     }
                 },
@@ -6844,6 +7449,19 @@
                 },
                 "type": "object"
             },
+            "SecondaryEanCodeCreatorRequest": {
+                "title": "Secondary Ean Code form request",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "980890"
+                    }
+                },
+                "type": "object"
+            },
             "UserCreatorRequest": {
                 "title": "User form request",
                 "required": [
@@ -7214,6 +7832,10 @@
                         "type": "integer",
                         "example": "01"
                     },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste 02"
+                    },
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
@@ -7231,10 +7853,6 @@
                         "items": {
                             "$ref": "#/components/schemas/ContactListResource"
                         }
-                    },
-                    "name": {
-                        "type": "string",
-                        "example": "Teste 02"
                     }
                 },
                 "type": "object"
@@ -7496,24 +8114,68 @@
                 "title": "PharmacyList Response",
                 "properties": {
                     "id": {
-                        "type": "integer",
-                        "example": "1"
+                        "type": "int",
+                        "example": "2"
                     },
                     "code": {
-                        "type": "integer",
-                        "example": "01"
+                        "type": "string",
+                        "example": "234234"
+                    },
+                    "socialName": {
+                        "type": "string",
+                        "example": "Company ltda"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "My Company"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "ACTIVE"
                     },
                     "cnpj": {
                         "type": "string",
                         "example": "99.999.999/0001-91"
                     },
-                    "socialName": {
+                    "stateRegistration": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "424343"
                     },
-                    "status": {
+                    "email": {
                         "type": "string",
-                        "example": "ACTIVE"
+                        "example": "email@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "(11) 9 9999-9999"
+                    },
+                    "supervisorId": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "partnerPriority": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Rua 12"
+                    },
+                    "address2": {
+                        "type": "string",
+                        "example": "Complemento"
+                    },
+                    "addressNumber": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "district": {
+                        "type": "string",
+                        "example": "Bairro"
+                    },
+                    "zipCode": {
+                        "type": "string",
+                        "example": "74000-00"
                     },
                     "city": {
                         "type": "string",
@@ -7523,13 +8185,19 @@
                         "type": "string",
                         "example": "São Paulo"
                     },
-                    "commercial": {
-                        "type": "string",
-                        "example": "Teste 02"
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactListResource"
+                        }
                     },
-                    "createdAt": {
-                        "type": "datetime",
-                        "example": "2020-05-25T05:09:15.000000Z"
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "User name"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-21 12:00:11"
                     }
                 },
                 "type": "object"
@@ -7538,48 +8206,90 @@
                 "title": "PharmacyList Response",
                 "properties": {
                     "id": {
-                        "type": "integer",
-                        "example": "1"
+                        "type": "int",
+                        "example": "2"
                     },
                     "code": {
-                        "type": "integer",
-                        "example": "01"
-                    },
-                    "cnpj": {
                         "type": "string",
-                        "example": "99.999.999/0001-91"
+                        "example": "234234"
                     },
                     "socialName": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "Company ltda"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "My Company"
                     },
                     "status": {
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "cityId": {
-                        "type": "integer",
+                    "cnpj": {
+                        "type": "string",
+                        "example": "99.999.999/0001-91"
+                    },
+                    "stateRegistration": {
+                        "type": "string",
+                        "example": "424343"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "email@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "(11) 9 9999-9999"
+                    },
+                    "supervisorId": {
+                        "type": "string",
                         "example": "1"
                     },
-                    "stateId": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "commercial": {
+                    "partnerPriority": {
                         "type": "string",
-                        "example": "Teste 02"
+                        "example": "12"
                     },
-                    "createdAt": {
-                        "type": "datetime",
-                        "example": "2020-05-25T05:09:15.000000Z"
+                    "address": {
+                        "type": "string",
+                        "example": "Rua 12"
+                    },
+                    "address2": {
+                        "type": "string",
+                        "example": "Complemento"
+                    },
+                    "addressNumber": {
+                        "type": "string",
+                        "example": "12"
+                    },
+                    "district": {
+                        "type": "string",
+                        "example": "Bairro"
+                    },
+                    "zipCode": {
+                        "type": "string",
+                        "example": "74000-00"
+                    },
+                    "cityId": {
+                        "type": "string",
+                        "example": "3"
+                    },
+                    "stateId": {
+                        "type": "string",
+                        "example": "3"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactListResource"
+                        }
                     },
                     "updatedUser": {
                         "type": "string",
-                        "example": "Nome usuário"
+                        "example": "User name"
                     },
                     "updatedDate": {
                         "type": "string",
-                        "example": "2020-05-01 10:00:00"
+                        "example": "2020-05-21 12:00:11"
                     }
                 },
                 "type": "object"

@@ -24,6 +24,12 @@ class ProductCreator implements ProductCreatable
             $product->updated_id = auth()->guard('api')->user()->id;
             $product->save();
 
+            if (isset($productData['secondaryEanCodes'])) {
+                foreach ($productData['secondaryEanCodes'] as $code) {
+                    $product->secondaryEanCodes()->create($code);
+                }
+            }
+
             return true;
         } catch (\Exception $exception) {
             throw $exception;

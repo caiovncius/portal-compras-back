@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreatorRequest;
+use App\Http\Requests\ProductMassCreateRequest;
 use App\Http\Requests\ProductUpdatorRequest;
 use App\Http\Resources\ProductListResource;
 use App\Http\Resources\ProductResource;
@@ -308,6 +309,156 @@ class ProductController extends Controller
         try {
             $this->removerService->delete($product);
             return response()->json(['message' => 'Produto removido com sucesso'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Post(
+     *     tags={"ProductMassActions"},
+     *     path="/mass-actions/products/create",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ProductMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param ProductMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massStore(ProductMassCreateRequest $request)
+    {
+        try {
+            foreach ($request->data as $product) {
+                $this->creatorService->store($product);
+            }
+            return response()->json(['message' => 'Produtos criados com sucesso!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Put(
+     *     tags={"ProductMassActions"},
+     *     path="/mass-actions/products/update",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ProductMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param ProductMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massUpdate(ProductMassCreateRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $product) {
+                $localData = Product::where('code', $product['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->updaterService->update($localData, $product);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Atualizados: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Delete(
+     *     tags={"ProductMassActions"},
+     *     path="/mass-actions/products/delete",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ProductMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Laboratório criado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param ProductMassCreateRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massDelete(ProductMassCreateRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $product) {
+                $localData = Product::where('code', $product['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->removerService->delete($localData);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }

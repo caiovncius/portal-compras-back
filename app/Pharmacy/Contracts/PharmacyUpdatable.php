@@ -15,4 +15,12 @@ interface PharmacyUpdatable
      * @throws \Exception
      */
     public function update(Pharmacy $pharmacy, array $pharmacyData);
+
+    /**
+     * @param Pharmacy $pharmacy
+     * @param array $contactData
+     * @return bool
+     * @throws \Exception
+     */
+    public function addContact(Pharmacy $pharmacy, array $contactData);
 }
