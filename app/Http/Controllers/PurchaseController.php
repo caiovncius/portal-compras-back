@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseRequest;
-use App\Http\Resources\ProductDetailResource;
+use App\Http\Resources\ProductDetailPortalResource;
 use App\Http\Resources\PurchaseListResource;
 use App\Product\Contracts\ProductDetailRetrievable;
 use App\Purchase;
@@ -214,7 +214,7 @@ class PurchaseController extends Controller
      *                 @OA\Property(
      *                     property="data",
      *                     type="array",
-     *                     @OA\Items(ref="#/components/schemas/ProductDetailResource"),
+     *                     @OA\Items(ref="#/components/schemas/ProductDetailPortalResource"),
      *                 )
      *             )
      *         )
@@ -230,7 +230,11 @@ class PurchaseController extends Controller
     public function products(Purchase $model, Request $request)
     {
         try {
-            return ProductDetailResource::collection($this->productRetrieverService->getProducts($model, $request->query())->get());
+            $input = $request->all();
+            $input['productable_id'] = $model->id;
+            $input['productable_type'] = 'App\Purchase';
+
+            return ProductDetailPortalResource::collection($this->productRetrieverService->getProducts($input)->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

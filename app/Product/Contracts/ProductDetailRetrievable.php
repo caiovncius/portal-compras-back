@@ -4,5 +4,5 @@ namespace App\Product\Contracts;
 
 interface ProductDetailRetrievable
 {
-    public function getProducts($model, array $params = []);
+    public function getProducts(array $params = []);
 }

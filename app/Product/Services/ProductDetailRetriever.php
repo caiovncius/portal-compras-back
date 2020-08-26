@@ -2,7 +2,9 @@
 
 namespace App\Product\Services;
 
+use App\ProductDetail;
 use App\Product\Contracts\ProductDetailRetrievable;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductDetailRetriever implements ProductDetailRetrievable
 {
@@ -12,10 +14,20 @@ class ProductDetailRetriever implements ProductDetailRetrievable
      * @return \Illuminate\Database\Eloquent\Builder
      * @throws \Exception
      */
-    public function getProducts($model, array $params = [])
+    public function getProducts(array $params = [])
     {
         try {
-            $query = $model->products()->query();
+            $query = ProductDetail::query();
+            $query->groupBy('product_id');
+            $query->where('productable_id', $params['productable_id']);
+            $query->where('productable_type', $params['productable_type']);
+
+            if (isset($params['name']) && $params['name'] !== '') {
+                $name = $params['name'];
+                $query->whereHas('product', function(Builder $query) use ($name) {
+                    $query->where('description', 'like', '%'.$name.'%');
+                });
+            }
 
             return $query;
 

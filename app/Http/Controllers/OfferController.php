@@ -6,7 +6,7 @@ use App\Http\Requests\OfferCreatorRequest;
 use App\Http\Requests\OfferUpdatorRequest;
 use App\Http\Resources\OfferListResource;
 use App\Http\Resources\OfferPortalResource;
-use App\Http\Resources\ProductDetailResource;
+use App\Http\Resources\ProductDetailPortalResource;
 use App\Offer;
 use App\Offer\Contracts\OfferCreatable;
 use App\Product\Contracts\ProductDetailRetrievable;
@@ -220,6 +220,11 @@ class OfferController extends Controller
      *        in="query",
      *        example="teste",
      *     ),
+     *     @OA\Parameter(
+     *        name="payment",
+     *        in="query",
+     *        example="CASH/DEFERRED",
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="",
@@ -229,7 +234,7 @@ class OfferController extends Controller
      *                 @OA\Property(
      *                     property="data",
      *                     type="array",
-     *                     @OA\Items(ref="#/components/schemas/ProductDetailResource"),
+     *                     @OA\Items(ref="#/components/schemas/ProductDetailPortalResource"),
      *                 )
      *             )
      *         )
@@ -245,7 +250,11 @@ class OfferController extends Controller
     public function products(Offer $model, Request $request)
     {
         try {
-            return ProductDetailResource::collection($this->productRetrieverService->getProducts($model, $request->query())->get());
+            $input = $request->all();
+            $input['productable_id'] = $model->id;
+            $input['productable_type'] = 'App\Offer';
+
+            return ProductDetailPortalResource::collection($this->productRetrieverService->getProducts($input)->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

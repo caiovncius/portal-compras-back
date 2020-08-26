@@ -62,11 +62,6 @@ class ProductDetail extends Model
         'priceOnCash' => 'decimal:2',
     ];
 
-    public function offer()
-    {
-        return $this->belongsTo('App\Offer', 'offer_id');
-    }
-
     public function product()
     {
         return $this->belongsTo('App\Product', 'product_id');

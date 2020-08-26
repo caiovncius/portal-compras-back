@@ -2,11 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\ProductDetail;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="ProductDetailResource",
+ *     schema="ProductDetailPortalResource",
  *     type="object",
  *     title="Product detail Response",
  *     @OA\Property(property="discountDeferred", type="string", example="2"),
@@ -29,7 +30,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
  * )
  */
-class ProductDetailResource extends JsonResource
+class ProductDetailPortalResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -39,25 +40,24 @@ class ProductDetailResource extends JsonResource
      */
     public function toArray($request)
     {
+        $payment = (!$request->payment OR $request->payment == 'CASH') ? 'OnCash' : 'Deferred';
+        $discount = "discount$payment";
+        $priceWithDiscount = "price$payment";
+
         return [
-            'discountDeferred' => $this->discountDeferred,
-            'discountOnCash' => $this->discountOnCash,
-            'minimum' => $this->minimum,
-            'minimumPerFamily' => $this->minimumPerFamily,
-            'obrigatory' => $this->obrigatory,
-            'variable' => $this->variable,
-            'family' => $this->family,
-            'gift' => $this->gift,
-            'factoryPrice' => $this->factoryPrice,
-            'priceDeferred' => $this->priceDeferred,
-            'priceOnCash' => $this->priceOnCash,
-            'quantityMaximum' => $this->quantityMaximum,
-            'quantityMinimum' => $this->quantityMinimum,
-            'state_id' => $this->state_id,
             'product_id' => $this->product_id,
-            'productName' => $this->product ? $this->product->description : '',
-            'updatedUser' => $this->user ? $this->user->name : '',
-            'updatedDate' => $this->updated_at
+            'product' => $this->product ? $this->product->description : '',
+            'price' => $this->factoryPrice,
+            'discount' => $this->$discount,
+            'priceWithDiscount' => $this->$priceWithDiscount,
+            'obrigatory' => $this->obrigatory,
+            'values' => ProductDetail::where('product_id', $this->product_id)
+                                     ->get()->map(function ($item, $key) use ($discount) {                                        return [
+                                            'minimum' => $item->quantityMinimum,
+                                            'maximum' => $item->quantityMaximum,
+                                            'percent' => $item->$discount
+                                        ];
+                                     })
         ];
     }
 }
