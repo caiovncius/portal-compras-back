@@ -7,27 +7,32 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
+ *     schema="PurchcaseProductPricesDetailPortalResource",
+ *     type="object",
+ *     title="Purchcase Product Prices Details Portal Response",
+ *     @OA\Property(property="minimum", type="string", example="01"),
+ *     @OA\Property(property="maximum", type="string", example="01"),
+ *     @OA\Property(property="percent", type="string", example="01"),
+ * )
+ */
+
+
+/**
+ * @OA\Schema(
  *     schema="ProductDetailPortalResource",
  *     type="object",
  *     title="Product detail Response",
- *     @OA\Property(property="discountDeferred", type="string", example="2"),
- *     @OA\Property(property="discountOnCash", type="string", example="4"),
- *     @OA\Property(property="minimum", type="integer", example="10"),
- *     @OA\Property(property="minimumPerFamily", type="integer", example="15"),
+ *     @OA\Property(property="productId", type="integer", example="2"),
+ *     @OA\Property(property="product", type="string", example="4"),
+ *     @OA\Property(property="price", type="string", example="10"),
+ *     @OA\Property(property="priceWithDiscount", type="integer", example="15"),
  *     @OA\Property(property="obrigatory", type="boolean", example="1"),
- *     @OA\Property(property="variable", type="boolean", example="1"),
- *     @OA\Property(property="family", type="boolean", example="0"),
- *     @OA\Property(property="gift", type="boolean", example="0"),
- *     @OA\Property(property="factoryPrice", type="string", example="10.00"),
- *     @OA\Property(property="priceDeferred", type="string", example="11.00"),
- *     @OA\Property(property="priceOnCash", type="string", example="10.51"),
- *     @OA\Property(property="productName", type="string", example="Teste"),
- *     @OA\Property(property="quantityMaximum", type="integer", example="6"),
- *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
- *     @OA\Property(property="state_id", type="string", example="5"),
- *     @OA\Property(property="product_id", type="string", example="5"),
- *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
- *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="values", type="boolean", example="1"),
+ *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/PurchcaseProductPricesDetailPortalResource")
+ *     ),
  * )
  */
 class ProductDetailPortalResource extends JsonResource
@@ -45,7 +50,7 @@ class ProductDetailPortalResource extends JsonResource
         $priceWithDiscount = "price$payment";
 
         return [
-            'product_id' => $this->product_id,
+            'productId' => $this->product_id,
             'product' => $this->product ? $this->product->description : '',
             'price' => $this->factoryPrice,
             'discount' => $this->$discount,

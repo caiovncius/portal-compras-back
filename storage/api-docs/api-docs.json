@@ -4,6 +4,11 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": ""
+        }
+    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -2143,6 +2148,11 @@
                         "name": "name",
                         "in": "query",
                         "example": "teste"
+                    },
+                    {
+                        "name": "payment",
+                        "in": "query",
+                        "example": "CASH/DEFERRED"
                     }
                 ],
                 "responses": {
@@ -2155,7 +2165,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/ProductDetailResource"
+                                                "$ref": "#/components/schemas/ProductDetailPortalResource"
                                             }
                                         }
                                     },
@@ -4642,7 +4652,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/ProductDetailResource"
+                                                "$ref": "#/components/schemas/ProductDetailPortalResource"
                                             }
                                         }
                                     },
@@ -5942,6 +5952,108 @@
                                     "properties": {
                                         "error": {
                                             "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/user/create": {
+            "post": {
+                "tags": [
+                    "UserMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/user/update": {
+            "put": {
+                "tags": [
+                    "UserMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Usuário criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/user/delete": {
+            "delete": {
+                "tags": [
+                    "UserMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -7366,6 +7478,14 @@
                         "type": "string",
                         "example": "ACTIVE"
                     },
+                    "modelId": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "modelType": {
+                        "type": "string",
+                        "example": "OFFER"
+                    },
                     "products": {
                         "type": "array",
                         "items": {
@@ -7502,6 +7622,69 @@
                     "profileId": {
                         "type": "integer",
                         "example": "2"
+                    }
+                },
+                "type": "object"
+            },
+            "UserMassFormCreatorRequest": {
+                "title": "User form request",
+                "required": [
+                    "name",
+                    "email",
+                    "username",
+                    "profile_id",
+                    "type",
+                    "status"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Usuário Teste"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "user01@test.test"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "user01"
+                    },
+                    "phone1": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "phone2": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "profileId": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "2e59789787n8n7878787e8m7d8ew7be8xb7"
+                    }
+                },
+                "type": "object"
+            },
+            "UserMassCreatorRequest": {
+                "title": "User mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserMassFormCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -8290,6 +8473,60 @@
                     "updatedDate": {
                         "type": "string",
                         "example": "2020-05-21 12:00:11"
+                    }
+                },
+                "type": "object"
+            },
+            "PurchcaseProductPricesDetailPortalResource": {
+                "title": "Purchcase Product Prices Details Portal Response",
+                "properties": {
+                    "minimum": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "maximum": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "percent": {
+                        "type": "string",
+                        "example": "01"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductDetailPortalResource": {
+                "title": "Product detail Response",
+                "properties": {
+                    "productId": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "product": {
+                        "type": "string",
+                        "example": "4"
+                    },
+                    "price": {
+                        "type": "string",
+                        "example": "10"
+                    },
+                    "priceWithDiscount": {
+                        "type": "integer",
+                        "example": "15"
+                    },
+                    "obrigatory": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "values": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PurchcaseProductPricesDetailPortalResource"
+                        }
                     }
                 },
                 "type": "object"
@@ -9217,9 +9454,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
-                        "tokenUrl": "http://localhost:8000/oauth/token",
-                        "refreshUrl": "http://localhost:8000/token/refresh",
+                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
+                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
+                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
                         "scopes": []
                     }
                 }
