@@ -8519,10 +8519,6 @@
                         "example": "1"
                     },
                     "values": {
-                        "type": "boolean",
-                        "example": "1"
-                    },
-                    "contacts": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/PurchcaseProductPricesDetailPortalResource"
