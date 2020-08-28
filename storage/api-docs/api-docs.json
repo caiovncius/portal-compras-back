@@ -8755,22 +8755,40 @@
                 },
                 "type": "object"
             },
+            "PurchcaseProductPricesDetailPortalResource": {
+                "title": "Purchcase Product Prices Details Portal Response",
+                "properties": {
+                    "minimum": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "maximum": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "percent": {
+                        "type": "string",
+                        "example": "01"
+                    }
+                },
+                "type": "object"
+            },
             "ProductDetailPortalResource": {
                 "title": "Product detail Response",
                 "properties": {
-                    "discountDeferred": {
-                        "type": "string",
+                    "productId": {
+                        "type": "integer",
                         "example": "2"
                     },
-                    "discountOnCash": {
+                    "product": {
                         "type": "string",
                         "example": "4"
                     },
-                    "minimum": {
-                        "type": "integer",
+                    "price": {
+                        "type": "string",
                         "example": "10"
                     },
-                    "minimumPerFamily": {
+                    "priceWithDiscount": {
                         "type": "integer",
                         "example": "15"
                     },
@@ -8778,57 +8796,11 @@
                         "type": "boolean",
                         "example": "1"
                     },
-                    "variable": {
-                        "type": "boolean",
-                        "example": "1"
-                    },
-                    "family": {
-                        "type": "boolean",
-                        "example": "0"
-                    },
-                    "gift": {
-                        "type": "boolean",
-                        "example": "0"
-                    },
-                    "factoryPrice": {
-                        "type": "string",
-                        "example": "10.00"
-                    },
-                    "priceDeferred": {
-                        "type": "string",
-                        "example": "11.00"
-                    },
-                    "priceOnCash": {
-                        "type": "string",
-                        "example": "10.51"
-                    },
-                    "productName": {
-                        "type": "string",
-                        "example": "Teste"
-                    },
-                    "quantityMaximum": {
-                        "type": "integer",
-                        "example": "6"
-                    },
-                    "quantityMinimum": {
-                        "type": "integer",
-                        "example": "10"
-                    },
-                    "state_id": {
-                        "type": "string",
-                        "example": "5"
-                    },
-                    "product_id": {
-                        "type": "string",
-                        "example": "5"
-                    },
-                    "updatedUser": {
-                        "type": "string",
-                        "example": "Nome usuário"
-                    },
-                    "updatedDate": {
-                        "type": "string",
-                        "example": "2020-05-01 10:00:00"
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PurchcaseProductPricesDetailPortalResource"
+                        }
                     }
                 },
                 "type": "object"
