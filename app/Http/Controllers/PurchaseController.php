@@ -127,8 +127,8 @@ class PurchaseController extends Controller
 
     /**
      * @OA\Get(
-     *     tags={"Purchases"},
-     *     path="/purchases/portal",
+     *     tags={"Portal"},
+     *     path="/portal/purchases",
      *     @OA\Parameter(
      *        name="code",
      *        in="query",
@@ -198,8 +198,8 @@ class PurchaseController extends Controller
 
     /**
      * @OA\Get(
-     *     tags={"Purchases"},
-     *     path="/purchases/{id}/products",
+     *     tags={"Portal"},
+     *     path="/portal/purchases/{id}/products",
      *     @OA\Parameter(
      *        name="name",
      *        in="query",

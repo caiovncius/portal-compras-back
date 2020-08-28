@@ -428,4 +428,154 @@ class DistributorController extends Controller
         return DistributorResource::make($distributor);
     }
 
+    /**
+     *
+     * @OA\Post(
+     *     tags={"DistributorMassActions"},
+     *     path="/mass-actions/distributor/create",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/DistributorMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Distributors criados com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param DistributorMassCreatorRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massStore(DistributorMassCreatorRequest $request)
+    {
+        try {
+            foreach ($request->data as $Distributor) {
+                $this->creatorService->store($Distributor);
+            }
+            return response()->json(['message' => 'Distributors criados com sucesso!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Put(
+     *     tags={"DistributorMassActions"},
+     *     path="/mass-actions/distributor/update",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/DistributorMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Distributors atualizados com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param DistributorMassCreatorRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massUpdate(DistributorMassCreatorRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $model) {
+                $localData = Distributor::where('code', $model['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->updaterService->update($localData, $model);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Atualizados: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Delete(
+     *     tags={"DistributorMassActions"},
+     *     path="/mass-actions/distributor/delete",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/DistributorMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Distributors apagados com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param DistributorMassCreatorRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massDelete(DistributorMassCreatorRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $model) {
+                $localData = Distributor::where('code', $model['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->removerService->delete($localData);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
 }

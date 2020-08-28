@@ -4,11 +4,6 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": ""
-        }
-    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -1475,6 +1470,108 @@
                 }
             }
         },
+        "/mass-actions/distributor/create": {
+            "post": {
+                "tags": [
+                    "DistributorMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DistributorMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Distributors criados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/distributor/update": {
+            "put": {
+                "tags": [
+                    "DistributorMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DistributorMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Distributors atualizados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/distributor/delete": {
+            "delete": {
+                "tags": [
+                    "DistributorMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DistributorMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Distributors apagados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/laboratories": {
             "get": {
                 "tags": [
@@ -2075,10 +2172,10 @@
                 }
             }
         },
-        "/offers/portal": {
+        "/portal/offers": {
             "get": {
                 "tags": [
-                    "Offers"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -2138,10 +2235,10 @@
                 }
             }
         },
-        "/offers/{id}/products": {
+        "/portal/offers/{id}/products": {
             "get": {
                 "tags": [
-                    "Offers"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -4217,6 +4314,108 @@
                 }
             }
         },
+        "/mass-actions/program/create": {
+            "post": {
+                "tags": [
+                    "ProgramMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProgramMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programs criados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/program/update": {
+            "put": {
+                "tags": [
+                    "ProgramMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProgramMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programs atualizados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/program/delete": {
+            "delete": {
+                "tags": [
+                    "ProgramMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProgramMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programs apagados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/publicities": {
             "get": {
                 "tags": [
@@ -4562,10 +4761,10 @@
                 }
             }
         },
-        "/purchases/portal": {
+        "/portal/purchases": {
             "get": {
                 "tags": [
-                    "Purchases"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -4630,10 +4829,10 @@
                 }
             }
         },
-        "/purchases/{id}/products": {
+        "/portal/purchases/{id}/products": {
             "get": {
                 "tags": [
-                    "Purchases"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -4821,10 +5020,10 @@
                 }
             }
         },
-        "/requests": {
+        "/portal/requests": {
             "get": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -4890,7 +5089,7 @@
             },
             "post": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "requestBody": {
                     "required": true,
@@ -4946,10 +5145,10 @@
                 }
             }
         },
-        "/requests/{id}": {
+        "/portal/requests/{id}": {
             "get": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -4994,7 +5193,7 @@
             },
             "put": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -5059,7 +5258,7 @@
             },
             "delete": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -6451,6 +6650,48 @@
                 },
                 "type": "object"
             },
+            "DistributorMassFormCreatorRequest": {
+                "title": "Distributor Mass Form request",
+                "required": [
+                    "code",
+                    "cnpj",
+                    "name",
+                    "status"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "cnpj": {
+                        "type": "integer",
+                        "example": "00.0001/0004.14"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "DistributorMassCreatorRequest": {
+                "title": "Distributor mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DistributorMassFormCreatorRequest"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "DistributorUpdatorRequest": {
                 "title": "Distributor update form request",
                 "properties": {
@@ -7219,6 +7460,43 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "ProgramMassFormCreatorRequest": {
+                "title": "Program form request",
+                "required": [
+                    "code",
+                    "name",
+                    "status"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "ProgramMassCreatorRequest": {
+                "title": "Program mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProgramMassFormCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -9450,9 +9728,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
-                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
-                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
+                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
+                        "tokenUrl": "http://localhost:8000/oauth/token",
+                        "refreshUrl": "http://localhost:8000/token/refresh",
                         "scopes": []
                     }
                 }

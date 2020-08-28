@@ -387,4 +387,18 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
         ->name('user.mass.update');
     Route::delete('/mass-actions/user/delete', 'UserController@massDelete')
         ->name('user.mass.delete');
+
+    Route::post('/mass-actions/program/create', 'ProgramController@massStore')
+        ->name('program.mass.create');
+    Route::put('/mass-actions/program/update', 'ProgramController@massUpdate')
+        ->name('program.mass.update');
+    Route::delete('/mass-actions/program/delete', 'ProgramController@massDelete')
+        ->name('program.mass.delete');
+
+    Route::post('/mass-actions/distributor/create', 'DistributorController@massStore')
+        ->name('distributor.mass.create');
+    Route::put('/mass-actions/distributor/update', 'DistributorController@massUpdate')
+        ->name('distributor.mass.update');
+    Route::delete('/mass-actions/distributor/delete', 'DistributorController@massDelete')
+        ->name('distributor.mass.delete');
 });
