@@ -177,7 +177,7 @@ class ContactController extends Controller
      *
      * @OA\Put(
      *     tags={"Contacts"},
-     *     path="/Contacts/{contact}",
+     *     path="/contacts/{contact}",
      *     @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/ContactUpdatorRequest")
@@ -238,7 +238,7 @@ class ContactController extends Controller
      *
      * @OA\Delete(
      *     tags={"Contacts"},
-     *     path="/Contacts/{contact}",
+     *     path="/contacts/{contact}",
      *     @OA\Parameter(
      *        name="contact",
      *        in="path",
@@ -289,7 +289,7 @@ class ContactController extends Controller
      *
      * @OA\GET(
      *     tags={"Contacts"},
-     *     path="/Contacts/{contact}",
+     *     path="/contacts/{contact}",
      *     @OA\Parameter(
      *        name="contact",
      *        in="path",
@@ -327,5 +327,4 @@ class ContactController extends Controller
     {
         return ContactListResource::make($model);
     }
-
 }
