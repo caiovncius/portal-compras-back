@@ -49,8 +49,8 @@ class RequestController extends Controller
 
     /**
      * @OA\Get(
-     *     tags={"Requests"},
-     *     path="/requests",
+     *     tags={"Portal"},
+     *     path="/portal/requests",
      *     @OA\Parameter(
      *        name="offerid",
      *        in="query",
@@ -121,8 +121,8 @@ class RequestController extends Controller
     /**
      *
      * @OA\Post(
-     *     tags={"Requests"},
-     *     path="/requests",
+     *     tags={"Portal"},
+     *     path="/portal/requests",
      *     @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/RequestRequest")
@@ -178,8 +178,8 @@ class RequestController extends Controller
     /**
      *
      * @OA\Put(
-     *     tags={"Requests"},
-     *     path="/requests/{id}",
+     *     tags={"Portal"},
+     *     path="/portal/requests/{id}",
      *     @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/RequestRequest")
@@ -239,8 +239,8 @@ class RequestController extends Controller
     /**
      *
      * @OA\Delete(
-     *     tags={"Requests"},
-     *     path="/requests/{id}",
+     *     tags={"Portal"},
+     *     path="/portal/requests/{id}",
      *     @OA\Parameter(
      *        name="id",
      *        in="path",
@@ -290,8 +290,8 @@ class RequestController extends Controller
     /**
      *
      * @OA\GET(
-     *     tags={"Requests"},
-     *     path="/requests/{id}",
+     *     tags={"Portal"},
+     *     path="/portal/requests/{id}",
      *     @OA\Parameter(
      *        name="id",
      *        in="path",

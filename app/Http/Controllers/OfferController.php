@@ -144,8 +144,8 @@ class OfferController extends Controller
 
     /**
      * @OA\Get(
-     *     tags={"Offers"},
-     *     path="/offers/portal",
+     *     tags={"Portal"},
+     *     path="/portal/offers",
      *     @OA\Parameter(
      *        name="name",
      *        in="query",
@@ -213,8 +213,8 @@ class OfferController extends Controller
 
     /**
      * @OA\Get(
-     *     tags={"Offers"},
-     *     path="/offers/{id}/products",
+     *     tags={"Portal"},
+     *     path="/portal/offers/{id}/products",
      *     @OA\Parameter(
      *        name="name",
      *        in="query",

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProgramCreatorRequest;
+use App\Http\Requests\ProgramMassCreatorRequest;
 use App\Http\Requests\ProgramUpdatorRequest;
 use App\Http\Requests\ReturnMorphRequest;
 use App\Http\Resources\ProgramListResource;
@@ -387,6 +388,156 @@ class ProgramController extends Controller
     public function get(Program $model)
     {
         return ProgramResource::make($model);
+    }
+
+    /**
+     *
+     * @OA\Post(
+     *     tags={"ProgramMassActions"},
+     *     path="/mass-actions/program/create",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ProgramMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Programs criados com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param ProgramMassCreatorRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massStore(ProgramMassCreatorRequest $request)
+    {
+        try {
+            foreach ($request->data as $model) {
+                $this->creatorService->store($model);
+            }
+            return response()->json(['message' => 'Programs criados com sucesso!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Put(
+     *     tags={"ProgramMassActions"},
+     *     path="/mass-actions/program/update",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ProgramMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Programs atualizados com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param ProgramMassCreatorRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massUpdate(ProgramMassCreatorRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $model) {
+                $localData = Program::where('code', $model['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->updaterService->update($localData, $model);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Atualizados: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Delete(
+     *     tags={"ProgramMassActions"},
+     *     path="/mass-actions/program/delete",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/ProgramMassCreatorRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Programs apagados com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *
+     * )
+     */
+
+    /**
+     * @param ProgramMassCreatorRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massDelete(ProgramMassCreatorRequest $request)
+    {
+        try {
+            $updated = 0;
+            $notFound = 0;
+            foreach ($request->data as $model) {
+                $localData = Program::where('code', $model['code'])->first();
+
+                if (is_null($localData)) {
+                    $notFound += 1;
+                }
+
+                $this->removerService->delete($localData);
+                $updated += 1;
+            }
+            return response()->json([
+                'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
+                200
+            );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 
 }

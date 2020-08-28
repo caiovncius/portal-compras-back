@@ -1470,6 +1470,108 @@
                 }
             }
         },
+        "/mass-actions/distributor/create": {
+            "post": {
+                "tags": [
+                    "DistributorMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DistributorMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Distributors criados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/distributor/update": {
+            "put": {
+                "tags": [
+                    "DistributorMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DistributorMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Distributors atualizados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/distributor/delete": {
+            "delete": {
+                "tags": [
+                    "DistributorMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DistributorMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Distributors apagados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/laboratories": {
             "get": {
                 "tags": [
@@ -2070,10 +2172,10 @@
                 }
             }
         },
-        "/offers/portal": {
+        "/portal/offers": {
             "get": {
                 "tags": [
-                    "Offers"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -2133,16 +2235,21 @@
                 }
             }
         },
-        "/offers/{id}/products": {
+        "/portal/offers/{id}/products": {
             "get": {
                 "tags": [
-                    "Offers"
+                    "Portal"
                 ],
                 "parameters": [
                     {
                         "name": "name",
                         "in": "query",
                         "example": "teste"
+                    },
+                    {
+                        "name": "payment",
+                        "in": "query",
+                        "example": "CASH/DEFERRED"
                     }
                 ],
                 "responses": {
@@ -2155,7 +2262,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/ProductDetailResource"
+                                                "$ref": "#/components/schemas/ProductDetailPortalResource"
                                             }
                                         }
                                     },
@@ -4207,6 +4314,108 @@
                 }
             }
         },
+        "/mass-actions/program/create": {
+            "post": {
+                "tags": [
+                    "ProgramMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProgramMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programs criados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/program/update": {
+            "put": {
+                "tags": [
+                    "ProgramMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProgramMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programs atualizados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/program/delete": {
+            "delete": {
+                "tags": [
+                    "ProgramMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProgramMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programs apagados com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/publicities": {
             "get": {
                 "tags": [
@@ -4552,10 +4761,10 @@
                 }
             }
         },
-        "/purchases/portal": {
+        "/portal/purchases": {
             "get": {
                 "tags": [
-                    "Purchases"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -4620,10 +4829,10 @@
                 }
             }
         },
-        "/purchases/{id}/products": {
+        "/portal/purchases/{id}/products": {
             "get": {
                 "tags": [
-                    "Purchases"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -4642,7 +4851,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/ProductDetailResource"
+                                                "$ref": "#/components/schemas/ProductDetailPortalResource"
                                             }
                                         }
                                     },
@@ -4811,10 +5020,10 @@
                 }
             }
         },
-        "/requests": {
+        "/portal/requests": {
             "get": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -4880,7 +5089,7 @@
             },
             "post": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "requestBody": {
                     "required": true,
@@ -4936,10 +5145,10 @@
                 }
             }
         },
-        "/requests/{id}": {
+        "/portal/requests/{id}": {
             "get": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -4984,7 +5193,7 @@
             },
             "put": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -5049,7 +5258,7 @@
             },
             "delete": {
                 "tags": [
-                    "Requests"
+                    "Portal"
                 ],
                 "parameters": [
                     {
@@ -5952,6 +6161,108 @@
                 }
             }
         },
+        "/mass-actions/user/create": {
+            "post": {
+                "tags": [
+                    "UserMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/user/update": {
+            "put": {
+                "tags": [
+                    "UserMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Usuário criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mass-actions/user/delete": {
+            "delete": {
+                "tags": [
+                    "UserMassActions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserMassCreatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Laboratório criado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/": {
             "get": {
                 "description": "Status da API",
@@ -6335,6 +6646,48 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "DistributorMassFormCreatorRequest": {
+                "title": "Distributor Mass Form request",
+                "required": [
+                    "code",
+                    "cnpj",
+                    "name",
+                    "status"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "cnpj": {
+                        "type": "integer",
+                        "example": "00.0001/0004.14"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "DistributorMassCreatorRequest": {
+                "title": "Distributor mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DistributorMassFormCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -7111,6 +7464,43 @@
                 },
                 "type": "object"
             },
+            "ProgramMassFormCreatorRequest": {
+                "title": "Program form request",
+                "required": [
+                    "code",
+                    "name",
+                    "status"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    }
+                },
+                "type": "object"
+            },
+            "ProgramMassCreatorRequest": {
+                "title": "Program mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProgramMassFormCreatorRequest"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ProgramUpdatorRequest": {
                 "title": "Program update form request",
                 "properties": {
@@ -7366,6 +7756,14 @@
                         "type": "string",
                         "example": "ACTIVE"
                     },
+                    "modelId": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "modelType": {
+                        "type": "string",
+                        "example": "OFFER"
+                    },
                     "products": {
                         "type": "array",
                         "items": {
@@ -7502,6 +7900,69 @@
                     "profileId": {
                         "type": "integer",
                         "example": "2"
+                    }
+                },
+                "type": "object"
+            },
+            "UserMassFormCreatorRequest": {
+                "title": "User form request",
+                "required": [
+                    "name",
+                    "email",
+                    "username",
+                    "profile_id",
+                    "type",
+                    "status"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Usuário Teste"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "user01@test.test"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "user01"
+                    },
+                    "phone1": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "phone2": {
+                        "type": "string",
+                        "example": "(62) 9 9999-9999"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/UserType"
+                    },
+                    "profileId": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "2e59789787n8n7878787e8m7d8ew7be8xb7"
+                    }
+                },
+                "type": "object"
+            },
+            "UserMassCreatorRequest": {
+                "title": "User mass form request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserMassFormCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -8290,6 +8751,84 @@
                     "updatedDate": {
                         "type": "string",
                         "example": "2020-05-21 12:00:11"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductDetailPortalResource": {
+                "title": "Product detail Response",
+                "properties": {
+                    "discountDeferred": {
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "discountOnCash": {
+                        "type": "string",
+                        "example": "4"
+                    },
+                    "minimum": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "minimumPerFamily": {
+                        "type": "integer",
+                        "example": "15"
+                    },
+                    "obrigatory": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "variable": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "family": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "gift": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "factoryPrice": {
+                        "type": "string",
+                        "example": "10.00"
+                    },
+                    "priceDeferred": {
+                        "type": "string",
+                        "example": "11.00"
+                    },
+                    "priceOnCash": {
+                        "type": "string",
+                        "example": "10.51"
+                    },
+                    "productName": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "quantityMaximum": {
+                        "type": "integer",
+                        "example": "6"
+                    },
+                    "quantityMinimum": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "state_id": {
+                        "type": "string",
+                        "example": "5"
+                    },
+                    "product_id": {
+                        "type": "string",
+                        "example": "5"
+                    },
+                    "updatedUser": {
+                        "type": "string",
+                        "example": "Nome usuário"
+                    },
+                    "updatedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
                     }
                 },
                 "type": "object"
