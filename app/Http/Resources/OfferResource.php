@@ -24,8 +24,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="noAutomaticSending",  type="boolean", example="true"),
  *     @OA\Property(property="impound",  type="boolean", example="false"),
  *     @OA\Property(property="description",  type="string", example="asdasd"),
- *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
- *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
  *     @OA\Property(
  *         property="emails",
  *         type="array",
@@ -60,8 +60,8 @@ class OfferResource extends JsonResource
             'description' => $this->description,
             'emails' => $this->emails,
             'products' => ProductDetailResource::collection($this->products),
-            'updatedUser' => $this->user ? $this->user->name : '',
-            'updatedDate' => $this->updated_at
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

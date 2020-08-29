@@ -25,8 +25,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="totalIntentionsValue", type="integer", example="1"),
  *     @OA\Property(property="totalIntentionsQuantity", type="integer", example="1"),
  *     @OA\Property(property="relatedQuantity", type="integer", example="1"),
- *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
- *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
  * )
  */
 class PurchaseListResource extends JsonResource
@@ -57,8 +57,8 @@ class PurchaseListResource extends JsonResource
             'totalIntentionsQuantity' => $this->totalIntentionsQuantity,
             'relatedQuantity' => $this->relatedQuantity,
             'description' => $this->description,
-            'updatedUser' => $this->user ? $this->user->name : '',
-            'updatedDate' => $this->updated_at
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

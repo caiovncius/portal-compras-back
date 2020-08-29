@@ -17,8 +17,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="commercial", type="string", example="123"),
  *     @OA\Property(property="sendType", type="string", example="123"),
  *     @OA\Property(property="status", type="string", example="Ativo"),
- *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
- *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
  * )
  */
 
@@ -41,8 +41,8 @@ class AccompanimentListResource extends JsonResource
             'commercial' => $this->commercial,
             'sendType' => $this->type_send,
             'status' => $this->status,
-            'updatedUser' => $this->user ? $this->user->name : '',
-            'updatedDate' => $this->updated_at
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }
