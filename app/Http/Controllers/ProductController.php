@@ -120,6 +120,39 @@ class ProductController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     tags={"Products"},
+     *     path="/products/all",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/ProductListResource"),
+     *                 ),
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function all(Request $request) {
+        try {
+            return ProductListResource::collection($this->retreiverService->getProducts($request->query())->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
      *
      * @OA\Post(
      *     tags={"Products"},

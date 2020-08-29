@@ -2972,6 +2972,33 @@
                 }
             }
         },
+        "/products/all": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProductListResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/products/{product}": {
             "get": {
                 "tags": [
@@ -8038,11 +8065,11 @@
                         "type": "string",
                         "example": "Ativo"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     }
@@ -8088,11 +8115,11 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
@@ -8140,11 +8167,11 @@
                         "type": "string",
                         "example": "123"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     }
@@ -8236,11 +8263,11 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
@@ -8271,11 +8298,11 @@
                         "type": "integer",
                         "example": "002W"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     }
@@ -8301,11 +8328,11 @@
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
@@ -8369,11 +8396,11 @@
                         "type": "string",
                         "example": "asdqwe"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
@@ -8510,11 +8537,11 @@
                         "type": "string",
                         "example": "asdasd"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
@@ -8652,11 +8679,11 @@
                             "$ref": "#/components/schemas/ContactListResource"
                         }
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "User name"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-21 12:00:11"
                     }
@@ -8744,11 +8771,11 @@
                             "$ref": "#/components/schemas/ContactListResource"
                         }
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "User name"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-21 12:00:11"
                     }
@@ -8872,11 +8899,11 @@
                         "type": "string",
                         "example": "5"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     }
@@ -8987,11 +9014,11 @@
                     "type": {
                         "$ref": "#/components/schemas/UserType"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
@@ -9046,11 +9073,11 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
@@ -9089,11 +9116,11 @@
                         "type": "date",
                         "example": "2010-10-11"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
@@ -9174,11 +9201,11 @@
                         "type": "integer",
                         "example": "1"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     }
@@ -9226,11 +9253,11 @@
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     }
@@ -9273,11 +9300,11 @@
                         "type": "string",
                         "example": "ACTIVE"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
@@ -9315,11 +9342,11 @@
                         "type": "string",
                         "example": "ATIVO"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     }
@@ -9450,11 +9477,11 @@
                         "type": "datetime",
                         "example": "2020-05-25T05:09:15.000000Z"
                     },
-                    "updatedUser": {
+                    "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
                     },
-                    "updatedDate": {
+                    "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     }

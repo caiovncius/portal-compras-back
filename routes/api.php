@@ -294,6 +294,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/products', 'ProductController@list')
          ->name('product.list')
          ->middleware('acl:Product,r');
+    Route::get('/products/all', 'ProductController@all')
+         ->name('product.all')
+         ->middleware('acl:Product,r');
     Route::get('/products/{product}', 'ProductController@get')
          ->name('product.get')
          ->middleware('acl:Product,r');
