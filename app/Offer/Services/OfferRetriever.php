@@ -36,14 +36,14 @@ class OfferRetriever implements OfferRetrievable
             if (isset($params['startDate1']) && !empty($params['startDate1'])) {
                 $query->whereDate('startDate', '>=', $params['startDate1']);
                 if (isset($params['startDate2']) && !empty($params['startDate2'])) {
-                    $query->whereDate('startDate', '<=', $params['startDate2']);                    
+                    $query->whereDate('startDate', '<=', $params['startDate2']);
                 }
             }
 
             if (isset($params['endDate1']) && !empty($params['endDate1'])) {
                 $query->whereDate('endDate', '>=', $params['endDate1']);
                 if (isset($params['endDate2']) && !empty($params['endDate2'])) {
-                    $query->whereDate('endDate', '<=', $params['endDate2']);                    
+                    $query->whereDate('endDate', '<=', $params['endDate2']);
                 }
             }
 
@@ -71,7 +71,7 @@ class OfferRetriever implements OfferRetrievable
             if (isset($params['product']) && !empty($params['product'])) {
                 $product = $params['product'];
                 $query->whereHas('products', function ($related) use($product) {
-                    $related->where('description', 'like', "%$product%");
+                    $related->where('id', $product);
                 });
             }
 
