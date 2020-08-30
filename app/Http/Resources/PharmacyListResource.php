@@ -32,8 +32,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/ContactListResource")
  *     ),
- *     @OA\Property(property="updatedUser", type="string", example="User name"),
- *     @OA\Property(property="updatedDate", type="string", example="2020-05-21 12:00:11")
+ *     @OA\Property(property="updated_user", type="string", example="User name"),
+ *     @OA\Property(property="updated_date", type="string", example="2020-05-21 12:00:11")
  * )
  */
 class PharmacyListResource extends JsonResource
@@ -66,8 +66,8 @@ class PharmacyListResource extends JsonResource
             'city' => $this->city->name,
             'state' => $this->city->state->name,
             'contacts' => ContactListResource::collection($this->contacts),
-            'updatedUser' => $this->user ? $this->user->name : '',
-            'updatedDate' => $this->updated_at
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

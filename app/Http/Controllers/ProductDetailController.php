@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductDetailRequest;
+use App\Offer;
 use App\Product\Contracts\ProductDetailCreatable;
 use App\Purchase;
 use Illuminate\Http\Request;

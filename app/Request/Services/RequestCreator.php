@@ -24,6 +24,12 @@ class RequestCreator implements RequestCreatable
             $data['requestable_type'] = $type;
             $data['status'] = 0;
             $model = Request::create($data);
+            
+            $model->historics()->create([
+                'user' => auth()->guard('api')->user()->name,
+                'action' => 'Pedido criado',
+                'status' => 'ENVIADO'
+            ]);
 
             if (isset($data['products'])) {
                 foreach ($data['products'] as $data) {

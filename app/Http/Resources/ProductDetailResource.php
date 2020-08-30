@@ -25,8 +25,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
  *     @OA\Property(property="state_id", type="string", example="5"),
  *     @OA\Property(property="product_id", type="string", example="5"),
- *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
- *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
  * )
  */
 class ProductDetailResource extends JsonResource
@@ -56,8 +56,8 @@ class ProductDetailResource extends JsonResource
             'state_id' => $this->state_id,
             'product_id' => $this->product_id,
             'productName' => $this->product ? $this->product->description : '',
-            'updatedUser' => $this->user ? $this->user->name : '',
-            'updatedDate' => $this->updated_at
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

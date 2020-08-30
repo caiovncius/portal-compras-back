@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\FileUploader;
+use App\Http\Requests\PublicityImageRequest;
 use App\Http\Requests\PublicityUpdatorRequest;
 use App\Http\Resources\PublicityListResource;
 use App\Publicity;

@@ -13,8 +13,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="code", type="integer", example="01"),
  *     @OA\Property(property="name", type="string", example="Teste 02"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
- *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
- *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
  *     @OA\Property(
  *         property="contacts",
  *         type="array",
@@ -39,8 +39,8 @@ class LaboratoryListResource extends JsonResource
             'name' => $this->name,
             'contacts' => ContactListResource::collection($this->contacts),
             'createdAt' => $this->created_at,
-            'updatedUser' => $this->user ? $this->user->name : '',
-            'updatedDate' => $this->updated_at
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at
         ];
     }
 }

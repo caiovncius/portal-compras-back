@@ -19,8 +19,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  *     @OA\Property(property="profileId",  type="integer", example="14"),
  *     @OA\Property(property="createdAt",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
- *     @OA\Property(property="updatedUser", type="string", example="Nome usuário"),
- *     @OA\Property(property="updatedDate", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
+ *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
  * )
  */
 class UserResource extends JsonResource
@@ -46,8 +46,8 @@ class UserResource extends JsonResource
             'manager' => 'none',
             'pharmacies' => PharmacyResource::collection($this->pharmacies),
             'createdAt' => $this->created_at,
-            'updatedUser' => $this->user ? $this->user->name : '',
-            'updatedDate' => $this->updated_at,
+            'updated_user' => $this->user ? $this->user->name : '',
+            'updated_date' => $this->updated_at,
             'lastLogin' => $this->last_login,
             'image' => $this->image
         ];
