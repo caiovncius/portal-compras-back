@@ -14,9 +14,7 @@ class DatabaseSeeder extends Seeder
          $this->call(CreateStates::class);
          $this->call(CreateCities::class);
          $this->call(CreateMasterProfile::class);
-         $this->call(CreateFuncionalities::class);
          $this->call(CreateInitialUser::class);
-         $this->call(CreateTestProfile::class);
          $this->call(CreatePublicity::class);
          $this->call(CreateAclSeeder::class);
          $this->call(AclAdmin::class);

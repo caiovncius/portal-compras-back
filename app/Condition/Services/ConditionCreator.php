@@ -4,6 +4,9 @@ namespace App\Condition\Services;
 
 use App\Condition;
 use App\Condition\Contracts\ConditionCreatable;
+use App\ConditionPartner;
+use App\Distributor;
+use App\Program;
 
 class ConditionCreator implements ConditionCreatable
 {
@@ -17,12 +20,24 @@ class ConditionCreator implements ConditionCreatable
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $model = Condition::create($data);
-            
-            if (isset($data['partners'])) {
-                $model->partners()->delete();
-                foreach ($data['partners'] as $data) {
-                    $model->partners()->create($data);
+
+            foreach ($data['partners'] as $partner) {
+                $partnerType = ConditionPartner::PARTNER_TYPE_DISTRIBUTOR;
+                $hasPartner = Distributor::find($partner['partnerId']);
+
+                if ($partner['type'] === ConditionPartner::PARTNER_TYPE_PROGRAM) {
+                    $partnerType = ConditionPartner::PARTNER_TYPE_PROGRAM;
+                    $hasPartner = Program::find($partner['partnerId']);
                 }
+
+                if (is_null($hasPartner)) {
+                    throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['partnerId']));
+                }
+
+                $model->partners()->create([
+                    'partner_type' => $partnerType,
+                    'partner_id' => $partner['partnerId']
+                ]);
             }
 
             return true;

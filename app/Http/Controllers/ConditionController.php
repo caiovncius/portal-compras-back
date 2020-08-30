@@ -318,4 +318,9 @@ class ConditionController extends Controller
         return ConditionListResource::make($model);
     }
 
+
+    public function removePartner(Condition $condition, $parterId)
+    {
+
+    }
 }

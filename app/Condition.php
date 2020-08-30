@@ -27,17 +27,26 @@ class Condition extends Model
 
     protected $casts = ['visible' => 'boolean'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User', 'updated_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function partners()
     {
-        return $this->hasMany('App\ConditionPartner', 'condition_id');
+        return $this->hasMany(\App\ConditionPartner::class, 'condition_id');
     }
 
-    public function getPartners()
+    /**
+     * @return object
+     */
+    public function getPartner()
     {
         $data = [];
         foreach($this->partners as $partner) {

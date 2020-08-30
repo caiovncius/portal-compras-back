@@ -18,7 +18,7 @@ class CreateAclSeeder extends Seeder
                 'en' => 'Accompaniment',
             ],
             [
-                'pt' => 'Condicão',
+                'pt' => 'Condição',
                 'en' => 'Condition',
             ],
             [

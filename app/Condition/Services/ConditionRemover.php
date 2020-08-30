@@ -4,6 +4,7 @@ namespace App\Condition\Services;
 
 use App\Condition;
 use App\Condition\Contracts\ConditionRemovable;
+use App\ConditionPartner;
 
 class ConditionRemover implements ConditionRemovable
 {
@@ -15,8 +16,9 @@ class ConditionRemover implements ConditionRemovable
     public function delete(Condition $model)
     {
         try {
+            $model->partners()->delete();
             $model->delete();
-            
+
             return true;
         } catch (\Exception $e) {
             throw  $e;

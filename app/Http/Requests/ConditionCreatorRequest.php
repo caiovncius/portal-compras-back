@@ -11,17 +11,16 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="ConditionCreatorRequest",
  *     type="object",
  *     title="Condition form request",
- *     required={"code", "description", "status", "visible"},
- *     @OA\Property(property="code", type="integer", example="001"),
- *     @OA\Property(property="description", type="integer", example="Teste"),
- *     @OA\Property(property="visible", type="boolean", example="1"),
+ *     required={"code", "description", "status", "partners"},
+ *     @OA\Property(property="code", type="string", example="001"),
+ *     @OA\Property(property="description", type="string", example="Test name"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  *     @OA\Property(
  *         property="partners",
  *         type="array",
  *         @OA\Items(
- *     @OA\Property(property="partnerId", type="integer", example="1"),
- *     @OA\Property(property="partnerType", type="string", example="DISTRIBUTOR"),
+ *          @OA\Property(property="partnerId", type="integer", example="1"),
+ *          @OA\Property(property="type", type="string", example="DISTRIBUTOR or PROGRAM"),
  *         )
  *     ),
  * )
@@ -46,11 +45,12 @@ class ConditionCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            //'pharmacy_id' => 'required|integer|exists:pharmacies,id',
-            'code' => 'required|string|numeric|unique:conditions',
+            'code' => 'required|string|unique:conditions',
             'description' => 'required|string',
-            'visible' => 'required|boolean',
-            'status' => 'required|in:ACTIVE,INACTIVE'
+            'status' => 'required|in:ACTIVE,INACTIVE',
+            'partners' => 'array|required|min:1',
+            'partners.*.type' => 'required|in:DISTRIBUTOR,PROGRAM',
+            'partners.*.partnerId' => 'required|numeric'
         ];
     }
 

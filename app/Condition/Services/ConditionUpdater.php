@@ -2,9 +2,12 @@
 
 namespace App\Condition\Services;
 
+use App\ConditionPartner;
 use App\Contact;
 use App\Condition;
 use App\Condition\Contracts\ConditionUpdatable;
+use App\Distributor;
+use App\Program;
 
 class ConditionUpdater implements ConditionUpdatable
 {
@@ -21,14 +24,28 @@ class ConditionUpdater implements ConditionUpdatable
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
             $model->save();
-            
-            if (isset($data['partners'])) {
-                $model->partners()->delete();
-                foreach ($data['partners'] as $data) {
-                    $model->partners()->create($data);
+
+            $model->partners()->delete();
+
+            foreach ($data['partners'] as $partner) {
+                $partnerType = ConditionPartner::PARTNER_TYPE_DISTRIBUTOR;
+                $hasPartner = Distributor::find($partner['partnerId']);
+
+                if ($partner['type'] === ConditionPartner::PARTNER_TYPE_PROGRAM) {
+                    $partnerType = ConditionPartner::PARTNER_TYPE_PROGRAM;
+                    $hasPartner = Program::find($partner['partnerId']);
                 }
+
+                if (is_null($hasPartner)) {
+                    throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['partnerId']));
+                }
+
+                $model->partners()->create([
+                    'partner_type' => $partnerType,
+                    'partner_id' => $partner['partnerId']
+                ]);
             }
-            
+
             return true;
         } catch (\Exception $e) {
             throw $e;

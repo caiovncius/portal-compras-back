@@ -2,10 +2,10 @@
 return [
     [
         'name' => 'Usuários',
-        'key' => 'users'
+        'key' => 'User'
     ],
     [
         'name' => 'Perfil',
-        'key' => 'profiles'
+        'key' => 'Profiles'
     ],
 ];

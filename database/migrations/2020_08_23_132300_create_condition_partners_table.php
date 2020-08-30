@@ -16,8 +16,8 @@ class CreateConditionPartnersTable extends Migration
         Schema::create('condition_partners', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('condition_id');
-            $table->unsignedBigInteger('partnerId');
-            $table->string('partnerType');
+            $table->unsignedBigInteger('partner_id');
+            $table->string('partner_type');
             $table->timestamps();
 
             $table->foreign('condition_id')->references('id')->on('conditions');
