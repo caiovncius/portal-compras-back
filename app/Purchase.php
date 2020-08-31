@@ -12,18 +12,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $image
  * @property string $code
  * @property string $name
- * @property string $sendType
+ * @property string $send_type
  * @property string $status
- * @property date $validityStart
- * @property date $validityEnd
- * @property boolean $untilBilling
- * @property int $setMinimumBillingValue
- * @property int $minimumBillingValue
- * @property int $setMinimumBillingQuantity
- * @property int $minimumBillingQuantity
- * @property int $totalIntentionsValue
- * @property int $totalIntentionsQuantity
- * @property int $relatedQuantity
+ * @property date $validity_start
+ * @property date $validity_end
+ * @property boolean $until_billing
+ * @property int $setMinimum_billing_value
+ * @property int $minimum_billing_value
+ * @property int $set_minimum_billing_quantity
+ * @property int $minimum_billing_quantity
+ * @property int $total_intentions_value
+ * @property int $total_intentions_quantity
+ * @property int $related_quantity
  * @property string $description
  * @property int $updated_id
  */
@@ -34,18 +34,18 @@ class Purchase extends Model
         'image',
         'code',
         'name',
-        'sendType',
         'status',
-        'validityStart',
-        'validityEnd',
-        'untilBilling',
-        'setMinimumBillingValue',
-        'minimumBillingValue',
-        'setMinimumBillingQuantity',
-        'minimumBillingQuantity',
-        'totalIntentionsValue',
-        'totalIntentionsQuantity',
-        'relatedQuantity',
+        'send_type',
+        'validity_start',
+        'validity_end',
+        'until_billing',
+        'set_minimum_billing_value',
+        'minimum_billing_value',
+        'set_minimum_billing_quantity',
+        'minimum_billing_quantity',
+        'total_intentions_value',
+        'total_intentions_quantity',
+        'related_quantity',
         'description',
         'updated_id'
     ];

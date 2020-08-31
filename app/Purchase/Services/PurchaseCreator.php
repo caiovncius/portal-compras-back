@@ -17,6 +17,17 @@ class PurchaseCreator implements PurchaseCreatable
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $data['offer_id'] = $data['offerId'];
+            $data['send_type'] = $data['sendType'];
+            $data['validity_start'] = $data['validityStart'];
+            $data['validity_end'] = $data['validityEnd'];
+            $data['until_billing'] = $data['untilBilling'];
+            $data['set_minimum_billing_value'] = $data['setMinimumBillingValue'];
+            $data['minimum_billing_value'] = $data['MinimumBillingValue'];
+            $data['set_minimum_billing_quantity'] = $data['setMinimumBillingQuantity'];
+            $data['minimum_billing_quantity'] = $data['MinimumBillingQuantity'];
+            $data['total_intentions_value'] = $data['totalIntentionsValue'];
+            $data['total_intentions_quantity'] = $data['totalIntentionsQuantity'];
+            $data['related_quantity'] = $data['relatedQuantity'];
             $model = Purchase::create($data);
             
             if (isset($data['products'])) {

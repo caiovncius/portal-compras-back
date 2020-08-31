@@ -30,9 +30,9 @@ class PurchaseRetriever implements PurchaseRetrievable
             }
 
             if (isset($params['validityStart']) && !empty($params['validityStart'])) {
-                $query->whereDate('validityStart', '>=', $params['validityStart']);
+                $query->whereDate('validity_start', '>=', $params['validityStart']);
                 if (isset($params['validityEnd']) && !empty($params['validityEnd'])) {
-                    $query->whereDate('validityEnd', '<=', $params['validityEnd']);                    
+                    $query->whereDate('validity_end', '<=', $params['validityEnd']);                    
                 }
             }
 
