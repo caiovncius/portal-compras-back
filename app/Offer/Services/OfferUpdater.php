@@ -26,7 +26,7 @@ class OfferUpdater implements OfferUpdatable
             $model->send_type = isset($data['sendType']) ? $data['sendType'] : null;
             $model->no_automatic_sending = isset($data['noAutomaticSending']) ? $data['noAutomaticSending'] : null;
 
-            if (strpos($data['image'], 'base64') !== false) {
+            if (isset($data['image']) && strpos($data['image'], 'base64') !== false) {
                 $model->image = FileUploader::uploadFile($data['image']);
             }
             $model->condition_id = isset($data['conditionId']) ? $data['conditionId'] : null;
