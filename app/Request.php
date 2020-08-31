@@ -16,7 +16,7 @@ class Request extends Model
     protected $fillable = [
         'pharmacy_id',
         'status',
-        'updated_id'
+        'updated_id',
         'partner_id',
         'priority',
     ];
