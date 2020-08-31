@@ -12,7 +12,7 @@ class RequestCreator implements RequestCreatable
      * @return bool|mixed
      * @throws \Exception
      */
-    public function xstore(array $data)
+    public function store(array $data)
     {
         try {
             $type = $data['modelType'] == 'OFFER' ? 'App\Offer' : 'App\Purchase';
