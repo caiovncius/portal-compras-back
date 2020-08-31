@@ -4,11 +4,6 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": ""
-        }
-    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -7369,7 +7364,7 @@
                                     "type": "string",
                                     "example": "10.51"
                                 },
-                                "productOnName": {
+                                "productName": {
                                     "type": "string",
                                     "example": "Teste"
                                 },
@@ -7510,7 +7505,7 @@
                                     "type": "string",
                                     "example": "10.51"
                                 },
-                                "productOnName": {
+                                "productName": {
                                     "type": "string",
                                     "example": "Teste"
                                 },
@@ -8204,7 +8199,7 @@
                                     "type": "string",
                                     "example": "10.51"
                                 },
-                                "productOnName": {
+                                "productName": {
                                     "type": "string",
                                     "example": "Teste"
                                 },
@@ -10284,9 +10279,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
-                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
-                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
+                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
+                        "tokenUrl": "http://localhost:8000/oauth/token",
+                        "refreshUrl": "http://localhost:8000/token/refresh",
                         "scopes": []
                     }
                 }

@@ -42,7 +42,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="factoryPrice", type="string", example="10.00"),
  *     @OA\Property(property="priceDeferred", type="string", example="11.00"),
  *     @OA\Property(property="priceOnCash", type="string", example="10.51"),
- *     @OA\Property(property="productOnName", type="string", example="Teste"),
+ *     @OA\Property(property="productName", type="string", example="Teste"),
  *     @OA\Property(property="quantityMaximum", type="integer", example="6"),
  *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
  *     @OA\Property(property="state_id", type="string", example="5"),
