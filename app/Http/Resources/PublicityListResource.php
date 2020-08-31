@@ -35,14 +35,14 @@ class PublicityListResource extends JsonResource
      */
     public function toArray($request)
     {
-        $imagesCollection = collect($this->images);
+        $imagesCollection = !is_null($this->images) ? collect(json_decode($this->images)) : [];
         return [
             'id' => $this->id,
             'code' => $this->code,
             'description' => $this->desc,
             'createDate' => $this->date_create,
             'publishDate' => $this->date_publish,
-            'images' => $imagesCollection->map(function($image, $key) {
+            'images' => empty($imagesCollection) ? [] :  $imagesCollection->map(function($image, $key) {
                 return env('APP_URL') . $image;
             }),
             'updated_user' => $this->user ? $this->user->name : '',
