@@ -39,10 +39,7 @@ class DistributorListResource extends JsonResource
             'name' => $this->name,
             'status' => $this->status,
             'category' => $this->category,
-            'state' => $this->state->name,
-            'type' => $this->pivot ? $this->pivot->type : '',
-            'ol' => $this->pivot ? $this->pivot->ol : '',
-            'priority' => $this->pivot ? $this->pivot->priority : '',
+            'state' => $this->state->name
         ];
     }
 }
