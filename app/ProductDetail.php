@@ -9,20 +9,19 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  *
  * @property int product_id
- * @property int discountDeferred
- * @property int discountOnCash
+ * @property int discount_deferred
+ * @property int discount_on_cash
  * @property int minimum
- * @property int minimumPerFamily
+ * @property int minimum_per_family
  * @property string obrigatory
  * @property string variable
  * @property string family
  * @property string gift
- * @property string factoryPrice
- * @property string priceDeferred
- * @property string priceOnCash
- * @property string productName
- * @property string quantityMaximum
- * @property string quantityMinimum
+ * @property string factory_price
+ * @property string price_deferred
+ * @property string price_on_cash
+ * @property string quantity_maximum
+ * @property string quantity_minimum
  * @property string state_id
  * @property string updated_id
  */
@@ -30,36 +29,35 @@ class ProductDetail extends Model
 {
     protected $fillable = [
         'product_id',
-        'discountDeferred',
-        'discountOnCash',
+        'discount_deferred',
+        'discount_on_cash',
         'minimum',
-        'minimumPerFamily',
+        'minimum_per_family',
         'obrigatory',
         'variable',
         'family',
         'gift',
-        'factoryPrice',
-        'priceDeferred',
-        'priceOnCash',
-        'productName',
-        'quantityMaximum',
-        'quantityMinimum',
+        'factory_price',
+        'price_deferred',
+        'price_on_cash',
+        'quantity_maximum',
+        'quantity_minimum',
         'state_id',
         'updated_id',
     ];
 
     protected $casts = [
-        'discountDeferred' => 'integer',
-        'discountOnCash' => 'integer',
+        'discount_deferred' => 'integer',
+        'discount_on_cash' => 'integer',
         'minimum' => 'integer',
-        'minimumPerFamily' => 'integer',
+        'minimum_per_family' => 'integer',
         'obrigatory' => 'boolean',
         'variable' => 'boolean',
         'family' => 'boolean',
         'gift' => 'boolean',
-        'factoryPrice' => 'decimal:2',
-        'priceDeferred' => 'decimal:2',
-        'priceOnCash' => 'decimal:2',
+        'factory_price' => 'decimal:2',
+        'price_deferred' => 'decimal:2',
+        'price_on_cash' => 'decimal:2',
     ];
 
     public function product()

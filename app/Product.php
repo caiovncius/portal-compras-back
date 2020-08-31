@@ -53,4 +53,12 @@ class Product extends Model
     {
         return $this->hasMany(SecondaryEanCode::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function details()
+    {
+        return $this->hasMany('App\ProductDetail', 'product_id');
+    }
 }

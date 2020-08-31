@@ -47,6 +47,14 @@ class OfferUpdater implements OfferUpdatable
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
+                    $item['discount_deferred'] = $item['discountDeferred'];
+                    $item['discount_on_cash'] = $item['discountOnCash'];
+                    $item['minimum_per_family'] = $item['minimumPerFamily'];
+                    $item['factory_price'] = $item['factoryPrice'];
+                    $item['price_deferred'] = $item['priceDeferred'];
+                    $item['price_on_cash'] = $item['PriceOnCash'];
+                    $item['quantity_maximum'] = $item['quantityMaximum'];
+                    $item['quantity_minimum'] = $item['quantityMinimum'];
                     $model->products()->create($item);
                 }
             }

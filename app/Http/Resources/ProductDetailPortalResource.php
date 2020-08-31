@@ -44,25 +44,25 @@ class ProductDetailPortalResource extends JsonResource
      */
     public function toArray($request)
     {
-        $payment = (!$request->payment OR $request->payment == 'CASH') ? 'OnCash' : 'Deferred';
+        $payment = (!$request->payment OR $request->payment == 'CASH') ? '_on_cash' : '_deferred';
         $discount = "discount$payment";
-        $priceWithDiscount = "price$payment";
+        $price_with_discount = "price$payment";
 
         return [
             'productId' => $this->product_id,
             'product' => $this->product ? $this->product->description : '',
             'productDescription' => $this->product ? $this->product->description : '',
-            'price' => $this->factoryPrice,
+            'price' => $this->factory_price,
             'discount' => $this->$discount,
-            'priceWithDiscount' => $this->$priceWithDiscount,
+            'priceWithDiscount' => $this->$price_with_discount,
             'obrigatory' => $this->obrigatory,
             'laboratory' => $this->product ? $this->product->laboratory->name : '',
             'eanCodes' => $this->product ? ProductSecondaryEanCode::collection($this->product->secondaryEanCodes) : [],
             'values' => ProductDetail::where('product_id', $this->product_id)
                                      ->get()->map(function ($item, $key) use ($discount) {
                                          return [
-                                            'minimum' => $item->quantityMinimum,
-                                            'maximum' => $item->quantityMaximum,
+                                            'minimum' => $item->quantity_minimum,
+                                            'maximum' => $item->quantity_maximum,
                                             'percent' => $item->$discount
                                         ];
                                      })
