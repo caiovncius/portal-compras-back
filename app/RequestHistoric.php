@@ -24,6 +24,6 @@ class RequestHistoric extends Model
 
     public function request()
     {
-        return $this->belongsTo('App\Request', 'request_id');
+        return $this->belongsTo(\App\Request::class, 'request_id');
     }
 }

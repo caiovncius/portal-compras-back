@@ -38,7 +38,7 @@ class Request extends Model
 
     public function historics()
     {
-        return $this->morphMany('App\RequestHistoric', 'request_id');
+        return $this->morphMany(\App\RequestHistoric::class, 'request_id');
     }
 
     public function requestable()

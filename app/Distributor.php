@@ -21,27 +21,52 @@ class Distributor extends Model
         'code',
         'cnpj',
         'name',
+        'category',
+        'state_id',
         'status',
         'updated_id'
     ];
 
+    const CATEGORY_NATIONAL = 'NATIONAL';
+    const CATEGORY_REGIONAL = 'REGIONAL';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function contacts()
     {
         return $this->morphMany('App\Contact', 'contactable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function returns()
     {
         return $this->morphMany('App\Returns', 'returnable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
     public function connection()
     {
         return $this->morphOne('App\Connection', 'connectionable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User', 'updated_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function state()
+    {
+        return $this->belongsTo(\App\State::class, 'state_id');
     }
 }

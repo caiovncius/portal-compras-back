@@ -13,7 +13,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="code", type="string", example="01"),
  *     @OA\Property(property="cnpj", type="string", example="00.000.000/0001-91"),
  *     @OA\Property(property="name", type="string", example="Teste"),
+ *     @OA\Property(property="category", type="string", example="NATIONAL"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(property="state", ref="#/components/schemas/StateResource"),
  *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
  *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
  *     @OA\Property(
@@ -41,6 +43,8 @@ class DistributorResource extends JsonResource
             'cnpj' => $this->cnpj,
             'name' => $this->name,
             'status' => $this->status,
+            'category' => $this->category,
+            'state' => StateResource::make($this->state),
             'contacts' =>ContactListResource::collection($this->contacts),
             'connection' => ConnectionListResource::make($this->connection),
             'updated_user' => $this->user ? $this->user->name : '',

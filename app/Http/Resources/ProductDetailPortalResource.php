@@ -51,12 +51,16 @@ class ProductDetailPortalResource extends JsonResource
         return [
             'productId' => $this->product_id,
             'product' => $this->product ? $this->product->description : '',
+            'productDescription' => $this->product ? $this->product->description : '',
             'price' => $this->factoryPrice,
             'discount' => $this->$discount,
             'priceWithDiscount' => $this->$priceWithDiscount,
             'obrigatory' => $this->obrigatory,
+            'laboratory' => $this->product ? $this->product->laboratory->name : '',
+            'eanCodes' => $this->product ? ProductSecondaryEanCode::collection($this->product->secondaryEanCodes) : [],
             'values' => ProductDetail::where('product_id', $this->product_id)
-                                     ->get()->map(function ($item, $key) use ($discount) {                                        return [
+                                     ->get()->map(function ($item, $key) use ($discount) {
+                                         return [
                                             'minimum' => $item->quantityMinimum,
                                             'maximum' => $item->quantityMaximum,
                                             'percent' => $item->$discount

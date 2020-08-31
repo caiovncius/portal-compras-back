@@ -12,9 +12,11 @@ use Illuminate\Foundation\Http\FormRequest;
  *     type="object",
  *     title="Distributor form request",
  *     required={"code", "cnpj", "name", "status"},
- *     @OA\Property(property="code", type="integer", example="001"),
- *     @OA\Property(property="cnpj", type="integer", example="00.0001/0004.14"),
+ *     @OA\Property(property="code", type="string", example="001"),
+ *     @OA\Property(property="cnpj", type="string", example="00.0001/0004.14"),
  *     @OA\Property(property="name", type="string", example="Teste"),
+ *     @OA\Property(property="category", type="string", example="NATIONAL or REGIONAL"),
+ *     @OA\Property(property="stateId", type="integer", example="2"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  * )
  */
@@ -42,6 +44,8 @@ class DistributorCreatorRequest extends FormRequest
             'cnpj' => 'required|cnpj',
             'name' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
+            'category' => 'required|in:NATIONAL,REGIONAL',
+            'stateId' => 'required',
             'contacts' => 'nullable|array',
             'contacts.*.function' => 'required|string',
             'contacts.*.name' => 'required|string',

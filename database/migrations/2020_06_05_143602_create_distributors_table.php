@@ -19,6 +19,8 @@ class CreateDistributorsTable extends Migration
             $table->string('cnpj');
             $table->string('name');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
+            $table->enum('category', ['NATIONAL', 'REGIONAL'])->default('NATIONAL');
+            $table->unsignedBigInteger('state_id');
             $table->timestamps();
         });
     }
