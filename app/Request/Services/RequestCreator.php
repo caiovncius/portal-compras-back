@@ -12,7 +12,7 @@ class RequestCreator implements RequestCreatable
      * @return bool|mixed
      * @throws \Exception
      */
-    public function store(array $data)
+    public function xstore(array $data)
     {
         try {
             $type = $data['modelType'] == 'OFFER' ? 'App\Offer' : 'App\Purchase';
@@ -24,7 +24,7 @@ class RequestCreator implements RequestCreatable
             $data['requestable_type'] = $type;
             $data['status'] = 0;
             $model = Request::create($data);
-            
+
             $model->historics()->create([
                 'user' => auth()->guard('api')->user()->name,
                 'action' => 'Pedido criado',
