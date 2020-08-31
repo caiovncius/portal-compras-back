@@ -84,6 +84,10 @@ class CreateAclSeeder extends Seeder
             [
                 'pt' => 'Pedido',
                 'en' => 'Request',
+            ],
+            [
+                'pt' => 'Prioridade',
+                'en' => 'Priority',
             ]
         ];
 

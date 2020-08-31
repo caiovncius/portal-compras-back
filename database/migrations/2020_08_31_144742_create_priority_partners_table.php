@@ -16,7 +16,6 @@ class CreatePriorityPartnersTable extends Migration
         Schema::create('priority_partners', function (Blueprint $table) {
             $table->unsignedBigInteger('priority_id');
             $table->unsignedBigInteger('distributor_id');
-            $table->boolean('quick_access')->default(false);
 
             $table->foreign('priority_id')->references('id')->on('priorities');
             $table->foreign('distributor_id')->references('id')->on('distributors');

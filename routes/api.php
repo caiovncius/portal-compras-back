@@ -380,4 +380,32 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
         ->name('distributor.mass.update');
     Route::delete('/mass-actions/distributor/delete', 'DistributorController@massDelete')
         ->name('distributor.mass.delete');
+
+    Route::get('/priorities', 'PriorityController@list')
+        ->name('priority.list')
+        ->middleware('acl:Priority,r');
+
+    Route::get('/priorities/national-partners', 'PriorityController@listNationalPartners')
+        ->name('priority.list.nationalPartners')
+        ->middleware('acl:Priority,r');
+
+    Route::get('/priorities/regional-partners', 'PriorityController@listRegionalPartners')
+        ->name('priority.list.regionalPartners')
+        ->middleware('acl:Priority,r');
+
+    Route::get('/priorities/{priority}', 'PriorityController@get')
+        ->name('priority.list')
+        ->middleware('acl:Priority,r');
+
+    Route::post('/priorities', 'PriorityController@store')
+        ->name('priority.store')
+        ->middleware('acl:Priority,r,w');
+
+    Route::put('/priorities/{priority}', 'PriorityController@update')
+        ->name('priority.update')
+        ->middleware('acl:Priority,r,w');
+
+    Route::delete('/priorities/{priority}', 'PriorityController@delete')
+        ->name('priority.delete')
+        ->middleware('acl:Priority,r,w');
 });

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -68,5 +69,23 @@ class Distributor extends Model
     public function state()
     {
         return $this->belongsTo(\App\State::class, 'state_id');
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeNationalPartners(Builder $query)
+    {
+        return $query->where('category', \App\Distributor::CATEGORY_NATIONAL);
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeRegionalPartners(Builder $query)
+    {
+        return $query->where('category', \App\Distributor::CATEGORY_REGIONAL);
     }
 }

@@ -2,12 +2,32 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Priority
+ * @package App
+ *
+ * @property integer $id
+ * @property string $description
+ * @property string $status
+ */
 class Priority extends Model
 {
+    /**
+     * @var array
+     */
     protected $fillable = [
-        'priority_id',
-        'distributor_id'
+        'description',
+        'status'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function partners()
+    {
+        return $this->belongsToMany(Distributor::class, 'priority_partners');
+    }
 }

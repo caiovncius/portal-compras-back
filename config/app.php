@@ -191,6 +191,7 @@ return [
         App\Providers\PurchaseServiceProvider::class,
         App\Providers\RequestServiceProvider::class,
         App\Providers\SecondaryEanCodeServiceProvider::class,
+        App\Providers\PriorityServiceProvider::class,
     ],
 
     /*
