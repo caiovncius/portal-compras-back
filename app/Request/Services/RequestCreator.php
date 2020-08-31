@@ -33,7 +33,7 @@ class RequestCreator implements RequestCreatable
 
             if (isset($data['products'])) {
                 foreach ($data['products'] as $product) {
-                    $model->products()->attach($product['productId'], ['qtd' => $data['quantity']]);
+                    $model->products()->attach($product['productId'], ['qtd' => $product['quantity']]);
                 }
             }
 
