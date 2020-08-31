@@ -75,6 +75,10 @@ class OfferRetriever implements OfferRetrievable
                 });
             }
 
+            if (isset($params['offerId']) && !empty($params['offerId'])) {
+                $query->where('id', $params['offerId']);
+            }
+
             return $query;
 
         } catch (\Exception $exception) {

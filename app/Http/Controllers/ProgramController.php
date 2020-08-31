@@ -540,4 +540,64 @@ class ProgramController extends Controller
         }
     }
 
+    /**
+     * @OA\Get(
+     *     tags={"Programs"},
+     *     path="/programs/search",
+     *     @OA\Parameter(
+     *        name="name",
+     *        in="query",
+     *        example="teste",
+     *     ),
+     *     @OA\Parameter(
+     *        name="code",
+     *        in="query",
+     *        example="123",
+     *     ),
+     *     @OA\Parameter(
+     *        name="status",
+     *        in="query",
+     *        example="active",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/ProgramListResource"),
+     *                 ),
+     *                 @OA\Property(
+     *                     property="links",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationLinks"),
+     *                     }
+     *                 ),
+     *                  @OA\Property(
+     *                     property="meta",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationMeta"),
+     *                     }
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function search(Request $request)
+    {
+        try {
+            return ProgramListResource::collection($this->retrieverService->getPrograms($request->query())->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
 }

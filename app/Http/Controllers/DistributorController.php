@@ -577,5 +577,4 @@ class DistributorController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
-
 }

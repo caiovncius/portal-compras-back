@@ -210,6 +210,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/programs', 'ProgramController@list')
          ->name('program.list')
          ->middleware('acl:Program,r');
+    Route::get('/programs/search', 'ProgramController@search')
+        ->name('program.list')
+        ->middleware('acl:Program,r');
     Route::get('/programs/{model}', 'ProgramController@get')
          ->name('program.get')
          ->middleware('acl:Program,r');
@@ -272,6 +275,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/offers', 'OfferController@list')
          ->name('offer.list')
          ->middleware('acl:Offer,r');
+    Route::get('/offers/search', 'OfferController@search')
+        ->name('offer.search')
+        ->middleware('acl:Offer,r');
     Route::get('/offers/{model}', 'OfferController@get')
          ->name('offer.get')
          ->middleware('acl:Offer,r');

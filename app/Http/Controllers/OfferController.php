@@ -100,6 +100,11 @@ class OfferController extends Controller
      *        in="query",
      *        example="1",
      *     ),
+     *     @OA\Parameter(
+     *        name="offerId",
+     *        in="query",
+     *        example="1",
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="",
@@ -470,4 +475,90 @@ class OfferController extends Controller
         return OfferListResource::make($model);
     }
 
+    /**
+     * @OA\Get(
+     *     tags={"Offers"},
+     *     path="/offers/search",
+     *     @OA\Parameter(
+     *        name="name",
+     *        in="query",
+     *        example="teste",
+     *     ),
+     *     @OA\Parameter(
+     *        name="code",
+     *        in="query",
+     *        example="123",
+     *     ),
+     *     @OA\Parameter(
+     *        name="status",
+     *        in="query",
+     *        example="active",
+     *     ),
+     *     @OA\Parameter(
+     *        name="partner",
+     *        in="query",
+     *        example="1",
+     *     ),
+     *     @OA\Parameter(
+     *        name="partnerType",
+     *        in="query",
+     *        example="DISTRIBUTOR",
+     *     ),
+     *     @OA\Parameter(
+     *        name="startDate",
+     *        in="query",
+     *        example="2020-05-25",
+     *     ),
+     *     @OA\Parameter(
+     *        name="endDate",
+     *        in="query",
+     *        example="2020-06-25",
+     *     ),
+     *     @OA\Parameter(
+     *        name="product",
+     *        in="query",
+     *        example="1",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/OfferListResource"),
+     *                 ),
+     *                 @OA\Property(
+     *                     property="links",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationLinks"),
+     *                     }
+     *                 ),
+     *                  @OA\Property(
+     *                     property="meta",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationMeta"),
+     *                     }
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function search(Request $request)
+    {
+        try {
+            if (is_null($request->query('code')) || is_null($request->query('name'))) return [];
+            return OfferListResource::collection($this->retrieverService->getOffers($request->query())->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
 }

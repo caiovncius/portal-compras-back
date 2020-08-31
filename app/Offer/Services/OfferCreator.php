@@ -18,12 +18,14 @@ class OfferCreator implements OfferCreatable
     {
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
-            if (strpos($data['image'], 'base64') !== false) {
+
+            if (isset($data['image']) && strpos($data['image'], 'base64') !== false) {
                 $data['image'] = FileUploader::uploadFile($data['image']);
             }
+
             $data['condition_id'] = $data['condition'];
             $model = Offer::create($data);
-            
+
             if (isset($data['partners'])) {
                 foreach ($data['partners'] as $data) {
                     $model->partners()->attach($data['id'], [
@@ -33,7 +35,7 @@ class OfferCreator implements OfferCreatable
                     ]);
                 }
             }
-            
+
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
