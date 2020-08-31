@@ -19,31 +19,30 @@ class OfferUpdater implements OfferUpdatable
         try {
             $model->fill($data);
             $model->updated_id = auth()->guard('api')->user()->id;
-            $model->updated_at = date('Y-m-d H:i:s');
-            $model->start_date = $data['startDate'];
-            $model->end_date = $data['endDate'];
-            $model->minimum_price = $data['minimumPrice'];
-            $model->offer_type = $data['offerType'];
-            $model->send_type = $data['sendType'];
-            $model->no_automatic_sending = $data['noAutomaticSending'];
-            
+            $model->start_date = isset($data['startDate']) ? $data['startDate'] : null;
+            $model->end_date = isset($data['endDate']) ? $data['endDate'] : null;
+            $model->minimum_price = isset($data['minimumPrice']) ? $data['minimumPrice'] : null;
+            $model->offer_type = isset($data['offerType']) ? $data['offerType'] : null;
+            $model->send_type = isset($data['sendType']) ? $data['sendType'] : null;
+            $model->no_automatic_sending = isset($data['noAutomaticSending']) ? $data['noAutomaticSending'] : null;
+
             if (strpos($data['image'], 'base64') !== false) {
                 $model->image = FileUploader::uploadFile($data['image']);
             }
-            $model->condition_id = $data['condition'];
+            $model->condition_id = isset($data['conditionId']) ? $data['conditionId'] : null;
             $model->save();
 
             if (isset($data['partners'])) {
                 $model->partners()->detach();
-                foreach ($data['partners'] as $data) {
+                foreach ($data['partners'] as $partner) {
                     $model->partners()->attach($data['id'], [
-                        'type' => $data['type'],
-                        'ol' => $data['ol'],
-                        'priority' => $data['priority'],
+                        'type' => $partner['type'],
+                        'ol' => $partner['ol'],
+                        'priority' => $partner['priority'],
                     ]);
                 }
             }
-            
+
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
@@ -58,7 +57,7 @@ class OfferUpdater implements OfferUpdatable
                     $model->products()->create($item);
                 }
             }
-            
+
             return true;
         } catch (\Exception $e) {
             throw $e;

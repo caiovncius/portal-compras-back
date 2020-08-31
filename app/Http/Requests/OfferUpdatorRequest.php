@@ -14,7 +14,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="name", type="string", example="Teste"),
 *     @OA\Property(property="startDate",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
  *     @OA\Property(property="endDate",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
- *     @OA\Property(property="condition",  type="string", example="name"),
+ *     @OA\Property(property="conditionId",  type="integer", example="2"),
  *     @OA\Property(property="minimumPrice",  type="string", example="500"),
  *     @OA\Property(property="offerType",  type="string", example="null"),
  *     @OA\Property(property="sendType",  type="string", example="null"),
@@ -74,14 +74,31 @@ class OfferUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'required|string|unique:offers',
             'name' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'sendType' => 'nullable|in:MANUAL,AUTOMATIC',
             'offerType' => 'nullable|in:NORMAL,COMBO,COLLECTIVE_BUYING',
             'startDate' => 'date',
+            'conditionId' => 'exists:conditions,id',
             'endDate' => 'date|after_or_equal:startDate',
+            'partners' => 'array|nullable',
+            'partners.*.id' => 'required|numeric',
+            'partners.*.type' => 'required|string',
+            'products' => 'array|nullable',
+            'products.*.productId' => 'required',
+            'products.*.discountDeferred' => 'string',
+            'products.*.discountOnCash' => 'string',
+            'products.*.minimum' => 'string',
+            'products.*.minimumPerFamily' => 'required',
+            'products.*.obrigatory' => 'boolean',
+            'products.*.factoryPrice' => 'string',
+            'products.*.priceDeferred' => 'string',
+            'products.*.priceOnCash' => 'string',
+            'products.*.quantityMaximum' => 'string',
+            'products.*.quantityMinimum' => 'string',
+            'products.*.stateId' => 'required',
         ];
     }
 

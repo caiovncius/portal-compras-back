@@ -18,26 +18,26 @@ class OfferCreator implements OfferCreatable
     {
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
-            $data['start_date'] = $data['startDate'];
-            $data['end_date'] = $data['endDate'];
-            $data['minimum_price'] = $data['minimumPrice'];
-            $data['offer_type'] = $data['offerType'];
-            $data['send_type'] = $data['sendType'];
-            $data['no_automatic_sending'] = $data['noAutomaticSending'];
+            $data['start_date'] = isset($data['startDate']) ? $data['startDate'] : null;
+            $data['end_date'] = isset($data['endDate']) ? $data['endDate'] : null;
+            $data['minimum_price'] = isset($data['minimumPrice']) ? $data['minimumPrice'] : null;
+            $data['offer_type'] = isset($data['offerType']) ? $data['offerType'] : null;
+            $data['send_type'] = isset($data['sendType']) ? $data['sendType'] : null;
+            $data['no_automatic_sending'] = isset($data['noAutomaticSending']) ? $data['noAutomaticSending'] : null;
 
             if (isset($data['image']) && strpos($data['image'], 'base64') !== false) {
                 $data['image'] = FileUploader::uploadFile($data['image']);
             }
 
-            $data['condition_id'] = $data['condition'];
+            $data['condition_id'] = isset($data['conditionId']) ? $data['conditionId'] : null;
             $model = Offer::create($data);
 
             if (isset($data['partners'])) {
-                foreach ($data['partners'] as $data) {
-                    $model->partners()->attach($data['id'], [
-                        'type' => $data['type'],
-                        'ol' => $data['ol'],
-                        'priority' => $data['priority'],
+                foreach ($data['partners'] as $partner) {
+                    $model->partners()->attach($partner['id'], [
+                        'type' => $partner['type'],
+                        'ol' => $partner['ol'],
+                        'priority' => $partner['priority'],
                     ]);
                 }
             }
