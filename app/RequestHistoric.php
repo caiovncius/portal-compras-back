@@ -18,7 +18,7 @@ class RequestHistoric extends Model
     protected $fillable = [
         'request_id',
         'user',
-        'action'
+        'action',
         'status',
     ];
 
