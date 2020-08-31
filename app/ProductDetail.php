@@ -77,13 +77,13 @@ class ProductDetail extends Model
         return $this->belongsTo('App\State', 'state_id');
     }
 
-    public function request()
+    public function requests()
     {
         return $this->belongsToMany(
-                        'App\OfferProduct',
-                        'offerProduct_request',
-                        'offer_product_id',
+                        'App\Request',
+                        'request_products',
+                        'product_detail_id',
                         'request_id',
-                    )->withPivot('qtd');
+                    )->withPivot(['qtd', 'qtdReturn', 'status', 'distributor_id']);
     }
 }
