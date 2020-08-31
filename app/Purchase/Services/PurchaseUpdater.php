@@ -20,18 +20,18 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->offer_id = $data['offerId'];
             $model->updated_at = date('Y-m-d H:i:s');
-            $model->offer_id = $data['offerId'];
-            $model->send_type = $data['sendType'];
-            $model->validity_start = $data['validityStart'];
-            $model->validity_end = $data['validityEnd'];
-            $model->until_billing = $data['untilBilling'];
-            $model->set_minimum_billing_value = $data['setMinimumBillingValue'];
-            $model->minimum_billing_value = $data['MinimumBillingValue'];
-            $model->set_minimum_billing_quantity = $data['setMinimumBillingQuantity'];
-            $model->minimum_billing_quantity = $data['MinimumBillingQuantity'];
-            $model->total_intentions_value = $data['totalIntentionsValue'];
-            $model->total_intentions_quantity = $data['totalIntentionsQuantity'];
-            $model->related_quantity = $data['relatedQuantity'];
+            $model->offer_id = isset($data['offerId']) ? $data['qw'] : null;
+            $model->send_type = isset($data['sendType']) ? $data['sendType'] : null;
+            $model->validity_start = isset($data['validityStart']) ? $data['validityStart'] : null;
+            $model->validity_end = isset($data['validityEnd']) ? $data['validityEnd'] : null;
+            $model->until_billing = isset($data['untilBilling']) ? $data['untilBilling'] : null;
+            $model->set_minimum_billing_value = isset($data['setMinimumBillingValue']) ? $data['setMinimumBillingValue'] : null;
+            $model->minimum_billing_value = isset($data['MinimumBillingValue']) ? $data['MinimumBillingValue'] : null;
+            $model->set_minimum_billing_quantity = isset($data['setMinimumBillingQuantity']) ? $data['setMinimumBillingQuantity'] : null;
+            $model->minimum_billing_quantity = isset($data['MinimumBillingQuantity']) ? $data['MinimumBillingQuantity'] : null;
+            $model->total_intentions_value = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;
+            $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
+            $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
             $model->save();
             
             if (isset($data['products'])) {

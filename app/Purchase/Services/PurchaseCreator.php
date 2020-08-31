@@ -17,17 +17,17 @@ class PurchaseCreator implements PurchaseCreatable
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $data['offer_id'] = $data['offerId'];
-            $data['send_type'] = $data['sendType'];
-            $data['validity_start'] = $data['validityStart'];
-            $data['validity_end'] = $data['validityEnd'];
-            $data['until_billing'] = $data['untilBilling'];
-            $data['set_minimum_billing_value'] = $data['setMinimumBillingValue'];
-            $data['minimum_billing_value'] = $data['MinimumBillingValue'];
-            $data['set_minimum_billing_quantity'] = $data['setMinimumBillingQuantity'];
-            $data['minimum_billing_quantity'] = $data['MinimumBillingQuantity'];
-            $data['total_intentions_value'] = $data['totalIntentionsValue'];
-            $data['total_intentions_quantity'] = $data['totalIntentionsQuantity'];
-            $data['related_quantity'] = $data['relatedQuantity'];
+            $data['send_type'] = isset($data['sendType']) ? $data['sendType'] : null;
+            $data['validity_start'] = isset($data['validityStart']) ? $data['validityStart'] : null;
+            $data['validity_end'] = isset($data['validityEnd']) ? $data['validityEnd'] : null;
+            $data['until_billing'] = isset($data['untilBilling']) ? $data['untilBilling'] : null;
+            $data['set_minimum_billing_value'] = isset($data['setMinimumBillingValue']) ? $data['setMinimumBillingValue'] : null;
+            $data['minimum_billing_value'] = isset($data['MinimumBillingValue']) ? $data['minimum_billing_value'] : null;
+            $data['set_minimum_billing_quantity'] = isset($data['setMinimumBillingQuantity']) ? $data['set_minimum_billing_quantity'] : null;
+            $data['minimum_billing_quantity'] = isset($data['MinimumBillingQuantity']) ? $data['minimum_billing_quantity'] : null;
+            $data['total_intentions_value'] = isset($data['totalIntentionsValue']) ? $data['total_intentions_value'] : null;
+            $data['total_intentions_quantity'] = isset($data['totalIntentionsQuantity']) ? $data['total_intentions_quantity'] : null;
+            $data['related_quantity'] = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
             $model = Purchase::create($data);
             
             if (isset($data['products'])) {

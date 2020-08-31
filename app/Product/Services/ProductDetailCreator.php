@@ -18,14 +18,14 @@ class ProductDetailCreator implements ProductDetailCreatable
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
-                    $item['discount_deferred'] = $item['discountDeferred'];
-                    $item['discount_on_cash'] = $item['discountOnCash'];
-                    $item['minimum_per_family'] = $item['minimumPerFamily'];
-                    $item['factory_price'] = $item['factoryPrice'];
-                    $item['price_deferred'] = $item['priceDeferred'];
-                    $item['price_on_cash'] = $item['PriceOnCash'];
-                    $item['quantity_maximum'] = $item['quantityMaximum'];
-                    $item['quantity_minimum'] = $item['quantityMinimum'];
+                    $item['discount_deferred'] = isset($item['discountDeferred']) ? $item['discountDeferred'] : null;
+                    $item['discount_on_cash'] = isset($item['discountOnCash']) ? $item['discount_on_cash'] : null;
+                    $item['minimum_per_family'] = isset($item['minimumPerFamily']) ? $item['minimum_per_family'] : null;
+                    $item['factory_price'] = isset($item['factoryPrice']) ? $item['factoryPrice'] : null;
+                    $item['price_deferred'] = isset($item['priceDeferred']) ? $item['priceDeferred'] : null;
+                    $item['price_on_cash'] = isset($item['PriceOnCash']) ? $item['PriceOnCash'] : null;
+                    $item['quantity_maximum'] = isset($item['quantityMaximum']) ? $item['quantityMaximum'] : null;
+                    $item['quantity_minimum'] = isset($item['quantityMinimum']) ? $item['quantityMinimum'] : null;
                     $model->products()->create($item);
                 }
             }
