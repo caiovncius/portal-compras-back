@@ -530,18 +530,6 @@ class OfferController extends Controller
      *                     type="array",
      *                     @OA\Items(ref="#/components/schemas/OfferListResource"),
      *                 ),
-     *                 @OA\Property(
-     *                     property="links",
-     *                     allOf={
-     *                         @OA\Items(ref="#/components/schemas/PaginationLinks"),
-     *                     }
-     *                 ),
-     *                  @OA\Property(
-     *                     property="meta",
-     *                     allOf={
-     *                         @OA\Items(ref="#/components/schemas/PaginationMeta"),
-     *                     }
-     *                 )
      *             )
      *         )
      *     )
