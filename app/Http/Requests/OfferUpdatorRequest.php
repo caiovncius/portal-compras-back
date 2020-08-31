@@ -74,7 +74,7 @@ class OfferUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:offers,' $this->id,
+            'code' => 'required|string|unique:offers,' . $this->id,
             'name' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
