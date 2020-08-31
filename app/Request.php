@@ -67,10 +67,10 @@ class Request extends Model
     public function products()
     {
         return $this->belongsToMany(
-                        'App\OfferProduct',
-                        'offerProduct_request',
+                        'App\ProductDetail',
+                        'request_products',
                         'request_id',
-                        'offer_product_id'
-                    )->withPivot('qtd');
+                        'product_detail_id'
+                    )->withPivot(['qtd', 'qtdReturn', 'status', 'distributor_id']);
     }
 }
