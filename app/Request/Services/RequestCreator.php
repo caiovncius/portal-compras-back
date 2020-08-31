@@ -12,7 +12,7 @@ class RequestCreator implements RequestCreatable
      * @return bool|mixed
      * @throws \Exception
      */
-    public function xstore(array $data)
+    public function store(array $data)
     {
         try {
             $type = $data['modelType'] == 'OFFER' ? 'App\Offer' : 'App\Purchase';
@@ -32,8 +32,8 @@ class RequestCreator implements RequestCreatable
             ]);
 
             if (isset($data['products'])) {
-                foreach ($data['products'] as $data) {
-                    $model->products()->attach($data['id'], ['qtd' => $data['qtd']]);
+                foreach ($data['products'] as $product) {
+                    $model->products()->attach($product['productId'], ['qtd' => $data['quantity']]);
                 }
             }
 

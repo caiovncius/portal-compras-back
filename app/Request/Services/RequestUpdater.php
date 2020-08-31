@@ -25,8 +25,8 @@ class RequestUpdater implements RequestUpdatable
 
             if (isset($data['products'])) {
                 $model->products()->detach();
-                foreach ($data['products'] as $data) {
-                    $model->products()->attach($data['id'], ['qtd' => $data['qtd']]);
+                foreach ($data['products'] as $product) {
+                    $model->products()->attach($product['productId'], ['qtd' => $product['quantity']]);
                 }
             }
 

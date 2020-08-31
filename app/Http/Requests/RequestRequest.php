@@ -20,8 +20,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *         property="products",
  *         type="array",
  *         @OA\Items(
- *     @OA\Property(property="product_id", type="integer", example="1"),
- *     @OA\Property(property="qtd", type="integer", example="1"),
+ *     @OA\Property(property="productId", type="integer", example="1"),
+ *     @OA\Property(property="quantity", type="integer", example="1"),
  *         )
  *     ),
  * )
@@ -51,6 +51,9 @@ class RequestRequest extends FormRequest
             'modelType' => 'required',
             'pharmacyId' => 'required|exists:pharmacies,id',
             'status' => 'required|in:ACTIVE,INACTIVE',
+            'products' => 'array|nullable',
+            'products.*.productId' => 'required|exists:products,id',
+            'products.*.quantity' => 'required|numeric',
         ];
     }
 
