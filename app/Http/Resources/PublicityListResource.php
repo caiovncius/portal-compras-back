@@ -41,7 +41,9 @@ class PublicityListResource extends JsonResource
             'description' => $this->desc,
             'createDate' => $this->date_create,
             'publishDate' => $this->date_publish,
-            'images' => $this->images,
+            'images' => collect($this->images)->map(function($image) {
+                return env('APP_URL') . $image;
+            }),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];
