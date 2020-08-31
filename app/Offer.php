@@ -14,13 +14,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $status
  * @property string $description
- * @property date $startDate
- * @property date $endDate
+ * @property date $start_date
+ * @property date $end_date
  * @property string $condition_id
- * @property string $minimumPrice
- * @property string $offerType
- * @property bool $sendType
- * @property bool $noAutomaticSending
+ * @property string $minimum_price
+ * @property string $offer_type
+ * @property bool $send_type
+ * @property bool $no_automatic_sending
  * @property string $impound
  * @property json $emails
  * @property integer $updated_id
@@ -33,13 +33,13 @@ class Offer extends Model
         'name',
         'status',
         'description',
-        'startDate',
-        'endDate',
+        'start_date',
+        'end_date',
         'condition_id',
-        'minimumPrice',
-        'offerType',
-        'sendType',
-        'noAutomaticSending',
+        'minimum_price',
+        'offer_type',
+        'send_type',
+        'no_automatic_sending',
         'impound',
         'emails',
         'updated_id'
@@ -47,9 +47,9 @@ class Offer extends Model
 
     protected $casts = [
         'emails' => 'json',
-        'startDate' => 'datetime',
-        'endDate' => 'datetime',
-        'noAutomaticSending' => 'boolean',
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+        'no_automatic_sending' => 'boolean',
     ];
 
     public function partners()

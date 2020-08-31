@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string factoryPrice
  * @property string priceDeferred
  * @property string priceOnCash
- * @property string productOnName
+ * @property string productName
  * @property string quantityMaximum
  * @property string quantityMinimum
  * @property string state_id

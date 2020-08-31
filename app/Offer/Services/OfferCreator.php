@@ -18,6 +18,12 @@ class OfferCreator implements OfferCreatable
     {
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
+            $data['start_date'] = $data['start_date'];
+            $data['end_date'] = $data['end_date'];
+            $data['minimum_price'] = $data['minimumPrice'];
+            $data['offer_type'] = $data['offerType'];
+            $data['send_type'] = $data['sendType'];
+            $data['no_automatic_sending'] = $data['noAutomaticSending'];
 
             if (isset($data['image']) && strpos($data['image'], 'base64') !== false) {
                 $data['image'] = FileUploader::uploadFile($data['image']);

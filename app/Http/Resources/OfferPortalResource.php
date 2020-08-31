@@ -39,13 +39,13 @@ class OfferPortalResource extends JsonResource
             'image' => $this->image ? config('app.url').$this->image : '',
             'code' => $this->code,
             'name' => $this->name,
-            'startDate' => $this->startDate,
-            'endDate' => $this->endDate,
+            'startDate' => $this->start_date,
+            'endDate' => $this->end_date,
             'condition' => $this->condition ? $this->condition->description : '',
             'minimumPrice' => $this->minimumPrice,
-            'offerType' => $this->offerType,
-            'sendType' => $this->sendType,
-            'noAutomaticSending' => $this->noAutomaticSending,
+            'offerType' => $this->offer_type,
+            'sendType' => $this->send_type,
+            'noAutomaticSending' => $this->no_automatic_sending,
             'impound' => $this->impound,
             'description' => $this->description
         ];

@@ -30,20 +30,20 @@ class OfferRetriever implements OfferRetrievable
             }
 
             if (isset($params['sendType']) && !empty($params['sendType'])) {
-                $query->where('sendType', $params['sendType']);
+                $query->where('send_type', $params['sendType']);
             }
 
             if (isset($params['startDate1']) && !empty($params['startDate1'])) {
-                $query->whereDate('startDate', '>=', $params['startDate1']);
+                $query->whereDate('start_date', '>=', $params['startDate1']);
                 if (isset($params['startDate2']) && !empty($params['startDate2'])) {
-                    $query->whereDate('startDate', '<=', $params['startDate2']);
+                    $query->whereDate('start_date', '<=', $params['startDate2']);
                 }
             }
 
             if (isset($params['endDate1']) && !empty($params['endDate1'])) {
-                $query->whereDate('endDate', '>=', $params['endDate1']);
+                $query->whereDate('end_date', '>=', $params['endDate1']);
                 if (isset($params['endDate2']) && !empty($params['endDate2'])) {
-                    $query->whereDate('endDate', '<=', $params['endDate2']);
+                    $query->whereDate('end_date', '<=', $params['endDate2']);
                 }
             }
 
