@@ -543,7 +543,6 @@ class OfferController extends Controller
     public function search(Request $request)
     {
         try {
-            if (is_null($request->query('code')) || is_null($request->query('name'))) return [];
             return OfferListResource::collection($this->retrieverService->getOffers($request->query())->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
