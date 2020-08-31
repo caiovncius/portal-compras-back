@@ -20,8 +20,8 @@ class OfferUpdater implements OfferUpdatable
             $model->fill($data);
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
-            $model->start_date = $data['start_date'];
-            $model->end_date = $data['end_date'];
+            $model->start_date = $data['startDate'];
+            $model->end_date = $data['endDate'];
             $model->minimum_price = $data['minimumPrice'];
             $model->offer_type = $data['offerType'];
             $model->send_type = $data['sendType'];

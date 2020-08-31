@@ -18,8 +18,8 @@ class OfferCreator implements OfferCreatable
     {
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
-            $data['start_date'] = $data['start_date'];
-            $data['end_date'] = $data['end_date'];
+            $data['start_date'] = $data['startDate'];
+            $data['end_date'] = $data['endDate'];
             $data['minimum_price'] = $data['minimumPrice'];
             $data['offer_type'] = $data['offerType'];
             $data['send_type'] = $data['sendType'];
