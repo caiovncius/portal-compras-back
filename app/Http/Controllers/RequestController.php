@@ -67,6 +67,21 @@ class RequestController extends Controller
      *        example="active",
      *     ),
      *     @OA\Parameter(
+     *        name="type",
+     *        in="query",
+     *        example="OFFER",
+     *     ),
+     *     @OA\Parameter(
+     *        name="commercial",
+     *        in="query",
+     *        example="name",
+     *     ),
+     *     @OA\Parameter(
+     *        name="sendType",
+     *        in="query",
+     *        example="MANUAL",
+     *     ),
+     *     @OA\Parameter(
      *        name="date1",
      *        in="query",
      *        example="2020-05-25",
@@ -113,6 +128,54 @@ class RequestController extends Controller
     {
         try {
             return RequestListResource::collection($this->retrieverService->getRequests($request->query())->paginate(10));
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *     tags={"Portal"},
+     *     path="/portal/pharmacies/{id}/requests",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/RequestListResource"),
+     *                 ),
+     *                 @OA\Property(
+     *                     property="links",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationLinks"),
+     *                     }
+     *                 ),
+     *                  @OA\Property(
+     *                     property="meta",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationMeta"),
+     *                     }
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param integer $pharmacy
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function byPharmacy($pharmacy)
+    {
+        try {
+            $input['pharmacyId'] = $pharmacy;
+
+            return RequestListResource::collection($this->retrieverService->getRequests($input)->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

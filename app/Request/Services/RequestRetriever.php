@@ -33,6 +33,22 @@ class RequestRetriever implements RequestRetrievable
                 $query->where('status', $params['status']);
             }
 
+            if (isset($params['type']) && !empty($params['type'])) {
+                $type = $params['type'] == 'OFFER' ? 'App\Offer' : 'App\Purchase';
+                $query->where('requestable_type', $type);
+            }
+
+            if (isset($params['sendType']) && !empty($params['sendType'])) {
+                $type = $params['sendType'];
+                $query->whereHasMorph(
+                    'requestable',
+                    ['App\Offer', 'App\Purchase'],
+                    function (Builder $query) use ($type) {
+                        $query->where('send_type', $type);
+                    }
+                );
+            }
+
             if (isset($params['date1']) && !empty($params['date1'])) {
                 $query->whereDate('created_at', '>=', $params['date1']);
                 if (isset($params['date2']) && !empty($params['date2'])) {

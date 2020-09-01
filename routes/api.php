@@ -31,6 +31,9 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
 
     Route::get('requests', 'RequestController@list')
          ->name('request.list');
+
+    Route::get('pharmacies/{id}/requests', 'RequestController@byPharmacy')
+         ->name('request.byPharmacy');
     Route::get('requests/{model}', 'RequestController@get')
          ->name('request.get');
     Route::post('requests', 'RequestController@store')
