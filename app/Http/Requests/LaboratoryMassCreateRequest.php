@@ -40,7 +40,7 @@ class LaboratoryMassCreateRequest extends FormRequest
             'data' => 'array|required',
             'data.*.code' => 'required|string|unique:laboratories',
             'data.*.name' => 'required|string',
-            'data.*.status' => 'required|in:ACTIVE,INACTIVE',
+            'data.*.status' => 'nullable|in:ACTIVE,INACTIVE',
             'data.*.contacts' => 'array',
             'data.*.contacts.*.name' => 'string|required',
             'data.*.contacts.*.email' => 'email|required',

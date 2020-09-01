@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="PurchaseRequest",
  *     type="object",
  *     title="Purchase form request",
- *     required={"code", "name", "status", "description", "offer_id"},
+ *     required={"code", "name", "sendType", "validityStart", "validityEnd", "minimumBillingValue", "minimumBillingQuantity"},
  *     @OA\Property(property="code", type="integer", example="001"),
  *     @OA\Property(property="image", type="integer", example="001"),
  *     @OA\Property(property="name", type="string", example="Teste"),
@@ -74,10 +74,12 @@ class PurchaseRequest extends FormRequest
             'offerId' => 'required|exists:offers,id',
             'code' => 'required|string|unique:offers',
             'name' => 'required|string',
-            'description' => 'required|string',
-            'status' => 'required|in:ACTIVE,INACTIVE',
-            'validityStart' => 'date',
-            'validityEnd' => 'date|after_or_equal:validityStart',
+            'description' => 'nullable|string',
+            'status' => 'nullable|in:ACTIVE,INACTIVE',
+            'minimumBillingValue' => 'required',
+            'minimumBillingQuantity' => 'required',
+            'validityStart' => 'required|date',
+            'validityEnd' => 'required|date|after_or_equal:validityStart',
         ];
     }
 
@@ -95,6 +97,8 @@ class PurchaseRequest extends FormRequest
             'description' => 'Descrição',
             'validityStart' => 'Data Vigência inicial',
             'validityEnd' => 'Data Vigência final',
+            'minimumBillingValue' => 'Valor mínimo para faturamento',
+            'minimumBillingQuantity' => 'Qtd  mínima para faturamento',
         ];
     }
 }

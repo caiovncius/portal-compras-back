@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="LaboratoryCreatorRequest",
  *     type="object",
  *     title="Laboratory form request",
- *     required={"code", "status", "name"},
+ *     required={"code", "name"},
  *     @OA\Property(property="code", type="integer", example="01"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
  *     @OA\Property(property="name", type="string", example="Teste"),
@@ -43,7 +43,7 @@ class LaboratoryCreatorRequest extends FormRequest
         return [
             'code' => 'required|string|unique:laboratories',
             'name' => 'required|string',
-            'status' => 'required|in:ACTIVE,INACTIVE',
+            'status' => 'nullable|in:ACTIVE,INACTIVE',
             'contacts' => 'array',
             'contacts.*.name' => 'string|required',
             'contacts.*.email' => 'email|required',

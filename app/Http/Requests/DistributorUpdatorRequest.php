@@ -41,7 +41,7 @@ class DistributorUpdatorRequest extends FormRequest
             'code' => 'required|string',
             'cnpj' => 'required|cnpj',
             'name' => 'required|string',
-            'status' => 'required|in:ACTIVE,INACTIVE',
+            'status' => 'in:ACTIVE,INACTIVE',
             'category' => 'required|in:NATIONAL,REGIONAL',
             'stateId' => 'required',
             'contacts' => 'nullable|array',

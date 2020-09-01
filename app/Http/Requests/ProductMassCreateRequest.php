@@ -41,8 +41,8 @@ class ProductMassCreateRequest extends FormRequest
             'data.*.code' => 'required|integer|unique:products',
             'data.*.codeEan' => 'required|integer',
             'data.*.description' => 'required|string',
-            'data.*.status' => 'required|in:ACTIVE,INACTIVE',
-            'data.*.laboratoryId' => 'required|exists:laboratories,id',
+            'data.*.status' => 'nullable|in:ACTIVE,INACTIVE',
+            'data.*.laboratoryId' => 'nullable|exists:laboratories,id',
             'data.*.secondaryEanCodes' => 'array',
             'data.*.secondaryEanCodes.*.name' => 'string|required',
         ];

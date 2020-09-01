@@ -7079,7 +7079,8 @@
                     "code",
                     "cnpj",
                     "name",
-                    "status"
+                    "category",
+                    "stateId"
                 ],
                 "properties": {
                     "code": {
@@ -7114,7 +7115,8 @@
                     "code",
                     "cnpj",
                     "name",
-                    "status"
+                    "category",
+                    "stateId"
                 ],
                 "properties": {
                     "code": {
@@ -7131,6 +7133,14 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "NATIONAL or REGIONAL"
+                    },
+                    "stateId": {
+                        "type": "integer",
+                        "example": "2"
                     }
                 },
                 "type": "object"
@@ -7183,7 +7193,6 @@
                 "title": "Laboratory form request",
                 "required": [
                     "code",
-                    "status",
                     "name"
                 ],
                 "properties": {
@@ -7246,8 +7255,8 @@
                 "required": [
                     "code",
                     "name",
-                    "status",
-                    "description"
+                    "startDate",
+                    "endDate"
                 ],
                 "properties": {
                     "code": {
@@ -7537,10 +7546,8 @@
                 "required": [
                     "code",
                     "cnpj",
-                    "company_name",
                     "name",
-                    "status",
-                    "city_id"
+                    "socialName"
                 ],
                 "properties": {
                     "code": {
@@ -7730,9 +7737,7 @@
                 "required": [
                     "code",
                     "codeEan",
-                    "description",
-                    "status",
-                    "laboratory_id"
+                    "description"
                 ],
                 "properties": {
                     "code": {
@@ -8082,9 +8087,11 @@
                 "required": [
                     "code",
                     "name",
-                    "status",
-                    "description",
-                    "offer_id"
+                    "sendType",
+                    "validityStart",
+                    "validityEnd",
+                    "minimumBillingValue",
+                    "minimumBillingQuantity"
                 ],
                 "properties": {
                     "code": {

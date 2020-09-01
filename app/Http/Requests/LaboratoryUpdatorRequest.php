@@ -36,7 +36,7 @@ class LaboratoryUpdatorRequest extends FormRequest
     {
         return [
             'code' => 'required|string',
-            'status' => 'required|in:ACTIVE,INACTIVE',
+            'status' => 'nullable|in:ACTIVE,INACTIVE',
             'name' => 'required|string',
         ];
     }

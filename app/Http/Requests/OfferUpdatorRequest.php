@@ -76,12 +76,12 @@ class OfferUpdatorRequest extends FormRequest
         return [
             'code' => 'required|string',
             'name' => 'required|string',
-            'description' => 'required|string',
-            'status' => 'required|in:ACTIVE,INACTIVE',
+            'description' => 'nullable|string',
+            'status' => 'nullable|in:ACTIVE,INACTIVE',
             'sendType' => 'nullable|in:MANUAL,AUTOMATIC',
             'offerType' => 'nullable|in:NORMAL,COMBO,COLLECTIVE_BUYING',
-            'startDate' => 'date',
-            'endDate' => 'date|after_or_equal:startDate',
+            'startDate' => 'required|date',
+            'endDate' => 'required|date|after_or_equal:startDate',
         ];
     }
 

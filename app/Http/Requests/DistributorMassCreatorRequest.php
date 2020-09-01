@@ -11,11 +11,13 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="DistributorMassFormCreatorRequest",
  *     type="object",
  *     title="Distributor Mass Form request",
- *     required={"code", "cnpj", "name", "status"},
+ *     required={"code", "cnpj", "name", "category", "stateId"},
  *     @OA\Property(property="code", type="integer", example="001"),
  *     @OA\Property(property="cnpj", type="integer", example="00.0001/0004.14"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(property="category", type="string", example="NATIONAL or REGIONAL"),
+ *     @OA\Property(property="stateId", type="integer", example="2"),
  * )
  */
 

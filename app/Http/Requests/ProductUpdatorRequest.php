@@ -40,8 +40,8 @@ class ProductUpdatorRequest extends FormRequest
             'code' => 'required|string',
             'codeEan' => 'required|integer',
             'description' => 'required|string',
-            'status' => 'required|in:ACTIVE,INACTIVE',
-            'laboratoryId' => 'required|exists:laboratories,id',
+            'status' => 'nullable|in:ACTIVE,INACTIVE',
+            'laboratoryId' => 'nullable|exists:laboratories,id',
         ];
     }
 
