@@ -5494,6 +5494,21 @@
                         "example": "active"
                     },
                     {
+                        "name": "type",
+                        "in": "query",
+                        "example": "OFFER"
+                    },
+                    {
+                        "name": "commercial",
+                        "in": "query",
+                        "example": "name"
+                    },
+                    {
+                        "name": "sendType",
+                        "in": "query",
+                        "example": "MANUAL"
+                    },
+                    {
                         "name": "date1",
                         "in": "query",
                         "example": "2020-05-25"
@@ -5587,6 +5602,47 @@
                                     "properties": {
                                         "error": {
                                             "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/portal/pharmacies/{id}/requests": {
+            "get": {
+                "tags": [
+                    "Portal"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/RequestListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
                                         }
                                     },
                                     "type": "object"
@@ -7276,8 +7332,8 @@
                         "example": "2020-05-25T05:09:15.000000Z"
                     },
                     "condition": {
-                        "type": "string",
-                        "example": "name"
+                        "type": "integer",
+                        "example": "1"
                     },
                     "minimumPrice": {
                         "type": "string",
@@ -7420,8 +7476,8 @@
                         "example": "2020-05-25T05:09:15.000000Z"
                     },
                     "condition": {
-                        "type": "string",
-                        "example": "name"
+                        "type": "integer",
+                        "example": "1"
                     },
                     "minimumPrice": {
                         "type": "string",
