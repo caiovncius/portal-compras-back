@@ -74,7 +74,7 @@ class OfferUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'string|unique:offers,code,' . $this->id,
             'name' => 'required|string',
             'description' => 'nullable|string',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
@@ -82,6 +82,23 @@ class OfferUpdatorRequest extends FormRequest
             'offerType' => 'nullable|in:NORMAL,COMBO,COLLECTIVE_BUYING',
             'startDate' => 'required|date',
             'endDate' => 'required|date|after_or_equal:startDate',
+            'conditionId' => 'exists:conditions,id',
+            'partners' => 'array|nullable',
+            'partners.*.id' => 'required|numeric',
+            'partners.*.type' => 'required|string',
+            'products' => 'array|nullable',
+            'products.*.productId' => 'required',
+            'products.*.discountDeferred' => 'string',
+            'products.*.discountOnCash' => 'string',
+            'products.*.minimum' => 'string',
+            'products.*.minimumPerFamily' => 'required',
+            'products.*.obrigatory' => 'boolean',
+            'products.*.factoryPrice' => 'string',
+            'products.*.priceDeferred' => 'string',
+            'products.*.priceOnCash' => 'string',
+            'products.*.quantityMaximum' => 'string',
+            'products.*.quantityMinimum' => 'string',
+            'products.*.stateId' => 'required',
         ];
     }
 

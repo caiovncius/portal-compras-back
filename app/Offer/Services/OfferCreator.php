@@ -29,15 +29,15 @@ class OfferCreator implements OfferCreatable
                 $data['image'] = FileUploader::uploadFile($data['image']);
             }
 
-            $data['condition_id'] = $data['condition'];
+            $data['condition_id'] = isset($data['conditionId']) ? $data['conditionId'] : null;
             $model = Offer::create($data);
 
             if (isset($data['partners'])) {
-                foreach ($data['partners'] as $data) {
-                    $model->partners()->attach($data['id'], [
-                        'type' => $data['type'],
-                        'ol' => $data['ol'],
-                        'priority' => $data['priority'],
+                foreach ($data['partners'] as $partner) {
+                    $model->partners()->attach($partner['id'], [
+                        'type' => $partner['type'],
+                        'ol' => $partner['ol'],
+                        'priority' => $partner['priority'],
                     ]);
                 }
             }

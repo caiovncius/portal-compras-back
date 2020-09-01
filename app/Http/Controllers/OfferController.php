@@ -314,7 +314,7 @@ class OfferController extends Controller
     {
         try {
             $this->creatorService->store($request->all());
-            return response()->json(['message' => 'Offera criado com sucesso'], 200);
+            return response()->json(['message' => 'Oferta criado com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -375,7 +375,7 @@ class OfferController extends Controller
     {
         try {
             $this->updatorService->update($model, $request->all());
-            return response()->json(['message' => 'Offera atualizado com sucesso'], 200);
+            return response()->json(['message' => 'Oferta atualizado com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
