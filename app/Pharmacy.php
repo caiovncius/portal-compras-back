@@ -90,4 +90,12 @@ class Pharmacy extends Model
     {
         return $this->morphMany(Contact::class, 'contactable');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function priority()
+    {
+        return $this->belongsTo(Priority::class, 'partner_priority_id');
+    }
 }
