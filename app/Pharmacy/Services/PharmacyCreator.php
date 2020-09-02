@@ -34,7 +34,7 @@ class PharmacyCreator implements PharmacyCreatable
             $pharmacy->address_number = isset($pharmacyData['addressNumber']) ? $pharmacyData['addressNumber'] : null;
             $pharmacy->district = isset($pharmacyData['district']) ? $pharmacyData['district'] : null;
             $pharmacy->zip_code = isset($pharmacyData['zipCode']) ? $pharmacyData['zipCode'] : null;
-            $pharmacy->city_id = $pharmacyData['cityId'];
+            $pharmacy->city_id = isset($pharmacyData['cityId']) ? $pharmacyData['cityId'] : null;
             $pharmacy->updated_id = auth()->guard('api')->user()->id;
             $pharmacy->save();
 
