@@ -197,6 +197,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/returns', 'ReturnsController@list')
          ->name('return.list')
          ->middleware('acl:Return,r');
+    Route::get('/returns/all', 'ReturnsController@all')
+         ->name('return.all')
+         ->middleware('acl:Return,r');
     Route::get('/returns/{id}', 'ReturnsController@get')
          ->name('return.get')
          ->middleware('acl:Return,r');

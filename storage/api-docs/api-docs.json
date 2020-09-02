@@ -5925,6 +5925,33 @@
                 }
             }
         },
+        "/returns/all": {
+            "get": {
+                "tags": [
+                    "Returns"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ReturnListResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/returns/{id}": {
             "get": {
                 "tags": [
@@ -8292,22 +8319,15 @@
             "RequestRequest": {
                 "title": "Request form request",
                 "required": [
-                    "pharmacy_id",
-                    "offer_id",
-                    "status"
+                    "pharmacyId",
+                    "modelId",
+                    "modelType",
+                    "value"
                 ],
                 "properties": {
-                    "pharmacy_id": {
+                    "pharmacyId": {
                         "type": "integer",
                         "example": "001"
-                    },
-                    "offer_id": {
-                        "type": "string",
-                        "example": "Teste"
-                    },
-                    "status": {
-                        "type": "string",
-                        "example": "ACTIVE"
                     },
                     "modelId": {
                         "type": "string",
@@ -8316,6 +8336,10 @@
                     "modelType": {
                         "type": "string",
                         "example": "OFFER"
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "100.5"
                     },
                     "products": {
                         "type": "array",
@@ -8328,6 +8352,10 @@
                                 "quantity": {
                                     "type": "integer",
                                     "example": "1"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "example": "100"
                                 }
                             },
                             "type": "object"
@@ -9828,13 +9856,9 @@
             "RequestListResource": {
                 "title": "Request List Response",
                 "properties": {
-                    "pharmacy_id": {
+                    "pharmacyId": {
                         "type": "integer",
                         "example": "001"
-                    },
-                    "offer_id": {
-                        "type": "string",
-                        "example": "Teste"
                     },
                     "status": {
                         "type": "string",

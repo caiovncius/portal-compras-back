@@ -29,6 +29,10 @@ class ReturnsRetriever implements ReturnsRetrievable
                 $query->where('status', $params['status']);
             }
 
+            if (isset($params['global']) && !empty($params['global'])) {
+                $query->whereNull('returnable_id');
+            }
+
             if (isset($params['createdAt']) && !empty($params['createdAt'])) {
                 $query->where('created_at', '>=', $params['created_at']);
             }

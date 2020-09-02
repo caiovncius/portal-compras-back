@@ -10,17 +10,18 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="RequestRequest",
  *     type="object",
  *     title="Request form request",
- *     required={"pharmacyId", "status", "modelId", "modelType"},
+ *     required={"pharmacyId", "modelId", "modelType", "value"},
  *     @OA\Property(property="pharmacyId", type="integer", example="001"),
- *     @OA\Property(property="status", type="string", example="ACTIVE"),
  *     @OA\Property(property="modelId", type="string", example="1"),
  *     @OA\Property(property="modelType", type="string", example="OFFER"),
+ *     @OA\Property(property="value", type="string", example="100.5"),
  *     @OA\Property(
  *         property="products",
  *         type="array",
  *         @OA\Items(
  *     @OA\Property(property="productId", type="integer", example="1"),
  *     @OA\Property(property="quantity", type="integer", example="1"),
+ *     @OA\Property(property="value", type="string", example="100"),
  *         )
  *     ),
  * )
@@ -48,10 +49,11 @@ class RequestRequest extends FormRequest
             'modelId' => 'required',
             'modelType' => 'required',
             'pharmacyId' => 'required|exists:pharmacies,id',
-            'status' => 'required|in:ACTIVE,INACTIVE',
+            'value' => 'required|numeric',
             'products' => 'array|required',
             'products.*.productId' => 'required|exists:products,id',
             'products.*.quantity' => 'required|numeric',
+            'products.*.value' => 'required|numeric',
         ];
     }
 
@@ -67,7 +69,10 @@ class RequestRequest extends FormRequest
             'modelId' => 'modelId',
             'modelType' => 'ModelType',
             'pharmacyId' => 'Farmácia',
-            'status' => 'Status',
+            'value' => 'Valor total',
+            'products.*.productId' => 'Id do produto',
+            'products.*.quantity' => 'Quantidade',
+            'products.*.value' => 'Valor do produto',
         ];
     }
 }

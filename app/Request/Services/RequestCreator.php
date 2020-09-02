@@ -21,7 +21,7 @@ class RequestCreator implements RequestCreatable
             $data['pharmacy_id'] = $data['pharmacyId'];
             $data['requestable_id'] = $data['modelId'];
             $data['requestable_type'] = $type;
-            $data['status'] = 0;
+            $data['status'] = 'NOT_SEND';
             $model = Request::create($data);
 
             $model->historics()->create([
@@ -32,7 +32,11 @@ class RequestCreator implements RequestCreatable
 
             if (isset($data['products'])) {
                 foreach ($data['products'] as $product) {
-                    $model->products()->attach($product['productId'], ['qtd' => $product['quantity']]);
+                    $model->products()->attach($product['productId'], [
+                        'qtd' => $product['quantity'],
+                        'status' => 'CREATED',
+                        'value' => $product['value']
+                    ]);
                 }
             }
 
