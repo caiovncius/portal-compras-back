@@ -56,7 +56,7 @@ class PharmacyResource extends JsonResource
             'stateRegistration' => $this->state_registration,
             'email' => $this->email,
             'phone' => $this->phone,
-            'supervisorId' => $this->supervisor_id,
+            'supervisorId' => $this->supervisor,
             'partnerPriority' => $this->priority,
             'address' => $this->address,
             'address2' => $this->address_2,
