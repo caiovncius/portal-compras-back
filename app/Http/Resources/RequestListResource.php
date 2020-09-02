@@ -28,10 +28,11 @@ class RequestListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'pharmacyId' => $this->pharmacy_id,
+            'pharmacyCode' => $this->pharmacy->code,
+            'offerName' => $this->requestable->name,
+            'sendType' => $this->requestable->send_type,
             'status' => $this->status,
-            'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'total' => 0,
         ];
     }
 }
