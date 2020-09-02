@@ -96,6 +96,6 @@ class Pharmacy extends Model
      */
     public function priority()
     {
-        return $this->belongsTo(Priority::class, 'partner_priority_id');
+        return $this->belongsTo(Priority::class, 'partner_priority');
     }
 }
