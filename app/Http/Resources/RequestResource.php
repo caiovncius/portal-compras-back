@@ -40,7 +40,6 @@ class RequestResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'offerid' => $this->offer_id,
             'pharmacyId' => $this->pharmacy_id,
             'status' => $this->status,
             'products' => RequestProductResource::collection($this->products),

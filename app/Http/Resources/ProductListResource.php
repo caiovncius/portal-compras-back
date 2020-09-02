@@ -34,7 +34,7 @@ class ProductListResource extends JsonResource
             'code' => $this->code,
             'codeEan' => $this->code_ean,
             'description' => $this->description,
-            'laboratory' => $this->laboratory->name,
+            'laboratory' => $this->laboratory ? $this->laboratory->name : '',
             'status' => $this->status,
             'createdAt' => $this->created_at
         ];

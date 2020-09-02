@@ -27,10 +27,10 @@ class RequestProductResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'product' => ProductListResource::make($this->offer_product),
+            'product' => ProductResource::make($this->product),
             'qtd' => $this->pivot->qtd,
-            'value' => $this->offer_product->priceOnCash,
-            'total' => $this->offer_product->priceOnCash * $this->pivot->qtd,
+            'value' => $this->price_on_cash,
+            'total' => $this->price_on_cash * $this->pivot->qtd,
         ];
     }
 }

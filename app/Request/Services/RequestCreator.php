@@ -18,7 +18,6 @@ class RequestCreator implements RequestCreatable
             $type = $data['modelType'] == 'OFFER' ? 'App\Offer' : 'App\Purchase';
 
             $data['updated_id'] = auth()->guard('api')->user()->id;
-            $data['offer_id'] = $data['offerId'];
             $data['pharmacy_id'] = $data['pharmacyId'];
             $data['requestable_id'] = $data['modelId'];
             $data['requestable_type'] = $type;

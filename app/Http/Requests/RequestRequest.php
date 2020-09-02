@@ -10,9 +10,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="RequestRequest",
  *     type="object",
  *     title="Request form request",
- *     required={"pharmacy_id", "offer_id", "status"},
- *     @OA\Property(property="pharmacy_id", type="integer", example="001"),
- *     @OA\Property(property="offer_id", type="string", example="Teste"),
+ *     required={"pharmacyId", "status", "modelId", "modelType"},
+ *     @OA\Property(property="pharmacyId", type="integer", example="001"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
  *     @OA\Property(property="modelId", type="string", example="1"),
  *     @OA\Property(property="modelType", type="string", example="OFFER"),
@@ -46,12 +45,11 @@ class RequestRequest extends FormRequest
     public function rules()
     {
         return [
-            'offerId' => 'required|exists:offers,id',
             'modelId' => 'required',
             'modelType' => 'required',
             'pharmacyId' => 'required|exists:pharmacies,id',
             'status' => 'required|in:ACTIVE,INACTIVE',
-            'products' => 'array|nullable',
+            'products' => 'array|required',
             'products.*.productId' => 'required|exists:products,id',
             'products.*.quantity' => 'required|numeric',
         ];
@@ -66,8 +64,8 @@ class RequestRequest extends FormRequest
     {
         return [
             'offerId' => 'Oferta',
-            'modelId' => 'Model(enviar via formhidden)',
-            'modelType' => 'Model(enviar via formhidden(OFFER ou PURCHASE))',
+            'modelId' => 'modelId',
+            'modelType' => 'ModelType',
             'pharmacyId' => 'Farmácia',
             'status' => 'Status',
         ];

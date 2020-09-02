@@ -71,6 +71,6 @@ class Request extends Model
                         'request_products',
                         'request_id',
                         'product_detail_id'
-                    )->withPivot(['qtd', 'qtdReturn', 'status', 'distributor_id']);
+                    )->withPivot(['qtd', 'qtd_return', 'status', 'distributor_id']);
     }
 }
