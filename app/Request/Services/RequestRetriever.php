@@ -38,6 +38,13 @@ class RequestRetriever implements RequestRetrievable
                 $query->where('requestable_type', $type);
             }
 
+            if (isset($params['commercial']) && !empty($params['commercial'])) {
+                $name = $params['commercial'];
+                $query->whereHas('supervisor', function (Builder $query) use($name) {
+                    $query->where('name', 'like', '%'.$name.'%');
+                });
+            }
+
             if (isset($params['sendType']) && !empty($params['sendType'])) {
                 $type = $params['sendType'];
                 $query->whereHasMorph(
