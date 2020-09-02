@@ -57,7 +57,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
 
     Route::get('/users', 'UserController@list')
          ->name('user.list')
-         ->middleware('acl:User,r,w');
+         ->middleware('acl:User,r');
     Route::get('/users/managers', 'UserController@managers')
          ->name('user.managers')
          ->middleware('acl:User,r');
