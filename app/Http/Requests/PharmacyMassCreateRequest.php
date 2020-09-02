@@ -49,7 +49,7 @@ class PharmacyMassCreateRequest extends FormRequest
             'data.*.stateRegistration' => 'string',
             'data.*.phone' => 'string',
             'data.*.supervisorId' => 'exists:users,id',
-            'data.*.partnerPriority' => 'string',
+            'data.*.partnerPriority' => 'numeric|exists:priorities,id',
             'data.*.address' => 'string|nullable',
             'data.*.address2' => 'string|nullable',
             'data.*.addressNumber' => 'string|nullable',
