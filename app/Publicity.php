@@ -20,7 +20,7 @@ class Publicity extends Model
 {
     protected $fillable = [
         'code',
-        'desc',
+        'description',
         'date_create',
         'date_publish',
         'images',
