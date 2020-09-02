@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $pharmacy_id
  * @property string $status
+ * @property int $updated_at
+ * @property int $partner_id
+ * @property int $priority
+ * @property decimal $value
  */
 class Request extends Model
 {
@@ -19,6 +23,11 @@ class Request extends Model
         'updated_id',
         'partner_id',
         'priority',
+        'value'
+    ];
+
+    protected $casts = [
+        'value' => 'decimal:10,2'
     ];
 
     /**
@@ -71,6 +80,6 @@ class Request extends Model
                         'request_products',
                         'request_id',
                         'product_detail_id'
-                    )->withPivot(['qtd', 'qtd_return', 'status', 'distributor_id']);
+                    )->withPivot(['qtd', 'qtd_return', 'status', 'distributor_id', 'return_id', 'value']);
     }
 }

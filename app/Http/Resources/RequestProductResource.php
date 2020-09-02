@@ -29,8 +29,8 @@ class RequestProductResource extends JsonResource
         return [
             'product' => ProductResource::make($this->product),
             'qtd' => $this->pivot->qtd,
-            'value' => $this->price_on_cash,
-            'total' => $this->price_on_cash * $this->pivot->qtd,
+            'value' => $this->pivot->value,
+            'total' => $this->pivot->value * $this->pivot->qtd,
         ];
     }
 }

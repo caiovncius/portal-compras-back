@@ -109,6 +109,41 @@ class ReturnsController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     tags={"Returns"},
+     *     path="/returns/all",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/ReturnListResource"),
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function all(Request $request)
+    {
+        try {
+            $input['status'] = 'ACTIVE';
+            return ReturnListResource::collection($this->retrieverService->getReturns($input)->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
      *
      * @OA\Post(
      *     tags={"Returns"},
