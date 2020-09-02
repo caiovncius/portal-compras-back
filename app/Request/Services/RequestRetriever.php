@@ -50,9 +50,9 @@ class RequestRetriever implements RequestRetrievable
             }
 
             if (isset($params['date1']) && !empty($params['date1'])) {
-                $query->whereDate('created_at', '>=', $params['date1']);
+                $query->whereDate('send_date', '>=', $params['date1']);
                 if (isset($params['date2']) && !empty($params['date2'])) {
-                    $query->whereDate('created_at', '<=', $params['date2']);                    
+                    $query->whereDate('send_date', '<=', $params['date2']);                    
                 }
             }
 

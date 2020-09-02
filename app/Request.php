@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $partner_id
  * @property int $priority
  * @property decimal $value
+ * @property string $send_date
  */
 class Request extends Model
 {
@@ -23,11 +24,15 @@ class Request extends Model
         'updated_id',
         'partner_id',
         'priority',
-        'value'
+        'value',
+        'send_date',
+        'requestable_id',
+        'requestable_type',
     ];
 
     protected $casts = [
-        'value' => 'decimal:10,2'
+        'value' => 'float',
+        'send_date' => 'date'
     ];
 
     /**
