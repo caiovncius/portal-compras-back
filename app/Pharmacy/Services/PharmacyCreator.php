@@ -24,7 +24,7 @@ class PharmacyCreator implements PharmacyCreatable
             $pharmacy->name = $pharmacyData['name'];
             $pharmacy->status = $pharmacyData['status'];
             $pharmacy->cnpj = $pharmacyData['cnpj'];
-            $pharmacy->state_registration = isset($pharmacyData['state_registration']) ? $pharmacyData['state_registration'] : null ;
+            $pharmacy->state_registration = isset($pharmacyData['stateRegistration']) ? $pharmacyData['stateRegistration'] : null ;
             $pharmacy->email = isset($pharmacyData['email']) ? $pharmacyData['email'] : null;
             $pharmacy->phone = isset($pharmacyData['phone']) ? $pharmacyData['phone'] : null;
             $pharmacy->supervisor_id = isset($pharmacyData['supervisorId']) ? $pharmacyData['supervisorId'] : null;
