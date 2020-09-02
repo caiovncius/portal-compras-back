@@ -40,6 +40,14 @@ class PharmacyUpdator implements PharmacyUpdatable
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->save();
 
+            if (isset($data['contacts'])) {
+                $model->contacts()->delete();
+                foreach ($data['contacts'] as $contact) {
+                    $contact['updated_id'] = auth()->guard('api')->user()->id;
+                    $model->contacts()->create($contact);
+                }
+            }
+
             return true;
         } catch (\Exception $exception) {
             throw $exception;

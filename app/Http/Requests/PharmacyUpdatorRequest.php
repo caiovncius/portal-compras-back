@@ -26,6 +26,11 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="district", type="string", example="Bairro"),
  *     @OA\Property(property="zipCode", type="string", example="74000-00"),
  *     @OA\Property(property="cityId", type="int", example="3"),
+ *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ContactCreatorRequest")
+ *     ),
  * )
  */
 class PharmacyUpdatorRequest extends FormRequest
@@ -53,7 +58,11 @@ class PharmacyUpdatorRequest extends FormRequest
             'socialName' => 'required|string',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'cityId' => 'required|integer|exists:cities,id',
-            'commercial' => 'nullable|string',
+            'contacts' => 'array',
+            'contacts.*.name' => 'string|required',
+            'contacts.*.email' => 'email|required',
+            'contacts.*.function' => 'string|required',
+            'contacts.*.telephone' => 'string|required'
         ];
     }
 
