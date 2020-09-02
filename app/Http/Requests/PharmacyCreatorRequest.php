@@ -60,7 +60,7 @@ class PharmacyCreatorRequest extends FormRequest
             'cnpj' => 'required|cnpj',
             'email' => 'email',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
-            'cityId' => 'nullable|integer|exists:cities,id',
+            'cityId' => 'required|integer|exists:cities,id',
             'stateRegistration' => 'string',
             'phone' => 'string',
             'supervisorId' => 'exists:users,id',
