@@ -324,7 +324,7 @@ class PharmacyController extends Controller
     /**
      *
      * @OA\Post(
-     *     tags={"Laboratories"},
+     *     tags={"Pharmacies"},
      *     path="/pharmacies/{pharmacy}/add-contact",
      *     @OA\RequestBody(
      *          required=true,

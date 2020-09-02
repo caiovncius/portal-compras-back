@@ -39,7 +39,7 @@ class PublicityListResource extends JsonResource
         return [
             'id' => $this->id,
             'code' => $this->code,
-            'description' => $this->desc,
+            'description' => $this->description,
             'createDate' => $this->date_create,
             'publishDate' => $this->date_publish,
             'images' => empty($imagesCollection) ? [] :  $imagesCollection->map(function($image, $key) {

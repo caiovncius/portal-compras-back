@@ -32,7 +32,11 @@ class PharmacyUpdator implements PharmacyUpdatable
             $model->address_number = isset($data['addressNumber']) ? $data['addressNumber'] : null;
             $model->district = isset($data['district']) ? $data['district'] : null;
             $model->zip_code = isset($data['zipCode']) ? $data['zipCode'] : null;
-            $model->city_id = $data['cityId'];
+
+            if (isset($data['cityId'])) {
+                $model->city_id = $data['cityId'];
+            }
+
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->save();
 

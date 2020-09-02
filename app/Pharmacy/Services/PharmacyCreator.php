@@ -24,17 +24,17 @@ class PharmacyCreator implements PharmacyCreatable
             $pharmacy->name = $pharmacyData['name'];
             $pharmacy->status = $pharmacyData['status'];
             $pharmacy->cnpj = $pharmacyData['cnpj'];
-            $pharmacy->state_registration = isset($pharmacyData['state_registration']) ? $pharmacyData['state_registration'] : null ;
+            $pharmacy->state_registration = isset($pharmacyData['stateRegistration']) ? $pharmacyData['stateRegistration'] : null ;
             $pharmacy->email = isset($pharmacyData['email']) ? $pharmacyData['email'] : null;
             $pharmacy->phone = isset($pharmacyData['phone']) ? $pharmacyData['phone'] : null;
-            $pharmacy->supervisor_id = isset($pharmacyData['supervisor_id']) ? $pharmacyData['supervisor_id'] : null;
-            $pharmacy->partner_priority = isset($pharmacyData['partner_priority']) ? $pharmacyData['partner_priority'] : null;
+            $pharmacy->supervisor_id = isset($pharmacyData['supervisorId']) ? $pharmacyData['supervisorId'] : null;
+            $pharmacy->partner_priority = isset($pharmacyData['partnerPriority']) ? $pharmacyData['partnerPriority'] : null;
             $pharmacy->address = isset($pharmacyData['address']) ? $pharmacyData['address'] : null;
-            $pharmacy->address_2 = isset($pharmacyData['address_2']) ? $pharmacyData['address_2'] : null;
-            $pharmacy->address_number = isset($pharmacyData['address_number']) ? $pharmacyData['address_number'] : null;
+            $pharmacy->address_2 = isset($pharmacyData['address2']) ? $pharmacyData['address2'] : null;
+            $pharmacy->address_number = isset($pharmacyData['addressNumber']) ? $pharmacyData['addressNumber'] : null;
             $pharmacy->district = isset($pharmacyData['district']) ? $pharmacyData['district'] : null;
-            $pharmacy->zip_code = isset($pharmacyData['zip_code']) ? $pharmacyData['zip_code'] : null;
-            $pharmacy->city_id = $pharmacyData['cityId'];
+            $pharmacy->zip_code = isset($pharmacyData['zipCode']) ? $pharmacyData['zipCode'] : null;
+            $pharmacy->city_id = isset($pharmacyData['cityId']) ? $pharmacyData['cityId'] : null;
             $pharmacy->updated_id = auth()->guard('api')->user()->id;
             $pharmacy->save();
 

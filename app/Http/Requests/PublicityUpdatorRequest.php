@@ -11,11 +11,10 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="PublicityUpdatorRequest",
  *     type="object",
  *     title="Publicity form request",
- *     @OA\Property(property="code", type="integer", example="001"),
- *     @OA\Property(property="desc", type="integer", example="Teste"),
- *     @OA\Property(property="date_create", type="date", example="1992-01-87"),
- *     @OA\Property(property="date_publish", type="date", example="1992-10-87"),
- *     @OA\Property(property="image", type="boolean", example="1"),
+ *     @OA\Property(property="code", type="string", example="001"),
+ *     @OA\Property(property="description", type="integer", example="Teste"),
+ *     @OA\Property(property="createDate", type="date", example="1992-01-87"),
+ *     @OA\Property(property="publishDate", type="date", example="1992-10-87"),
  * )
  */
 class PublicityUpdatorRequest extends FormRequest
@@ -38,8 +37,8 @@ class PublicityUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
-            'desc' => 'required|string',
+            'code' => 'required',
+            'description' => 'required|string',
             'createDate' => 'required|string',
             'publishDate' => 'required|string'
         ];

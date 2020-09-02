@@ -116,7 +116,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/pharmacies/{pharmacy}', 'PharmacyController@update')
          ->name('pharmacy.update')
          ->middleware('acl:Pharmacy,r,w');
-    Route::put('/pharmacies/{pharmacy}/add-contact', 'PharmacyController@addContact')
+    Route::post('/pharmacies/{pharmacy}/add-contact', 'PharmacyController@addContact')
         ->name('pharmacy.contacts.add')
         ->middleware('acl:Pharmacy,r,w');
     Route::delete('/pharmacies/{pharmacy}', 'PharmacyController@delete')
