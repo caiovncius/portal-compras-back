@@ -57,7 +57,7 @@ class PharmacyResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'supervisorId' => $this->supervisor_id,
-            'partnerPriority' => PriorityResource::make($this->priority),
+            'partnerPriority' => $this->priority,
             'address' => $this->address,
             'address2' => $this->address_2,
             'addressNumber' => $this->address_number,
