@@ -84,6 +84,14 @@ class Pharmacy extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function supervisor()
+    {
+        return $this->belongsTo('App\User', 'supervisor_id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function contacts()
