@@ -137,6 +137,7 @@ class ReturnsController extends Controller
     {
         try {
             $input['status'] = 'ACTIVE';
+            $input['global'] = true;
             return ReturnListResource::collection($this->retrieverService->getReturns($input)->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
