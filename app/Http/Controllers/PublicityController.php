@@ -85,7 +85,7 @@ class PublicityController extends Controller
             $model = Publicity::find(1);
 
             $this->updatorService->update($model, $request->all());
-            return response()->json(['message' => 'Condição atualizada com sucesso'], 200);
+            return response()->json(['message' => 'Publicidade atualizada com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
