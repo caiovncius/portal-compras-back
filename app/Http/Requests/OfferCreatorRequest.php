@@ -15,7 +15,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="name", type="string", example="Teste"),
 *     @OA\Property(property="startDate",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
  *     @OA\Property(property="endDate",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
- *     @OA\Property(property="condition",  type="integer", example="1"),
+ *     @OA\Property(property="conditionId",  type="integer", example="1"),
  *     @OA\Property(property="minimumPrice",  type="string", example="500"),
  *     @OA\Property(property="offerType",  type="string", example="null"),
  *     @OA\Property(property="sendType",  type="string", example="null"),
@@ -51,7 +51,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="quantityMaximum", type="integer", example="6"),
  *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
  *     @OA\Property(property="stateId", type="string", example="5"),
- *     @OA\Property(property="product_id", type="string", example="5"),
+ *     @OA\Property(property="productId", type="string", example="5"),
            )
  *     ),
  * )

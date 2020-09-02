@@ -391,6 +391,10 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
         ->name('priority.list')
         ->middleware('acl:Priority,r');
 
+    Route::get('/priorities/search', 'PriorityController@search')
+        ->name('priority.list.search')
+        ->middleware('acl:Priority,r');
+
     Route::get('/priorities/national-partners', 'PriorityController@listNationalPartners')
         ->name('priority.list.nationalPartners')
         ->middleware('acl:Priority,r');
