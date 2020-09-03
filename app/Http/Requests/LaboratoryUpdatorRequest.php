@@ -13,6 +13,11 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="code", type="integer", example="01"),
  *     @OA\Property(property="status", type="string", example="ACTIVE"),
  *     @OA\Property(property="name", type="string", example="Teste"),
+ *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ContactCreatorRequest")
+ *     ),
  * )
  */
 class LaboratoryUpdatorRequest extends FormRequest
@@ -38,6 +43,11 @@ class LaboratoryUpdatorRequest extends FormRequest
             'code' => 'required|string',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'name' => 'required|string',
+            'contacts' => 'array',
+            'contacts.*.name' => 'string|required',
+            'contacts.*.email' => 'email|required',
+            'contacts.*.function' => 'string|required',
+            'contacts.*.telephone' => 'string|required',
         ];
     }
 
