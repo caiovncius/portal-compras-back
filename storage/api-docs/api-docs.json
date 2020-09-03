@@ -2064,14 +2064,24 @@
                         "example": "DISTRIBUTOR"
                     },
                     {
-                        "name": "startDate",
+                        "name": "startDate1",
                         "in": "query",
                         "example": "2020-05-25"
                     },
                     {
-                        "name": "endDate",
+                        "name": "startDate2",
+                        "in": "query",
+                        "example": "2020-05-27"
+                    },
+                    {
+                        "name": "endDate1",
                         "in": "query",
                         "example": "2020-06-25"
+                    },
+                    {
+                        "name": "endDate2",
+                        "in": "query",
+                        "example": "2020-06-27"
                     },
                     {
                         "name": "product",
@@ -5163,14 +5173,24 @@
                         "example": "active"
                     },
                     {
-                        "name": "validityStart",
+                        "name": "startDate1",
                         "in": "query",
                         "example": "2020-05-25"
                     },
                     {
-                        "name": "validityEnd",
+                        "name": "startDate2",
+                        "in": "query",
+                        "example": "2020-05-27"
+                    },
+                    {
+                        "name": "endDate1",
                         "in": "query",
                         "example": "2020-06-25"
+                    },
+                    {
+                        "name": "endDate2",
+                        "in": "query",
+                        "example": "2020-06-27"
                     }
                 ],
                 "responses": {
@@ -7919,6 +7939,12 @@
                     "cityId": {
                         "type": "int",
                         "example": "3"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
