@@ -74,14 +74,24 @@ class PurchaseController extends Controller
      *        example="active",
      *     ),
      *     @OA\Parameter(
-     *        name="validityStart",
+     *        name="startDate1",
      *        in="query",
      *        example="2020-05-25",
      *     ),
      *     @OA\Parameter(
-     *        name="validityEnd",
+     *        name="startDate2",
+     *        in="query",
+     *        example="2020-05-27",
+     *     ),
+     *     @OA\Parameter(
+     *        name="endDate1",
      *        in="query",
      *        example="2020-06-25",
+     *     ),
+     *     @OA\Parameter(
+     *        name="endDate2",
+     *        in="query",
+     *        example="2020-06-27",
      *     ),
      *     @OA\Response(
      *         response=200,

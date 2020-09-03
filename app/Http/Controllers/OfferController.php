@@ -86,14 +86,24 @@ class OfferController extends Controller
      *        example="DISTRIBUTOR",
      *     ),
      *     @OA\Parameter(
-     *        name="startDate",
+     *        name="startDate1",
      *        in="query",
      *        example="2020-05-25",
      *     ),
      *     @OA\Parameter(
-     *        name="endDate",
+     *        name="startDate2",
+     *        in="query",
+     *        example="2020-05-27",
+     *     ),
+     *     @OA\Parameter(
+     *        name="endDate1",
      *        in="query",
      *        example="2020-06-25",
+     *     ),
+     *     @OA\Parameter(
+     *        name="endDate2",
+     *        in="query",
+     *        example="2020-06-27",
      *     ),
      *     @OA\Parameter(
      *        name="product",
