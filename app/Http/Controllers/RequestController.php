@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestProductRequest;
 use App\Http\Requests\RequestRequest;
 use App\Http\Resources\RequestListResource;
 use App\Http\Resources\RequestResource;
 use App\Request as RequestModel;
 use App\Request\Contracts\RequestCreatable;
+use App\Request\Contracts\RequestProductUpdatable;
 use App\Request\Contracts\RequestRemovable;
 use App\Request\Contracts\RequestRetrievable;
 use App\Request\Contracts\RequestUpdatable;
@@ -30,6 +32,11 @@ class RequestController extends Controller
     private $updatorService;
 
     /**
+     * @var RequestProductUpdatable
+     */
+    private $productUpdatorService;
+
+    /**
      * @var RequestRemovable
      */
     private $removerService;
@@ -44,6 +51,7 @@ class RequestController extends Controller
         $this->retrieverService = app()->make(RequestRetrievable::class);
         $this->creatorService = app()->make(RequestCreatable::class);
         $this->updatorService = app()->make(RequestUpdatable::class);
+        $this->productUpdatorService = app()->make(RequestProductUpdatable::class);
         $this->removerService = app()->make(RequestRemovable::class);
     }
 
@@ -287,12 +295,87 @@ class RequestController extends Controller
 
     /**
      * @param RequestRequest $request
+     * @param RequestModel $model
+     * @param string $product
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(RequestRequest $request, RequestModel $model)
+    public function update(RequestProductRequest $request, RequestModel $model)
     {
         try {
             $this->updatorService->update($model, $request->all());
+            return response()->json(['message' => 'Compra atualizada com sucesso'], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\Put(
+     *     tags={"Portal"},
+     *     path="/portal/requests/{id}/products/{product?}",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/RequestProductRequest")
+     *      ),
+     *     @OA\Parameter(
+     *        name="status",
+     *        in="path",
+     *        example="ATTENDED",
+     *        required=true
+     *     ),
+     *     @OA\Parameter(
+     *        name="returnId",
+     *        in="path",
+     *        example="5",
+     *        required=true
+     *     ),
+     *     @OA\Parameter(
+     *        name="qtdReturn",
+     *        in="path",
+     *        example="10",
+     *        required=false
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Produto atualizado com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *     response=422,
+     *     description="",
+     *     @OA\JsonContent(ref="#/components/schemas/ValidationResponse")
+     * ),
+     * @OA\Response(
+     *     response=400,
+     *     description="",
+     *     @OA\JsonContent(
+     *         @OA\Property(
+     *             property="error",
+     *             example ="Mensagem de erro"
+     *         )
+     *     )
+     * )
+     *
+     * )
+     */
+
+    /**
+     * @param RequestProductRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateProducts(RequestProductRequest $request, RequestModel $model, $product = '')
+    {
+        try {
+            $this->productUpdatorService->update($model, $product, $request->all());
             return response()->json(['message' => 'Compra atualizada com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);

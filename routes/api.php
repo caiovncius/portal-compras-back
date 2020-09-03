@@ -40,6 +40,8 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
          ->name('request.store');
     Route::put('requests/{model}', 'RequestController@update')
          ->name('request.update');
+    Route::put('requests/{model}/products/{product?}', 'RequestController@updateProducts')
+         ->name('request.products');
     Route::delete('requests/{model}', 'RequestController@delete')
          ->name('request.delete');
 });
