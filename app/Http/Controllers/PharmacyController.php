@@ -70,7 +70,12 @@ class PharmacyController extends Controller
      *        example="ACTIVE",
      *     ),
      *     @OA\Parameter(
-     *        name="city_id",
+     *        name="city",
+     *        in="query",
+     *        example="02",
+     *     ),
+     *     @OA\Parameter(
+     *        name="state",
      *        in="query",
      *        example="02",
      *     ),
