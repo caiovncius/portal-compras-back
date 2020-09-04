@@ -23,6 +23,14 @@ class LaboratoryUpdator implements LaboratoryUpdatable
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->save();
 
+            if (isset($laboratoryData['contacts']) && !empty($laboratoryData['contacts'])) {
+                $model->contacts()->delete();
+                foreach($laboratoryData['contacts'] as $contact) {
+                    $contact['updated_id'] = auth()->guard('api')->user()->id;
+                    $model->contacts()->create($contact);
+                }
+            }
+
             return true;
 
         } catch (\Exception $exception) {

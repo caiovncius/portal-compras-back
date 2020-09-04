@@ -4,6 +4,7 @@
 namespace App\Pharmacy\Services;
 
 
+use App\City;
 use App\Pharmacy;
 use App\Pharmacy\Contracts\PharmacyRetrievable;
 
@@ -35,8 +36,13 @@ class PharmacyRetriever implements PharmacyRetrievable
                 $query->where('status', $params['status']);
             }
 
-            if (isset($params['city_id'])) {
-                $query->where('city_id', $params['city_id']);
+            if (isset($params['state']) && !isset($params['city'])) {
+                $cities = City::where('state_id', $params['state'])->pluck('id');
+                $query->whereIn('city_id', $cities );
+            }
+
+            if (isset($params['city'])) {
+                $query->where('city_id', $params['city']);
             }
 
             if (isset($params['comercial'])) {
