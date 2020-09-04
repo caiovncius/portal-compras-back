@@ -26,6 +26,13 @@ class ProductUpdater implements ProductUpdatable
             $model->updated_at = date('Y-m-d H:i:s');
             $model->save();
 
+            if (isset($data['secondaryEanCodes'])) {
+                $model->secondaryEanCodes()->delete();
+                foreach ($data['secondaryEanCodes'] as $code) {
+                    $model->secondaryEanCodes()->create($code);
+                }
+            }
+
             return true;
         } catch (\Exception $e) {
             throw $e;
