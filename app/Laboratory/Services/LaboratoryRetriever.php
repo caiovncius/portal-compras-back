@@ -28,7 +28,7 @@ class LaboratoryRetriever implements LaboratoryRetrievable
             }
 
             if (isset($params['name'])) {
-                $query->where('name', $params['name']);
+                $query->where('name', 'like',  '%' . $params['name'] . '%');
             }
 
             return $query;
