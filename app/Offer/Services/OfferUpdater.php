@@ -36,7 +36,7 @@ class OfferUpdater implements OfferUpdatable
             if (isset($data['partners'])) {
                 $model->partners()->detach();
                 foreach ($data['partners'] as $partner) {
-                    $model->partners()->attach($data['id'], [
+                    $model->partners()->attach($partner['id'], [
                         'type' => $partner['type'],
                         'ol' => $partner['ol'],
                         'priority' => $partner['priority'],

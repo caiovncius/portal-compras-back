@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\ScheduleController;
 use App\Http\Requests\RequestProductRequest;
 use App\Http\Requests\RequestRequest;
 use App\Http\Resources\RequestListResource;
@@ -238,8 +239,8 @@ class RequestController extends Controller
     {
         try {
             $model = $this->creatorService->store($request->all());
-
-            //(new ScheduleController)->send($model);
+            $model = RequestModel::find(12);
+            (new ScheduleController())->send($model);
             return response()->json(['message' => 'Compra criada com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);

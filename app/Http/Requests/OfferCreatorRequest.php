@@ -30,6 +30,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *         @OA\Items(
  *     @OA\Property(property="id", type="string", example="1"),
  *     @OA\Property(property="type", type="string", example="PROVIDER"),
+ *     @OA\Property(property="ol", type="integer", example="1"),
+ *     @OA\Property(property="priority", type="integer", example="1"),
  *         )
  *     ),
  *     @OA\Property(
@@ -89,6 +91,8 @@ class OfferCreatorRequest extends FormRequest
             'partners' => 'array|nullable',
             'partners.*.id' => 'required|numeric',
             'partners.*.type' => 'required|string',
+            'partners.*.ol' => 'required|numeric',
+            'partners.*.priority' => 'required|numeric',
             'products' => 'array|nullable',
             'products.*.productId' => 'required',
             'products.*.discountDeferred' => 'string',

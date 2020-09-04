@@ -3,30 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Distributor;
-use App\Request;
+use App\Request as RequestModel;
 use App\Services\FileReturn;
+use App\Services\FtpService;
 use App\Services\RequestToFile;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    public function send(Request $request)
+    public function send(RequestModel $request)
     {
-        $distributor = $request->requestable->partners()->first();
+
+        $distributor = $request->requestable
+                               ->partners()
+                               ->orderBy('priority', 'ASC')
+                               ->first();
         //foreach($request->requestable->partners as $distributor) {
             $model = Distributor::find($distributor->id)->connection;
             $connection = (new FtpService)->setConnection($model);
-            $file = (new RequestToFile)->createFile($request);
-            $upload = (new RequestToFile)->uploadFile($file, $model->path_send);
+            $file = (new RequestToFile)->createFile($request, $distributor);
+            $filename = (new RequestToFile)->filename($model);
+            
+            $upload = (new RequestToFile)->uploadFile($file, $filename, $model->path_send);
         //}
 
         /*
         * salva o distribuidor e a prioridade, pra ter como referência
-        * e pegar o próximo caso o atual não atenda o pedido
+        * e pegar o próximo, caso o atual não atenda o pedido
         */
         $request->partner_id = $distributor->id;
         $request->priority = $distributor->pivot->priority;
-        $request->status = 0;
+        $request->status = 'WAITING_RETURN';
         $request->save();
             
         $request->historics()->create([
@@ -40,7 +47,7 @@ class ScheduleController extends Controller
 
     public function check()
     {
-        $requests = Request::where('status', 0)->get();
+        $requests = RequestModel::where('status', 'WAITING_RETURN')->get();
         foreach($request as $request) {
             $model = $request->partner->connection;
             $connection = (new FtpService)->setConnection($model);
