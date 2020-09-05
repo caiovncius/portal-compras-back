@@ -53,8 +53,8 @@ class ProductDetailResource extends JsonResource
             'priceOnCash' => $this->price_on_cash,
             'quantityMaximum' => $this->quantity_maximum,
             'quantityMinimum' => $this->quantity_minimum,
-            'state_id' => $this->state_id,
-            'product_id' => $this->product_id,
+            'stateId' => $this->state_id,
+            'productId' => $this->product_id,
             'productName' => $this->product ? $this->product->description : '',
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
