@@ -55,6 +55,7 @@ class OfferUpdater implements OfferUpdatable
                     $item['price_on_cash'] = isset($item['priceOnCash']) ? $item['priceOnCash'] : null;
                     $item['quantity_maximum'] = isset($item['quantityMaximum']) ? $item['quantityMaximum'] : null;
                     $item['quantity_minimum'] = isset($item['quantityMinimum']) ? $item['quantityMinimum'] : null;
+                    $item['state_id'] = $item['stateId'];
                     $model->products()->create($item);
                 }
             }
