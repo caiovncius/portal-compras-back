@@ -52,9 +52,11 @@ class OfferUpdater implements OfferUpdatable
                     $item['minimum_per_family'] = isset($item['minimumPerFamily']) ? $item['minimumPerFamily'] : null;
                     $item['factory_price'] = isset($item['factoryPrice']) ? $item['factoryPrice'] : null;
                     $item['price_deferred'] = isset($item['priceDeferred']) ? $item['priceDeferred'] : null;
-                    $item['price_on_cash'] = isset($item['PriceOnCash']) ? $item['PriceOnCash'] : null;
+                    $item['price_on_cash'] = isset($item['priceOnCash']) ? $item['priceOnCash'] : null;
                     $item['quantity_maximum'] = isset($item['quantityMaximum']) ? $item['quantityMaximum'] : null;
                     $item['quantity_minimum'] = isset($item['quantityMinimum']) ? $item['quantityMinimum'] : null;
+                    $item['state_id'] = $item['stateId'];
+                    $item['product_id'] = $item['productId'];
                     $model->products()->create($item);
                 }
             }

@@ -39,7 +39,7 @@ class DistributorListResource extends JsonResource
             'name' => $this->name,
             'status' => $this->status,
             'category' => $this->category,
-            'state' => $this->state->name
+            'state' => ($this->state) ? $this->state->name : null
         ];
     }
 }
