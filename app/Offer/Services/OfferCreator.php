@@ -46,8 +46,8 @@ class OfferCreator implements OfferCreatable
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
                     $item['discount_deferred'] = isset($item['discountDeferred']) ? $item['discountDeferred'] : null;
-                    $item['discount_on_cash'] = isset($item['discountOnCash']) ? $item['discount_on_cash'] : null;
-                    $item['minimum_per_family'] = isset($item['minimumPerFamily']) ? $item['minimum_per_family'] : null;
+                    $item['discount_on_cash'] = isset($item['discountOnCash']) ? $item['discountOnCash'] : null;
+                    $item['minimum_per_family'] = isset($item['minimumPerFamily']) ? $item['minimumPerFamily'] : null;
                     $item['factory_price'] = isset($item['factoryPrice']) ? $item['factoryPrice'] : null;
                     $item['price_deferred'] = isset($item['priceDeferred']) ? $item['priceDeferred'] : null;
                     $item['price_on_cash'] = isset($item['PriceOnCash']) ? $item['PriceOnCash'] : null;
