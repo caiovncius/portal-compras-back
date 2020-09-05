@@ -33,8 +33,9 @@ class RequestToFile
 
     public function filename($model)
     {
+        $date = $model->send_date ? date('dmY', strtotime($model->send_date)) : date('dmY');
         $file = $model->id; //order
-        $file .= '.ped.'.date('dmY').'-';
+        $file .= '.ped.'.$date.'-';
         $file .= 0;
 
         return $file;
