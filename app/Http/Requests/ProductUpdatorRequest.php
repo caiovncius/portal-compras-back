@@ -43,7 +43,7 @@ class ProductUpdatorRequest extends FormRequest
     {
         return [
             'code' => 'required',
-            'codeEan' => 'required|integer',
+            'codeEan' => 'required|string',
             'description' => 'required|string',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'laboratoryId' => 'nullable|exists:laboratories,id',
