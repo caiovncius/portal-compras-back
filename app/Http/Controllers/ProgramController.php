@@ -8,6 +8,7 @@ use App\Http\Requests\ProgramUpdatorRequest;
 use App\Http\Requests\ReturnMorphRequest;
 use App\Http\Resources\ProgramListResource;
 use App\Http\Resources\ProgramResource;
+use App\Http\Resources\ReturnListResource;
 use App\Program;
 use App\Program\Contracts\ProgramCreatable;
 use App\Program\Contracts\ProgramRemovable;
@@ -584,6 +585,53 @@ class ProgramController extends Controller
     {
         try {
             return ProgramListResource::collection($this->retrieverService->getPrograms($request->query())->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\GET(
+     *     tags={"Programs"},
+     *     path="/programs/{id}/returns",
+     *     @OA\Parameter(
+     *        name="id",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/ProgramListResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Program $model
+     * @return ProgramResource
+     */
+    public function getReturnsByProgram(Program $model)
+    {
+        try {
+            return ReturnListResource::collection($this->retrieverService->getReturnsByProgram($model)->paginate(20));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

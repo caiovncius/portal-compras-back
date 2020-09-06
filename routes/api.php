@@ -173,6 +173,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/distributors/{distributor}', 'DistributorController@get')
          ->name('distributor.get')
          ->middleware('acl:Distributor,r');
+    Route::get('/distributors/{distributor}/returns', 'DistributorController@returnsByDistributor')
+        ->name('distributor.returns')
+        ->middleware('acl:Distributor,r');
     Route::post('/distributors', 'DistributorController@store')
          ->name('distributor.store')
          ->middleware('acl:Distributor,r,w');
@@ -224,6 +227,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/programs/{model}', 'ProgramController@get')
          ->name('program.get')
          ->middleware('acl:Program,r');
+    Route::get('/programs/{model}/returns', 'ProgramController@getReturnsByProgram')
+        ->name('program.returns')
+        ->middleware('acl:Program,r');
     Route::post('/programs', 'ProgramController@store')
          ->name('program.store')
          ->middleware('acl:Program,r,w');
