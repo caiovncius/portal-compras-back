@@ -19,8 +19,11 @@ class ScheduleController extends Controller
                                ->orderBy('priority', 'ASC');
         if (! $firstSend) {
             $distributor = $distributor->skip($request->priority);
-        }                 
+        }
+
         $distributor = $distributor->first();
+
+        dd($distributor);
 
         $model = Distributor::find($distributor->id)->connection;
         $connection = (new FtpService)->setConnection($model);
@@ -36,13 +39,13 @@ class ScheduleController extends Controller
         $request->priority = $request->priority ? $request->priority++ : 1;
         $request->status = $upload ? 'WAITING_RETURN' : 'ERROR_ON_SEND';
         $request->save();
-            
+
         $request->historics()->create([
             'user' => 'Sistema',
             'action' => 'Pedido enviado para faturamento',
             'status' => 'Aguardando Retorno'
         ]);
-        
+
         return true;
     }
 
@@ -98,7 +101,7 @@ class ScheduleController extends Controller
     {
         $status = 'BILLED';
         if ((int) $footer['qtdItemsAnswer'] == 0) {
-            $status = 'NOT_BILLED'; 
+            $status = 'NOT_BILLED';
         } else if ((int) $footer['qtdItems'] - (int) $footer['qtdItemsAnswer']) {
             $status = 'BILLED_PARTIAL';
         }
