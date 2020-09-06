@@ -243,6 +243,7 @@ class RequestController extends Controller
             (new ScheduleController())->send($model);
             return response()->json(['message' => 'Compra criada com sucesso'], 200);
         } catch (\Exception $exception) {
+            dd($exception);
             return response()->json(['error' => $exception->getMessage()], 400);
         }
     }
