@@ -240,7 +240,7 @@ class RequestController extends Controller
         try {
             $model = $this->creatorService->store($request->all());
 
-            (new ScheduleController())->send($model);
+//            (new ScheduleController())->send($model);
             return response()->json(['message' => 'Compra criada com sucesso'], 200);
         } catch (\Exception $exception) {
             dd($exception);
