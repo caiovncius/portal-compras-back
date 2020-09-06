@@ -17,13 +17,13 @@ class ScheduleController extends Controller
         $distributor = $request->requestable
                                ->partners()
                                ->orderBy('priority', 'ASC');
+        dd($distributor);
         if (! $firstSend) {
             $distributor = $distributor->skip($request->priority);
         }
 
         $distributor = $distributor->first();
 
-        dd($distributor);
 
         $model = Distributor::find($distributor->id)->connection;
         $connection = (new FtpService)->setConnection($model);
