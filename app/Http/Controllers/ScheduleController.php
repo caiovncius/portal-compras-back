@@ -14,14 +14,14 @@ class ScheduleController extends Controller
 {
     public function send(RequestModel $request, $firstSend = true)
     {
-        $distributor = $request->requestable
+        $distributors = $request->requestable
                                ->partners()
                                ->orderBy('priority', 'ASC');
-        dd($distributor);
         if (! $firstSend) {
-            $distributor = $distributor->skip($request->priority);
+            $distributor = $distributors->skip($request->priority);
         }
 
+        dd($distributor);
         $distributor = $distributor->first();
 
 
