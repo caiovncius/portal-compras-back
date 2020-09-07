@@ -16,7 +16,6 @@ use Illuminate\Foundation\Http\FormRequest;
  *         @OA\Items(
  *              @OA\Property(property="code", type="integer", example="001"),
  *              @OA\Property(property="desc", type="integer", example="TESTE"),
- *              @OA\Property(property="status", ref="#/components/schemas/UserStatus")
  *         ),
  *    ),
  * )
@@ -44,7 +43,6 @@ class ReturnMorphRequest extends FormRequest
             'returns' => 'array|min:1',
             'returns.*.code' => 'required|string|numeric|unique:returns',
             'returns.*.desc' => 'required|string',
-            'returns.*.status' => 'required|in:ACTIVE,INACTIVE'
         ];
     }
 
