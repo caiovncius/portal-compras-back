@@ -90,7 +90,7 @@ class ProgramConnectionController extends Controller
      */
     public function store(Program $model, ConnectionCreatorRequest $request)
     {
-        try {            
+        try {
             $this->creatorService->store($model, $request->all());
             return response()->json(['message' => 'Conexão criada com sucesso'], 200);
         } catch (\Exception $exception) {
@@ -163,7 +163,7 @@ class ProgramConnectionController extends Controller
             );
             if ($isLoggedIn) {
                 $data['status'] = true;
-                $data['message'] = 'Conexão feita com sucesso!';            
+                $data['message'] = 'Conexão feita com sucesso!';
             }
         }
 
@@ -174,7 +174,7 @@ class ProgramConnectionController extends Controller
      *
      * @OA\Put(
      *     tags={"Programs"},
-     *     path="/programs/{id}/connection/{connection}",
+     *     path="/programs/{id}/connection",
      *     @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/ConnectionUpdatorRequest")
@@ -225,11 +225,10 @@ class ProgramConnectionController extends Controller
 
     /**
      * @param Program $model
-     * @param Connection $related
      * @param ConnectionUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Program $model, Connection $related, ConnectionUpdatorRequest $request)
+    public function update(Program $model, ConnectionUpdatorRequest $request)
     {
         try {
             $this->updatorService->update($model, $request->all());

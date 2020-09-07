@@ -229,7 +229,6 @@ class ProgramController extends Controller
     {
         try {
             $this->returnService->returns($model, $request->all());
-
             return response()->json(['message' => 'retornos criados com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
