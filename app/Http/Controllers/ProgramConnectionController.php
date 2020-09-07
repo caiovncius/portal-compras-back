@@ -152,25 +152,18 @@ class ProgramConnectionController extends Controller
     {
         $model = $model->connection;
 
-        $statusCode = 400;
         $data['status'] = false;
         $data['message'] = 'Problemas na conexão!';
 
         if ($model) {
-            $isLoggedIn = @ftp_login(
-                ftp_connect($model->host),
-                $model->login,
-                $model->password
-            );
+            $isLoggedIn = @ftp_login(ftp_connect($model->host), $model->login, $model->password);
             if ($isLoggedIn) {
                 $data['status'] = true;
                 $data['message'] = 'Conexão feita com sucesso!';
-
-                $statusCode = 200;
             }
         }
 
-        return response()->json($data, $statusCode);
+        return response()->json($data, 200);
     }
 
     /**
