@@ -40,7 +40,7 @@ class PurchaseListResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'offerId' => $this->offer_id,
+            'id' => $this->id,
             'image' => $this->image,
             'code' => $this->code,
             'name' => $this->name,
@@ -57,6 +57,7 @@ class PurchaseListResource extends JsonResource
             'totalIntentionsQuantity' => $this->total_intentions_quantity,
             'relatedQuantity' => $this->related_quantity,
             'description' => $this->description,
+            'products' => ProductResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];
