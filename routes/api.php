@@ -243,10 +243,10 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::post('/programs/{model}/returns', 'ProgramController@returns')
         ->name('program.returns')
         ->middleware('acl:Program,r,w');
-    Route::post('/programs/{id}/connection', 'ProgramConnectionController@store')
+    Route::post('/programs/{model}/connection', 'ProgramConnectionController@store')
         ->name('program.connection.store')
         ->middleware('acl:Program,r,w');
-    Route::put('/programs/{id}/connection', 'ProgramConnectionController@update')
+    Route::put('/programs/{model}/connection', 'ProgramConnectionController@update')
         ->name('program.connection.update')
         ->middleware('acl:Program,r,w');
     Route::get('/programs/{id}/connection/test', 'ProgramConnectionController@test')

@@ -27,8 +27,6 @@ class ConnectionCreator implements ConnectionCreatable
             $connection->path_return = $data['returnDirectory'];
             $connection->updated_id = auth()->guard('api')->user()->id;
 
-            dd($model, $model->connection());
-
             $model->connection()->save($connection);
 
             return true;
