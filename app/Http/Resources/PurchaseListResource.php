@@ -27,6 +27,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="relatedQuantity", type="integer", example="1"),
  *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
  *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(
+ *         property="nationalPartners",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ProductListResource")
+ *     ),
  * )
  */
 class PurchaseListResource extends JsonResource
