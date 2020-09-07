@@ -225,7 +225,7 @@ class ProgramController extends Controller
      * @param ReturnMorphRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function returns(Program $model, ReturnMorphRequest $request)
+    public function returns(ReturnMorphRequest $request, Program $model)
     {
         try {
             $this->returnService->returns($model, $request->all());

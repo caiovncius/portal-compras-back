@@ -239,6 +239,10 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/programs/{model}', 'ProgramController@delete')
          ->name('program.delete')
          ->middleware('acl:Program,r,w');
+    Route::post('/programs/{model}/returns', 'ProgramController@returns')
+        ->name('program.returns')
+        ->middleware('acl:Program,r,w');
+
 
     Route::get('/purchases', 'PurchaseController@list')
          ->name('purchase.list')
