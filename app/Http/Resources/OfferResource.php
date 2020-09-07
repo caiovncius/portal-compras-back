@@ -45,7 +45,7 @@ class OfferResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'image' => $this->image,
+            'image' => env('APP_URL') . $this->image,
             'code' => $this->code,
             'name' => $this->name,
             'status' => $this->status,
