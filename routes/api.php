@@ -249,6 +249,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/programs/{id}/connection', 'ProgramConnectionController@update')
         ->name('program.connection.update')
         ->middleware('acl:Program,r,w');
+    Route::get('/programs/{id}/connection/test', 'ProgramConnectionController@test')
+        ->name('program.connection.test')
+        ->middleware('acl:Program,r');
 
 
     Route::get('/purchases', 'PurchaseController@list')
