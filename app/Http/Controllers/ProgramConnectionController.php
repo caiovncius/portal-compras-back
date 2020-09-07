@@ -103,7 +103,7 @@ class ProgramConnectionController extends Controller
      *
      * @OA\Post(
      *     tags={"Programs"},
-     *     path="/programs/connection/test",
+     *     path="/connection/test",
      *     @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/ConnectionTestRequest")
