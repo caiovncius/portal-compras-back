@@ -88,7 +88,7 @@ class ProgramConnectionController extends Controller
      * @param ConnectionCreatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Program $model, ConnectionCreatorRequest $request)
+    public function store(ConnectionCreatorRequest $request, Program $model )
     {
         try {
             $this->creatorService->store($model, $request->all());
