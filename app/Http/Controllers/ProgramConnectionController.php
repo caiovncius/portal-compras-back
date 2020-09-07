@@ -152,6 +152,7 @@ class ProgramConnectionController extends Controller
     {
         $model = $model->connection;
 
+        $statusCode = 400;
         $data['status'] = false;
         $data['message'] = 'Problemas na conexão!';
 
@@ -164,10 +165,12 @@ class ProgramConnectionController extends Controller
             if ($isLoggedIn) {
                 $data['status'] = true;
                 $data['message'] = 'Conexão feita com sucesso!';
+
+                $statusCode = 200;
             }
         }
 
-        return response()->json($data, 201);
+        return response()->json($data, $statusCode);
     }
 
     /**
