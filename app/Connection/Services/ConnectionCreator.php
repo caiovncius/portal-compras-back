@@ -17,13 +17,14 @@ class ConnectionCreator implements ConnectionCreatable
     public function store($model, array $data)
     {
         try {
-            $data['ftp_active'] = $data['isFtpActive'];
-            $data['transferency'] = $data['transferMode'];
-            $data['path_send'] = $data['sendDirectory'];
-            $data['path_return'] = $data['returnDirectory'];
-            $data['updated_id'] = auth()->guard('api')->user()->id;
+            $connection = new Connection();
+            $connection->ftp_active = $data['isFtpActive'];
+            $connection->transferency = $data['transferMode'];
+            $connection->path_send = $data['sendDirectory'];
+            $connection->path_return = $data['returnDirectory'];
+            $connection->updated_id = auth()->guard('api')->user()->id;
 
-            $model->connection()->save($data);
+            $model->connection()->save($connection);
 
             return true;
         } catch (\Exception $exception) {
