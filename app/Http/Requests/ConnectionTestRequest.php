@@ -35,7 +35,7 @@ class ConnectionTestRequest extends FormRequest
     {
         return [
             'host' => 'required',
-            'username' => 'required',
+            'login' => 'required',
             'password' => 'required'
         ];
     }
