@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\PartnerListResource;
 use App\Http\Resources\ProductDetailResource;
+use App\ProductDetail;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -79,7 +80,7 @@ class PurchaseListResource extends JsonResource
             'description' => $this->description,
             'partner' => !is_null($this->partner) ?  PartnerListResource::make($this->partner) : null,
             'contacts' => $this->contacts,
-            'products' => ProductResource::collection($this->products),
+            'products' => ProductDetail::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];
