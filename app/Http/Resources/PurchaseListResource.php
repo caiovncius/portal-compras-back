@@ -78,6 +78,7 @@ class PurchaseListResource extends JsonResource
             'totalIntentionsQuantity' => $this->total_intentions_quantity,
             'relatedQuantity' => $this->related_quantity,
             'description' => $this->description,
+            'partnerType' => !is_null($this->partner) ? $this->partner->partner_type : null,
             'partner' => !is_null($this->partner) ?  PartnerListResource::make($this->partner) : null,
             'contacts' => $this->contacts,
             'products' => ProductDetailResource::collection($this->products),
