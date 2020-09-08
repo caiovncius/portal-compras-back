@@ -4,6 +4,7 @@ namespace App\Purchase\Services;
 
 use App\Purchase;
 use App\Purchase\Contracts\PurchaseRetrievable;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseRetriever implements PurchaseRetrievable
 {
@@ -15,7 +16,7 @@ class PurchaseRetriever implements PurchaseRetrievable
     public function getPurchases(array $params = [])
     {
         try {
-            $query = Purchase::query();
+            $query = Purchase::query()->with(['requests']);
 
             if (isset($params['code']) && !empty($params['code'])) {
                 $query->where('code', $params['code']);

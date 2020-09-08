@@ -24,7 +24,7 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
          ->name('offer.portal');
     Route::get('offers/{model}/products', 'OfferController@products')
          ->name('offer.products');
-    Route::get('purchases', 'PurchaseController@portal')
+    Route::get('purchases/{pharmacy?}', 'PurchaseController@portal')
          ->name('purchase.portal');
     Route::get('purchases/{model}/products', 'PurchaseController@products')
          ->name('purchase.products');

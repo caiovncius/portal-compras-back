@@ -7,6 +7,7 @@ use App\Http\Resources\ProductDetailPortalResource;
 use App\Http\Resources\PurchaseHistoricResource;
 use App\Http\Resources\PurchaseListResource;
 use App\Http\Resources\RequestListResource;
+use App\Pharmacy;
 use App\Product\Contracts\ProductDetailRetrievable;
 use App\Purchase;
 use App\Purchase\Contracts\PurchaseCreatable;
@@ -197,11 +198,13 @@ class PurchaseController extends Controller
 
     /**
      * @param Request $request
+     * @param Pharmacy|null $pharmacy
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function portal(Request $request)
+    public function portal(Request $request, \App\Pharmacy $pharmacy = null)
     {
         try {
+
             return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);

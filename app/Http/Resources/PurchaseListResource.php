@@ -61,6 +61,7 @@ class PurchaseListResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             'id' => $this->id,
             'image' => $this->image,
@@ -82,6 +83,9 @@ class PurchaseListResource extends JsonResource
             'partnerType' => !is_null($this->partner) ? $this->partner->partner_type : null,
             'partner' => !is_null($this->partner) ?  PartnerListResource::make($this->partner) : null,
             'contacts' => $this->contacts,
+            'hasRequest' => $this->when($request->get('pharmacyId'), function() use($request) {
+                return $this->requests()->where('pharmacy_id', $request->get('pharmacyId'))->count() > 0;
+            }),
             'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at,
