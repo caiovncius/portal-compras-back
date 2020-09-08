@@ -460,4 +460,24 @@ class PurchaseController extends Controller
         return PurchaseListResource::make($model);
     }
 
+    /**
+     * @param Purchase $purchase
+     * @return \Illuminate\Http\JsonResponse
+     */
+    /// TODO: add it on service
+    public function intentions(Purchase $purchase)
+    {
+       try {
+           $allIntentions = $purchase->requests()->get();
+           $totalIntentions = $allIntentions->count();
+           $amountIntentions = $allIntentions->sum('value');
+           return response()->json([
+               'totalIntentions' => $totalIntentions,
+               'amountIntentions' => $amountIntentions,
+               'intentions' => $allIntentions
+           ]);
+       } catch (\Exception $exception) {
+           return response()->json(['error' => $exception->getMessage()], 400);
+       }
+    }
 }
