@@ -60,7 +60,6 @@ class ScheduleController extends Controller
     {
         $requests = RequestModel::where('status', 'WAITING_RETURN')->get();
         foreach($requests as $request) {
-            $this->send($request, false);
             $partnerConnection = $request->partner->connection;
             $connection = (new FtpService)->setConnection($partnerConnection);
             $file = (new RequestToFile)->filename($request);
