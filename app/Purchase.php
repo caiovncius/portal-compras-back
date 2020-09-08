@@ -29,6 +29,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Purchase extends Model
 {
+    const PARTNER_TYPE_DISTRIBUTOR = 'DISTRIBUTOR';
+    const PARTNER_TYPE_PROGRAM = 'PROGRAM';
+
     protected $fillable = [
         'image',
         'code',
@@ -52,9 +55,9 @@ class Purchase extends Model
 
     protected $casts = ['contacts' => 'array'];
 
-    public function partners()
+    public function partner()
     {
-        return $this->morphMany('App\Partner', 'typable');
+        return $this->morphOne(App\Partner::class, 'typable');
     }
 
     public function user()

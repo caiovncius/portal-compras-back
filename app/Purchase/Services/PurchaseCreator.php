@@ -32,27 +32,23 @@ class PurchaseCreator implements PurchaseCreatable
             $data['related_quantity'] = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
             $model = Purchase::create($data);
 
-            foreach ($data['partners'] as $partner) {
-                $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
-                $hasPartner = Distributor::find($partner['id']);
+            $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
+            $partner = Distributor::find($data['partnerId']);
 
-                if ($partner['type'] === Partner::PARTNER_TYPE_PROGRAM) {
-                    $partnerType = Partner::PARTNER_TYPE_PROGRAM;
-                    $hasPartner = Program::find($partner['id']);
-                }
-
-                if (is_null($hasPartner)) {
-                    throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
-                }
-
-                $model->partners()->create([
-                    'partner_type' => $partnerType,
-                    'partner_id' => $partner['id'],
-                    'ol' => $partner['ol'],
-                    'priority' => $partner['priority'],
-                ]);
+            if ($data['partnerType'] === Partner::PARTNER_TYPE_PROGRAM) {
+                $partnerType = Partner::PARTNER_TYPE_PROGRAM;
+                $partner = Program::find($data['partnerId']);
             }
-            
+
+            if (is_null($partner)) {
+                throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
+            }
+
+            $model->partner()->create([
+                'partner_type' => $partnerType,
+                'partner_id' => $partner->id,
+            ]);
+
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
