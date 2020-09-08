@@ -42,7 +42,7 @@ class ReturnMorphRequest extends FormRequest
         return [
             'returns' => 'array|min:1',
             'returns.*.code' => 'required|string|numeric',
-            'returns.*.desc' => 'required|string',
+            'returns.*.description' => 'required|string',
         ];
     }
 
@@ -56,7 +56,7 @@ class ReturnMorphRequest extends FormRequest
         return [
             'returns' => 'Array de retorno',
             'returns.*.code' => 'Código',
-            'returns.*.desc' => 'Descrição',
+            'returns.*.description' => 'Descrição',
         ];
     }
 }

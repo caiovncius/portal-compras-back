@@ -18,7 +18,7 @@ class Returns extends Model
 {
     protected $fillable = [
         'code',
-        'desc',
+        'description',
         'status',
         'updated_id'
     ];

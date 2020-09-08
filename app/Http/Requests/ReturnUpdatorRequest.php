@@ -35,7 +35,7 @@ class ReturnUpdatorRequest extends FormRequest
     {
         return [
             'code' => 'required|string',
-            'desc' => 'required|string',
+            'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE'
         ];
     }
@@ -49,7 +49,7 @@ class ReturnUpdatorRequest extends FormRequest
     {
         return [
             'code' => 'Código',
-            'desc' => 'Descrição',
+            'description' => 'Descrição',
         ];
     }
 }
