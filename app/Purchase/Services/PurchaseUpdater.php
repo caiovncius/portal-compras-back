@@ -55,7 +55,7 @@ class PurchaseUpdater implements PurchaseUpdatable
                     $product->state_id = $item['stateId'];
                     $product->updated_id = auth()->guard('api')->user()->id;
 
-                    $model->products()->create($product);
+                    $model->products()->create([$product]);
                 }
             }
 
