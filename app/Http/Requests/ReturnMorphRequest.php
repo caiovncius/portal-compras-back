@@ -41,7 +41,7 @@ class ReturnMorphRequest extends FormRequest
     {
         return [
             'returns' => 'array|min:1',
-            'returns.*.code' => 'required|string|numeric|unique:returns',
+            'returns.*.code' => 'required|string|numeric',
             'returns.*.desc' => 'required|string',
         ];
     }
