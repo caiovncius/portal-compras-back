@@ -37,25 +37,25 @@ class PurchaseUpdater implements PurchaseUpdatable
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
-                    $product = new ProductDetail();
-                    $product->product_id = $item['productId'];
-                    $product->discount_deferred = isset($item['discountDeferred']) ? $item['discountDeferred'] : null;
-                    $product->discount_on_cash = isset($item['discountOnCash']) ? $item['discountOnCash'] : null;
-                    $product->minimum = isset($item['minimum']) ? $item['minimum'] : null;
-                    $product->minimum_per_family = $item['minimumPerFamily'];
-                    $product->obrigatory = isset($item['obrigatory']) ? $item['obrigatory'] : null;
-                    $product->variable = isset($item['variable']) ? $item['variable'] : null;
-                    $product->family = isset($item['family']) ? $item['family'] : null;
-                    $product->gift = isset($item['gift']) ? $item['gift'] : null;
-                    $product->factory_price = isset($item['factoryPrice']) ? $item['factoryPrice'] : null;
-                    $product->price_deferred = isset($item['priceDeferred']) ? $item['priceDeferred'] : null;
-                    $product->price_on_cash = isset($item['priceOnCash']) ? $item['priceOnCash'] : null;
-                    $product->quantity_maximum = isset($item['quantityMaximum']) ? $item['quantityMaximum'] : null;
-                    $product->quantity_minimum = isset($item['quantityMinimum']) ? $item['quantityMinimum'] : null;
-                    $product->state_id = $item['stateId'];
-                    $product->updated_id = auth()->guard('api')->user()->id;
+                    $model->products()->create([
+                        'product_id' => $item['productId'],
+                        'discount_deferred' => isset($item['discountDeferred']) ? $item['discountDeferred'] : null,
+                        'discount_on_cash' => isset($item['discountOnCash']) ? $item['discountOnCash'] : null,
+                        'minimum' => isset($item['minimum']) ? $item['minimum'] : null,
+                        'minimum_per_family' => $item['minimumPerFamily'],
+                        'obrigatory' => isset($item['obrigatory']) ? $item['obrigatory'] : null,
+                        'variable' => isset($item['variable']) ? $item['variable'] : null,
+                        'family' => isset($item['family']) ? $item['family'] : null,
+                        'gift' => isset($item['gift']) ? $item['gift'] : null,
+                        'factory_price' => isset($item['factoryPrice']) ? $item['factoryPrice'] : null,
+                        'price_deferred' => isset($item['priceDeferred']) ? $item['priceDeferred'] : null,
+                        'price_on_cash' => isset($item['priceOnCash']) ? $item['priceOnCash'] : null,
+                        'quantity_maximum' => isset($item['quantityMaximum']) ? $item['quantityMaximum'] : null,
+                        'quantity_minimum' => isset($item['quantityMinimum']) ? $item['quantityMinimum'] : null,
+                        'state_id' => $item['stateId'],
+                        'updated_id' => auth()->guard('api')->user()->id,
+                    ]);
 
-                    $model->products()->create([$product]);
                 }
             }
 
