@@ -3,6 +3,7 @@
 namespace App\Purchase\Services;
 
 use App\Distributor;
+use App\Helpers\FileUploader;
 use App\Partner;
 use App\Program;
 use App\Purchase;
@@ -30,6 +31,11 @@ class PurchaseCreator implements PurchaseCreatable
             $data['total_intentions_value'] = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;
             $data['total_intentions_quantity'] = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $data['related_quantity'] = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
+
+            if (isset($data['image'])) {
+                $data['image'] = FileUploader::uploadFile($data['image']);
+            }
+
             $model = Purchase::create($data);
 
             if (isset($data['partner']) && !is_null($data['partner'])) {

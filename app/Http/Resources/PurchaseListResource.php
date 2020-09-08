@@ -13,7 +13,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     type="object",
  *     title="Purchase Response",
  *     @OA\Property(property="code", type="integer", example="001"),
- *     @OA\Property(property="image", type="integer", example="001"),
+ *     @OA\Property(property="image", type="string", example="001"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="description", type="string", example="Teste"),
 *     @OA\Property(property="validityStart",  type="date", example="2020-05-25"),
