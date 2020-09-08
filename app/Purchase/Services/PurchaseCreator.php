@@ -21,11 +21,11 @@ class PurchaseCreator implements PurchaseCreatable
             $data['validity_end'] = isset($data['validityEnd']) ? $data['validityEnd'] : null;
             $data['until_billing'] = isset($data['untilBilling']) ? $data['untilBilling'] : null;
             $data['set_minimum_billing_value'] = isset($data['setMinimumBillingValue']) ? $data['setMinimumBillingValue'] : null;
-            $data['minimum_billing_value'] = isset($data['MinimumBillingValue']) ? $data['minimum_billing_value'] : null;
-            $data['set_minimum_billing_quantity'] = isset($data['setMinimumBillingQuantity']) ? $data['set_minimum_billing_quantity'] : null;
-            $data['minimum_billing_quantity'] = isset($data['MinimumBillingQuantity']) ? $data['minimum_billing_quantity'] : null;
-            $data['total_intentions_value'] = isset($data['totalIntentionsValue']) ? $data['total_intentions_value'] : null;
-            $data['total_intentions_quantity'] = isset($data['totalIntentionsQuantity']) ? $data['total_intentions_quantity'] : null;
+            $data['minimum_billing_value'] = isset($data['minimumBillingValue']) ? $data['minimumBillingValue'] : null;
+            $data['set_minimum_billing_quantity'] = isset($data['setMinimumBillingQuantity']) ? $data['setMinimumBillingQuantity'] : null;
+            $data['minimum_billing_quantity'] = isset($data['minimumBillingQuantity']) ? $data['minimumBillingQuantity'] : null;
+            $data['total_intentions_value'] = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;
+            $data['total_intentions_quantity'] = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $data['related_quantity'] = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
             $model = Purchase::create($data);
 

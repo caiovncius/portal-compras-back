@@ -25,9 +25,9 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->validity_end = isset($data['validityEnd']) ? $data['validityEnd'] : null;
             $model->until_billing = isset($data['untilBilling']) ? $data['untilBilling'] : null;
             $model->set_minimum_billing_value = isset($data['setMinimumBillingValue']) ? $data['setMinimumBillingValue'] : null;
-            $model->minimum_billing_value = isset($data['MinimumBillingValue']) ? $data['MinimumBillingValue'] : null;
+            $model->minimum_billing_value = isset($data['minimumBillingValue']) ? $data['minimumBillingValue'] : null;
             $model->set_minimum_billing_quantity = isset($data['setMinimumBillingQuantity']) ? $data['setMinimumBillingQuantity'] : null;
-            $model->minimum_billing_quantity = isset($data['MinimumBillingQuantity']) ? $data['MinimumBillingQuantity'] : null;
+            $model->minimum_billing_quantity = isset($data['minimumBillingQuantity']) ? $data['minimumBillingQuantity'] : null;
             $model->total_intentions_value = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;
             $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
