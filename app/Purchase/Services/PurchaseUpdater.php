@@ -2,13 +2,9 @@
 
 namespace App\Purchase\Services;
 
-<<<<<<< HEAD
 use App\Distributor;
 use App\Partner;
 use App\Program;
-=======
-use App\ProductDetail;
->>>>>>> e3af2a0889cd8fd46db81e54dc6c92b3d2ee8300
 use App\Purchase;
 use App\Purchase\Contracts\PurchaseUpdatable;
 
@@ -38,8 +34,7 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->total_intentions_value = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;
             $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
-            $model->save();
-<<<<<<< HEAD
+
             $model->partners()->delete();
 
             foreach ($data['partners'] as $partner) {
@@ -62,10 +57,7 @@ class PurchaseUpdater implements PurchaseUpdatable
                     'priority' => $partner['priority'],
                 ]);
             }
-            
-=======
 
->>>>>>> e3af2a0889cd8fd46db81e54dc6c92b3d2ee8300
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
