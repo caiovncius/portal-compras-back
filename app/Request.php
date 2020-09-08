@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Distributor;
+use App\Program;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,6 +25,7 @@ class Request extends Model
         'status',
         'updated_id',
         'partner_id',
+        'partner_type',
         'priority',
         'value',
         'send_date',
@@ -52,11 +55,12 @@ class Request extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return mixed
      */
-    public function partner()
+    public function getPartnerAttribute()
     {
-        return $this->belongsTo('App\Distributor', 'partner_id');
+        if (is_null($this->partner_type)) return null;
+        return $this->partner_type == 'App\Distributor' ? Distributor::find($this->partner_id) : Program::find($this->partner_id);
     }
 
     /**
@@ -85,6 +89,6 @@ class Request extends Model
                         'request_products',
                         'request_id',
                         'product_detail_id'
-                    )->withPivot(['qtd', 'qtd_return', 'status', 'distributor_id', 'return_id', 'value']);
+                    )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
     }
 }

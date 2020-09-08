@@ -54,8 +54,7 @@ class Offer extends Model
 
     public function partners()
     {
-        return $this->belongsToMany('App\Distributor')
-                    ->withPivot(['type', 'ol', 'priority']);
+        return $this->morphMany('App\Partner', 'typable');
     }
 
     public function user()

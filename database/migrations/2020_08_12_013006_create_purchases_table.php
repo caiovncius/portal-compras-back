@@ -23,7 +23,7 @@ class CreatePurchasesTable extends Migration
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->date('validityStart')->nullable();
             $table->date('validityEnd')->nullable();
-            $table->boolean('untilBilling')->defaiult(0);
+            $table->boolean('untilBilling')->default(0);
             $table->integer('setMinimumBillingValue')->nullable();
             $table->integer('minimumBillingValue')->nullable();
             $table->integer('setMinimumBillingQuantity')->nullable();

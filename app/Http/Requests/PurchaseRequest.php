@@ -28,6 +28,16 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="totalIntentionsQuantity", type="integer", example="1"),
  *     @OA\Property(property="relatedQuantity", type="integer", example="1"),
  *     @OA\Property(
+ *         property="partners",
+ *         type="array",
+ *         @OA\Items(
+ *     @OA\Property(property="id", type="string", example="1"),
+ *     @OA\Property(property="type", type="string", example="PROVIDER"),
+ *     @OA\Property(property="ol", type="integer", example="1"),
+ *     @OA\Property(property="priority", type="integer", example="1"),
+ *         )
+ *     ),
+ *     @OA\Property(
  *         property="products",
  *         type="array",
  *         @OA\Items(
@@ -48,6 +58,14 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="state_id", type="string", example="5"),
  *     @OA\Property(property="product_id", type="string", example="5"),
            )
+ *     ),
+ *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(         
+ *             @OA\Property(property="send", type="string", example="TO"),
+ *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
+ *         )
  *     ),
  * )
  */
@@ -71,8 +89,7 @@ class PurchaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'offerId' => 'required|exists:offers,id',
-            'code' => 'required|string|unique:offers',
+            'code' => 'required|string|unique:purchases',
             'name' => 'required|string',
             'description' => 'nullable|string',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
@@ -80,6 +97,11 @@ class PurchaseRequest extends FormRequest
             'minimumBillingQuantity' => 'required',
             'validityStart' => 'required|date',
             'validityEnd' => 'required|date|after_or_equal:validityStart',
+            'partners' => 'array|nullable',
+            'partners.*.id' => 'required|numeric',
+            'partners.*.type' => 'required|string',
+            'partners.*.ol' => 'required|numeric',
+            'partners.*.priority' => 'required|numeric',
         ];
     }
 

@@ -3,9 +3,12 @@
 
 namespace App\Offer\Services;
 
+use App\Distributor;
 use App\Helpers\FileUploader;
 use App\Offer;
+use App\Partner;
 use App\Offer\Contracts\OfferCreatable;
+use App\Program;
 
 class OfferCreator implements OfferCreatable
 {
@@ -32,14 +35,25 @@ class OfferCreator implements OfferCreatable
             $data['condition_id'] = isset($data['conditionId']) ? $data['conditionId'] : null;
             $model = Offer::create($data);
 
-            if (isset($data['partners'])) {
-                foreach ($data['partners'] as $partner) {
-                    $model->partners()->attach($partner['id'], [
-                        'type' => $partner['type'],
-                        'ol' => $partner['ol'],
-                        'priority' => $partner['priority'],
-                    ]);
+            foreach ($data['partners'] as $partner) {
+                $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
+                $hasPartner = Distributor::find($partner['id']);
+
+                if ($partner['type'] === Partner::PARTNER_TYPE_PROGRAM) {
+                    $partnerType = Partner::PARTNER_TYPE_PROGRAM;
+                    $hasPartner = Program::find($partner['id']);
                 }
+
+                if (is_null($hasPartner)) {
+                    throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
+                }
+
+                $model->partners()->create([
+                    'partner_type' => $partnerType,
+                    'partner_id' => $partner['id'],
+                    'ol' => $partner['ol'],
+                    'priority' => $partner['priority'],
+                ]);
             }
 
             if (isset($data['products'])) {

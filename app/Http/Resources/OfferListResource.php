@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\PartnerListResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -31,7 +32,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(
  *         property="partners",
  *         type="array",
- *         @OA\Items(ref="#/components/schemas/DistributorListResource")
+ *         @OA\Items(ref="#/components/schemas/PartnerListResource")
  *     ),
  *     @OA\Property(
  *         property="products",
@@ -67,7 +68,7 @@ class OfferListResource extends JsonResource
             'impound' => $this->impound,
             'description' => $this->description,
             'emails' => $this->emails,
-            'partners' => DistributorListResource::collection($this->partners),
+            'partners' => PartnerListResource::collection($this->partners),
             'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at

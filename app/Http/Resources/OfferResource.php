@@ -26,11 +26,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="description",  type="string", example="asdasd"),
  *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
  *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
- *     @OA\Property(
- *         property="emails",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/Email")
- *     ),
  * )
  */
 class OfferResource extends JsonResource

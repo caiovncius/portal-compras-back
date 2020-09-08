@@ -2,9 +2,12 @@
 
 namespace App\Offer\Services;
 
+use App\Distributor;
 use App\Helpers\FileUploader;
 use App\Offer;
+use App\Partner;
 use App\Offer\Contracts\OfferUpdatable;
+use App\Program;
 
 class OfferUpdater implements OfferUpdatable
 {
@@ -32,16 +35,27 @@ class OfferUpdater implements OfferUpdatable
             }
             $model->condition_id = isset($data['conditionId']) ? $data['conditionId'] : null;
             $model->save();
+            $model->partners()->delete();
 
-            if (isset($data['partners'])) {
-                $model->partners()->detach();
-                foreach ($data['partners'] as $partner) {
-                    $model->partners()->attach($partner['id'], [
-                        'type' => $partner['type'],
-                        'ol' => $partner['ol'],
-                        'priority' => $partner['priority'],
-                    ]);
+            foreach ($data['partners'] as $partner) {
+                $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
+                $hasPartner = Distributor::find($partner['id']);
+
+                if ($partner['type'] === Partner::PARTNER_TYPE_PROGRAM) {
+                    $partnerType = Partner::PARTNER_TYPE_PROGRAM;
+                    $hasPartner = Program::find($partner['id']);
                 }
+
+                if (is_null($hasPartner)) {
+                    throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
+                }
+
+                $model->partners()->create([
+                    'partner_type' => $partnerType,
+                    'partner_id' => $partner['id'],
+                    'ol' => $partner['ol'],
+                    'priority' => $partner['priority'],
+                ]);
             }
 
             if (isset($data['products'])) {

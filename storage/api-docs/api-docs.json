@@ -2542,7 +2542,12 @@
                         "example": "ACTIVE"
                     },
                     {
-                        "name": "city_id",
+                        "name": "city",
+                        "in": "query",
+                        "example": "02"
+                    },
+                    {
+                        "name": "state",
                         "in": "query",
                         "example": "02"
                     },
@@ -7481,6 +7486,12 @@
                     "name": {
                         "type": "string",
                         "example": "Teste"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -7555,6 +7566,14 @@
                                 "type": {
                                     "type": "string",
                                     "example": "PROVIDER"
+                                },
+                                "ol": {
+                                    "type": "integer",
+                                    "example": "1"
+                                },
+                                "priority": {
+                                    "type": "integer",
+                                    "example": "1"
                                 }
                             },
                             "type": "object"
@@ -7696,6 +7715,14 @@
                                 "type": {
                                     "type": "string",
                                     "example": "PROVIDER"
+                                },
+                                "ol": {
+                                    "type": "integer",
+                                    "example": "1"
+                                },
+                                "priority": {
+                                    "type": "integer",
+                                    "example": "1"
                                 }
                             },
                             "type": "object"
@@ -7761,11 +7788,11 @@
                                     "type": "integer",
                                     "example": "10"
                                 },
-                                "state_id": {
+                                "stateId": {
                                     "type": "string",
                                     "example": "5"
                                 },
-                                "product_id": {
+                                "productId": {
                                     "type": "string",
                                     "example": "5"
                                 }
@@ -8119,6 +8146,12 @@
                     "laboratoryId": {
                         "type": "integer",
                         "example": "2"
+                    },
+                    "secondaryEanCodes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SecondaryEanCodeCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -8391,6 +8424,30 @@
                         "type": "integer",
                         "example": "1"
                     },
+                    "partners": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "1"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "PROVIDER"
+                                },
+                                "ol": {
+                                    "type": "integer",
+                                    "example": "1"
+                                },
+                                "priority": {
+                                    "type": "integer",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
                     "products": {
                         "type": "array",
                         "items": {
@@ -8458,6 +8515,22 @@
                                 "product_id": {
                                     "type": "string",
                                     "example": "5"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "send": {
+                                    "type": "string",
+                                    "example": "TO"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "teste@gmail.com"
                                 }
                             },
                             "type": "object"
@@ -9154,7 +9227,7 @@
                     "partners": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/DistributorListResource"
+                            "$ref": "#/components/schemas/PartnerListResource"
                         }
                     },
                     "products": {
@@ -9285,12 +9358,51 @@
                     "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
+                    }
+                },
+                "type": "object"
+            },
+            "PartnerListResource": {
+                "title": "PartnerList Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
                     },
-                    "emails": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Email"
-                        }
+                    "code": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "cnpj": {
+                        "type": "string",
+                        "example": "00.00001"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "NATIONAL"
+                    },
+                    "state": {
+                        "type": "string",
+                        "example": "Goiás"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "DISTRIBUTOR"
+                    },
+                    "ol": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
                     }
                 },
                 "type": "object"
@@ -9995,6 +10107,34 @@
                     "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
+                    },
+                    "partners": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PartnerListResource"
+                        }
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProductDetailResource"
+                        }
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "send": {
+                                    "type": "string",
+                                    "example": "TO"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "teste@gmail.com"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"

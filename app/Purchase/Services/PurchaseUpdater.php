@@ -2,6 +2,9 @@
 
 namespace App\Purchase\Services;
 
+use App\Distributor;
+use App\Partner;
+use App\Program;
 use App\Purchase;
 use App\Purchase\Contracts\PurchaseUpdatable;
 
@@ -33,6 +36,28 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
             $model->save();
+            $model->partners()->delete();
+
+            foreach ($data['partners'] as $partner) {
+                $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
+                $hasPartner = Distributor::find($partner['id']);
+
+                if ($partner['type'] === Partner::PARTNER_TYPE_PROGRAM) {
+                    $partnerType = Partner::PARTNER_TYPE_PROGRAM;
+                    $hasPartner = Program::find($partner['id']);
+                }
+
+                if (is_null($hasPartner)) {
+                    throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
+                }
+
+                $model->partners()->create([
+                    'partner_type' => $partnerType,
+                    'partner_id' => $partner['id'],
+                    'ol' => $partner['ol'],
+                    'priority' => $partner['priority'],
+                ]);
+            }
             
             if (isset($data['products'])) {
                 $model->products()->delete();

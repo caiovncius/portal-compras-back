@@ -30,7 +30,6 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends Model
 {
     protected $fillable = [
-        'offer_id',
         'image',
         'code',
         'name',
@@ -47,8 +46,16 @@ class Purchase extends Model
         'total_intentions_quantity',
         'related_quantity',
         'description',
-        'updated_id'
+        'updated_id',
+        'contacts'
     ];
+
+    protected $casts = ['contacts' => 'array'];
+
+    public function partners()
+    {
+        return $this->morphMany('App\Partner', 'typable');
+    }
 
     public function user()
     {

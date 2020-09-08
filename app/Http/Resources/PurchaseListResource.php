@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\PartnerListResource;
+use App\Http\Resources\ProductDetailResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -27,6 +29,24 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="relatedQuantity", type="integer", example="1"),
  *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
  *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(
+ *         property="partners",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/PartnerListResource")
+ *     ),
+ *     @OA\Property(
+ *         property="products",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ProductDetailResource")
+ *     ),
+ *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(         
+ *             @OA\Property(property="send", type="string", example="TO"),
+ *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
+ *         )
+ *     ),
  * )
  */
 class PurchaseListResource extends JsonResource
@@ -40,7 +60,6 @@ class PurchaseListResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'offerId' => $this->offer_id,
             'image' => $this->image,
             'code' => $this->code,
             'name' => $this->name,
@@ -57,6 +76,9 @@ class PurchaseListResource extends JsonResource
             'totalIntentionsQuantity' => $this->total_intentions_quantity,
             'relatedQuantity' => $this->related_quantity,
             'description' => $this->description,
+            'partners' => PartnerListResource::collection($this->partners),
+            'products' => ProductDetailResource::collection($this->products),
+            'contacts' => $this->contacts,
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];

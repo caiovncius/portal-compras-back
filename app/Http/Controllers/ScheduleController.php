@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Distributor;
 use App\Request as RequestModel;
 use App\Returns;
 use App\Services\FileReturn;
@@ -14,34 +13,45 @@ class ScheduleController extends Controller
 {
     public function send(RequestModel $request, $firstSend = true)
     {
-        $distributor = $request->requestable
+        $partner = $request->requestable
                                ->partners()
                                ->orderBy('priority', 'ASC');
         if (! $firstSend) {
-            $distributor = $distributor->skip($request->priority);
-        }                 
-        $distributor = $distributor->first();
-
-        $model = Distributor::find($distributor->id)->connection;
-        $connection = (new FtpService)->setConnection($model);
-        $file = (new RequestToFile)->createFile($request, $distributor);
-        $filename = (new RequestToFile)->filename($model);
-
-        $upload = (new RequestToFile)->uploadFile($file, $filename, $model->path_send);
-
-        if ($firstSend) {
-            $request->send_date = date('Y-m-d');
+            $partner = $partner->skip($request->priority);
         }
-        $request->partner_id = $distributor->id;
-        $request->priority = $request->priority ? $request->priority++ : 1;
-        $request->status = $upload ? 'WAITING_RETURN' : 'ERROR_ON_SEND';
-        $request->save();
-            
-        $request->historics()->create([
-            'user' => 'Sistema',
-            'action' => 'Pedido enviado para faturamento',
-            'status' => 'Aguardando Retorno'
-        ]);
+        $partner = $partner->first()->partner;
+        $partnerConnection = $partner->connection;
+        if ($partnerConnection) {
+            $connection = (new FtpService)->setConnection($partnerConnection);
+            $file = (new RequestToFile)->createFile($request, $partner);
+            $filename = (new RequestToFile)->filename($request);
+
+            $upload = (new RequestToFile)->uploadFile($file, $filename, $partnerConnection->path_send);
+
+            if ($firstSend) {
+                $request->send_date = date('Y-m-d');
+            }
+            $request->partner_id = $partner->id;
+            $request->partner_type = $partnerConnection->connectionable_type;
+            $request->priority = $request->priority ? $request->priority++ : 1;
+            $request->status = $upload ? 'WAITING_RETURN' : 'ERROR_ON_SEND';
+            $request->save();
+
+            $request->historics()->create([
+                'user' => 'Sistema',
+                'action' => 'Pedido enviado para faturamento',
+                'status' => 'Aguardando Retorno'
+            ]);
+        } else {
+            $request->status = 'ERROR_ON_SEND';
+            $request->save();
+
+            $request->historics()->create([
+                'user' => 'Sistema',
+                'action' => 'Pedido com erro no envio',
+                'status' => 'Erro no envio'
+            ]);
+        }
         
         return true;
     }
@@ -50,10 +60,11 @@ class ScheduleController extends Controller
     {
         $requests = RequestModel::where('status', 'WAITING_RETURN')->get();
         foreach($requests as $request) {
-            $model = $request->partner->connection;
-            $connection = (new FtpService)->setConnection($model);
+            $this->send($request, false);
+            $partnerConnection = $request->partner->connection;
+            $connection = (new FtpService)->setConnection($partnerConnection);
             $file = (new RequestToFile)->filename($request);
-            $filename = $model->path_return.'/'.str_replace('ped', 'not', $file);
+            $filename = $partnerConnection->path_return.'/'.str_replace('ped', 'not', $file);
             if(! \Storage::disk('onthefly')->exists($filename)) {
                 continue;
             }
@@ -64,7 +75,8 @@ class ScheduleController extends Controller
                 $returnModel = Returns::whereCode($returnItem['refuse'])->first();
                 $item->pivot->qtd_return = $returnItem['qtdAnswer'] - $returnItem['qtdNotAnswer'];
                 $item->pivot->status = $statusProduct;
-                $item->pivot->distributor_id = $model->id;
+                $item->pivot->partner_id = $partnerConnection->connectionable_id;
+                $item->pivot->partner_type = $partnerConnection->connectionable_type;
                 $item->pivot->return_id = $returnModel->id;
                 $item->pivot->save();
             }
