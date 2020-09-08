@@ -81,7 +81,7 @@ class PurchaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:purchases',
+            'code' => 'required|string|unique:purchases,code,' . $this->id,
             'name' => 'required|string',
             'description' => 'nullable|string',
             'status' => 'nullable|in:OPEN,LATE,READY_SEND,BILLED',
