@@ -20,7 +20,8 @@ class CreatePurchasesTable extends Migration
             $table->string('code')->nullable();
             $table->string('name')->nullable();
             $table->string('sendType')->nullable();
-            $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
+            $table->enum('status', ['OPEN', 'LATE', 'READY_SEND', 'BILLED'])
+                ->default('OPEN');
             $table->date('validityStart')->nullable();
             $table->date('validityEnd')->nullable();
             $table->boolean('untilBilling')->default(0);

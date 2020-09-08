@@ -62,7 +62,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(
  *         property="contacts",
  *         type="array",
- *         @OA\Items(         
+ *         @OA\Items(
  *             @OA\Property(property="send", type="string", example="TO"),
  *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
  *         )
@@ -92,7 +92,7 @@ class PurchaseRequest extends FormRequest
             'code' => 'required|string|unique:purchases',
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'status' => 'nullable|in:ACTIVE,INACTIVE',
+            'status' => 'nullable|in:OPEN,LATE,READY_SEND,BILLED',
             'minimumBillingValue' => 'required',
             'minimumBillingQuantity' => 'required',
             'validityStart' => 'required|date',
