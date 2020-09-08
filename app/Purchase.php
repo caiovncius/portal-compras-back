@@ -57,7 +57,7 @@ class Purchase extends Model
 
     public function partner()
     {
-        return $this->morphOne(App\Partner::class, 'typable');
+        return $this->morphOne(Partner::class, 'typable');
     }
 
     public function user()
