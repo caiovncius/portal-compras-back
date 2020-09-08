@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Resources\ProductDetailPortalResource;
 use App\Http\Resources\PurchaseListResource;
+use App\Http\Resources\RequestListResource;
 use App\Product\Contracts\ProductDetailRetrievable;
 use App\Purchase;
 use App\Purchase\Contracts\PurchaseCreatable;
@@ -474,7 +475,7 @@ class PurchaseController extends Controller
            return response()->json([
                'totalIntentions' => $totalIntentions,
                'amountIntentions' => $amountIntentions,
-               'intentions' => $allIntentions
+               'intentions' => RequestListResource::collection($allIntentions)
            ]);
        } catch (\Exception $exception) {
            return response()->json(['error' => $exception->getMessage()], 400);
