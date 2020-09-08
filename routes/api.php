@@ -269,8 +269,11 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/purchases/{model}', 'PurchaseController@delete')
          ->name('purchase.delete')
          ->middleware('acl:Purchase,r,w');
-    Route::get('/purchases/{model}/intentions', 'PurchaseController@intentions')
+    Route::get('/purchases/{purchase}/intentions', 'PurchaseController@intentions')
         ->name('purchase.intentions')
+        ->middleware('acl:Purchase,r');
+    Route::get('/purchases/{purchase}/history', 'PurchaseController@historic')
+        ->name('purchase.historic')
         ->middleware('acl:Purchase,r');
 
     Route::get('/offers', 'OfferController@list')

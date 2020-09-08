@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Resources\ProductDetailPortalResource;
+use App\Http\Resources\PurchaseHistoricResource;
 use App\Http\Resources\PurchaseListResource;
 use App\Http\Resources\RequestListResource;
 use App\Product\Contracts\ProductDetailRetrievable;
@@ -480,5 +481,31 @@ class PurchaseController extends Controller
        } catch (\Exception $exception) {
            return response()->json(['error' => $exception->getMessage()], 400);
        }
+    }
+
+    // TODO: add it on service and create a resource
+    public function historic(Purchase $purchase)
+    {
+        try {
+            $histories = [];
+            foreach ($purchase->requests()->get() as $request) {
+                foreach ($request->historics as $history) {
+                    $histories[] = [
+                        'date' => $history->created_at,
+                        'username' => $history->user,
+                        'action' => $history->action,
+                        'status' => $history->status
+                    ];
+                }
+            }
+
+            return response()->json($histories);
+        } catch (\Exception $exception) {
+
+        }
+
+        return
+//        $allIntentions = $purchase->requests()->historics()->get();
+        dd($purchase->requests()->get());
     }
 }
