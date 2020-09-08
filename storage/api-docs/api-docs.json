@@ -1247,6 +1247,51 @@
             }
         },
         "/distributors/{distributor}/returns": {
+            "get": {
+                "tags": [
+                    "Distributors"
+                ],
+                "parameters": [
+                    {
+                        "name": "distributor",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ReturnListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Distributors"
@@ -4245,6 +4290,77 @@
             }
         },
         "/programs/{id}/connection": {
+            "put": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    },
+                    {
+                        "name": "connection",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ConnectionUpdatorRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Programa Conexão atualizado com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Programs"
@@ -4311,25 +4427,17 @@
                 }
             }
         },
-        "/programs/{id}/connection/test": {
-            "get": {
+        "/connection/test": {
+            "post": {
                 "tags": [
                     "Programs"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "example": "2"
-                    }
                 ],
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/ConnectionCreatorRequest"
+                                "$ref": "#/components/schemas/ConnectionTestRequest"
                             }
                         }
                     }
@@ -4343,79 +4451,6 @@
                                     "properties": {
                                         "message": {
                                             "example": "testado com sucesso"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ValidationResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de erro"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/programs/{id}/connection/{connection}": {
-            "put": {
-                "tags": [
-                    "Programs"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "example": "2"
-                    },
-                    {
-                        "name": "connection",
-                        "in": "path",
-                        "required": true,
-                        "example": "2"
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/ConnectionUpdatorRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "example": "Programa Conexão atualizado com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -4926,6 +4961,53 @@
                                             "items": {
                                                 "$ref": "#/components/schemas/ProgramListResource"
                                             }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/programs/{id}/returns": {
+            "get": {
+                "tags": [
+                    "Programs"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ProgramListResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
                                         }
                                     },
                                     "type": "object"
@@ -7217,6 +7299,29 @@
                 },
                 "type": "object"
             },
+            "ConnectionTestRequest": {
+                "title": "ConnectionTestRequest form request",
+                "required": [
+                    "host",
+                    "username",
+                    "password"
+                ],
+                "properties": {
+                    "host": {
+                        "type": "strong",
+                        "example": "127.0.0.1"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "name"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "123446"
+                    }
+                },
+                "type": "object"
+            },
             "ConnectionUpdatorRequest": {
                 "required": [
                     "isFtpActive",
@@ -8508,11 +8613,11 @@
                                     "type": "integer",
                                     "example": "10"
                                 },
-                                "state_id": {
+                                "stateId": {
                                     "type": "string",
                                     "example": "5"
                                 },
-                                "product_id": {
+                                "productId": {
                                     "type": "string",
                                     "example": "5"
                                 }
@@ -8645,9 +8750,6 @@
                                 "desc": {
                                     "type": "integer",
                                     "example": "TESTE"
-                                },
-                                "status": {
-                                    "$ref": "#/components/schemas/UserStatus"
                                 }
                             },
                             "type": "object"

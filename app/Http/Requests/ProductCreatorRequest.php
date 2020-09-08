@@ -43,8 +43,8 @@ class ProductCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|integer|unique:products',
-            'codeEan' => 'required|integer',
+            'code' => 'required|unique:products,code',
+            'codeEan' => 'required|string',
             'description' => 'required|string',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'laboratoryId' => 'nullable|exists:laboratories,id',

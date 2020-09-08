@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConnectionTestRequest;
 use App\Program;
 use App\Connection;
 use App\Connection\Contracts\ConnectionCreatable;
@@ -88,9 +89,9 @@ class ProgramConnectionController extends Controller
      * @param ConnectionCreatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Program $model, ConnectionCreatorRequest $request)
+    public function store(ConnectionCreatorRequest $request, Program $model )
     {
-        try {            
+        try {
             $this->creatorService->store($model, $request->all());
             return response()->json(['message' => 'Conexão criada com sucesso'], 200);
         } catch (\Exception $exception) {
@@ -100,19 +101,13 @@ class ProgramConnectionController extends Controller
 
     /**
      *
-     * @OA\Get(
+     * @OA\Post(
      *     tags={"Programs"},
-     *     path="/programs/{id}/connection/test",
+     *     path="/connection/test",
      *     @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/ConnectionCreatorRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/ConnectionTestRequest")
      *      ),
-     *     @OA\Parameter(
-     *        name="id",
-     *        in="path",
-     *        example="2",
-     *        required=true
-     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="",
@@ -146,35 +141,31 @@ class ProgramConnectionController extends Controller
      */
 
     /**
+     * @param ConnectionTestRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function test(Program $model)
+    public function test(ConnectionTestRequest $request)
     {
-        $model = $model->connection;
+        $result = [
+            'status' => false,
+            'message' => 'Erro ao tentar conectar no ftp. Verifique as credenciais'
+        ];
 
-        $data['status'] = false;
-        $data['message'] = 'Problemas na conexão!';
+        $connecttionResult = @ftp_login(ftp_connect($request->host), $request->login, $request->password);
 
-        if ($model) {
-            $isLoggedIn = @ftp_login(
-                ftp_connect($model->host),
-                $model->login,
-                $model->password
-            );
-            if ($isLoggedIn) {
-                $data['status'] = true;
-                $data['message'] = 'Conexão feita com sucesso!';            
-            }
+        if ($connecttionResult) {
+            $result['status'] = true;
+            $result['message'] = 'Conexão feita com sucesso!';
         }
 
-        return response()->json($data, 201);
+        return response()->json($result, 200);
     }
 
     /**
      *
      * @OA\Put(
      *     tags={"Programs"},
-     *     path="/programs/{id}/connection/{connection}",
+     *     path="/programs/{id}/connection",
      *     @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/ConnectionUpdatorRequest")
@@ -225,11 +216,10 @@ class ProgramConnectionController extends Controller
 
     /**
      * @param Program $model
-     * @param Connection $related
      * @param ConnectionUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Program $model, Connection $related, ConnectionUpdatorRequest $request)
+    public function update(Program $model, ConnectionUpdatorRequest $request)
     {
         try {
             $this->updatorService->update($model, $request->all());

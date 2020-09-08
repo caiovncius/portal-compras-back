@@ -200,7 +200,7 @@ class PurchaseController extends Controller
     public function portal(Request $request)
     {
         try {
-            return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->paginate(10));
+            return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

@@ -220,7 +220,7 @@ class OfferController extends Controller
             $input = $request->all();
             $input['status'] = 'ACTIVE';
 
-            return OfferPortalResource::collection($this->retrieverService->getOffers($input)->paginate(10));
+            return OfferPortalResource::collection($this->retrieverService->getOffers($input)->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

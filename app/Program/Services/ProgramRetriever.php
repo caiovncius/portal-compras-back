@@ -37,4 +37,18 @@ class ProgramRetriever implements ProgramRetrievable
             throw $exception;
         }
     }
+
+    /**
+     * @param Program $program
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @throws \Exception
+     */
+    public function getReturnsByProgram(\App\Program $program)
+    {
+        try {
+            return $program->returns();
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
 }

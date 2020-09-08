@@ -12,6 +12,7 @@ use App\Http\Requests\DistributorUpdatorRequest;
 use App\Http\Requests\ReturnMorphRequest;
 use App\Http\Resources\DistributorListResource;
 use App\Http\Resources\DistributorResource;
+use App\Http\Resources\ReturnListResource;
 use App\Returns\Contracts\ReturnsMorphCreatable;
 use Illuminate\Http\Request;
 
@@ -575,6 +576,53 @@ class DistributorController extends Controller
             );
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     *
+     * @OA\GET(
+     *     tags={"Distributors"},
+     *     path="/distributors/{distributor}/returns",
+     *     @OA\Parameter(
+     *        name="distributor",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="data", ref="#/components/schemas/ReturnListResource"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @param Distributor $distributor
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function returnsByDistributor(Distributor $distributor)
+    {
+        try {
+            return ReturnListResource::collection($this->retrieverService->getReturnsByDistributor($distributor)->paginate(20));
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
         }
     }
 }

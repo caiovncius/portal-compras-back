@@ -110,7 +110,7 @@ class ScheduleController extends Controller
     {
         $status = 'BILLED';
         if ((int) $footer['qtdItemsAnswer'] == 0) {
-            $status = 'NOT_BILLED'; 
+            $status = 'NOT_BILLED';
         } else if ((int) $footer['qtdItems'] - (int) $footer['qtdItemsAnswer']) {
             $status = 'BILLED_PARTIAL';
         }

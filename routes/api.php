@@ -173,6 +173,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/distributors/{distributor}', 'DistributorController@get')
          ->name('distributor.get')
          ->middleware('acl:Distributor,r');
+    Route::get('/distributors/{distributor}/returns', 'DistributorController@returnsByDistributor')
+        ->name('distributor.returns')
+        ->middleware('acl:Distributor,r');
     Route::post('/distributors', 'DistributorController@store')
          ->name('distributor.store')
          ->middleware('acl:Distributor,r,w');
@@ -195,6 +198,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/distributors/{distributor}/connection/{connection}', 'DistributorConnectionController@update')
          ->name('distributor.connection.update')
          ->middleware('acl:Connection,r,w');
+
 
     Route::get('/returns', 'ReturnsController@list')
          ->name('return.list')
@@ -224,6 +228,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/programs/{model}', 'ProgramController@get')
          ->name('program.get')
          ->middleware('acl:Program,r');
+    Route::get('/programs/{model}/returns', 'ProgramController@getReturnsByProgram')
+        ->name('program.returns')
+        ->middleware('acl:Program,r');
     Route::post('/programs', 'ProgramController@store')
          ->name('program.store')
          ->middleware('acl:Program,r,w');
@@ -233,6 +240,19 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/programs/{model}', 'ProgramController@delete')
          ->name('program.delete')
          ->middleware('acl:Program,r,w');
+    Route::post('/programs/{model}/returns', 'ProgramController@returns')
+        ->name('program.returns')
+        ->middleware('acl:Program,r,w');
+    Route::post('/programs/{model}/connection', 'ProgramConnectionController@store')
+        ->name('program.connection.store')
+        ->middleware('acl:Program,r,w');
+    Route::put('/programs/{model}/connection', 'ProgramConnectionController@update')
+        ->name('program.connection.update')
+        ->middleware('acl:Program,r,w');
+    Route::post('connection/test', 'ProgramConnectionController@test')
+        ->name('program.connection.test')
+        ->middleware('acl:Program,r');
+
 
     Route::get('/purchases', 'PurchaseController@list')
          ->name('purchase.list')

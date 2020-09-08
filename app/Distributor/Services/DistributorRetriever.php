@@ -43,4 +43,18 @@ class DistributorRetriever implements DistributorRetrievable
             throw $exception;
         }
     }
+
+    /**
+     * @param Distributor $distributor
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @throws \Exception
+     */
+    public function getReturnsByDistributor(\App\Distributor $distributor)
+    {
+        try {
+            return $distributor->returns();
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
 }
