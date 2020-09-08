@@ -14,10 +14,10 @@ class UpdateRequestProducts3Table extends Migration
     public function up()
     {
         Schema::table('request_products', function (Blueprint $table) {
-            $table->dropForeign('request_products_distributor_id_foreign');
+//            $table->dropForeign('request_products_distributor_id_foreign');
             $table->dropColumn('distributor_id');
-            $table->unsignedBigInteger('partner_id')->nullable();
-            $table->string('partner_type')->nullable();
+//            $table->bigInteger('partner_id')->nullable();
+//            $table->string('partner_type')->nullable();
         });
     }
 
