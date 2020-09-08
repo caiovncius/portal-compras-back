@@ -50,10 +50,11 @@ class Purchase extends Model
         'related_quantity',
         'description',
         'updated_id',
-        'contacts'
+        'contacts',
+        'billed_date'
     ];
 
-    protected $casts = ['contacts' => 'array'];
+    protected $casts = ['contacts' => 'array', 'billed_date' => 'datetime'];
 
     public function partner()
     {

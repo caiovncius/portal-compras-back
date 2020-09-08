@@ -30,6 +30,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="relatedQuantity", type="integer", example="1"),
  *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
  *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="billedDate", type="string", example="2020-05-01 10:00:00"),
  *     @OA\Property(
  *         property="partners",
  *         type="array",
@@ -83,7 +84,8 @@ class PurchaseListResource extends JsonResource
             'contacts' => $this->contacts,
             'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'updated_date' => $this->updated_at,
+            'billedDate' => $this->billed_date,
         ];
     }
 }
