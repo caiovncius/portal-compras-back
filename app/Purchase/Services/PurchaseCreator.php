@@ -16,7 +16,6 @@ class PurchaseCreator implements PurchaseCreatable
     {
         try {
             $data['updated_id'] = auth()->guard('api')->user()->id;
-            $data['offer_id'] = $data['offerId'];
             $data['send_type'] = isset($data['sendType']) ? $data['sendType'] : null;
             $data['validity_start'] = isset($data['validityStart']) ? $data['validityStart'] : null;
             $data['validity_end'] = isset($data['validityEnd']) ? $data['validityEnd'] : null;
@@ -29,7 +28,7 @@ class PurchaseCreator implements PurchaseCreatable
             $data['total_intentions_quantity'] = isset($data['totalIntentionsQuantity']) ? $data['total_intentions_quantity'] : null;
             $data['related_quantity'] = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
             $model = Purchase::create($data);
-            
+
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {

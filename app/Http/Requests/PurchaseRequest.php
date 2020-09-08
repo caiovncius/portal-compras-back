@@ -71,7 +71,6 @@ class PurchaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'offerId' => 'required|exists:offers,id',
             'code' => 'required|string|unique:offers',
             'name' => 'required|string',
             'description' => 'nullable|string',

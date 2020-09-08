@@ -18,7 +18,6 @@ class PurchaseUpdater implements PurchaseUpdatable
         try {
             $model->fill($data);
             $model->updated_id = auth()->guard('api')->user()->id;
-            $model->offer_id = $data['offerId'];
             $model->updated_at = date('Y-m-d H:i:s');
             $model->offer_id = isset($data['offerId']) ? $data['qw'] : null;
             $model->send_type = isset($data['sendType']) ? $data['sendType'] : null;
@@ -33,7 +32,7 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
             $model->save();
-            
+
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {

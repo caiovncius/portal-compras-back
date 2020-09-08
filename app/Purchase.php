@@ -30,7 +30,6 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends Model
 {
     protected $fillable = [
-        'offer_id',
         'image',
         'code',
         'name',
