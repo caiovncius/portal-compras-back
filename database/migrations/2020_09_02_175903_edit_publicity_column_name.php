@@ -14,7 +14,7 @@ class EditPublicityColumnName extends Migration
     public function up()
     {
         Schema::table('publicities', function (Blueprint $table) {
-            $table->renameColumn('desc', 'description');
+//            $table->renameColumn('desc', 'description');
         });
     }
 

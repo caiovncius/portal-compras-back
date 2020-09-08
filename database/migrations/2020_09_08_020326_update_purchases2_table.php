@@ -16,8 +16,8 @@ class UpdatePurchases2Table extends Migration
         Schema::table('purchases', function (Blueprint $table) {
 //            $table->dropColumn('offer_id');
             $table->boolean('until_billing')->default(0)->change();
-            $table->dropColumn('contacts');
-            $table->json('contacts')->nullable();
+//            $table->dropColumn('contacts');
+//            $table->json('contacts')->nullable();
         });
     }
 
