@@ -23,7 +23,6 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->fill($data);
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
-            $model->offer_id = isset($data['offerId']) ? $data['qw'] : null;
             $model->send_type = isset($data['sendType']) ? $data['sendType'] : null;
             $model->validity_start = isset($data['validityStart']) ? $data['validityStart'] : null;
             $model->validity_end = isset($data['validityEnd']) ? $data['validityEnd'] : null;
