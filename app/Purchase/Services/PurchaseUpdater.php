@@ -35,7 +35,7 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
 
-            if (isset($data['partner'])) {
+            if (isset($data['partner']) && !is_null($data['partner'])) {
                 $model->partner()->delete();
 
                 $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;

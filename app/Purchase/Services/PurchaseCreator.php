@@ -32,22 +32,24 @@ class PurchaseCreator implements PurchaseCreatable
             $data['related_quantity'] = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
             $model = Purchase::create($data);
 
-            $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
-            $partner = Distributor::find($data['partner']);
+            if (isset($data['partner']) && !is_null($data['partner'])) {
+                $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
+                $partner = Distributor::find($data['partner']);
 
-            if ($data['partnerType'] === Partner::PARTNER_TYPE_PROGRAM) {
-                $partnerType = Partner::PARTNER_TYPE_PROGRAM;
-                $partner = Program::find($data['partner']);
+                if ($data['partnerType'] === Partner::PARTNER_TYPE_PROGRAM) {
+                    $partnerType = Partner::PARTNER_TYPE_PROGRAM;
+                    $partner = Program::find($data['partner']);
+                }
+
+                if (is_null($partner)) {
+                    throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
+                }
+
+                $model->partner()->create([
+                    'partner_type' => $partnerType,
+                    'partner_id' => $partner->id,
+                ]);
             }
-
-            if (is_null($partner)) {
-                throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
-            }
-
-            $model->partner()->create([
-                'partner_type' => $partnerType,
-                'partner_id' => $partner->id,
-            ]);
 
             if (isset($data['products'])) {
                 $model->products()->delete();
