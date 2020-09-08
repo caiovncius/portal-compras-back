@@ -45,8 +45,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="productName", type="string", example="Teste"),
  *     @OA\Property(property="quantityMaximum", type="integer", example="6"),
  *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
- *     @OA\Property(property="state_id", type="string", example="5"),
- *     @OA\Property(property="product_id", type="string", example="5"),
+ *     @OA\Property(property="stateId", type="string", example="5"),
+ *     @OA\Property(property="productId", type="string", example="5"),
            )
  *     ),
  * )
@@ -79,6 +79,19 @@ class PurchaseRequest extends FormRequest
             'minimumBillingQuantity' => 'required',
             'validityStart' => 'required|date',
             'validityEnd' => 'required|date|after_or_equal:validityStart',
+            'products' => 'array|nullable',
+            'products.*.productId' => 'required',
+            'products.*.discountDeferred' => 'numeric',
+            'products.*.discountOnCash' => 'numeric',
+            'products.*.minimum' => 'numeric',
+            'products.*.minimumPerFamily' => 'required',
+            'products.*.obrigatory' => 'boolean',
+            'products.*.factoryPrice' => 'numeric',
+            'products.*.priceDeferred' => 'numeric',
+            'products.*.priceOnCash' => 'numeric',
+            'products.*.quantityMaximum' => 'numeric',
+            'products.*.quantityMinimum' => 'numeric',
+            'products.*.stateId' => 'required',
         ];
     }
 
