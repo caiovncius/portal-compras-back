@@ -31,7 +31,7 @@ class ReturnListResource extends JsonResource
         return [
             'id' => $this->id,
             'code' => $this->code,
-            'description' => $this->desc,
+            'description' => $this->description,
             'status' => $this->status,
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
