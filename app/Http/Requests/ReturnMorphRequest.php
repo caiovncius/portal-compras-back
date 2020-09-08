@@ -40,7 +40,7 @@ class ReturnMorphRequest extends FormRequest
     public function rules()
     {
         return [
-            'returns' => 'array|min:1',
+            'returns' => 'array|nullable',
             'returns.*.code' => 'required|string|numeric',
             'returns.*.description' => 'required|string',
         ];
