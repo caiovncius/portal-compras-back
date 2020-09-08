@@ -42,7 +42,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(
  *         property="contacts",
  *         type="array",
- *         @OA\Items(         
+ *         @OA\Items(
  *             @OA\Property(property="send", type="string", example="TO"),
  *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
  *         )
@@ -60,10 +60,7 @@ class PurchaseListResource extends JsonResource
     public function toArray($request)
     {
         return [
-<<<<<<< HEAD
-=======
             'id' => $this->id,
->>>>>>> e3af2a0889cd8fd46db81e54dc6c92b3d2ee8300
             'image' => $this->image,
             'code' => $this->code,
             'name' => $this->name,
@@ -80,13 +77,10 @@ class PurchaseListResource extends JsonResource
             'totalIntentionsQuantity' => $this->total_intentions_quantity,
             'relatedQuantity' => $this->related_quantity,
             'description' => $this->description,
-<<<<<<< HEAD
             'partners' => PartnerListResource::collection($this->partners),
             'products' => ProductDetailResource::collection($this->products),
             'contacts' => $this->contacts,
-=======
             'products' => ProductResource::collection($this->products),
->>>>>>> e3af2a0889cd8fd46db81e54dc6c92b3d2ee8300
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];
