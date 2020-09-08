@@ -51,7 +51,7 @@ class RequestRequest extends FormRequest
             'pharmacyId' => 'required|exists:pharmacies,id',
             'value' => 'required|numeric',
             'products' => 'array|required',
-            'products.*.productId' => 'required|exists:product_details,id',
+            'products.*.productId' => 'required|exists:products,id',
             'products.*.quantity' => 'required|numeric',
             'products.*.value' => 'required|numeric',
         ];
