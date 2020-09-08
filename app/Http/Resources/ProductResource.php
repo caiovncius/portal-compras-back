@@ -19,7 +19,7 @@ class ProductResource extends JsonResource
             'code' => $this->code,
             'codeEan' => $this->code_ean,
             'description' => $this->description,
-            'laboratoryId' => $this->laboratory->id,
+            'laboratoryId' => !is_null($this->laboratory) ? $this->laboratory->id : null,
             'status' => $this->status,
             'createdAt' => $this->created_at,
             'updated_user' => $this->user ? $this->user->name : '',
