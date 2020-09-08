@@ -6,7 +6,9 @@ use App\Http\Requests\PurchaseRequest;
 use App\Http\Resources\ProductDetailPortalResource;
 use App\Http\Resources\PurchaseHistoricResource;
 use App\Http\Resources\PurchaseListResource;
+use App\Http\Resources\RequestIntentionResource;
 use App\Http\Resources\RequestListResource;
+use App\Http\Resources\RequestResource;
 use App\Pharmacy;
 use App\Product\Contracts\ProductDetailRetrievable;
 use App\Purchase;
@@ -479,7 +481,7 @@ class PurchaseController extends Controller
            return response()->json([
                'totalIntentions' => $totalIntentions,
                'amountIntentions' => $amountIntentions,
-               'intentions' => RequestListResource::collection($allIntentions)
+               'intentions' => RequestIntentionResource::collection($allIntentions)
            ]);
        } catch (\Exception $exception) {
            return response()->json(['error' => $exception->getMessage()], 400);
@@ -504,11 +506,7 @@ class PurchaseController extends Controller
 
             return response()->json($histories);
         } catch (\Exception $exception) {
-
+            return response()->json(['error' => $exception->getMessage()], 400);
         }
-
-        return
-//        $allIntentions = $purchase->requests()->historics()->get();
-        dd($purchase->requests()->get());
     }
 }
