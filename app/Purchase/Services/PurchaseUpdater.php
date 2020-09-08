@@ -35,26 +35,24 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
 
-            $model->partners()->delete();
+            if (isset($data['partner'])) {
+                $model->partner()->delete();
 
-            foreach ($data['partners'] as $partner) {
                 $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
-                $hasPartner = Distributor::find($partner['id']);
+                $partner = Distributor::find($data['partner']);
 
-                if ($partner['type'] === Partner::PARTNER_TYPE_PROGRAM) {
+                if ($data['partnerType'] === Partner::PARTNER_TYPE_PROGRAM) {
                     $partnerType = Partner::PARTNER_TYPE_PROGRAM;
-                    $hasPartner = Program::find($partner['id']);
+                    $partner = Program::find($data['partner']);
                 }
 
-                if (is_null($hasPartner)) {
+                if (is_null($partner)) {
                     throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
                 }
 
-                $model->partners()->create([
+                $model->partner()->create([
                     'partner_type' => $partnerType,
-                    'partner_id' => $partner['id'],
-                    'ol' => $partner['ol'],
-                    'priority' => $partner['priority'],
+                    'partner_id' => $partner->id,
                 ]);
             }
 

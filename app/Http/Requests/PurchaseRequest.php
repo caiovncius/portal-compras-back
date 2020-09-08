@@ -27,16 +27,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="totalIntentionsValue", type="integer", example="1"),
  *     @OA\Property(property="totalIntentionsQuantity", type="integer", example="1"),
  *     @OA\Property(property="relatedQuantity", type="integer", example="1"),
- *     @OA\Property(
- *         property="partners",
- *         type="array",
- *         @OA\Items(
- *     @OA\Property(property="id", type="string", example="1"),
- *     @OA\Property(property="type", type="string", example="PROVIDER"),
- *     @OA\Property(property="ol", type="integer", example="1"),
- *     @OA\Property(property="priority", type="integer", example="1"),
- *         )
- *     ),
+ *     @OA\Property(property="patnerType", type="string", example="DISTRIBUTOR or PROGRAM"),
+ *     @OA\Property(property="partner", type="integer", example="1"),
  *     @OA\Property(
  *         property="products",
  *         type="array",
@@ -97,8 +89,8 @@ class PurchaseRequest extends FormRequest
             'minimumBillingQuantity' => 'required',
             'validityStart' => 'required|date',
             'validityEnd' => 'required|date|after_or_equal:validityStart',
-            'partner' => 'required|in:DISTRIBUTOR,PROGRAM',
-            'partnersId' => 'required|numeric',
+            'partnerType' => 'required|in:DISTRIBUTOR,PROGRAM',
+            'partner' => 'required|numeric',
             'products' => 'array|nullable',
             'products.*.productId' => 'required',
             'products.*.discountDeferred' => 'numeric',
