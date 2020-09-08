@@ -80,7 +80,7 @@ class PurchaseListResource extends JsonResource
             'description' => $this->description,
             'partner' => !is_null($this->partner) ?  PartnerListResource::make($this->partner) : null,
             'contacts' => $this->contacts,
-            'products' => ProductDetail::collection($this->products),
+            'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];
