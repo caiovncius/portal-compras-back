@@ -44,17 +44,12 @@ class RequestIntentionResource extends JsonResource
             'pharmacyId' => $this->pharmacy_id,
             'pharmacyName' => $this->pharmacy->name,
             'pharmacyRegisterNumber' => $this->pharmacy->cnpj,
-            'offerName' => $this->requestable->name,
-            'offerCondition' => $this->requestable->condition ? true : false,
-            'status' => $this->status,
-            'value' => $this->value,
-            'sendDate' => $this->send_date,
-            'sendType' => $this->requestable->send_type,
-            'products' => RequestProductResource::collection($this->products),
-            'historic' => RequestHistoricResource::collection($this->historics),
             'createdAt' => $this->created_at,
-            'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'totalItems' => $this->products()->count(),
+            'totalUnits' => $this->products()->count(),
+            'subtotal' => $this->value,
+            'total' => $this->value,
+            'status' => $this->status,
         ];
     }
 }
