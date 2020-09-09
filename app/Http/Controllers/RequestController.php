@@ -478,6 +478,78 @@ class RequestController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     tags={"Accompaniment"},
+     *     path="/accompaniments",
+     *     @OA\Parameter(
+     *        name="offerCode",
+     *        in="query",
+     *        example="OFFER9980",
+     *     ),
+     *     @OA\Parameter(
+     *        name="pharmacyId",
+     *        in="query",
+     *        example="teste",
+     *     ),
+     *     @OA\Parameter(
+     *        name="status",
+     *        in="query",
+     *        example="active",
+     *     ),
+     *     @OA\Parameter(
+     *        name="type",
+     *        in="query",
+     *        example="OFFER",
+     *     ),
+     *     @OA\Parameter(
+     *        name="commercial",
+     *        in="query",
+     *        example="name",
+     *     ),
+     *     @OA\Parameter(
+     *        name="sendType",
+     *        in="query",
+     *        example="MANUAL",
+     *     ),
+     *     @OA\Parameter(
+     *        name="date1",
+     *        in="query",
+     *        example="2020-05-25",
+     *     ),
+     *     @OA\Parameter(
+     *        name="date2",
+     *        in="query",
+     *        example="2020-06-25",
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/RequestListResource"),
+     *                 ),
+     *                 @OA\Property(
+     *                     property="links",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationLinks"),
+     *                     }
+     *                 ),
+     *                  @OA\Property(
+     *                     property="meta",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationMeta"),
+     *                     }
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
@@ -490,6 +562,7 @@ class RequestController extends Controller
                     ->paginate(10)
             );
         } catch (\Exception $exception) {
+            dd($exception);
             return response()->json(['error' => $exception->getMessage()], 400);
         }
     }

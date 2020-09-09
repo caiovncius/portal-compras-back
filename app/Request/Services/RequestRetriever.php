@@ -4,6 +4,8 @@ namespace App\Request\Services;
 
 use App\Request;
 use App\Request\Contracts\RequestRetrievable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class RequestRetriever implements RequestRetrievable
 {
@@ -16,6 +18,16 @@ class RequestRetriever implements RequestRetrievable
     {
         try {
             $query = Request::query();
+
+            if (isset($params['offerCode']) && !empty($params['offerCode'])) {
+
+                $query->whereHasMorph(
+                    'requestable',
+                    ['App\Offer', 'App\Purchase'],
+                    function (Builder $queryMorph) use ($params) {
+                        $queryMorph->where('code', 'like', '%' . $params['offerCode'] . '%');
+                    });
+            }
 
             if (isset($params['code']) && !empty($params['code'])) {
                 $query->where('id', $params['code']);
