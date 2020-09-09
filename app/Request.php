@@ -28,6 +28,7 @@ class Request extends Model
         'partner_type',
         'priority',
         'value',
+        'subtotal',
         'send_date',
         'requestable_id',
         'requestable_type',
@@ -35,6 +36,7 @@ class Request extends Model
 
     protected $casts = [
         'value' => 'float',
+        'subtotal' => 'float',
         'send_date' => 'date'
     ];
 
