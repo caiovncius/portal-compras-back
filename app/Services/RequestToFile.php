@@ -68,7 +68,6 @@ class RequestToFile
 
     public function item($item, $model)
     {
-
         $html  = 2; //type
         $html .= str_pad($item->product->code_ean, 14, 0, STR_PAD_LEFT); //code_ean
         $html .= str_pad($item->pivot->qtd, 5, 0, STR_PAD_LEFT); //qtd

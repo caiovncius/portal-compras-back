@@ -94,14 +94,14 @@ class OfferUpdatorRequest extends FormRequest
             'products.*.productId' => 'required',
             'products.*.discountDeferred' => 'required|numeric',
             'products.*.discountOnCash' => 'required|numeric',
-            'products.*.minimum' => 'required|numeric',
+            'products.*.minimum' => 'numeric',
             'products.*.minimumPerFamily' => 'required|required',
             'products.*.obrigatory' => 'boolean',
-            'products.*.factoryPrice' => 'required|numeric',
+            'products.*.factoryPrice' => 'numeric',
             'products.*.priceDeferred' => 'required|numeric',
             'products.*.priceOnCash' => 'required|numeric',
-            'products.*.quantityMaximum' => 'required|numeric',
-            'products.*.quantityMinimum' => 'required|numeric',
+            'products.*.quantityMaximum' => 'numeric',
+            'products.*.quantityMinimum' => 'numeric',
             'products.*.stateId' => 'required|required',
         ];
     }

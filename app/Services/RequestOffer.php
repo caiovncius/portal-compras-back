@@ -27,7 +27,6 @@ class RequestOffer
             $filename = (new RequestToFile)->filename($request);
 
             $upload = (new RequestToFile)->uploadFile($file, $filename, $partnerConnection->path_send);
-        dd($upload);
 
             if ($firstSend) {
                 $request->send_date = date('Y-m-d');
