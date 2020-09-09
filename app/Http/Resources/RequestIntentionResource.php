@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="RequestResource",
+ *     schema="RequestResourceIntention",
  *     type="object",
  *     title="Request Response",
  *     @OA\Property(property="pharmacyId", type="integer", example="001"),

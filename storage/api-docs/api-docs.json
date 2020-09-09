@@ -4,6 +4,11 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": ""
+        }
+    ],
     "paths": {
         "/accompaniments": {
             "get": {
@@ -10369,6 +10374,48 @@
                 },
                 "type": "object"
             },
+            "RequestResourceIntention": {
+                "title": "Request Response",
+                "properties": {
+                    "pharmacyId": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "offerName": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "offerCondition": {
+                        "type": "string",
+                        "example": "true"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "MANUAL"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "CREATED"
+                    },
+                    "sendDate": {
+                        "type": "string",
+                        "example": "2020-09-25"
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RequestProductResource"
+                        }
+                    },
+                    "historic": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RequestHistoricResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "RequestListResource": {
                 "title": "Request List Response",
                 "properties": {
@@ -10921,9 +10968,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
-                        "tokenUrl": "http://localhost:8000/oauth/token",
-                        "refreshUrl": "http://localhost:8000/token/refresh",
+                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
+                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
+                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
                         "scopes": []
                     }
                 }
