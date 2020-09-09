@@ -4,6 +4,7 @@ namespace App\Request\Services;
 
 use App\Request;
 use App\Request\Contracts\RequestCreatable;
+use App\Services\RequestOffer;
 
 class RequestCreator implements RequestCreatable
 {
@@ -38,6 +39,10 @@ class RequestCreator implements RequestCreatable
                         'value' => $product['value']
                     ]);
                 }
+            }
+
+            if ($data['modelType'] == 'OFFER') {
+                (new RequestOffer())->send($model);
             }
 
             return $model;

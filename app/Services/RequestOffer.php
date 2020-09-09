@@ -57,7 +57,9 @@ class RequestOffer
 
     public function check()
     {
-        $requests = RequestModel::where('status', 'WAITING_RETURN')->get();
+        $requests = RequestModel::where('status', 'WAITING_RETURN')
+                                ->where('requestable_type', 'App\Offer')
+                                ->get();
         foreach($requests as $request) {
             $partnerConnection = $request->partner->connection;
             $connection = (new FtpService)->setConnection($partnerConnection);
