@@ -17,10 +17,6 @@ class RequestRetriever implements RequestRetrievable
         try {
             $query = Request::query();
 
-            if (isset($params['offerId']) && !empty($params['offerId'])) {
-                $query->where('offer_id', $params['offerId']);
-            }
-
             if (isset($params['code']) && !empty($params['code'])) {
                 $query->where('id', $params['code']);
             }
@@ -59,7 +55,7 @@ class RequestRetriever implements RequestRetrievable
             if (isset($params['date1']) && !empty($params['date1'])) {
                 $query->whereDate('send_date', '>=', $params['date1']);
                 if (isset($params['date2']) && !empty($params['date2'])) {
-                    $query->whereDate('send_date', '<=', $params['date2']);                    
+                    $query->whereDate('send_date', '<=', $params['date2']);
                 }
             }
 

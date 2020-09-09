@@ -360,21 +360,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('publicity.remove.image')
          ->middleware('acl:Publicity,r,w');
 
-    Route::get('/accompaniments', 'AccompanimentController@list')
+    Route::get('/accompaniments', 'RequestController@toMonitory')
          ->name('accompaniment.list')
-         ->middleware('acl:Accompaniment,r');
-    Route::get('/accompaniments/{model}', 'AccompanimentController@get')
-         ->name('accompaniment.get')
-         ->middleware('acl:Accompaniment,r');
-    Route::post('/accompaniments', 'AccompanimentController@store')
-         ->name('accompaniment.store')
-         ->middleware('acl:Accompaniment,r,w');
-    Route::put('/accompaniments/{model}', 'AccompanimentController@update')
-         ->name('accompaniment.update')
-         ->middleware('acl:Accompaniment,r,w');
-    Route::delete('/accompaniments/{model}', 'AccompanimentController@delete')
-         ->name('accompaniment.delete')
-         ->middleware('acl:Accompaniment,r,w');
+         ->middleware('acl:Request,r');
 
     Route::post('/mass-actions/laboratory/create', 'LaboratoryController@massStore')
         ->name('laboratory.mass.create');

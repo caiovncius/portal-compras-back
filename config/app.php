@@ -185,7 +185,6 @@ return [
         App\Providers\ReturnsServiceProvider::class,
         App\Providers\ConditionServiceProvider::class,
         App\Providers\PublicityServiceProvider::class,
-        App\Providers\AccompanimentServiceProvider::class,
         App\Providers\ProgramServiceProvider::class,
         App\Providers\OfferServiceProvider::class,
         App\Providers\PurchaseServiceProvider::class,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RequestProductRequest;
 use App\Http\Requests\RequestRequest;
 use App\Http\Resources\RequestListResource;
+use App\Http\Resources\RequestMonitoringResource;
 use App\Http\Resources\RequestResource;
 use App\Request as RequestModel;
 use App\Request\Contracts\RequestCreatable;
@@ -476,4 +477,20 @@ class RequestController extends Controller
         return RequestResource::make($model);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function toMonitory(Request $request)
+    {
+        try {
+            return RequestMonitoringResource::collection(
+                $this->retrieverService->getRequests($request->all())
+                    ->orderBy('id', 'DESC')
+                    ->paginate(10)
+            );
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
 }
