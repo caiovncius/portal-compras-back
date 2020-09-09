@@ -18,6 +18,7 @@ class RequestOffer
         if (! $firstSend) {
             $partner = $partner->skip($request->priority);
         }
+
         $partner = $partner->first()->partner;
         $partnerConnection = $partner->connection;
         if ($partnerConnection) {
@@ -26,6 +27,7 @@ class RequestOffer
             $filename = (new RequestToFile)->filename($request);
 
             $upload = (new RequestToFile)->uploadFile($file, $filename, $partnerConnection->path_send);
+        dd($upload);
 
             if ($firstSend) {
                 $request->send_date = date('Y-m-d');
@@ -51,7 +53,7 @@ class RequestOffer
                 'status' => 'Erro no envio'
             ]);
         }
-        
+
         return true;
     }
 
