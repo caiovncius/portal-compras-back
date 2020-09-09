@@ -17,5 +17,6 @@ Route::get('/', function () {
     return response()->make('API status ok');
 });
 
-Route::get('/return', 'ScheduleController@check');
-
+Route::get('/return/offer', '\App\Services\RequestOffer@check');
+Route::get('/return/purchase', '\App\Services\RequestPurchase@check');
+Route::get('purchase', '\App\Services\PurchaseCheck@check');

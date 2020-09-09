@@ -24,8 +24,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call('App\Http\Controllers\ScheduleController@check')
-                 ->everyMinute();
+        $schedule->call('App\Services\RequestOffer@check')
+                ->everyMinute();
+        $schedule->call('App\Services\RequestPurchase@check')
+                ->everyMinute();
+        $schedule->call('App\Services\PurchaseCheck@check')
+                ->everyMinute();
     }
 
     /**

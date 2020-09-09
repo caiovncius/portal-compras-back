@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     type="Connection",
  *     title="Profile Response",
  *     @OA\Property(property="id", type="integer", example="1"),
- *     @OA\Property(property="ftpActive", type="string", example="Teste"),
+ *     @OA\Property(property="ftpActive", type="boolean", example="1"),
  *     @OA\Property(property="transferency", type="string", example="teste"),
  *     @OA\Property(property="host", type="string", example="localhost"),
  *     @OA\Property(property="pathSend", type="string", example="123"),
@@ -19,6 +19,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="pathReturn", type="string", example="123"),
  *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
  *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="port", type="string", example="22"),
+ *     @OA\Property(property="remove_file", type="boolean", example="0"),
+ *     @OA\Property(property="mask", type="string", example="teste"),
  * )
  */
 
@@ -42,7 +45,10 @@ class ConnectionListResource extends JsonResource
             'password' => $this->password,
             'returnDirectory' => $this->path_return,
             'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'updated_date' => $this->updated_at,
+            'removeFile' => $this->remove_file,
+            'mask' => $this->mask,
+            'port' => $this->port,
         ];
     }
 }

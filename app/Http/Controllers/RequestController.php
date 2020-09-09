@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\ScheduleController;
 use App\Http\Requests\RequestProductRequest;
 use App\Http\Requests\RequestRequest;
 use App\Http\Resources\RequestListResource;
@@ -240,7 +239,6 @@ class RequestController extends Controller
         try {
             $model = $this->creatorService->store($request->all());
 
-//            (new ScheduleController())->send($model);
             return response()->json(['message' => 'Compra criada com sucesso'], 200);
         } catch (\Exception $exception) {
             dd($exception);
@@ -422,13 +420,13 @@ class RequestController extends Controller
      */
 
     /**
-     * @param Request $Request
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Request $Request)
+    public function delete(RequestModel $request)
     {
         try {
-            $this->removerService->delete($Request);
+            $this->removerService->delete($request);
             return response()->json(['message' => 'Compra removida com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);

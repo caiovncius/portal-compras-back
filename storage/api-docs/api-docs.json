@@ -5392,7 +5392,7 @@
                     {
                         "name": "status",
                         "in": "query",
-                        "example": "active"
+                        "example": "OPEN"
                     },
                     {
                         "name": "validityStart",
@@ -5607,6 +5607,63 @@
                                     "properties": {
                                         "message": {
                                             "example": "Compra removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/purchases/{id}/intentions": {
+            "post": {
+                "tags": [
+                    "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PurchaseIntentionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Intenções enviadas com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -7270,7 +7327,7 @@
                     },
                     "isFtpActive": {
                         "type": "boolean",
-                        "example": "true"
+                        "example": "1"
                     },
                     "transferMode": {
                         "type": "string",
@@ -7295,6 +7352,18 @@
                     "returnDirectory": {
                         "type": "string",
                         "example": "/var/www"
+                    },
+                    "port": {
+                        "type": "string",
+                        "example": "22"
+                    },
+                    "remove_file": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "mask": {
+                        "type": "string",
+                        "example": "teste"
                     }
                 },
                 "type": "object"
@@ -7335,7 +7404,7 @@
                 "properties": {
                     "isFtpActive": {
                         "type": "boolean",
-                        "example": "true"
+                        "example": "1"
                     },
                     "transferMode": {
                         "type": "string",
@@ -7360,6 +7429,18 @@
                     "returnDirectory": {
                         "type": "string",
                         "example": "/var/www"
+                    },
+                    "port": {
+                        "type": "string",
+                        "example": "22"
+                    },
+                    "remove_file": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "mask": {
+                        "type": "string",
+                        "example": "teste"
                     }
                 },
                 "type": "object"
@@ -8453,6 +8534,27 @@
                 },
                 "type": "object"
             },
+            "PurchaseIntentionRequest": {
+                "title": "Purchase Intention request",
+                "required": [
+                    "requests"
+                ],
+                "properties": {
+                    "requests": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "PurchaseRequest": {
                 "title": "Purchase form request",
                 "required": [
@@ -8529,29 +8631,13 @@
                         "type": "integer",
                         "example": "1"
                     },
-                    "partners": {
-                        "type": "array",
-                        "items": {
-                            "properties": {
-                                "id": {
-                                    "type": "string",
-                                    "example": "1"
-                                },
-                                "type": {
-                                    "type": "string",
-                                    "example": "PROVIDER"
-                                },
-                                "ol": {
-                                    "type": "integer",
-                                    "example": "1"
-                                },
-                                "priority": {
-                                    "type": "integer",
-                                    "example": "1"
-                                }
-                            },
-                            "type": "object"
-                        }
+                    "patnerType": {
+                        "type": "string",
+                        "example": "DISTRIBUTOR or PROGRAM"
+                    },
+                    "partner": {
+                        "type": "integer",
+                        "example": "1"
                     },
                     "products": {
                         "type": "array",
@@ -9041,8 +9127,8 @@
                         "example": "1"
                     },
                     "ftpActive": {
-                        "type": "string",
-                        "example": "Teste"
+                        "type": "boolean",
+                        "example": "1"
                     },
                     "transferency": {
                         "type": "string",
@@ -9075,6 +9161,18 @@
                     "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
+                    },
+                    "port": {
+                        "type": "string",
+                        "example": "22"
+                    },
+                    "remove_file": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "mask": {
+                        "type": "string",
+                        "example": "teste"
                     }
                 },
                 "type": "Connection"
@@ -10143,7 +10241,7 @@
                         "example": "001"
                     },
                     "image": {
-                        "type": "integer",
+                        "type": "string",
                         "example": "001"
                     },
                     "name": {
@@ -10207,6 +10305,10 @@
                         "example": "Nome usuário"
                     },
                     "updated_date": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
+                    },
+                    "billedDate": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },

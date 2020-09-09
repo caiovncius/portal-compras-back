@@ -272,6 +272,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/purchases/{purchase}/intentions', 'PurchaseController@intentions')
         ->name('purchase.intentions')
         ->middleware('acl:Purchase,r');
+    Route::post('/purchases/{purchase}/intentions', 'PurchaseController@intentionsSend')
+         ->name('purchase.intentions.store')
+         ->middleware('acl:Purchase,r,w');
     Route::get('/purchases/{purchase}/history', 'PurchaseController@historic')
         ->name('purchase.historic')
         ->middleware('acl:Purchase,r');

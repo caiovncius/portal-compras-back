@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Request as RequestModel;
 use App\Returns;
 use App\Services\FileReturn;
 use App\Services\FtpService;
 use App\Services\RequestToFile;
-use Illuminate\Http\Request;
 
-class ScheduleController extends Controller
+class RequestOffer
 {
     public function send(RequestModel $request, $firstSend = true)
     {

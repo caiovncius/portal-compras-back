@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseIntentionRequest;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Resources\ProductDetailPortalResource;
 use App\Http\Resources\PurchaseHistoricResource;
@@ -10,10 +11,12 @@ use App\Http\Resources\RequestListResource;
 use App\Pharmacy;
 use App\Product\Contracts\ProductDetailRetrievable;
 use App\Purchase;
+use App\Request as RequestModel;
 use App\Purchase\Contracts\PurchaseCreatable;
 use App\Purchase\Contracts\PurchaseRemovable;
 use App\Purchase\Contracts\PurchaseRetrievable;
 use App\Purchase\Contracts\PurchaseUpdatable;
+use App\Services\RequestPurchase;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -155,7 +158,7 @@ class PurchaseController extends Controller
      *     @OA\Parameter(
      *        name="status",
      *        in="query",
-     *        example="active",
+     *        example="OPEN",
      *     ),
      *     @OA\Parameter(
      *        name="validityStart",
@@ -204,8 +207,10 @@ class PurchaseController extends Controller
     public function portal(Request $request, \App\Pharmacy $pharmacy = null)
     {
         try {
-
-            return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->get());
+            $input = $request->all();
+            $input['status'] = 'OPEN';
+            $input['date'] = date('Y-m-d');
+            return PurchaseListResource::collection($this->retrieverService->getPurchases($input)->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -484,6 +489,64 @@ class PurchaseController extends Controller
        } catch (\Exception $exception) {
            return response()->json(['error' => $exception->getMessage()], 400);
        }
+    }
+
+    /**
+     *
+     * @OA\POST(
+     *     tags={"Purchases"},
+     *     path="/purchases/{id}/intentions",
+     *     @OA\Parameter(
+     *        name="id",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/PurchaseIntentionRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Intenções enviadas com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+    /**
+     * @param Purchase $purchase
+     * @return \Illuminate\Http\JsonResponse
+     */
+    /// TODO: add it on service
+    public function intentionsSend(Purchase $purchase, PurchaseIntentionRequest $request)
+    {
+        try {
+            foreach ($request->requests as $request) {
+                $requestModel = RequestModel::find($request['id']);
+                
+                (new RequestPurchase())->send($requestModel);
+            }
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
     }
 
     // TODO: add it on service and create a resource
