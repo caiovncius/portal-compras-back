@@ -16,6 +16,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="sendType", type="string", example="MANUAL"),
  *     @OA\Property(property="status", type="string", example="CREATED"),
  *     @OA\Property(property="sendDate", type="string", example="2020-09-25"),
+ *     @OA\Property(property="createdAt", type="string", example="2020-09-25"),
+ *     @OA\Property(property="subtotal", type="string", example="10"),
+ *     @OA\Property(property="value", type="string", example="8"),
+ *     @OA\Property(property="qtdItens", type="integer", example="8"),
+ *     @OA\Property(property="qtdUnities", type="integer", example="8"),
+ *     @OA\Property(property="pharmacy", ref="#/components/schemas/PharmacyResource"),
  * )
  */
 
@@ -37,8 +43,13 @@ class RequestListResource extends JsonResource
             'offerCondition' => $this->requestable->condition ? true : false,
             'sendType' => $this->requestable->send_type,
             'status' => $this->status,
+            'subtotal' => $this->subtotal,
             'value' => $this->value,
-            'sendDate' => $this->send_date
+            'sendDate' => $this->send_date,
+            'qtdItens' => $this->products()->count(),
+            'qtdUnities' => $this->products()->sum('qtd'),
+            'pharmacy' => $this->pharmacy,
+            'createdAt' => $this->created_at,
         ];
     }
 }

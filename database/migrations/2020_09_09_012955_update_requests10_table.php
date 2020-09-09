@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateRequestProducts4Table extends Migration
+class UpdateRequests10Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class UpdateRequestProducts4Table extends Migration
      */
     public function up()
     {
-        Schema::table('request_products', function (Blueprint $table) {
+        Schema::table('requests', function (Blueprint $table) {
             $table->decimal('subtotal', 10, 2)->nullable();
         });
     }
@@ -25,7 +25,7 @@ class UpdateRequestProducts4Table extends Migration
      */
     public function down()
     {
-        Schema::table('request_products', function (Blueprint $table) {
+        Schema::table('requests', function (Blueprint $table) {
             $table->dropColumn('subtotal');
         });
     }

@@ -10399,6 +10399,29 @@
                     "sendDate": {
                         "type": "string",
                         "example": "2020-09-25"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "example": "2020-09-25"
+                    },
+                    "subtotal": {
+                        "type": "string",
+                        "example": "10"
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "8"
+                    },
+                    "qtdItens": {
+                        "type": "integer",
+                        "example": "8"
+                    },
+                    "qtdUnities": {
+                        "type": "integer",
+                        "example": "8"
+                    },
+                    "pharmacy": {
+                        "$ref": "#/components/schemas/PharmacyResource"
                     }
                 },
                 "type": "object"
