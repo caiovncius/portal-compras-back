@@ -21,6 +21,7 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'laboratoryId' => !is_null($this->laboratory) ? $this->laboratory->id : null,
             'status' => $this->status,
+            'scondaryEanCodes' => ProductSecondaryEanCode::collection($this->secondaryEanCodes),
             'createdAt' => $this->created_at,
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
