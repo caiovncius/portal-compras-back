@@ -14,7 +14,7 @@ class UpdateRequestProducts4Table extends Migration
     public function up()
     {
         Schema::table('request_products', function (Blueprint $table) {
-            $table->dropForeign('offerProduct_request_offer_product_id_foreign');
+            //$table->dropForeign('offerProduct_request_offer_product_id_foreign');
             $table->dropColumn('product_detail_id');
         });
 
