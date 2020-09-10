@@ -46,6 +46,8 @@ class RequestResource extends JsonResource
             'pharmacyRegister' => $this->pharmacy->cnpj,
             'offerName' => $this->requestable->name,
             'offerCondition' => $this->requestable->condition ? true : false,
+            'minimumValue' => $this->products()->sum('minimum'),
+            'totalItens' => $this->products()->count(),
             'status' => $this->status,
             'value' => $this->value,
             'sendDate' => $this->send_date,
