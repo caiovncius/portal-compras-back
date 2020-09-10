@@ -42,6 +42,8 @@ class RequestResource extends JsonResource
         return [
             'id' => $this->id,
             'pharmacyId' => $this->pharmacy_id,
+            'pharmacyName' => $this->pharmacy->name,
+            'pharmacyRegister' => $this->pharmacy->cnpj,
             'offerName' => $this->requestable->name,
             'offerCondition' => $this->requestable->condition ? true : false,
             'status' => $this->status,
