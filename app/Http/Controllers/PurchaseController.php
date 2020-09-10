@@ -416,13 +416,13 @@ class PurchaseController extends Controller
      */
 
     /**
-     * @param Purchase $Purchase
+     * @param Purchase $model
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Purchase $Purchase)
+    public function delete(Purchase $model)
     {
         try {
-            $this->removerService->delete($Purchase);
+            $this->removerService->delete($model);
             return response()->json(['message' => 'Compra removida com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
