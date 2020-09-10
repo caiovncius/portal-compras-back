@@ -94,7 +94,7 @@ class OfferUpdatorRequest extends FormRequest
             'products.*.productId' => 'required',
             'products.*.discountDeferred' => 'required|numeric',
             'products.*.discountOnCash' => 'required|numeric',
-            'products.*.minimum' => 'string|nullable',
+            'products.*.minimum' => 'nullable',
             'products.*.minimumPerFamily' => 'required|required',
             'products.*.obrigatory' => 'boolean',
             'products.*.factoryPrice' => 'string|nullable',
