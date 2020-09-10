@@ -24,7 +24,7 @@ class PurchaseCheck
             if (count($allIntentions) == 0) {
                 continue;
             }
-
+            
             if (($amountIntentions >= $purchase->minimum_billing_value) && 
                 ($totalIntentions >= $purchase->minimum_billing_quantity)) { 
                 if ($purchase->send_type == 'AUTOMATIC') {

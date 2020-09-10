@@ -30,6 +30,8 @@ class PurchaseMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $this->from('example@example.com')
+             ->markdown('mails.purchase')
+             ->with(['purchase' => $this->purchase]);
     }
 }
