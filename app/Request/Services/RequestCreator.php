@@ -2,6 +2,8 @@
 
 namespace App\Request\Services;
 
+use App\Offer;
+use App\Purchase;
 use App\Request;
 use App\Request\Contracts\RequestCreatable;
 use App\Services\RequestOffer;
@@ -17,6 +19,16 @@ class RequestCreator implements RequestCreatable
     {
         try {
             $type = $data['modelType'] == 'OFFER' ? 'App\Offer' : 'App\Purchase';
+
+            if ($data['modelType'] == 'OFFER') {
+                $model = Offer::find($data['modelId']);
+            } else {
+                $model = Purchase::find($data['modelId']);
+            }
+
+            if (is_null($model)) {
+                throw new \Exception(sprintf('Tipo %s não encontrado', $data['modelId']));
+            }
 
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $data['pharmacy_id'] = $data['pharmacyId'];
