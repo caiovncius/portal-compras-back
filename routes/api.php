@@ -215,7 +215,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/returns/{id}', 'ReturnsController@update')
          ->name('return.update')
          ->middleware('acl:Return,r,w');
-    Route::delete('/returns/{id}', 'ReturnsController@delete')
+    Route::delete('/returns/{return}', 'ReturnsController@delete')
          ->name('return.delete')
          ->middleware('acl:Return,r,w');
 
