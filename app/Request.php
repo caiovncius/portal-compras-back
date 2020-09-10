@@ -90,7 +90,7 @@ class Request extends Model
                         \App\ProductDetail::class,
                         'request_products',
                         'request_id',
-                        'product_detail_id'
+                        'product_id'
                     )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
     }
 }

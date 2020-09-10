@@ -421,13 +421,13 @@ class RequestController extends Controller
      */
 
     /**
-     * @param Request $request
+     * @param Request $model
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(RequestModel $request)
+    public function delete(RequestModel $model)
     {
         try {
-            $this->removerService->delete($request);
+            $this->removerService->delete($model);
             return response()->json(['message' => 'Compra removida com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
