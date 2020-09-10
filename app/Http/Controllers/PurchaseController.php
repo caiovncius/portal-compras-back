@@ -211,7 +211,7 @@ class PurchaseController extends Controller
         try {
             $input = $request->all();
             $input['status'] = 'OPEN';
-            $input['date'] = date('Y-m-d');
+//            $input['date'] = date('Y-m-d');
             return PurchaseListResource::collection($this->retrieverService->getPurchases($input)->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -543,7 +543,7 @@ class PurchaseController extends Controller
         try {
             foreach ($request->requests as $request) {
                 $requestModel = RequestModel::find($request['id']);
-                
+
                 (new RequestPurchase())->send($requestModel);
             }
         } catch (\Exception $exception) {
