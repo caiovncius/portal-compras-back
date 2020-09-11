@@ -69,7 +69,7 @@ class RequestToFile
     public function item($item, $model)
     {
         $html  = 2; //type
-        $html .= str_pad($item->product->code_ean, 14, 0, STR_PAD_LEFT); //code_ean
+        $html .= str_pad($item->code_ean, 14, 0, STR_PAD_LEFT); //code_ean
         $html .= str_pad($item->pivot->qtd, 5, 0, STR_PAD_LEFT); //qtd
         $html .= str_pad(str_replace('.', '', $item->pivot->value), 13, 0, STR_PAD_LEFT); //price
         $html .= PHP_EOL;
