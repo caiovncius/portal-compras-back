@@ -22,12 +22,12 @@ class PriorityCreator implements PriorityCreatable
 
             $partners = [];
 
-            if (isset($data['nationalPartner'])) {
-                array_merge($partners, $data['nationalPartner']);
+            if (isset($data['nationalPartners'])) {
+                array_merge($partners, $data['nationalPartners']);
             }
 
             if (isset($data['regionalPartners'])) {
-                array_merge($partners, $data['nationalPartner']);
+                array_merge($partners, $data['regionalPartners']);
             }
 
             if (!empty($partners)) {

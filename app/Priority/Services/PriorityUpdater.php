@@ -17,12 +17,12 @@ class PriorityUpdater implements PriorityUpdatable
 
             $partners = [];
 
-            if (isset($newData['nationalPartner'])) {
-                array_merge($partners, $newData['nationalPartner']);
+            if (isset($newData['nationalPartners'])) {
+                array_merge($partners, $newData['nationalPartners']);
             }
 
             if (isset($newData['regionalPartners'])) {
-                array_merge($partners, $newData['nationalPartner']);
+                array_merge($partners, $newData['regionalPartners']);
             }
 
             if (!empty($partners)) {
