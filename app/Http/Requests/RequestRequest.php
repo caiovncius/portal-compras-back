@@ -49,6 +49,7 @@ class RequestRequest extends FormRequest
             'modelId' => 'required',
             'modelType' => 'required',
             'pharmacyId' => 'required|exists:pharmacies,id',
+            'paymentMethod' => 'string|nullable|in:CASH,TERM',
             'value' => 'required|numeric',
             'products' => 'array|required',
             'products.*.productId' => 'required|exists:products,id',
