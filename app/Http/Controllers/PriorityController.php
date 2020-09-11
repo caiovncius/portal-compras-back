@@ -306,7 +306,7 @@ class PriorityController extends Controller
     /**
      * @OA\Get(
      *     tags={"Priority"},
-     *     path="/priotities/national-partners",
+     *     path="/priorities/national-partners",
      *     @OA\Response(
      *         response=200,
      *         description="",
@@ -339,7 +339,7 @@ class PriorityController extends Controller
     /**
      * @OA\Get(
      *     tags={"Priority"},
-     *     path="/priotities/regional-partners",
+     *     path="/priorities/regional-partners",
      *     @OA\Response(
      *         response=200,
      *         description="",

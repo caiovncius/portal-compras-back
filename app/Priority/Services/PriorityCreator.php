@@ -20,8 +20,18 @@ class PriorityCreator implements PriorityCreatable
             $priority->description = $data['description'];
             $priority->save();
 
-            if (isset($data['partners'])) {
-                $priority->partners()->sync($data['partners']);
+            $partners = [];
+
+            if (isset($data['nationalPartner'])) {
+                array_merge($partners, $data['nationalPartner']);
+            }
+
+            if (isset($data['regionalPartners'])) {
+                array_merge($partners, $data['nationalPartner']);
+            }
+
+            if (!empty($partners)) {
+                $priority->partners()->sync($partners);
             }
 
             return true;
