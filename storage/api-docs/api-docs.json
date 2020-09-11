@@ -4,309 +4,7 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": ""
-        }
-    ],
     "paths": {
-        "/accompaniments": {
-            "get": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "parameters": [
-                    {
-                        "name": "codeOrder",
-                        "in": "query",
-                        "example": "001"
-                    },
-                    {
-                        "name": "codeOffer",
-                        "in": "query",
-                        "example": "321"
-                    },
-                    {
-                        "name": "codePharmacy",
-                        "in": "query",
-                        "example": "321"
-                    },
-                    {
-                        "name": "startDate",
-                        "in": "query",
-                        "example": "1992-10-11"
-                    },
-                    {
-                        "name": "endDate",
-                        "in": "query",
-                        "example": "1992-10-11"
-                    },
-                    {
-                        "name": "commercial",
-                        "in": "query",
-                        "example": "Teste"
-                    },
-                    {
-                        "name": "sendType",
-                        "in": "query",
-                        "example": "TESTE"
-                    },
-                    {
-                        "name": "status",
-                        "in": "query",
-                        "example": "Ativo"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/AccompanimentListResource"
-                                            }
-                                        },
-                                        "links": {
-                                            "allOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/PaginationLinks"
-                                                }
-                                            ]
-                                        },
-                                        "meta": {
-                                            "allOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/PaginationMeta"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/AccompanimentCreatorRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "example": "Acompanhamento criado com sucesso"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ValidationResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de erro"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/accompaniments/{id}": {
-            "get": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "example": "2"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/components/schemas/AccompanimentListResource"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de error"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "example": "2"
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/AccompanimentUpdatorRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "example": "Acompanhamento atualizado com sucesso"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ValidationResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de erro"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "example": "2"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "example": "Acompanhamento removido com sucesso"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de error"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/cities/by-state/{state}": {
             "get": {
                 "tags": [
@@ -6111,6 +5809,89 @@
                 }
             }
         },
+        "/accompaniments": {
+            "get": {
+                "tags": [
+                    "Accompaniment"
+                ],
+                "parameters": [
+                    {
+                        "name": "offerCode",
+                        "in": "query",
+                        "example": "OFFER9980"
+                    },
+                    {
+                        "name": "pharmacyId",
+                        "in": "query",
+                        "example": "teste"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "active"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "example": "OFFER"
+                    },
+                    {
+                        "name": "commercial",
+                        "in": "query",
+                        "example": "name"
+                    },
+                    {
+                        "name": "sendType",
+                        "in": "query",
+                        "example": "MANUAL"
+                    },
+                    {
+                        "name": "date1",
+                        "in": "query",
+                        "example": "2020-05-25"
+                    },
+                    {
+                        "name": "date2",
+                        "in": "query",
+                        "example": "2020-06-25"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/RequestListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/returns": {
             "get": {
                 "tags": [
@@ -10501,25 +10282,53 @@
                         "type": "integer",
                         "example": "001"
                     },
-                    "offerName": {
+                    "pharmacyName": {
                         "type": "string",
                         "example": "Teste"
+                    },
+                    "pharmacyRegister": {
+                        "type": "string",
+                        "example": "00000000191"
+                    },
+                    "offerName": {
+                        "type": "string",
+                        "example": "MANUAL"
                     },
                     "offerCondition": {
                         "type": "string",
                         "example": "true"
                     },
-                    "sendType": {
+                    "qtdItens": {
                         "type": "string",
-                        "example": "MANUAL"
+                        "example": "2"
+                    },
+                    "qtdUnities": {
+                        "type": "string",
+                        "example": "6"
                     },
                     "status": {
                         "type": "string",
-                        "example": "CREATED"
+                        "example": "WAITING_RETURN"
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "100.30"
+                    },
+                    "subtotal": {
+                        "type": "string",
+                        "example": "95"
                     },
                     "sendDate": {
                         "type": "string",
                         "example": "2020-09-25"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "MANUAL"
+                    },
+                    "partnerName": {
+                        "type": "string",
+                        "example": "TESTE"
                     },
                     "products": {
                         "type": "array",
@@ -10968,9 +10777,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
-                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
-                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
+                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
+                        "tokenUrl": "http://localhost:8000/oauth/token",
+                        "refreshUrl": "http://localhost:8000/token/refresh",
                         "scopes": []
                     }
                 }

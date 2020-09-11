@@ -74,14 +74,4 @@ class ProductDetail extends Model
     {
         return $this->belongsTo('App\State', 'state_id');
     }
-
-    public function requests()
-    {
-        return $this->belongsToMany(
-                        'App\Request',
-                        'request_products',
-                        'product_detail_id',
-                        'request_id',
-                    )->withPivot(['qtd', 'qtdReturn', 'status', 'distributor_id']);
-    }
 }

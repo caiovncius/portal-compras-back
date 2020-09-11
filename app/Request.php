@@ -87,10 +87,10 @@ class Request extends Model
     public function products()
     {
         return $this->belongsToMany(
-                        \App\ProductDetail::class,
-                        'request_products',
-                        'request_id',
-                        'product_id'
-                    )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
+            'App\Product',
+            'request_products',
+            'request_id',
+            'product_id'
+        )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
     }
 }

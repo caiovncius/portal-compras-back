@@ -61,4 +61,17 @@ class Product extends Model
     {
         return $this->hasMany('App\ProductDetail', 'product_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function requests()
+    {
+        return $this->belongsToMany(
+            'App\Request',
+            'request_products',
+            'product_id',
+            'request_id',
+        )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
+    }
 }
