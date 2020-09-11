@@ -28,6 +28,6 @@ class Priority extends Model
      */
     public function partners()
     {
-        return $this->belongsToMany(Distributor::class, 'priority_partners');
+        return $this->belongsToMany(Distributor::class, 'priority_partners', 'priority_id', 'distributor_id');
     }
 }
