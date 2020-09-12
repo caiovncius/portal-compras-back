@@ -19,7 +19,7 @@ class PriorityRetriever implements PriorityRetrievable
             }
 
             if (isset($params['description'])) {
-                $query->where('description', $params['description']);
+                $query->where('description', 'like', '%' . $params['description'] . '%');
             }
 
             if (isset($params['status'])) {

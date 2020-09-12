@@ -408,12 +408,11 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/mass-actions/distributor/delete', 'DistributorController@massDelete')
         ->name('distributor.mass.delete');
 
+    Route::get('/priorities/search', 'PriorityController@search')
+        ->name('priority.list.search');
+
     Route::get('/priorities', 'PriorityController@list')
         ->name('priority.list')
-        ->middleware('acl:Priority,r');
-
-    Route::get('/priorities/search', 'PriorityController@search')
-        ->name('priority.list.search')
         ->middleware('acl:Priority,r');
 
     Route::get('/priorities/national-partners', 'PriorityController@listNationalPartners')

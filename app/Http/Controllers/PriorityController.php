@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PriorityRequest;
 use App\Http\Resources\DistributorListResource;
+use App\Http\Resources\PriorityAutoCompleteResource;
 use App\Http\Resources\PriorityListResource;
 use App\Http\Resources\PriorityResource;
 use App\Priority;
@@ -419,7 +420,7 @@ class PriorityController extends Controller
     public function search(Request $request)
     {
         try {
-            return PriorityListResource::collection($this->retrieverService->getPriorities($request->query())->get());
+            return PriorityAutoCompleteResource::collection($this->retrieverService->getPriorities($request->all())->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

@@ -59,7 +59,7 @@ class PharmacyResource extends JsonResource
             'supervisorId' => $this->supervisor_id,
             'supervisor' => UserAutoCompleteResource::make($this->supervisor),
             'partnerPriority' => (int)$this->partner_priority,
-            'priority' => PriorityResource::make($this->priority),
+            'priority' => PriorityAutoCompleteResource::make($this->priority),
             'address' => $this->address,
             'address2' => $this->address_2,
             'addressNumber' => $this->address_number,
