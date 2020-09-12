@@ -39,8 +39,6 @@ class UserRetriever implements UserRetrievable
                 $usersQuery->where('type', $querySearchParams['type']);
             }
 
-            //$usersQuery->where('type', '!=', User::USER_TYPE_MASTER);
-
             return $usersQuery;
 
         } catch (\Exception $exception) {
