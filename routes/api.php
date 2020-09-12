@@ -87,6 +87,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('user.delete')
          ->middleware('acl:User,r,w');
 
+    Route::get('/users/search', 'UserController@search')
+        ->name('user.search');
+
     Route::get('/profiles', 'ProfileController@list')
          ->name('profile.list')
          ->middleware('acl:Profile,r');

@@ -6,6 +6,7 @@ use App\Http\Requests\UserCreatorRequest;
 use App\Http\Requests\UserMassCreateRequest;
 use App\Http\Requests\UserUpdatorRequest;
 use App\Http\Resources\PharmacyResource;
+use App\Http\Resources\UserAutoCompleteResource;
 use App\Http\Resources\UserListResource;
 use App\Http\Resources\UserProfileResource;
 use App\Http\Resources\UserResource;
@@ -687,6 +688,19 @@ class UserController extends Controller
                 'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
                 200
             );
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function search(Request $request)
+    {
+        try {
+            return UserAutoCompleteResource::collection($this->retreiverService->getUsers($request->all())->get());
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
