@@ -700,7 +700,7 @@ class UserController extends Controller
     public function search(Request $request)
     {
         try {
-            return UserAutoCompleteResource::collection($this->retreiverService->getUsers($request->all())->get());
+            return UserAutoCompleteResource::collection($this->retreiverService->getUsers($request->all())->limit(100)->get());
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
