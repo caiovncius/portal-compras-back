@@ -57,6 +57,8 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/cities/by-state/{state}', 'CityController@allCities')
          ->name('cities.byState');
 
+    Route::get('/users/search', 'UserController@search')
+        ->name('user.search');
     Route::get('/users', 'UserController@list')
          ->name('user.list')
          ->middleware('acl:User,r');
@@ -86,9 +88,6 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/users/{user}', 'UserController@delete')
          ->name('user.delete')
          ->middleware('acl:User,r,w');
-
-    Route::get('/users/search', 'UserController@search')
-        ->name('user.search');
 
     Route::get('/profiles', 'ProfileController@list')
          ->name('profile.list')
