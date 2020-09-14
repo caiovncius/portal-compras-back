@@ -57,6 +57,8 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/cities/by-state/{state}', 'CityController@allCities')
          ->name('cities.byState');
 
+    Route::get('/users/search', 'UserController@search')
+        ->name('user.search');
     Route::get('/users', 'UserController@list')
          ->name('user.list')
          ->middleware('acl:User,r');
@@ -406,12 +408,11 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/mass-actions/distributor/delete', 'DistributorController@massDelete')
         ->name('distributor.mass.delete');
 
+    Route::get('/priorities/search', 'PriorityController@search')
+        ->name('priority.list.search');
+
     Route::get('/priorities', 'PriorityController@list')
         ->name('priority.list')
-        ->middleware('acl:Priority,r');
-
-    Route::get('/priorities/search', 'PriorityController@search')
-        ->name('priority.list.search')
         ->middleware('acl:Priority,r');
 
     Route::get('/priorities/national-partners', 'PriorityController@listNationalPartners')

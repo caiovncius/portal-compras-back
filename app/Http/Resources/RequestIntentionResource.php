@@ -46,7 +46,7 @@ class RequestIntentionResource extends JsonResource
             'pharmacyRegisterNumber' => $this->pharmacy->cnpj,
             'createdAt' => $this->created_at,
             'totalItems' => $this->products()->count(),
-            'totalUnits' => $this->products()->count(),
+            'totalUnits' => $this->products->sum('pivot.qtd'),
             'subtotal' => $this->value,
             'total' => $this->value,
             'status' => $this->status,

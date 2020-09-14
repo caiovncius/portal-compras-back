@@ -112,7 +112,7 @@ class RequestOffer
         $status = 'BILLED';
         if ((int) $footer['qtdItemsAnswer'] == 0) {
             $status = 'NOT_BILLED';
-        } elseif ((int) $footer['qtdItems'] < (int) $footer['qtdItemsAnswer']) {
+        } else if ((int) $footer['qtdItems'] != (int) $footer['qtdItemsAnswer']) {
             $status = 'BILLED_PARTIAL';
         }
 

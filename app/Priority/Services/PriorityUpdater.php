@@ -15,8 +15,18 @@ class PriorityUpdater implements PriorityUpdatable
             $priority->fill($newData);
             $priority->save();
 
-            if (isset($data['partners'])) {
-                $priority->partners()->sync($newData['partners']);
+            $partners = [];
+
+            if (isset($newData['nationalPartners']) && !empty($newData['nationalPartners'])) {
+                $partners = array_merge($partners, $newData['nationalPartners']);
+            }
+
+            if (isset($newData['regionalPartners']) && !empty($newData['regionalPartners'])) {
+                $partners = array_merge($partners, $newData['regionalPartners']);
+            }
+
+            if (!empty($partners)) {
+                $priority->partners()->sync($partners);
             }
 
             return true;

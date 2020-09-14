@@ -38,8 +38,12 @@ class PriorityResource extends JsonResource
             'id' => $this->id,
             'description' => $this->description,
             'status' => $this->status,
-            'nationalPartners' => DistributorListResource::collection($this->nationalPartners()->get()),
-            'regionalPartners' => DistributorListResource::collection($this->regionalPartners()->get())
+            'nationalPartners' => DistributorListResource::collection(
+                $this->partners()->where('category', \App\Distributor::CATEGORY_NATIONAL)->get()
+            ),
+            'regionalPartners' => DistributorListResource::collection(
+                $this->partners()->where('category', \App\Distributor::CATEGORY_REGIONAL)->get()
+            )
         ];
     }
 }

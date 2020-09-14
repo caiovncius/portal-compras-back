@@ -87,7 +87,7 @@ class Request extends Model
     public function products()
     {
         return $this->belongsToMany(
-            'App\Product',
+            \App\Product::class,
             'request_products',
             'request_id',
             'product_id'
