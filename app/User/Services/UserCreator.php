@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\User\Services;
-
 
 use App\Notifications\Wellcome;
 use App\User;

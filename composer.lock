@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cce0a1571aa04e214b7dde90bc43ad9c",
+    "content-hash": "fee263f9646ec7dc20cfd26597d77e1b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5800,6 +5800,54 @@
             "time": "2020-06-15T23:49:30+00:00"
         },
         {
+            "name": "wuwx/laravel-hashing-md5",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wuwx/laravel-hashing-md5.git",
+                "reference": "cc4075ce014b8eec990989ea172c1bccb302e99e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wuwx/laravel-hashing-md5/zipball/cc4075ce014b8eec990989ea172c1bccb302e99e",
+                "reference": "cc4075ce014b8eec990989ea172c1bccb302e99e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.6|^6.0|^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wuwx\\LaravelHashingMd5\\LaravelHashingMd5ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wuwx\\LaravelHashingMd5\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wu Weixin",
+                    "email": "wuweixin@gmail.com"
+                }
+            ],
+            "keywords": [
+                "MD5",
+                "hasher",
+                "hashing",
+                "laravel"
+            ],
+            "time": "2020-09-13T16:55:07+00:00"
+        },
+        {
             "name": "zircote/swagger-php",
             "version": "3.0.4",
             "source": {
@@ -7323,6 +7371,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
