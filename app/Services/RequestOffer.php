@@ -61,16 +61,16 @@ class RequestOffer
         $requests = RequestModel::where('status', 'WAITING_RETURN')
                                 ->where('requestable_type', 'App\Offer')
                                 ->get();
-        foreach($requests as $request) {
+        foreach ($requests as $request) {
             $partnerConnection = $request->partner->connection;
             $connection = (new FtpService)->setConnection($partnerConnection);
             $file = (new RequestToFile)->filename($request);
             $filename = $partnerConnection->path_return.'/'.str_replace('ped', 'not', $file);
-            if(! \Storage::disk('onthefly')->exists($filename)) {
+            if (! \Storage::disk('onthefly')->exists($filename)) {
                 continue;
             }
             $fileReturn = (new FileReturn)->file($filename);
-            foreach($request->products as $key => $item) {
+            foreach ($request->products as $key => $item) {
                 $returnItem = $fileReturn['items'][$key];
                 $statusProduct = $this->getStatusProduct($returnItem['refuse']);
                 $returnModel = Returns::whereCode($returnItem['refuse'])->first();
@@ -118,5 +118,4 @@ class RequestOffer
 
         return $status;
     }
-
 }
