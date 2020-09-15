@@ -37,6 +37,16 @@ class PharmacyUpdator implements PharmacyUpdatable
                 $model->city_id = $data['cityId'];
             }
 
+            $city = null;
+
+            if (isset($pharmacyData['cityIbgeCode']) && !empty($pharmacyData['cityIbgeCode'])) {
+                $city = \App\City::where('ibge_code', $pharmacyData['cityIbgeCode'])->first();
+            }
+
+            if (!is_null($city)) {
+                $model->city_id = $city->id;
+            }
+
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->save();
 

@@ -27,6 +27,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="district", type="string", example="Bairro"),
  *     @OA\Property(property="zipCode", type="string", example="74000-00"),
  *     @OA\Property(property="cityId", type="int", example="3"),
+ *     @OA\Property(property="cityIbgeCode", type="string", example="12312"),
  *     @OA\Property(
  *         property="contacts",
  *         type="array",
@@ -61,6 +62,7 @@ class PharmacyCreatorRequest extends FormRequest
             'email' => 'email',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'cityId' => 'required|integer|exists:cities,id',
+            'cityIbgeCode' => 'nullable',
             'stateRegistration' => 'string',
             'phone' => 'string',
             'supervisorId' => 'exists:users,id',

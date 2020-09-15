@@ -34,8 +34,21 @@ class PharmacyCreator implements PharmacyCreatable
             $pharmacy->address_number = isset($pharmacyData['addressNumber']) ? $pharmacyData['addressNumber'] : null;
             $pharmacy->district = isset($pharmacyData['district']) ? $pharmacyData['district'] : null;
             $pharmacy->zip_code = isset($pharmacyData['zipCode']) ? $pharmacyData['zipCode'] : null;
-            $pharmacy->city_id = isset($pharmacyData['cityId']) ? $pharmacyData['cityId'] : null;
             $pharmacy->updated_id = auth()->guard('api')->user()->id;
+            $pharmacy->city_id = isset($pharmacyData['cityId']) ? $pharmacyData['cityId'] : null;
+
+            $city = null;
+
+            if (isset($pharmacyData['cityIbgeCode']) && !empty($pharmacyData['cityIbgeCode'])) {
+                $city = \App\City::where('ibge_code', $pharmacyData['cityIbgeCode'])->first();
+            }
+
+
+            if (!is_null($city)) {
+                $pharmacy->city_id = $city->id;
+            }
+
+
             $pharmacy->save();
 
             if (isset($pharmacyData['contacts'])) {

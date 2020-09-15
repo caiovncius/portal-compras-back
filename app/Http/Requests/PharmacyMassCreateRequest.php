@@ -46,6 +46,7 @@ class PharmacyMassCreateRequest extends FormRequest
             'data.*.email' => 'email',
             'data.*.status' => 'nullable|in:ACTIVE,INACTIVE',
             'data.*.cityId' => 'nullable|integer|exists:cities,id',
+            'data.*.cityIbgeCode' => 'nullable',
             'data.*.stateRegistration' => 'string',
             'data.*.phone' => 'string',
             'data.*.supervisorId' => 'exists:users,id',

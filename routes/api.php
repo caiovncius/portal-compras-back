@@ -366,39 +366,39 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('accompaniment.list')
          ->middleware('acl:Request,r');
 
-    Route::post('/mass-actions/laboratory/create', 'LaboratoryController@massStore')
+    Route::post('/mass-actions/laboratories/create', 'LaboratoryController@massStore')
         ->name('laboratory.mass.create');
-    Route::put('/mass-actions/laboratory/update', 'LaboratoryController@massUpdate')
+    Route::put('/mass-actions/laboratories/update', 'LaboratoryController@massUpdate')
         ->name('laboratory.mass.update');
-    Route::delete('/mass-actions/laboratory/delete', 'LaboratoryController@massDelete')
+    Route::delete('/mass-actions/laboratories/delete', 'LaboratoryController@massDelete')
         ->name('laboratory.mass.delete');
 
-    Route::post('/mass-actions/pharmacy/create', 'PharmacyController@massStore')
+    Route::post('/mass-actions/pharmacies/create', 'PharmacyController@massStore')
         ->name('pharmacy.mass.create');
-    Route::put('/mass-actions/pharmacy/update', 'PharmacyController@massUpdate')
+    Route::put('/mass-actions/pharmacies/update', 'PharmacyController@massUpdate')
         ->name('pharmacy.mass.update');
-    Route::delete('/mass-actions/pharmacy/delete', 'PharmacyController@massDelete')
+    Route::delete('/mass-actions/pharmacies/delete', 'PharmacyController@massDelete')
         ->name('pharmacy.mass.delete');
 
-    Route::post('/mass-actions/product/create', 'ProductController@massStore')
+    Route::post('/mass-actions/products/create', 'ProductController@massStore')
         ->name('product.mass.create');
-    Route::put('/mass-actions/product/update', 'ProductController@massUpdate')
+    Route::put('/mass-actions/products/update', 'ProductController@massUpdate')
         ->name('product.mass.update');
-    Route::delete('/mass-actions/product/delete', 'ProductController@massDelete')
+    Route::delete('/mass-actions/products/delete', 'ProductController@massDelete')
         ->name('product.mass.delete');
 
-    Route::post('/mass-actions/user/create', 'UserController@massStore')
+    Route::post('/mass-actions/users/create', 'UserController@massStore')
         ->name('user.mass.create');
-    Route::put('/mass-actions/user/update', 'UserController@massUpdate')
+    Route::put('/mass-actions/users/update', 'UserController@massUpdate')
         ->name('user.mass.update');
-    Route::delete('/mass-actions/user/delete', 'UserController@massDelete')
+    Route::delete('/mass-actions/users/delete', 'UserController@massDelete')
         ->name('user.mass.delete');
 
-    Route::post('/mass-actions/program/create', 'ProgramController@massStore')
+    Route::post('/mass-actions/programs/create', 'ProgramController@massStore')
         ->name('program.mass.create');
-    Route::put('/mass-actions/program/update', 'ProgramController@massUpdate')
+    Route::put('/mass-actions/programs/update', 'ProgramController@massUpdate')
         ->name('program.mass.update');
-    Route::delete('/mass-actions/program/delete', 'ProgramController@massDelete')
+    Route::delete('/mass-actions/programs/delete', 'ProgramController@massDelete')
         ->name('program.mass.delete');
 
     Route::post('/mass-actions/distributor/create', 'DistributorController@massStore')
