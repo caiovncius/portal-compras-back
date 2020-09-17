@@ -15,9 +15,10 @@ class OfferRemover implements OfferRemovable
     public function delete(Offer $model)
     {
         try {
+
             $model->partners()->delete();
             $model->delete();
-            
+
             return true;
         } catch (\Exception $e) {
             throw  $e;

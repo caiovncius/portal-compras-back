@@ -296,7 +296,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/offers/{model}', 'OfferController@update')
          ->name('offer.update')
          ->middleware('acl:Offer,r,w');
-    Route::delete('/offers/{model}', 'OfferController@delete')
+    Route::delete('/offers/{offer}', 'OfferController@delete')
          ->name('offer.delete')
          ->middleware('acl:Offer,r,w');
     Route::post('offer-products/{offer}', 'ProductDetailController@offer')
