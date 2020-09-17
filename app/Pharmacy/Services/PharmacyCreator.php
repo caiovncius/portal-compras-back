@@ -27,7 +27,6 @@ class PharmacyCreator implements PharmacyCreatable
             $pharmacy->state_registration = isset($pharmacyData['stateRegistration']) ? $pharmacyData['stateRegistration'] : null ;
             $pharmacy->email = isset($pharmacyData['email']) ? $pharmacyData['email'] : null;
             $pharmacy->phone = isset($pharmacyData['phone']) ? $pharmacyData['phone'] : null;
-            $pharmacy->supervisor_id = isset($pharmacyData['supervisorId']) ? $pharmacyData['supervisorId'] : null;
             $pharmacy->partner_priority = isset($pharmacyData['partnerPriority']) ? $pharmacyData['partnerPriority'] : null;
             $pharmacy->address = isset($pharmacyData['address']) ? $pharmacyData['address'] : null;
             $pharmacy->address_2 = isset($pharmacyData['address2']) ? $pharmacyData['address2'] : null;
@@ -36,6 +35,11 @@ class PharmacyCreator implements PharmacyCreatable
             $pharmacy->zip_code = isset($pharmacyData['zipCode']) ? $pharmacyData['zipCode'] : null;
             $pharmacy->updated_id = auth()->guard('api')->user()->id;
             $pharmacy->city_id = isset($pharmacyData['cityId']) ? $pharmacyData['cityId'] : null;
+            $pharmacy->supervisor_id = null;
+
+            if (isset($pharmacyData['supervisor']) && isset($pharmacyData['supervisor']['id'])) {
+                $pharmacy->supervisor_id = $pharmacyData['supervisor']['id'];
+            }
 
             $city = null;
 
