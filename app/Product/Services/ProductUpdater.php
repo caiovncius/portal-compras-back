@@ -24,6 +24,7 @@ class ProductUpdater implements ProductUpdatable
             $model->laboratory_id = $data['laboratoryId'];
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
+            $model->status = $data['status'];
             $model->save();
 
             if (isset($data['secondaryEanCodes'])) {
