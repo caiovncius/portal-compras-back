@@ -34,7 +34,10 @@ class UserCreator implements UserCreatable
             $user->save();
 
             if (isset($data['pharmacies'])) {
-                foreach ($data['pharmacies'] as $data) {
+                $user->pharmacies()->detach();
+                $collectPharmacies = collect($data['pharmacies']);
+                $uniquePharmacies = $collectPharmacies->unique('id');
+                foreach ($uniquePharmacies->toArray() as $data) {
                     $user->pharmacies()->attach($data['id']);
                 }
             }

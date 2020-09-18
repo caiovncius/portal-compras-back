@@ -31,7 +31,9 @@ class UserUpdater implements UserUpdatable
 
             if (isset($data['pharmacies'])) {
                 $user->pharmacies()->detach();
-                foreach ($data['pharmacies'] as $data) {
+                $collectPharmacies = collect($data['pharmacies']);
+                $uniquePharmacies = $collectPharmacies->unique('id');
+                foreach ($uniquePharmacies->toArray() as $data) {
                     $user->pharmacies()->attach($data['id']);
                 }
             }
