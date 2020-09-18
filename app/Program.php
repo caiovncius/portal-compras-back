@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Program extends Model
 {
+    const PROGRAM_STATUS_ACTIVE = 'ACTIVE';
+    const PROGRAM_STATUS_INACTIVE = 'INACTIVE';
+
     protected $fillable = [
         'code',
         'name',

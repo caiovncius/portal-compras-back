@@ -15,9 +15,9 @@ class ProgramRemover implements ProgramRemovable
     public function delete(Program $model)
     {
         try {
-            $model->contacts()->delete();
-            $model->delete();
-            
+            $model->status = Program::PROGRAM_STATUS_INACTIVE;
+            $model->save();
+
             return true;
         } catch (\Exception $e) {
             throw  $e;

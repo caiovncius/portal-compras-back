@@ -31,6 +31,9 @@ class Distributor extends Model
     const CATEGORY_NATIONAL = 'NATIONAL';
     const CATEGORY_REGIONAL = 'REGIONAL';
 
+    const DISTRIBUTOR_STATUS_ACTIVE = 'ACTIVE';
+    const DISTRIBUTOR_STATUS_INACTIVE = 'INACTIVE';
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
