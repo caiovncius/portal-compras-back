@@ -42,8 +42,8 @@ class ProductUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required',
-            'codeEan' => 'required|string',
+            'code' => 'required|string|unique:products,code,' . $this->id,
+            'codeEan' => 'required|string|unique:products,code_ean,' . $this->id,
             'description' => 'required|string',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'laboratoryId' => 'nullable|exists:laboratories,id',

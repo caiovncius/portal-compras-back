@@ -44,7 +44,7 @@ class ProductCreatorRequest extends FormRequest
     {
         return [
             'code' => 'required|unique:products,code',
-            'codeEan' => 'required|string',
+            'codeEan' => 'required|string|unique:products,code_ean',
             'description' => 'required|string',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'laboratoryId' => 'nullable|exists:laboratories,id',
