@@ -150,6 +150,9 @@ class UserController extends Controller
      */
     public function managers(Request $request) {
         try {
+            $searchQuery = $request->query();
+            $searchQuery['type'] = User::USER_TYPE_PHARMACY;
+            $searchQuery['status'] = User::USER_STATUS_ACTIVE;
             return UserListResource::collection($this->retreiverService->getUsers($request->query())->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);

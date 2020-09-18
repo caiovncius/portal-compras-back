@@ -58,7 +58,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     ),
  * )
  */
-class OfferCreatorRequest extends FormRequest
+class   OfferCreatorRequest extends FormRequest
 {
     /**
      * Determine if the Offer is authorized to make this request.
