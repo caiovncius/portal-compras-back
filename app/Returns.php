@@ -23,6 +23,9 @@ class Returns extends Model
         'updated_id'
     ];
 
+    const RETURN_STATUS_ACTIVE = 'ACTIVE';
+    const RETURN_STATUS_INACTIVE = 'INACTIVE';
+
     public function returnable()
     {
         return $this->morphTo();
