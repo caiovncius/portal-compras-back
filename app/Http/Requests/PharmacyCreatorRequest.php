@@ -58,7 +58,7 @@ class PharmacyCreatorRequest extends FormRequest
             'code' => 'required|string|unique:pharmacies',
             'socialName' => 'required|string',
             'name' => 'required|string',
-            'cnpj' => 'required|cnpj',
+            'cnpj' => 'required|cnpj|unique:pharmacies,cnpj',
             'email' => 'email',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'cityId' => 'required|integer|exists:cities,id',
