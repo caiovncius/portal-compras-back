@@ -15,8 +15,8 @@ class ProductRemover implements ProductRemovable
     public function delete(Product $product)
     {
         try {
+            $product->secondaryEanCodes()->delete();
             $product->delete();
-            
             return true;
         } catch (\Exception $e) {
             throw  $e;
