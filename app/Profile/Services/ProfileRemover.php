@@ -18,8 +18,8 @@ class ProfileRemover implements ProfileRemovable
     public function delete(Profile $profile)
     {
         try {
-            $profile->functionalities()->detach();
-            $profile->delete();
+            $profile->status = Profile::PROFILE_STATUS_INACTIVE;
+            $profile->save();
             return true;
         } catch (\Exception $exception) {
             throw $exception;
