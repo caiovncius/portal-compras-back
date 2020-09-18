@@ -17,7 +17,7 @@ class UserRetriever implements UserRetrievable
     public function getUsers(array $querySearchParams = [])
     {
         try {
-            $usersQuery = User::query();
+            $usersQuery = User::with(['pharmacies']);
 
             if (isset($querySearchParams['name']) && !empty($querySearchParams['name'])) {
                 $usersQuery->where('name', 'like', '%' . $querySearchParams['name'] . '%');
@@ -37,6 +37,12 @@ class UserRetriever implements UserRetrievable
 
             if (isset($querySearchParams['type']) && !empty($querySearchParams['type'])) {
                 $usersQuery->where('type', $querySearchParams['type']);
+            }
+
+            if (isset($querySearchParams['cnpj']) && !empty($querySearchParams['cnpj'])) {
+                $usersQuery->whereHas('pharmacies', function ($q) use($querySearchParams) {
+                    $q->where('cnpj', 'like', '%' . $querySearchParams['cnpj'] . '%');
+                });
             }
 
             return $usersQuery;
