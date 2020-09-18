@@ -20,7 +20,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *    ),
  * )
  */
-class ReturnMorphRequest extends FormRequest
+class ReturnMorphUpdatorRequest extends FormRequest
 {
     /**
      * Determine if the Return is authorized to make this request.
@@ -41,7 +41,7 @@ class ReturnMorphRequest extends FormRequest
     {
         return [
             'returns' => 'array|nullable',
-            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,',
+            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,' . $this->id,
             'returns.*.description' => 'required|string',
         ];
     }

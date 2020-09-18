@@ -49,6 +49,9 @@ class DistributorUpdatorRequest extends FormRequest
             'contacts.*.name' => 'required|string',
             'contacts.*.email' => 'required|email',
             'contacts.*.telephone' => 'required|string',
+            'returns' => 'array|nullable',
+            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,' . $this->id,
+            'returns.*.description' => 'required|string',
         ];
     }
 
