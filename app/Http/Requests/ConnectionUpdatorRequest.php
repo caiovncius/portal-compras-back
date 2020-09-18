@@ -19,7 +19,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="password", type="string", example="123456"),
  *     @OA\Property(property="returnDirectory", type="string", example="/var/www"),
  *     @OA\Property(property="port", type="string", example="22"),
- *     @OA\Property(property="remove_file", type="boolean", example="0"),
+ *     @OA\Property(property="removeFile", type="boolean", example="0"),
  *     @OA\Property(property="mask", type="string", example="teste"),
  * )
  */
@@ -52,7 +52,7 @@ class ConnectionUpdatorRequest extends FormRequest
             'returnDirectory' => 'required|string',
             'port' => 'numeric',
             'mask' => 'string',
-            'remove_file' => 'boolean',
+            'removeFile' => 'boolean',
         ];
     }
 
