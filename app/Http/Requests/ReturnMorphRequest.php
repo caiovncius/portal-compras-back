@@ -41,7 +41,7 @@ class ReturnMorphRequest extends FormRequest
     {
         return [
             'returns' => 'array|nullable',
-            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,',
+            'returns.*.code' => 'required|string',
             'returns.*.description' => 'required|string',
         ];
     }

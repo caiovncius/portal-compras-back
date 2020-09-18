@@ -34,7 +34,7 @@ class ReturnUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:returns,code,returnable_type,' . $this->id,
+            'code' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE'
         ];

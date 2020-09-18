@@ -26,7 +26,7 @@ class ConnectionCreator implements ConnectionCreatable
             $connection->path_send = $data['sendDirectory'];
             $connection->path_return = $data['returnDirectory'];
             $connection->mask = isset($data['mask']) ? $data['mask'] : null;
-            $connection->removeFile = isset($data['remove_file']) ? $data['remove_file'] : false;
+            $connection->remove_file = isset($data['removeFile']) ? $data['removeFile'] : false;
             $connection->port = isset($data['port']) ? $data['port'] : null;
             $connection->updated_id = auth()->guard('api')->user()->id;
 

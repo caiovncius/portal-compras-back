@@ -41,7 +41,7 @@ class ReturnMorphUpdatorRequest extends FormRequest
     {
         return [
             'returns' => 'array|nullable',
-            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,' . $this->id,
+            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,returnable_id' . $this->id,
             'returns.*.description' => 'required|string',
         ];
     }
