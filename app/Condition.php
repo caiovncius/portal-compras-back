@@ -17,6 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Condition extends Model
 {
+
+    const CONDITION_STATUS_ACTIVE = 'ACTIVE';
+    const CONDITION_STATUS_INACTIVE = 'INACTIVE';
     protected $fillable = [
         'description',
         'code',
