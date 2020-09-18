@@ -32,6 +32,10 @@ class UserUpdater implements UserUpdatable
                 $user->username = $data['username'];
             }
 
+            if (isset($data['manager'])) {
+                $user->manager_id = $data['manager'];
+            }
+
             $user->save();
 
             if (isset($data['pharmacies'])) {

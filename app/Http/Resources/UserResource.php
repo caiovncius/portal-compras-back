@@ -43,7 +43,7 @@ class UserResource extends JsonResource
             'type' => $this->type,
             'status' => $this->status,
             'profileId' => $this->profile_id,
-            'manager' => 'none',
+            'manager' => $this->manager_id,
             'pharmacies' => PharmacyResource::collection($this->pharmacies),
             'createdAt' => $this->created_at,
             'updated_user' => $this->user ? $this->user->name : '',

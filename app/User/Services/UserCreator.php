@@ -31,6 +31,7 @@ class UserCreator implements UserCreatable
             $user->status = $data['status'];
             $user->type = $data['type'];
             $user->profile_id = $data['profileId'];
+            $user->manager_id = isset($data['manager']) ? $data['manager'] : null;
             $user->updated_id = auth()->guard('api')->user()->id;
             $user->updated_at = date('Y-m-d H:i:s');
 
