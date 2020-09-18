@@ -50,7 +50,7 @@ class ConditionCreatorRequest extends FormRequest
             'status' => 'required|in:ACTIVE,INACTIVE',
             'partners' => 'array|required|min:1',
             'partners.*.type' => 'required|in:DISTRIBUTOR,PROGRAM',
-            'partners.*.partnerId' => 'required|numeric'
+            'partners.*.id' => 'required|numeric'
         ];
     }
 
