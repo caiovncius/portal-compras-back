@@ -50,6 +50,9 @@ class Pharmacy extends Model
         'updated_id'
     ];
 
+    const PHARMACY_STATUS_ACTIVE = 'ACTIVE';
+    const PHARMACY_STATUS_INACTIVE = 'INACTIVE';
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
