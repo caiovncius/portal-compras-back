@@ -26,6 +26,9 @@ class Laboratory extends Model
         'updated_id'
     ];
 
+    const LABORATORY_STATUS_ACTIVE = 'ACTIVE';
+    const LABORATORY_STATUS_INACTIVE = 'INACTIVE';
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
