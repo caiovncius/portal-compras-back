@@ -29,9 +29,9 @@ class PartnerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'code' => $this->partner->code,
-            'name' => $this->partner->name,
-            'cnpj' => $this->partner->cnpj,
+            'code' => $this->code,
+            'name' => $this->name,
+            'cnpj' => $this->cnpj,
             'type' => $this->partner_type,
         ];
     }
