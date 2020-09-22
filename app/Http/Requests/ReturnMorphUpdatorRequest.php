@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * @OA\Schema(
- *     schema="ReturnMorphRequest",
+ *     schema="ReturnMorphUpdatorRequest",
  *     type="object",
  *     title="Return morph form request",
  *     @OA\Property(
