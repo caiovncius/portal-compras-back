@@ -94,7 +94,7 @@ class   OfferCreatorRequest extends FormRequest
             'partners.*.ol' => 'required|numeric',
             'partners.*.priority' => 'required|numeric',
             'products' => 'array|nullable',
-            'products.*.product.id' => 'required',
+            'products.*.productId' => 'required',
             'products.*.discountDeferred' => 'required|numeric',
             'products.*.discountOnCash' => 'required|numeric',
             'products.*.minimum' => 'string|nullable',
