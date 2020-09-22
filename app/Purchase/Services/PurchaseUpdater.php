@@ -66,7 +66,7 @@ class PurchaseUpdater implements PurchaseUpdatable
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
                     $model->products()->create([
-                        'product_id' => $item['productId'],
+                        'product_id' => $item['product']['id'],
                         'discount_deferred' => isset($item['discountDeferred']) ? $item['discountDeferred'] : null,
                         'discount_on_cash' => isset($item['discountOnCash']) ? $item['discountOnCash'] : null,
                         'minimum' => isset($item['minimum']) ? $item['minimum'] : null,

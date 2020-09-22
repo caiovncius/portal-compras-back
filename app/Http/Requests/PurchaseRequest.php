@@ -92,7 +92,7 @@ class PurchaseRequest extends FormRequest
             'partnerType' => 'string|in:DISTRIBUTOR,PROGRAM|nullable',
             'partner' => 'numeric|nullable',
             'products' => 'array|nullable',
-            'products.*.productId' => 'required',
+            'products.*.product.id' => 'required',
             'products.*.discountDeferred' => 'numeric',
             'products.*.discountOnCash' => 'numeric',
             'products.*.minimum' => 'nullable',
