@@ -70,7 +70,7 @@ class OfferCreator implements OfferCreatable
                     $item['quantity_maximum'] = isset($item['quantityMaximum']) ? $item['quantityMaximum'] : null;
                     $item['quantity_minimum'] = isset($item['quantityMinimum']) ? $item['quantityMinimum'] : null;
                     $item['state_id'] = $item['stateId'];
-                    $item['product_id'] = $item['productId'];
+                    $item['product_id'] = $item['product']['id'];
                     $model->products()->create($item);
                 }
             }

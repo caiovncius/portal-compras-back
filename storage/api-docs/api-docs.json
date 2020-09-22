@@ -4,6 +4,11 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": ""
+        }
+    ],
     "paths": {
         "/cities/by-state/{state}": {
             "get": {
@@ -2957,7 +2962,7 @@
                 }
             }
         },
-        "/priotities/national-partners": {
+        "/priorities/national-partners": {
             "get": {
                 "tags": [
                     "Priority"
@@ -2984,7 +2989,7 @@
                 }
             }
         },
-        "/priotities/regional-partners": {
+        "/priorities/regional-partners": {
             "get": {
                 "tags": [
                     "Priority"
@@ -7143,7 +7148,7 @@
                         "type": "string",
                         "example": "22"
                     },
-                    "remove_file": {
+                    "removeFile": {
                         "type": "boolean",
                         "example": "0"
                     },
@@ -7220,7 +7225,7 @@
                         "type": "string",
                         "example": "22"
                     },
-                    "remove_file": {
+                    "removeFile": {
                         "type": "boolean",
                         "example": "0"
                     },
@@ -7847,6 +7852,10 @@
                     "cityId": {
                         "type": "int",
                         "example": "3"
+                    },
+                    "cityIbgeCode": {
+                        "type": "string",
+                        "example": "12312"
                     },
                     "contacts": {
                         "type": "array",
@@ -8630,6 +8639,28 @@
                 },
                 "type": "object"
             },
+            "ReturnMorphUpdatorRequest": {
+                "title": "Return morph form request",
+                "properties": {
+                    "returns": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "example": "001"
+                                },
+                                "desc": {
+                                    "type": "integer",
+                                    "example": "TESTE"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ReturnUpdatorRequest": {
                 "title": "Return form request",
                 "properties": {
@@ -8666,7 +8697,7 @@
                     "name",
                     "email",
                     "username",
-                    "profile_id",
+                    "profileId",
                     "type",
                     "status"
                 ],
@@ -10777,9 +10808,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
-                        "tokenUrl": "http://localhost:8000/oauth/token",
-                        "refreshUrl": "http://localhost:8000/token/refresh",
+                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
+                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
+                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
                         "scopes": []
                     }
                 }

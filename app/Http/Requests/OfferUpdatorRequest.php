@@ -91,7 +91,7 @@ class OfferUpdatorRequest extends FormRequest
             'partners.*.ol' => 'required|numeric',
             'partners.*.priority' => 'required|numeric',
             'products' => 'array|nullable',
-            'products.*.productId' => 'required',
+            'products.*.product.id' => 'required',
             'products.*.discountDeferred' => 'required|numeric',
             'products.*.discountOnCash' => 'required|numeric',
             'products.*.minimum' => 'nullable',
