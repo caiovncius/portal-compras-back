@@ -111,6 +111,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/pharmacies', 'PharmacyController@list')
          ->name('pharmacy.list')
          ->middleware('acl:Pharmacy,r');
+    Route::get('/pharmacies/export', 'PharmacyController@export')
+        ->name('pharmacy.export')
+        ->middleware('acl:Pharmacy,r');
     Route::get('/pharmacies/{pharmacy}', 'PharmacyController@get')
          ->name('pharmacy.get')
          ->middleware('acl:Pharmacy,r');

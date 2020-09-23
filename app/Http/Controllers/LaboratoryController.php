@@ -553,7 +553,7 @@ class LaboratoryController extends Controller
         }
     }
 
-    public function exportPrograms()
+    public function export()
     {
         return \Maatwebsite\Excel\Facades\Excel::download(new LaboratoryExport, 'laboratorios.xls');
     }

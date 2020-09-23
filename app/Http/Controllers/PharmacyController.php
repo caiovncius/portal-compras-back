@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PharmacyExport;
 use App\Http\Requests\ContactCreatorRequest;
 use App\Http\Requests\PharmacyCreatorRequest;
 use App\Http\Requests\PharmacyMassCreateRequest;
@@ -535,5 +536,10 @@ class PharmacyController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
+    }
+
+    public function export()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new PharmacyExport, 'farmacias.xls');
     }
 }

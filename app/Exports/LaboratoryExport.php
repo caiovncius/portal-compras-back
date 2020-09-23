@@ -58,6 +58,7 @@ class LaboratoryExport implements FromCollection, WithProperties, Responsable, W
             Carbon::parse($laboratory->created_at)->format('d/m/Y')
         ];
     }
+
     /**
     * @return \Illuminate\Support\Collection
     */
