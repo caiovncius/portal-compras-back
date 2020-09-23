@@ -130,6 +130,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/laboratories/active', 'LaboratoryController@active')
          ->name('laboratory.active')
          ->middleware('acl:Laboratory,r');
+    Route::get('/laboratories/export', 'LaboratoryController@export')
+        ->name('laboratory.export')
+        ->middleware('acl:Laboratory,r');
     Route::get('/laboratories', 'LaboratoryController@list')
          ->name('laboratory.list')
          ->middleware('acl:Laboratory,r');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LaboratoryExport;
 use App\Http\Requests\ContactCreatorRequest;
 use App\Http\Requests\LaboratoryCreatorRequest;
 use App\Http\Requests\LaboratoryMassCreateRequest;
@@ -550,5 +551,10 @@ class LaboratoryController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
+    }
+
+    public function exportPrograms()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new LaboratoryExport, 'laboratorios.xls');
     }
 }
