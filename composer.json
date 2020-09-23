@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.0",
         "league/flysystem-sftp": "^1.0",
         "lucascudo/laravel-pt-br-localization": "^1.1",
+        "maatwebsite/excel": "^3.1",
         "wuwx/laravel-hashing-md5": "^3.0"
     },
     "require-dev": {

@@ -7,6 +7,7 @@ use App\Distributor\Contracts\DistributorCreatable;
 use App\Distributor\Contracts\DistributorRemovable;
 use App\Distributor\Contracts\DistributorRetrievable;
 use App\Distributor\Contracts\DistributorUpdatable;
+use App\Exports\DistributorExport;
 use App\Http\Requests\DistributorCreatorRequest;
 use App\Http\Requests\DistributorUpdatorRequest;
 use App\Http\Requests\ReturnMorphRequest;
@@ -624,5 +625,10 @@ class DistributorController extends Controller
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
+    }
+
+    public function export()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new DistributorExport(), 'distribuidoras.xls');
     }
 }
