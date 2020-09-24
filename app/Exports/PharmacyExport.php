@@ -52,7 +52,7 @@ class PharmacyExport implements FromCollection, WithProperties, Responsable, Wit
             'Bairro',
             'CEP',
             'Cidade',
-            'Estado',
+            'Estadow',
             'Status',
             'Data cadastro'
         ];
