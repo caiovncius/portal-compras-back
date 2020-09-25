@@ -39,7 +39,7 @@ class PharmacyMassCreateRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.code' => 'required|string|unique:pharmacies',
+            'data.*.code' => 'required|string|unique:pharmacies,code',
             'data.*.socialName' => 'required|string',
             'data.*.name' => 'required|string',
             'data.*.cnpj' => 'required|cnpj',

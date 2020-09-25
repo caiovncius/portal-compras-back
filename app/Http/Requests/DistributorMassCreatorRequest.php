@@ -55,7 +55,7 @@ class DistributorMassCreatorRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.code' => 'required|string|unique:distributors',
+            'data.*.code' => 'required|string|unique:distributors,code',
             'data.*.cnpj' => 'required|cnpj',
             'data.*.name' => 'required|string',
             'data.*.status' => 'required|in:ACTIVE,INACTIVE',
