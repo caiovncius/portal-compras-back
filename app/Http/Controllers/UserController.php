@@ -112,7 +112,7 @@ class UserController extends Controller
      */
     public function list(Request $request) {
         try {
-            return UserListResource::collection($this->retreiverService->getUsers($request->query())->paginate(10));
+            return UserListResource::collection($this->retreiverService->getUsers($request->query())->paginate(2));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -280,7 +280,7 @@ class UserController extends Controller
      */
     public function pharmacies(User $user)
     {
-        $data = $user->pharmacies()->active()->paginate(10);
+        $data = $user->pharmacies()->active()->paginate(2);
 
         return PharmacyResource::collection($data);
     }

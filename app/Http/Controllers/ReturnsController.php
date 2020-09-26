@@ -102,7 +102,7 @@ class ReturnsController extends Controller
     public function list(Request $request)
     {
         try {
-            return ReturnListResource::collection($this->retrieverService->getReturns($request->query())->paginate(10));
+            return ReturnListResource::collection($this->retrieverService->getReturns($request->query())->paginate(2));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

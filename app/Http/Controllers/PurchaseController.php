@@ -137,7 +137,7 @@ class PurchaseController extends Controller
     public function list(Request $request)
     {
         try {
-            return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->paginate(10));
+            return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->paginate(2));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
