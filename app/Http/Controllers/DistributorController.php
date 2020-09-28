@@ -627,6 +627,9 @@ class DistributorController extends Controller
         }
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function export()
     {
         return \Maatwebsite\Excel\Facades\Excel::download(new DistributorExport(), 'distribuidoras.xls');

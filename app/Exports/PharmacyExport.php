@@ -74,7 +74,7 @@ class PharmacyExport implements FromCollection, WithProperties, Responsable, Wit
             $pharmacy->email,
             $pharmacy->phone,
             $pharmacy->supervisor_id !== null ? $pharmacy->supervisor->name : '',
-            $pharmacy->priority->description,
+            !is_null($pharmacy->priority) ? $pharmacy->priority->description : '',
             $pharmacy->address,
             $pharmacy->address_2,
             $pharmacy->address_number,

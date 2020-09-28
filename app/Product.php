@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+
+    const PRODUCT_STATUS_ACTIVE = 'ACTIVE';
+    const PRODUCT_STATUS_INACTIVE = 'INACTIVE';
     /**
      * @var array
      */
