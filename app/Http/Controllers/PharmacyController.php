@@ -125,7 +125,7 @@ class PharmacyController extends Controller
      */
     public function list(Request $request) {
         try {
-            return PharmacyListResource::collection($this->retreiverService->pharmacies($request->query())->paginate(2));
+            return PharmacyListResource::collection($this->retreiverService->pharmacies($request->query())->paginate(10));
         } catch (\Exception $exception) {
             dd($exception);
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -541,5 +541,15 @@ class PharmacyController extends Controller
     public function export()
     {
         return \Maatwebsite\Excel\Facades\Excel::download(new PharmacyExport, 'farmacias.xls');
+    }
+
+    /**
+     * @param Pharmacy $pharmacy
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Pharmacy $pharmacy)
+    {
+        $this->updaterService->enable($pharmacy);
+        return response()->json(['message' => 'Farmácia ativada com sucesso']);
     }
 }
