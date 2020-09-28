@@ -54,4 +54,15 @@ class LaboratoryUpdator implements LaboratoryUpdatable
             throw $exception;
         }
     }
+
+    /**
+     * @param Laboratory $laboratory
+     * @return bool
+     */
+    public function enable(Laboratory $laboratory)
+    {
+        $laboratory->status = Laboratory::LABORATORY_STATUS_ACTIVE;
+        $laboratory->save();
+        return true;
+    }
 }

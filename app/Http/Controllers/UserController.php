@@ -112,7 +112,7 @@ class UserController extends Controller
      */
     public function list(Request $request) {
         try {
-            return UserListResource::collection($this->retreiverService->getUsers($request->query())->paginate(2));
+            return UserListResource::collection($this->retreiverService->getUsers($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -280,7 +280,7 @@ class UserController extends Controller
      */
     public function pharmacies(User $user)
     {
-        $data = $user->pharmacies()->active()->paginate(2);
+        $data = $user->pharmacies()->active()->paginate(10);
 
         return PharmacyResource::collection($data);
     }
@@ -707,5 +707,15 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
+    }
+
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(User $user)
+    {
+        $this->updaterService->enable($user);
+        return response()->json(['message' => 'Usuário ativado com sucesso']);
     }
 }

@@ -104,7 +104,7 @@ class LaboratoryController extends Controller
      */
     public function list(Request $request) {
         try {
-            return LaboratoryListResource::collection($this->retreiverService->laboratories($request->query())->paginate(2));
+            return LaboratoryListResource::collection($this->retreiverService->laboratories($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -556,5 +556,15 @@ class LaboratoryController extends Controller
     public function export()
     {
         return \Maatwebsite\Excel\Facades\Excel::download(new LaboratoryExport, 'laboratorios.xls');
+    }
+
+    /**
+     * @param Laboratory $laboratory
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Laboratory $laboratory)
+    {
+        $this->updaterService->enable($laboratory);
+        return response()->json(['message' => 'Laboratório ativado com sucesso']);
     }
 }

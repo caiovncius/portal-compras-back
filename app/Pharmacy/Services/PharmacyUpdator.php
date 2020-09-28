@@ -85,4 +85,15 @@ class PharmacyUpdator implements PharmacyUpdatable
             throw $exception;
         }
     }
+
+    /**
+     * @param Pharmacy $pharmacy
+     * @return bool
+     */
+    public function enable(Pharmacy $pharmacy)
+    {
+        $pharmacy->status = Pharmacy::PHARMACY_STATUS_ACTIVE;
+        $pharmacy->save();
+        return true;
+    }
 }

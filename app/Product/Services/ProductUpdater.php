@@ -39,4 +39,15 @@ class ProductUpdater implements ProductUpdatable
             throw $e;
         }
     }
+
+    /**
+     * @param Product $product
+     * @return bool
+     */
+    public function enable(Product $product)
+    {
+        $product->status = Product::PRODUCT_STATUS_ACTIVE;
+        $product->save();
+        return true;
+    }
 }

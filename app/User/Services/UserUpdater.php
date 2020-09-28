@@ -52,4 +52,15 @@ class UserUpdater implements UserUpdatable
             throw $e;
         }
     }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function enable(User $user)
+    {
+        $user->status = User::USER_STATUS_ACTIVE;
+        $user->save();
+        return true;
+    }
 }

@@ -136,7 +136,7 @@ class RequestController extends Controller
     public function list(Request $request)
     {
         try {
-            return RequestListResource::collection($this->retrieverService->getRequests($request->query())->paginate(2));
+            return RequestListResource::collection($this->retrieverService->getRequests($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -184,7 +184,7 @@ class RequestController extends Controller
         try {
             $input['pharmacyId'] = $pharmacy;
 
-            return RequestListResource::collection($this->retrieverService->getRequests($input)->paginate(2));
+            return RequestListResource::collection($this->retrieverService->getRequests($input)->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -559,7 +559,7 @@ class RequestController extends Controller
             return RequestMonitoringResource::collection(
                 $this->retrieverService->getRequests($request->all())
                     ->orderBy('id', 'DESC')
-                    ->paginate(2)
+                    ->paginate(10)
             );
         } catch (\Exception $exception) {
             dd($exception);

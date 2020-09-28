@@ -13,4 +13,10 @@ interface DistributorUpdatable
      * @throws \Exception
      */
     public  function update(Distributor $data, array $newData);
+
+    /**
+     * @param Distributor $distributor
+     * @return bool
+     */
+    public function enable(Distributor $distributor);
 }

@@ -27,6 +27,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Offer extends Model
 {
+
+    const OFFER_STATUS_ACTIVE = 'ACTIVE';
+    const OFFER_STATUS_INACTIVE = 'INACTIVE';
+
     protected $fillable = [
         'image',
         'code',

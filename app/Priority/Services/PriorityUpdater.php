@@ -35,4 +35,15 @@ class PriorityUpdater implements PriorityUpdatable
             throw $e;
         }
     }
+
+    /**
+     * @param Priority $priority
+     * @return bool
+     */
+    public function enable(Priority $priority)
+    {
+        $priority->status = Priority::PRIORITY_STATUS_ACTIVE;
+        $priority->save();
+        return true;
+    }
 }

@@ -82,6 +82,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::post('/users', 'UserController@store')
          ->name('user.store')
          ->middleware('acl:User,r,w');
+    Route::put('/users/enable/{user}', 'UserController@enable')
+        ->name('user.enablePro')
+        ->middleware('acl:User,r,w');
     Route::put('/users/{user}', 'UserController@update')
          ->name('user.update')
          ->middleware('acl:User,r,w');
@@ -104,6 +107,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/profiles/{profile}', 'ProfileController@update')
          ->name('profile.update')
          ->middleware('acl:Profile,r,w');
+    Route::put('/profiles/enable/{profile}', 'ProfileController@enable')
+        ->name('profile.enableUserC')
+        ->middleware('acl:Profile,r,w');
     Route::delete('/profiles/{profile}', 'ProfileController@delete')
          ->name('profile.delete')
          ->middleware('acl:Profile,r,w');
@@ -123,6 +129,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/pharmacies/{pharmacy}', 'PharmacyController@update')
          ->name('pharmacy.update')
          ->middleware('acl:Pharmacy,r,w');
+    Route::put('/pharmacies/enable/{pharmacy}', 'PharmacyController@enable')
+        ->name('pharmacy.enable')
+        ->middleware('acl:Pharmacy,r,w');
     Route::post('/pharmacies/{pharmacy}/add-contact', 'PharmacyController@addContact')
         ->name('pharmacy.contacts.add')
         ->middleware('acl:Pharmacy,r,w');
@@ -148,6 +157,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/laboratories/{laboratory}', 'LaboratoryController@update')
          ->name('laboratory.update')
          ->middleware('acl:Laboratory,r,w');
+    Route::put('/laboratories/enable/{laboratory}', 'LaboratoryController@enable')
+        ->name('laboratory.enable')
+        ->middleware('acl:Laboratory,r,w');
     Route::delete('/laboratories/{laboratory}', 'LaboratoryController@delete')
          ->name('laboratory.delete')
          ->middleware('acl:Laboratory,r,w');
@@ -193,6 +205,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/distributors/{distributor}', 'DistributorController@update')
          ->name('distributor.update')
          ->middleware('acl:Distributor,r,w');
+    Route::put('/distributors/enable/{distributor}', 'DistributorController@enable')
+        ->name('distributor.enable')
+        ->middleware('acl:Distributor,r,w');
     Route::delete('/distributors/{distributor}', 'DistributorController@delete')
          ->name('distributor.delete')
          ->middleware('acl:Distributor,r,w');
@@ -226,6 +241,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/returns/{id}', 'ReturnsController@update')
          ->name('return.update')
          ->middleware('acl:Return,r,w');
+    Route::put('/returns/enable/{returns}', 'ReturnsController@enable')
+        ->name('return.enable')
+        ->middleware('acl:Return,r,w');
     Route::delete('/returns/{return}', 'ReturnsController@delete')
          ->name('return.delete')
          ->middleware('acl:Return,r,w');
@@ -251,6 +269,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/programs/{model}', 'ProgramController@update')
          ->name('program.update')
          ->middleware('acl:Program,r,w');
+    Route::put('/programs/enable/{program}', 'ProgramController@enable')
+        ->name('program.enable')
+        ->middleware('acl:Program,r,w');
     Route::delete('/programs/{model}', 'ProgramController@delete')
          ->name('program.delete')
          ->middleware('acl:Program,r,w');
@@ -308,6 +329,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/offers/{model}', 'OfferController@update')
          ->name('offer.update')
          ->middleware('acl:Offer,r,w');
+    Route::put('/offers/enable/{offer}', 'OfferController@enable')
+        ->name('offer.enable')
+        ->middleware('acl:Offer,r,w');
     Route::delete('/offers/{offer}', 'OfferController@delete')
          ->name('offer.delete')
          ->middleware('acl:Offer,r,w');
@@ -333,6 +357,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/products/{product}', 'ProductController@update')
          ->name('product.update')
          ->middleware('acl:Product,r,w');
+    Route::put('/products/enable/{product}', 'ProductController@enable')
+        ->name('product.enable')
+        ->middleware('acl:Product,r,w');
     Route::delete('/products/{product}', 'ProductController@delete')
          ->name('product.delete')
          ->middleware('acl:Product,r,w');
@@ -357,6 +384,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/conditions/{model}', 'ConditionController@update')
          ->name('condition.update')
          ->middleware('acl:Condition,r,w');
+    Route::put('/conditions/enable/{condition}', 'ConditionController@enable')
+        ->name('condition.enable')
+        ->middleware('acl:Condition,r,w');
     Route::delete('/conditions/{model}', 'ConditionController@delete')
          ->name('condition.delete')
          ->middleware('acl:Condition,r,w');
@@ -445,6 +475,10 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
 
     Route::put('/priorities/{priority}', 'PriorityController@update')
         ->name('priority.update')
+        ->middleware('acl:Priority,r,w');
+
+    Route::put('/priorities/enable/{priority}', 'PriorityController@enable')
+        ->name('priority.enable')
         ->middleware('acl:Priority,r,w');
 
     Route::delete('/priorities/{priority}', 'PriorityController@delete')

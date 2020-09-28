@@ -151,7 +151,7 @@ class OfferController extends Controller
     public function list(Request $request)
     {
         try {
-            return OfferListResource::collection($this->retrieverService->getOffers($request->query())->paginate(2));
+            return OfferListResource::collection($this->retrieverService->getOffers($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -557,5 +557,15 @@ class OfferController extends Controller
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
+    }
+
+    /**
+     * @param Offer $offer
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Offer $offer)
+    {
+        $this->updatorService->enable($offer);
+        return response()->json(['message' => 'Oferta ativada com sucesso']);
     }
 }

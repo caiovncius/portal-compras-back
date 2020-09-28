@@ -425,4 +425,10 @@ class PriorityController extends Controller
             return response()->json(['error' => $exception->getMessage()], 400);
         }
     }
+
+    public function enable(Priority $priority)
+    {
+        $this->updaterService->enable($priority);
+        return response()->json(['message' => 'Prioridade ativada com sucesso']);
+    }
 }

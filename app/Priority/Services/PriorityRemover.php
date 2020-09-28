@@ -17,8 +17,8 @@ class PriorityRemover implements PriorityRemovable
     public function delete(Priority $priority)
     {
         try {
-            $priority->partners()->detach();
-            $priority->delete();
+            $priority->status = Priority::PRIORITY_STATUS_INACTIVE;
+            $priority->save();
             return true;
         } catch (\Exception $e) {
             throw  $e;

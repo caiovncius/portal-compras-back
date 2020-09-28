@@ -113,7 +113,7 @@ class ProductController extends Controller
      */
     public function list(Request $request) {
         try {
-            return ProductListResource::collection($this->retreiverService->getProducts($request->query())->paginate(2));
+            return ProductListResource::collection($this->retreiverService->getProducts($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -495,5 +495,15 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
+    }
+
+    /**
+     * @param Product $product
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Product $product)
+    {
+        $this->updaterService->enable($product);
+        return response()->json(['message' => 'Produto ativada com sucesso']);
     }
 }

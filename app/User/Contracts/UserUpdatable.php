@@ -15,4 +15,10 @@ interface UserUpdatable
      * @throws \Exception
      */
     public  function update(User $user, array $newData);
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function enable(User $user);
 }

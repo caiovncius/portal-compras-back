@@ -23,4 +23,10 @@ interface PharmacyUpdatable
      * @throws \Exception
      */
     public function addContact(Pharmacy $pharmacy, array $contactData);
+
+    /**
+     * @param Pharmacy $pharmacy
+     * @return bool
+     */
+    public function enable(Pharmacy $pharmacy);
 }

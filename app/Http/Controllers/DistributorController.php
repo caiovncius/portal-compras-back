@@ -118,7 +118,7 @@ class DistributorController extends Controller
     public function list(Request $request)
     {
         try {
-            return DistributorListResource::collection($this->retrieverService->getDistributors($request->query())->paginate(2));
+            return DistributorListResource::collection($this->retrieverService->getDistributors($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -633,5 +633,15 @@ class DistributorController extends Controller
     public function export()
     {
         return \Maatwebsite\Excel\Facades\Excel::download(new DistributorExport(), 'distribuidoras.xls');
+    }
+
+    /**
+     * @param Distributor $distributor
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Distributor $distributor)
+    {
+        $this->updatorService->enable($distributor);
+        return response()->json(['message' => 'Distribuídora ativada com sucesso']);
     }
 }

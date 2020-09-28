@@ -13,4 +13,10 @@ interface OfferUpdatable
      * @throws \Exception
      */
     public function update(Offer $data, array $newData);
+
+    /**
+     * @param Offer $offer
+     * @return bool
+     */
+    public function enable(Offer $offer);
 }

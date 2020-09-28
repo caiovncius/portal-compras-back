@@ -102,7 +102,7 @@ class ConditionController extends Controller
     public function list(Request $request)
     {
         try {
-            return ConditionListResource::collection($this->retrieverService->getConditions($request->query())->paginate(2));
+            return ConditionListResource::collection($this->retrieverService->getConditions($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -318,9 +318,13 @@ class ConditionController extends Controller
         return ConditionListResource::make($model);
     }
 
-
-    public function removePartner(Condition $condition, $parterId)
+    /**
+     * @param Condition $condition
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Condition $condition)
     {
-
+        $this->updatorService->enable($condition);
+        return response()->json(['message' => 'Retorno ativada com sucesso']);
     }
 }

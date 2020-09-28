@@ -15,6 +15,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Priority extends Model
 {
+
+    const PRIORITY_STATUS_ACTIVE = 'ACTIVE';
+    const PRIORITY_STATUS_INACTIVE = 'INACTIVE';
+
     /**
      * @var array
      */

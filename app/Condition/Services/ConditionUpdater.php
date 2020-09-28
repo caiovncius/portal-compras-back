@@ -51,4 +51,15 @@ class ConditionUpdater implements ConditionUpdatable
             throw $e;
         }
     }
+
+    /**
+     * @param Condition $condition
+     * @return bool
+     */
+    public function enable(Condition $condition)
+    {
+        $condition->status = Condition::CONDITION_STATUS_ACTIVE;
+        $condition->save();
+        return true;
+    }
 }

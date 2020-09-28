@@ -116,7 +116,7 @@ class ProgramController extends Controller
     public function list(Request $request)
     {
         try {
-            return ProgramListResource::collection($this->retrieverService->getPrograms($request->query())->paginate(2));
+            return ProgramListResource::collection($this->retrieverService->getPrograms($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -642,5 +642,15 @@ class ProgramController extends Controller
     public function exportPrograms()
     {
         return \Maatwebsite\Excel\Facades\Excel::download(new ProgramExport, 'programas.xls');
+    }
+
+    /**
+     * @param Program $program
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Program $program)
+    {
+        $this->updatorService->enable($program);
+        return response()->json(['message' => 'Programa ativado com sucesso']);
     }
 }

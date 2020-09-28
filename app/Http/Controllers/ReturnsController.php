@@ -102,7 +102,7 @@ class ReturnsController extends Controller
     public function list(Request $request)
     {
         try {
-            return ReturnListResource::collection($this->retrieverService->getReturns($request->query())->paginate(2));
+            return ReturnListResource::collection($this->retrieverService->getReturns($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -352,6 +352,16 @@ class ReturnsController extends Controller
     public function get(Returns $returns)
     {
         return ReturnListResource::make($returns);
+    }
+
+    /**
+     * @param Returns $returns
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Returns $returns)
+    {
+        $this->updatorService->enable($returns);
+        return response()->json(['message' => 'Retorno ativada com sucesso']);
     }
 
 }

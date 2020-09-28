@@ -15,10 +15,8 @@ class OfferRemover implements OfferRemovable
     public function delete(Offer $model)
     {
         try {
-
-            $model->partners()->delete();
-            $model->delete();
-
+            $model->status = Offer::OFFER_STATUS_INACTIVE;
+            $model->save();
             return true;
         } catch (\Exception $e) {
             throw  $e;

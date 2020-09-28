@@ -107,7 +107,7 @@ class ProfileController extends Controller
     public function list(Request $request)
     {
         try {
-            return ProfileListResource::collection($this->retrieverService->profiles($request->query())->paginate(2));
+            return ProfileListResource::collection($this->retrieverService->profiles($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -455,5 +455,15 @@ class ProfileController extends Controller
     public function byType($type)
     {
         return ProfileListResource::collection(Profile::byType($type)->get());
+    }
+
+    /**
+     * @param Profile $profile
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Profile $profile)
+    {
+        $this->updatorService->enable($profile);
+        return response()->json(['message' => 'Perfil ativado com sucesso!']);
     }
 }

@@ -82,4 +82,15 @@ class OfferUpdater implements OfferUpdatable
             throw $e;
         }
     }
+
+    /**
+     * @param Offer $offer
+     * @return bool
+     */
+    public function enable(Offer $offer)
+    {
+        $offer->status = Offer::OFFER_STATUS_ACTIVE;
+        $offer->save();
+        return true;
+    }
 }

@@ -112,7 +112,7 @@ class ContactController extends Controller
     public function list(Request $request)
     {
         try {
-            return ContactListResource::collection($this->retrieverService->getContacts($request->query())->paginate(2));
+            return ContactListResource::collection($this->retrieverService->getContacts($request->query())->paginate(10));
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
