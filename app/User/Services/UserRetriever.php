@@ -45,8 +45,7 @@ class UserRetriever implements UserRetrievable
 
             if (isset($querySearchParams['cnpj']) && !empty($querySearchParams['cnpj'])) {
                 $usersQuery->whereHas('pharmacies', function ($q) use($querySearchParams) {
-                    $cleanCNPJ = preg_replace('/[^0-9]/', '', $querySearchParams['cnpj']);
-                    $q->where('cnpj', 'like', '%' . $cleanCNPJ . '%');
+                    $q->where('pharmacies.cnpj', 'like', '%' . $querySearchParams['cnpj'] . '%');
                 });
             }
 
