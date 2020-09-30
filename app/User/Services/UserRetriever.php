@@ -28,11 +28,11 @@ class UserRetriever implements UserRetrievable
             }
 
             if (isset($querySearchParams['startDate']) && !empty($querySearchParams['startDate'])) {
-                $usersQuery->where('created_at', '>=', $querySearchParams['startDate']);
+                $usersQuery->whereDate('created_at', '>=', $querySearchParams['startDate']);
             }
 
             if (isset($querySearchParams['endDate']) && !empty($querySearchParams['endDate'])) {
-                $usersQuery->where('created_at', '<=', $querySearchParams['endDate']);
+                $usersQuery->whereDate('created_at', '<=', $querySearchParams['endDate']);
             }
 
             if (isset($querySearchParams['status']) && !empty($querySearchParams['status'])) {
