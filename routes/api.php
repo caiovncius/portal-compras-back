@@ -214,16 +214,16 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
 
     Route::get('/distributors/{distributor}/connection/test', 'DistributorConnectionController@test')
          ->name('distributor.connection.test')
-         ->middleware('acl:Connection,r');
+         ->middleware('acl:Distributor,r,w');
     Route::post('/distributors/{distributor}/connection', 'DistributorConnectionController@store')
          ->name('distributor.connection.store')
-         ->middleware('acl:Connection,r,w');
+         ->middleware('acl:Distributor,r,w');
     Route::post('/distributors/{distributor}/returns', 'DistributorController@returns')
          ->name('distributor.return.store')
          ->middleware('acl:Distributor,r,w');
     Route::put('/distributors/{distributor}/connection/{connection}', 'DistributorConnectionController@update')
          ->name('distributor.connection.update')
-         ->middleware('acl:Connection,r,w');
+         ->middleware('acl:Distributor,r,w');
 
 
     Route::get('/returns', 'ReturnsController@list')
