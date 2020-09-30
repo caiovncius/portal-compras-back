@@ -21,7 +21,7 @@ class PharmacyUpdator implements PharmacyUpdatable
             $model->company_name = $data['socialName'];
             $model->name = $data['name'];
             $model->status = $data['status'];
-            $model->cnpj = reg_replace('/[^0-9]/', '', $data['cnpj']);
+            $model->cnpj = preg_replace('/[^0-9]/', '', $data['cnpj']);
             $model->state_registration = isset($data['stateRegistration']) ? $data['stateRegistration'] : null ;
             $model->email = isset($data['email']) ? $data['email'] : null;
             $model->phone = isset($data['phone']) ? $data['phone'] : null;

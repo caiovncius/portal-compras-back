@@ -23,7 +23,7 @@ class PharmacyCreator implements PharmacyCreatable
             $pharmacy->company_name = $pharmacyData['socialName'];
             $pharmacy->name = $pharmacyData['name'];
             $pharmacy->status = $pharmacyData['status'];
-            $pharmacy->cnpj = reg_replace('/[^0-9]/', '', $pharmacyData['cnpj']);
+            $pharmacy->cnpj = preg_replace('/[^0-9]/', '', $pharmacyData['cnpj']);
             $pharmacy->state_registration = isset($pharmacyData['stateRegistration']) ? $pharmacyData['stateRegistration'] : null ;
             $pharmacy->email = isset($pharmacyData['email']) ? $pharmacyData['email'] : null;
             $pharmacy->phone = isset($pharmacyData['phone']) ? $pharmacyData['phone'] : null;
