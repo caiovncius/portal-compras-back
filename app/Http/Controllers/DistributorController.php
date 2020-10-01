@@ -9,6 +9,7 @@ use App\Distributor\Contracts\DistributorRetrievable;
 use App\Distributor\Contracts\DistributorUpdatable;
 use App\Exports\DistributorExport;
 use App\Http\Requests\DistributorCreatorRequest;
+use App\Http\Requests\DistributorMassUpdatorRequest;
 use App\Http\Requests\DistributorUpdatorRequest;
 use App\Http\Requests\ReturnMorphRequest;
 use App\Http\Resources\DistributorListResource;
@@ -502,7 +503,7 @@ class DistributorController extends Controller
      * @param DistributorMassCreatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function massUpdate(DistributorMassCreatorRequest $request)
+    public function massUpdate(DistributorMassUpdatorRequest $request)
     {
         try {
             $updated = 0;

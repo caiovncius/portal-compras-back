@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductMassUpdateRequest extends FormRequest
+class LaboratoryMassUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +26,13 @@ class ProductMassUpdateRequest extends FormRequest
         return [
             'data' => 'array|required',
             'data.*.code' => 'required|string',
-            'data.*.codeEan' => 'required|string',
-            'data.*.description' => 'required|string',
+            'data.*.name' => 'required|string',
             'data.*.status' => 'nullable|in:ACTIVE,INACTIVE',
-            'data.*.laboratoryId' => 'nullable|exists:laboratories,id',
-            'data.*.secondaryEanCodes' => 'array',
-            'data.*.secondaryEanCodes.*.name' => 'string|required',
+            'data.*.contacts' => 'array',
+            'data.*.contacts.*.name' => 'string|required',
+            'data.*.contacts.*.email' => 'email|required',
+            'data.*.contacts.*.function' => 'string|required',
+            'data.*.contacts.*.telephone' => 'string|required',
         ];
     }
 }

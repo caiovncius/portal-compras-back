@@ -6,6 +6,7 @@ use App\Exports\LaboratoryExport;
 use App\Http\Requests\ContactCreatorRequest;
 use App\Http\Requests\LaboratoryCreatorRequest;
 use App\Http\Requests\LaboratoryMassCreateRequest;
+use App\Http\Requests\LaboratoryMassUpdateRequest;
 use App\Http\Requests\LaboratoryUpdatorRequest;
 use App\Http\Resources\LaboratoryListResource;
 use App\Laboratory;
@@ -475,7 +476,7 @@ class LaboratoryController extends Controller
      * @param LaboratoryMassCreateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function massUpdate(LaboratoryMassCreateRequest $request)
+    public function massUpdate(LaboratoryMassUpdateRequest $request)
     {
         try {
             $updated = 0;

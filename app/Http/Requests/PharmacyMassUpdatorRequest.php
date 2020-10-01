@@ -25,10 +25,10 @@ class PharmacyMassUpdatorRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.code' => 'required|string|unique:pharmacies,code,' . $this->id,
+            'data.*.code' => 'required|string',
             'data.*.socialName' => 'required|string',
             'data.*.name' => 'required|string',
-            'data.*.cnpj' => 'required|cnpj|unique:pharmacies,cnpj,' . $this->id,
+            'data.*.cnpj' => 'required|cnpj',
             'data.*.email' => 'email',
             'data.*.status' => 'nullable|in:ACTIVE,INACTIVE',
             'data.*.cityId' => 'nullable|integer|exists:cities,id',
