@@ -15,4 +15,10 @@ interface ProductUpdatable
      * @throws \Exception
      */
     public  function update(Product $product, array $newData);
+
+    /**
+     * @param Product $product
+     * @return bool
+     */
+    public function enable(Product $product);
 }

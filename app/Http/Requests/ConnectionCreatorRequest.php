@@ -13,13 +13,16 @@ use Illuminate\Foundation\Http\FormRequest;
  *     title="DistributorConnection form request",
  *     required={"isFtpActive", "transferMode", "host", "sendDirectory", "login", "password", "returnDirectory"},
  *     @OA\Property(property="distributorId", type="boolean", example="1"),
- *     @OA\Property(property="isFtpActive", type="boolean", example="true"),
+ *     @OA\Property(property="isFtpActive", type="boolean", example="1"),
  *     @OA\Property(property="transferMode", type="string", example="ASCI"),
  *     @OA\Property(property="host", type="string", example="127.0.0.1"),
  *     @OA\Property(property="sendDirectory", type="string", example="/var/www"),
  *     @OA\Property(property="login", type="string", example="teste"),
  *     @OA\Property(property="password", type="string", example="123456"),
  *     @OA\Property(property="returnDirectory", type="string", example="/var/www"),
+ *     @OA\Property(property="port", type="string", example="22"),
+ *     @OA\Property(property="removeFile", type="boolean", example="0"),
+ *     @OA\Property(property="mask", type="string", example="teste"),
  * )
  */
 class ConnectionCreatorRequest extends FormRequest
@@ -49,6 +52,9 @@ class ConnectionCreatorRequest extends FormRequest
             'login' => 'required|string',
             'password' => 'required|string',
             'returnDirectory' => 'required|string',
+            'port' => 'numeric',
+            'mask' => 'string',
+            'removeFile' => 'boolean'
         ];
     }
 

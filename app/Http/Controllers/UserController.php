@@ -6,6 +6,7 @@ use App\Http\Requests\UserCreatorRequest;
 use App\Http\Requests\UserMassCreateRequest;
 use App\Http\Requests\UserUpdatorRequest;
 use App\Http\Resources\PharmacyResource;
+use App\Http\Resources\UserAutoCompleteResource;
 use App\Http\Resources\UserListResource;
 use App\Http\Resources\UserProfileResource;
 use App\Http\Resources\UserResource;
@@ -149,6 +150,9 @@ class UserController extends Controller
      */
     public function managers(Request $request) {
         try {
+            $searchQuery = $request->query();
+            $searchQuery['type'] = User::USER_TYPE_PHARMACY;
+            $searchQuery['status'] = User::USER_STATUS_ACTIVE;
             return UserListResource::collection($this->retreiverService->getUsers($request->query())->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -690,5 +694,28 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function search(Request $request)
+    {
+        try {
+            return UserAutoCompleteResource::collection($this->retreiverService->getUsers($request->all())->get());
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(User $user)
+    {
+        $this->updaterService->enable($user);
+        return response()->json(['message' => 'Usuário ativado com sucesso']);
     }
 }

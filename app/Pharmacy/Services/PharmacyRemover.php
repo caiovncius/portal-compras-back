@@ -18,7 +18,8 @@ class PharmacyRemover implements PharmacyRemovable
     public function delete(Pharmacy $pharmacy)
     {
         try {
-            $pharmacy->delete();
+            $pharmacy->status = Pharmacy::PHARMACY_STATUS_INACTIVE;
+            $pharmacy->save();
             return true;
         } catch (\Exception $exception) {
             throw $exception;

@@ -15,4 +15,10 @@ interface ProfileUpdatable
      * @throws \Exception
      */
     public function update(Profile $profile, array $profileData);
+
+    /**
+     * @param Profile $profile
+     * @return bool
+     */
+    public function enable(Profile $profile);
 }

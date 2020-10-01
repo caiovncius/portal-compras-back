@@ -58,7 +58,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     ),
  * )
  */
-class OfferCreatorRequest extends FormRequest
+class   OfferCreatorRequest extends FormRequest
 {
     /**
      * Determine if the Offer is authorized to make this request.
@@ -95,16 +95,16 @@ class OfferCreatorRequest extends FormRequest
             'partners.*.priority' => 'required|numeric',
             'products' => 'array|nullable',
             'products.*.productId' => 'required',
-            'products.*.discountDeferred' => 'required|numeric',
-            'products.*.discountOnCash' => 'required|numeric',
-            'products.*.minimum' => 'required|numeric',
-            'products.*.minimumPerFamily' => 'required|required',
+            'products.*.discountDeferred' => 'numeric',
+            'products.*.discountOnCash' => 'numeric',
+            'products.*.minimum' => 'string|nullable',
+            'products.*.minimumPerFamily' => 'required',
             'products.*.obrigatory' => 'boolean',
-            'products.*.factoryPrice' => 'required|numeric',
-            'products.*.priceDeferred' => 'required|numeric',
-            'products.*.priceOnCash' => 'required|numeric',
-            'products.*.quantityMaximum' => 'required|numeric',
-            'products.*.quantityMinimum' => 'required|numeric',
+            'products.*.factoryPrice' => 'string|nullable',
+            'products.*.priceDeferred' => 'numeric',
+            'products.*.priceOnCash' => 'numeric',
+            'products.*.quantityMaximum' => 'numeric|nullable',
+            'products.*.quantityMinimum' => 'numeric|nullable',
             'products.*.stateId' => 'required|required',
         ];
     }

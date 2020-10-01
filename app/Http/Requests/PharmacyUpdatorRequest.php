@@ -54,10 +54,12 @@ class PharmacyUpdatorRequest extends FormRequest
     {
         return [
             'code' => 'required|string',
-            'cnpj' => 'required|cnpj',
+            'cnpj' => 'required|cnpj|unique:pharmacies,cnpj',
             'socialName' => 'required|string',
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'cityId' => 'required|integer|exists:cities,id',
+            'supervisor' => 'array|nullable',
+            'supervisor.id' => 'required|numeric|exists:users,id',
             'contacts' => 'array',
             'contacts.*.name' => 'string|required',
             'contacts.*.email' => 'email|required',

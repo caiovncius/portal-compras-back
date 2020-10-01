@@ -18,7 +18,7 @@ class PharmacyRetriever implements PharmacyRetrievable
     public function pharmacies(array $params)
     {
         try {
-            $query = Pharmacy::with(['city']);
+            $query = Pharmacy::with(['city', 'users']);
 
             if (isset($params['code'])) {
                 $query->where('code', 'like', '%' . $params['code'] . '%');
@@ -46,7 +46,9 @@ class PharmacyRetriever implements PharmacyRetrievable
             }
 
             if (isset($params['comercial'])) {
-                $query->where('comercial', $params['comercial']);
+                $query->whereHas('users', function($q) use($params) {
+                    $q->where('name', 'like', '%' . $params['comercial'] . '%');
+                });
             }
 
             return $query;

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
 
 use App\Request as RequestModel;
 use App\Returns;
 use App\Services\FileReturn;
 use App\Services\FtpService;
 use App\Services\RequestToFile;
-use Illuminate\Http\Request;
 
-class ScheduleController extends Controller
+class RequestOffer
 {
     public function send(RequestModel $request, $firstSend = true)
     {
@@ -19,6 +18,7 @@ class ScheduleController extends Controller
         if (! $firstSend) {
             $partner = $partner->skip($request->priority);
         }
+
         $partner = $partner->first()->partner;
         $partnerConnection = $partner->connection;
         if ($partnerConnection) {
@@ -52,23 +52,25 @@ class ScheduleController extends Controller
                 'status' => 'Erro no envio'
             ]);
         }
-        
+
         return true;
     }
 
     public function check()
     {
-        $requests = RequestModel::where('status', 'WAITING_RETURN')->get();
-        foreach($requests as $request) {
+        $requests = RequestModel::where('status', 'WAITING_RETURN')
+                                ->where('requestable_type', 'App\Offer')
+                                ->get();
+        foreach ($requests as $request) {
             $partnerConnection = $request->partner->connection;
             $connection = (new FtpService)->setConnection($partnerConnection);
             $file = (new RequestToFile)->filename($request);
             $filename = $partnerConnection->path_return.'/'.str_replace('ped', 'not', $file);
-            if(! \Storage::disk('onthefly')->exists($filename)) {
+            if (! \Storage::disk('onthefly')->exists($filename)) {
                 continue;
             }
             $fileReturn = (new FileReturn)->file($filename);
-            foreach($request->products as $key => $item) {
+            foreach ($request->products as $key => $item) {
                 $returnItem = $fileReturn['items'][$key];
                 $statusProduct = $this->getStatusProduct($returnItem['refuse']);
                 $returnModel = Returns::whereCode($returnItem['refuse'])->first();
@@ -110,11 +112,10 @@ class ScheduleController extends Controller
         $status = 'BILLED';
         if ((int) $footer['qtdItemsAnswer'] == 0) {
             $status = 'NOT_BILLED';
-        } else if ((int) $footer['qtdItems'] - (int) $footer['qtdItemsAnswer']) {
+        } else if ((int) $footer['qtdItems'] != (int) $footer['qtdItemsAnswer']) {
             $status = 'BILLED_PARTIAL';
         }
 
         return $status;
     }
-
 }

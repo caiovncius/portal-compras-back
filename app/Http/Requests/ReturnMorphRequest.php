@@ -40,9 +40,9 @@ class ReturnMorphRequest extends FormRequest
     public function rules()
     {
         return [
-            'returns' => 'array|min:1',
-            'returns.*.code' => 'required|string|numeric|unique:returns',
-            'returns.*.desc' => 'required|string',
+            'returns' => 'array|nullable',
+            'returns.*.code' => 'required|string',
+            'returns.*.description' => 'required|string',
         ];
     }
 
@@ -56,7 +56,7 @@ class ReturnMorphRequest extends FormRequest
         return [
             'returns' => 'Array de retorno',
             'returns.*.code' => 'Código',
-            'returns.*.desc' => 'Descrição',
+            'returns.*.description' => 'Descrição',
         ];
     }
 }

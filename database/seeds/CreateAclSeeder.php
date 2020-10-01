@@ -18,36 +18,20 @@ class CreateAclSeeder extends Seeder
                 'en' => 'Accompaniment',
             ],
             [
-                'pt' => 'Condição',
+                'pt' => 'Condições Especiais',
                 'en' => 'Condition',
-            ],
-            [
-                'pt' => 'Conexão',
-                'en' => 'Connection',
-            ],
-            [
-                'pt' => 'Contato',
-                'en' => 'Contact',
             ],
             [
                 'pt' => 'Distribuidor',
                 'en' => 'Distributor',
             ],
             [
-                'pt' => 'Funcionalidade',
-                'en' => 'Functionality',
-            ],
-            [
-                'pt' => 'Laboratorio',
+                'pt' => 'Laboratório',
                 'en' => 'Laboratory',
             ],
             [
                 'pt' => 'Oferta',
                 'en' => 'Offer',
-            ],
-            [
-                'pt' => 'Oferta Produto',
-                'en' => 'Offer_Product',
             ],
             [
                 'pt' => 'Farmácia',
@@ -78,7 +62,7 @@ class CreateAclSeeder extends Seeder
                 'en' => 'Profile',
             ],
             [
-                'pt' => 'Compra coletiva',
+                'pt' => 'Compra Coletiva',
                 'en' => 'Purchase',
             ],
             [

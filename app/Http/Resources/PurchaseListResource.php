@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\PartnerListResource;
 use App\Http\Resources\ProductDetailResource;
+use App\ProductDetail;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -12,7 +13,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     type="object",
  *     title="Purchase Response",
  *     @OA\Property(property="code", type="integer", example="001"),
- *     @OA\Property(property="image", type="integer", example="001"),
+ *     @OA\Property(property="image", type="string", example="001"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="description", type="string", example="Teste"),
 *     @OA\Property(property="validityStart",  type="date", example="2020-05-25"),
@@ -29,6 +30,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="relatedQuantity", type="integer", example="1"),
  *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
  *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
+ *     @OA\Property(property="billedDate", type="string", example="2020-05-01 10:00:00"),
  *     @OA\Property(
  *         property="partners",
  *         type="array",
@@ -42,7 +44,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(
  *         property="contacts",
  *         type="array",
- *         @OA\Items(         
+ *         @OA\Items(
  *             @OA\Property(property="send", type="string", example="TO"),
  *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
  *         )
@@ -59,12 +61,10 @@ class PurchaseListResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
-<<<<<<< HEAD
-=======
             'id' => $this->id,
->>>>>>> e3af2a0889cd8fd46db81e54dc6c92b3d2ee8300
-            'image' => $this->image,
+            'image' => env('APP_URL') . $this->image,
             'code' => $this->code,
             'name' => $this->name,
             'sendType' => $this->send_type,
@@ -72,23 +72,23 @@ class PurchaseListResource extends JsonResource
             'validityStart' => $this->validity_start,
             'validityEnd' => $this->validity_end,
             'untilBilling' => $this->until_billing,
-            'setMinimumBillingValue' => $this->set_minimum_billing_value,
+            'billingMeasure' => $this->billing_measure,
             'minimumBillingValue' => $this->minimum_billing_value,
-            'setMinimumBillingQuantity' => $this->set_minimum_billing_quantity,
             'minimumBillingQuantity' => $this->minimum_billing_quantity,
             'totalIntentionsValue' => $this->total_intentions_value,
             'totalIntentionsQuantity' => $this->total_intentions_quantity,
             'relatedQuantity' => $this->related_quantity,
             'description' => $this->description,
-<<<<<<< HEAD
-            'partners' => PartnerListResource::collection($this->partners),
-            'products' => ProductDetailResource::collection($this->products),
+            'partnerType' => !is_null($this->partner) ? $this->partner->partner_type : null,
+            'partner' => !is_null($this->partner) ?  PartnerListResource::make($this->partner) : null,
             'contacts' => $this->contacts,
-=======
-            'products' => ProductResource::collection($this->products),
->>>>>>> e3af2a0889cd8fd46db81e54dc6c92b3d2ee8300
+            'hasRequest' => $this->when($request->get('pharmacyId'), function() use($request) {
+                return $this->requests()->where('pharmacy_id', $request->get('pharmacyId'))->count() > 0;
+            }),
+            'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
-            'updated_date' => $this->updated_at
+            'updated_date' => $this->updated_at,
+            'billedDate' => $this->billed_date,
         ];
     }
 }

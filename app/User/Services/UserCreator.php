@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\User\Services;
-
 
 use App\Notifications\Wellcome;
 use App\User;
@@ -33,10 +31,17 @@ class UserCreator implements UserCreatable
             $user->status = $data['status'];
             $user->type = $data['type'];
             $user->profile_id = $data['profileId'];
+            $user->manager_id = isset($data['manager']) ? $data['manager'] : null;
+            $user->updated_id = auth()->guard('api')->user()->id;
+            $user->updated_at = date('Y-m-d H:i:s');
+
             $user->save();
 
             if (isset($data['pharmacies'])) {
-                foreach ($data['pharmacies'] as $data) {
+                $user->pharmacies()->detach();
+                $collectPharmacies = collect($data['pharmacies']);
+                $uniquePharmacies = $collectPharmacies->unique('id');
+                foreach ($uniquePharmacies->toArray() as $data) {
                     $user->pharmacies()->attach($data['id']);
                 }
             }

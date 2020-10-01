@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseIntentionRequest;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Resources\ProductDetailPortalResource;
+use App\Http\Resources\PurchaseHistoricResource;
 use App\Http\Resources\PurchaseListResource;
+use App\Http\Resources\RequestIntentionResource;
+use App\Http\Resources\RequestListResource;
+use App\Http\Resources\RequestResource;
+use App\Pharmacy;
 use App\Product\Contracts\ProductDetailRetrievable;
 use App\Purchase;
+use App\Request as RequestModel;
 use App\Purchase\Contracts\PurchaseCreatable;
 use App\Purchase\Contracts\PurchaseRemovable;
 use App\Purchase\Contracts\PurchaseRetrievable;
 use App\Purchase\Contracts\PurchaseUpdatable;
+use App\Services\RequestPurchase;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
@@ -152,7 +160,7 @@ class PurchaseController extends Controller
      *     @OA\Parameter(
      *        name="status",
      *        in="query",
-     *        example="active",
+     *        example="OPEN",
      *     ),
      *     @OA\Parameter(
      *        name="validityStart",
@@ -195,12 +203,16 @@ class PurchaseController extends Controller
 
     /**
      * @param Request $request
+     * @param Pharmacy|null $pharmacy
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function portal(Request $request)
+    public function portal(Request $request, \App\Pharmacy $pharmacy = null)
     {
         try {
-            return PurchaseListResource::collection($this->retrieverService->getPurchases($request->query())->get());
+            $input = $request->all();
+            $input['status'] = 'OPEN';
+//            $input['date'] = date('Y-m-d');
+            return PurchaseListResource::collection($this->retrieverService->getPurchases($input)->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
@@ -404,13 +416,13 @@ class PurchaseController extends Controller
      */
 
     /**
-     * @param Purchase $Purchase
+     * @param Purchase $model
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Purchase $Purchase)
+    public function delete(Purchase $model)
     {
         try {
-            $this->removerService->delete($Purchase);
+            $this->removerService->delete($model);
             return response()->json(['message' => 'Compra removida com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -460,4 +472,104 @@ class PurchaseController extends Controller
         return PurchaseListResource::make($model);
     }
 
+    /**
+     * @param Purchase $purchase
+     * @return \Illuminate\Http\JsonResponse
+     */
+    /// TODO: add it on service
+    public function intentions(Purchase $purchase)
+    {
+       try {
+           $allIntentions = $purchase->requests()->get();
+           $totalIntentions = $allIntentions->count();
+           $amountIntentions = $allIntentions->sum('value');
+           return response()->json([
+               'totalIntentions' => $totalIntentions,
+               'amountIntentions' => $amountIntentions,
+               'intentions' => RequestIntentionResource::collection($allIntentions)
+           ]);
+       } catch (\Exception $exception) {
+           return response()->json(['error' => $exception->getMessage()], 400);
+       }
+    }
+
+    /**
+     *
+     * @OA\POST(
+     *     tags={"Purchases"},
+     *     path="/purchases/{id}/intentions",
+     *     @OA\Parameter(
+     *        name="id",
+     *        in="path",
+     *        example="2",
+     *        required=true
+     *     ),
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/PurchaseIntentionRequest")
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="message",
+     *                     example ="Intenções enviadas com sucesso"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 example ="Mensagem de error"
+     *            )
+     *         )
+     *     )
+     * )
+     */
+    /**
+     * @param Purchase $purchase
+     * @return \Illuminate\Http\JsonResponse
+     */
+    /// TODO: add it on service
+    public function intentionsSend(Purchase $purchase, PurchaseIntentionRequest $request)
+    {
+        try {
+            foreach ($request->requests as $request) {
+                $requestModel = RequestModel::find($request['id']);
+
+                (new RequestPurchase())->send($requestModel);
+            }
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    // TODO: add it on service and create a resource
+    public function historic(Purchase $purchase)
+    {
+        try {
+            $histories = [];
+            foreach ($purchase->requests()->get() as $request) {
+                foreach ($request->historics as $history) {
+                    $histories[] = [
+                        'date' => $history->created_at,
+                        'username' => $history->user,
+                        'action' => $history->action,
+                        'status' => $history->status
+                    ];
+                }
+            }
+
+            return response()->json($histories);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
 }

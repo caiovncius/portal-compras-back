@@ -15,9 +15,9 @@ class ReturnsRemover implements ReturnsRemovable
     public function delete(Returns $model)
     {
         try {
-            $model->dettach();
-            $model->delete();
-            
+            $model->status = Returns::RETURN_STATUS_INACTIVE;
+            $model->save();
+
             return true;
         } catch (\Exception $e) {
             throw  $e;

@@ -318,9 +318,13 @@ class ConditionController extends Controller
         return ConditionListResource::make($model);
     }
 
-
-    public function removePartner(Condition $condition, $parterId)
+    /**
+     * @param Condition $condition
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Condition $condition)
     {
-
+        $this->updatorService->enable($condition);
+        return response()->json(['message' => 'Retorno ativada com sucesso']);
     }
 }

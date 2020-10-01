@@ -15,8 +15,8 @@ class ProductRemover implements ProductRemovable
     public function delete(Product $product)
     {
         try {
-            $product->delete();
-            
+            $product->status = Product::PRODUCT_STATUS_INACTIVE;
+            $product->save();
             return true;
         } catch (\Exception $e) {
             throw  $e;

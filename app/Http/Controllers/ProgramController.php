@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProgramExport;
 use App\Http\Requests\ProgramCreatorRequest;
 use App\Http\Requests\ProgramMassCreatorRequest;
+use App\Http\Requests\ProgramMassUpdatorRequest;
 use App\Http\Requests\ProgramUpdatorRequest;
 use App\Http\Requests\ReturnMorphRequest;
 use App\Http\Resources\ProgramListResource;
@@ -16,6 +18,8 @@ use App\Program\Contracts\ProgramRetrievable;
 use App\Program\Contracts\ProgramUpdatable;
 use App\Returns\Contracts\ReturnsMorphCreatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Maatwebsite\Excel\Excel;
 
 class ProgramController extends Controller
 {
@@ -462,7 +466,7 @@ class ProgramController extends Controller
      * @param ProgramMassCreatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function massUpdate(ProgramMassCreatorRequest $request)
+    public function massUpdate(ProgramMassUpdatorRequest $request)
     {
         try {
             $updated = 0;
@@ -634,5 +638,20 @@ class ProgramController extends Controller
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
+    }
+
+    public function exportPrograms()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new ProgramExport, 'programas.xls');
+    }
+
+    /**
+     * @param Program $program
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Program $program)
+    {
+        $this->updatorService->enable($program);
+        return response()->json(['message' => 'Programa ativado com sucesso']);
     }
 }

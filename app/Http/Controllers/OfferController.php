@@ -558,4 +558,19 @@ class OfferController extends Controller
             return response()->json(['error' => $exception->getMessage()], 400);
         }
     }
+
+    /**
+     * @param Offer $offer
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Offer $offer)
+    {
+        $this->updatorService->enable($offer);
+        return response()->json(['message' => 'Oferta ativada com sucesso']);
+    }
+
+    public function importProducts(Request $request, Offer $offer)
+    {
+        dd($request->file);
+    }
 }

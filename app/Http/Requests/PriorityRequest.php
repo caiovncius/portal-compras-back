@@ -44,8 +44,10 @@ class PriorityRequest extends FormRequest
         return [
             'description' => 'string|required',
             'status' => 'required|in:ACTIVE,INACTIVE',
-            'partners' => 'array|required',
-            'partners.*' => 'numeric|exists:distributors,id'
+            'nationalPartners' => 'array|nullable',
+            'nationalPartners.*' => 'numeric|exists:distributors,id',
+            'regionalPartners' => 'array|nullable',
+            'regionalPartners.*' => 'numeric|exists:distributors,id'
         ];
     }
 }

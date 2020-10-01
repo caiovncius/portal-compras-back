@@ -16,8 +16,8 @@ class ConditionRemover implements ConditionRemovable
     public function delete(Condition $model)
     {
         try {
-            $model->partners()->delete();
-            $model->delete();
+            $model->status = Condition::CONDITION_STATUS_INACTIVE;
+            $model->save();
 
             return true;
         } catch (\Exception $e) {

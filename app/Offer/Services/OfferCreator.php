@@ -35,26 +35,29 @@ class OfferCreator implements OfferCreatable
             $data['condition_id'] = isset($data['conditionId']) ? $data['conditionId'] : null;
             $model = Offer::create($data);
 
-            foreach ($data['partners'] as $partner) {
-                $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
-                $hasPartner = Distributor::find($partner['id']);
+            if (isset($data['partners']) && !empty($data['partners'])) {
+                foreach ($data['partners'] as $partner) {
+                    $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
+                    $hasPartner = Distributor::find($partner['id']);
 
-                if ($partner['type'] === Partner::PARTNER_TYPE_PROGRAM) {
-                    $partnerType = Partner::PARTNER_TYPE_PROGRAM;
-                    $hasPartner = Program::find($partner['id']);
+                    if ($partner['type'] === Partner::PARTNER_TYPE_PROGRAM) {
+                        $partnerType = Partner::PARTNER_TYPE_PROGRAM;
+                        $hasPartner = Program::find($partner['id']);
+                    }
+
+                    if (is_null($hasPartner)) {
+                        throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
+                    }
+
+                    $model->partners()->create([
+                        'partner_type' => $partnerType,
+                        'partner_id' => $partner['id'],
+                        'ol' => $partner['ol'],
+                        'priority' => $partner['priority'],
+                    ]);
                 }
-
-                if (is_null($hasPartner)) {
-                    throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
-                }
-
-                $model->partners()->create([
-                    'partner_type' => $partnerType,
-                    'partner_id' => $partner['id'],
-                    'ol' => $partner['ol'],
-                    'priority' => $partner['priority'],
-                ]);
             }
+
 
             if (isset($data['products'])) {
                 foreach ($data['products'] as $item) {

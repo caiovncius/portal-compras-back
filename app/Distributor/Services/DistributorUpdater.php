@@ -42,4 +42,15 @@ class DistributorUpdater implements DistributorUpdatable
             throw $e;
         }
     }
+
+    /**
+     * @param Distributor $distributor
+     * @return bool
+     */
+    public function enable(Distributor $distributor)
+    {
+        $distributor->status = Distributor::DISTRIBUTOR_STATUS_ACTIVE;
+        $distributor->save();
+        return true;
+    }
 }

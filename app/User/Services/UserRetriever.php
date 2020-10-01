@@ -17,7 +17,7 @@ class UserRetriever implements UserRetrievable
     public function getUsers(array $querySearchParams = [])
     {
         try {
-            $usersQuery = User::query();
+            $usersQuery = User::with(['pharmacies']);
 
             if (isset($querySearchParams['name']) && !empty($querySearchParams['name'])) {
                 $usersQuery->where('name', 'like', '%' . $querySearchParams['name'] . '%');
@@ -27,8 +27,12 @@ class UserRetriever implements UserRetrievable
                 $usersQuery->where('email', 'like', '%' . $querySearchParams['email'] . '%');
             }
 
-            if (isset($querySearchParams['createdAt']) && !empty($querySearchParams['createdAt'])) {
-                $usersQuery->where('created_at', '>=', $querySearchParams['created_at']);
+            if (isset($querySearchParams['startDate']) && !empty($querySearchParams['startDate'])) {
+                $usersQuery->whereDate('created_at', '>=', $querySearchParams['startDate']);
+            }
+
+            if (isset($querySearchParams['endDate']) && !empty($querySearchParams['endDate'])) {
+                $usersQuery->whereDate('created_at', '<=', $querySearchParams['endDate']);
             }
 
             if (isset($querySearchParams['status']) && !empty($querySearchParams['status'])) {
@@ -39,7 +43,12 @@ class UserRetriever implements UserRetrievable
                 $usersQuery->where('type', $querySearchParams['type']);
             }
 
-            //$usersQuery->where('type', '!=', User::USER_TYPE_MASTER);
+            if (isset($querySearchParams['cnpj']) && !empty($querySearchParams['cnpj'])) {
+                $usersQuery->whereHas('pharmacies', function ($q) use($querySearchParams) {
+                    $cleanCNPJ = preg_replace('/[^0-9]/', '', $querySearchParams['cnpj']);
+                    $q->where('pharmacies.cnpj', 'like', '%' . $cleanCNPJ . '%');
+                });
+            }
 
             return $usersQuery;
 

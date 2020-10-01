@@ -17,7 +17,8 @@ class UserRemover implements UserRemovable
     public function delete(User $user)
     {
         try {
-            $user->delete();
+            $user->status = User::USER_STATUS_INACTIVE;
+            $user->save();
             return true;
         } catch (\Exception $e) {
             throw  $e;

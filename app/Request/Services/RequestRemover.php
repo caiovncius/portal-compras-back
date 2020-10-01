@@ -16,6 +16,7 @@ class RequestRemover implements RequestRemovable
     {
         try {
             $model->products()->detach();
+            $model->historics()->delete();
             $model->delete();
 
             return true;

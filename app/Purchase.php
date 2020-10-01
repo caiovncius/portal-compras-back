@@ -29,6 +29,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Purchase extends Model
 {
+    const PARTNER_TYPE_DISTRIBUTOR = 'DISTRIBUTOR';
+    const PARTNER_TYPE_PROGRAM = 'PROGRAM';
+
+    const BILLING_TYPE_VALUE = 'VALUE';
+    const BILLING_TYPE_QUANTITY = 'QUANTITY';
+
     protected $fillable = [
         'image',
         'code',
@@ -38,23 +44,23 @@ class Purchase extends Model
         'validity_start',
         'validity_end',
         'until_billing',
-        'set_minimum_billing_value',
+        'billing_measure',
         'minimum_billing_value',
-        'set_minimum_billing_quantity',
         'minimum_billing_quantity',
         'total_intentions_value',
         'total_intentions_quantity',
         'related_quantity',
         'description',
         'updated_id',
-        'contacts'
+        'contacts',
+        'billed_date'
     ];
 
-    protected $casts = ['contacts' => 'array'];
+    protected $casts = ['contacts' => 'array', 'billed_date' => 'datetime'];
 
-    public function partners()
+    public function partner()
     {
-        return $this->morphMany('App\Partner', 'typable');
+        return $this->morphOne(Partner::class, 'typable');
     }
 
     public function user()

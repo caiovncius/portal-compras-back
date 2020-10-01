@@ -16,19 +16,18 @@ class ConnectionUpdater implements ConnectionUpdatable
     public function update($model, array $data)
     {
         try {
-            $data['ftp_active'] = $data['isFtpActive'];
-            $data['transferency'] = $data['transferMode'];
-            $data['path_send'] = $data['sendDirectory'];
-            $data['path_return'] = $data['returnDirectory'];
-            $data['updated_id'] = auth()->guard('api')->user()->id;
-            $data['updated_at'] = date('Y-m-d H:i:s');
-            unset($data['programId']);
-            unset($data['isFtpActive']);
-            unset($data['transferMode']);
-            unset($data['sendDirectory']);
-            unset($data['returnDirectory']);
-            
-            $model->connection()->update($data);
+
+            $model->connection()->update([
+                'ftp_active' => $data['isFtpActive'] ,
+                'transferency' => $data['transferMode'],
+                'path_send' => $data['sendDirectory'],
+                'path_return' => $data['returnDirectory'],
+                'remove_file' => isset($data['removeFile']) ? $data['removeFile'] : false,
+                'mask' => isset($data['mask']) ? $data['mask'] : null,
+                'port' => isset($data['port']) ? $data['port'] : null,
+                'updated_id' => auth()->guard('api')->user()->id,
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
 
             return true;
         } catch (\Exception $e) {

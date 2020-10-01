@@ -456,4 +456,14 @@ class ProfileController extends Controller
     {
         return ProfileListResource::collection(Profile::byType($type)->get());
     }
+
+    /**
+     * @param Profile $profile
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Profile $profile)
+    {
+        $this->updatorService->enable($profile);
+        return response()->json(['message' => 'Perfil ativado com sucesso!']);
+    }
 }

@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="UserCreatorRequest",
  *     type="object",
  *     title="User form request",
- *     required={"name", "email", "username", "profile_id", "type", "status"},
+ *     required={"name", "email", "username", "profileId", "type", "status"},
  *     @OA\Property(property="name", type="string", example="Usuário Teste"),
  *     @OA\Property(property="email", type="string", example="user01@test.test"),
  *     @OA\Property(property="username", type="string", example="user01"),

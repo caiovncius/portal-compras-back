@@ -17,6 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $password
  * @property string $path_return
  * @property string $updated_id
+ * @property string $mask
+ * @property string $remove_file
+ * @property string $port
  */
 class Connection extends Model
 {
@@ -28,10 +31,16 @@ class Connection extends Model
         'login',
         'password',
         'path_return',
-        'updated_id'
+        'updated_id',
+        'mask',
+        'remove_file',
+        'port'
     ];
 
-    protected $casts = ['ftp_active' => 'boolean'];
+    protected $casts = [
+        'ftp_active' => 'boolean',
+        'remove_file' => 'boolean'
+    ];
 
     public function connectionable()
     {

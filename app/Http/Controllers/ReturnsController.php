@@ -301,10 +301,10 @@ class ReturnsController extends Controller
      * @param Returns $returns
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Returns $returns)
+    public function delete(Returns $return)
     {
         try {
-            $this->removerService->delete($returns);
+            $this->removerService->delete($return);
             return response()->json(['message' => 'Retorno removido com sucesso'], 200);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -352,6 +352,16 @@ class ReturnsController extends Controller
     public function get(Returns $returns)
     {
         return ReturnListResource::make($returns);
+    }
+
+    /**
+     * @param Returns $returns
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Returns $returns)
+    {
+        $this->updatorService->enable($returns);
+        return response()->json(['message' => 'Retorno ativada com sucesso']);
     }
 
 }

@@ -4,304 +4,12 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": ""
+        }
+    ],
     "paths": {
-        "/accompaniments": {
-            "get": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "parameters": [
-                    {
-                        "name": "codeOrder",
-                        "in": "query",
-                        "example": "001"
-                    },
-                    {
-                        "name": "codeOffer",
-                        "in": "query",
-                        "example": "321"
-                    },
-                    {
-                        "name": "codePharmacy",
-                        "in": "query",
-                        "example": "321"
-                    },
-                    {
-                        "name": "startDate",
-                        "in": "query",
-                        "example": "1992-10-11"
-                    },
-                    {
-                        "name": "endDate",
-                        "in": "query",
-                        "example": "1992-10-11"
-                    },
-                    {
-                        "name": "commercial",
-                        "in": "query",
-                        "example": "Teste"
-                    },
-                    {
-                        "name": "sendType",
-                        "in": "query",
-                        "example": "TESTE"
-                    },
-                    {
-                        "name": "status",
-                        "in": "query",
-                        "example": "Ativo"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/AccompanimentListResource"
-                                            }
-                                        },
-                                        "links": {
-                                            "allOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/PaginationLinks"
-                                                }
-                                            ]
-                                        },
-                                        "meta": {
-                                            "allOf": [
-                                                {
-                                                    "$ref": "#/components/schemas/PaginationMeta"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/AccompanimentCreatorRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "example": "Acompanhamento criado com sucesso"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ValidationResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de erro"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/accompaniments/{id}": {
-            "get": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "example": "2"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/components/schemas/AccompanimentListResource"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de error"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "example": "2"
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/AccompanimentUpdatorRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "example": "Acompanhamento atualizado com sucesso"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ValidationResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de erro"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Accompaniments"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "example": "2"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "example": "Acompanhamento removido com sucesso"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "example": "Mensagem de error"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/cities/by-state/{state}": {
             "get": {
                 "tags": [
@@ -3254,7 +2962,7 @@
                 }
             }
         },
-        "/priotities/national-partners": {
+        "/priorities/national-partners": {
             "get": {
                 "tags": [
                     "Priority"
@@ -3281,7 +2989,7 @@
                 }
             }
         },
-        "/priotities/regional-partners": {
+        "/priorities/regional-partners": {
             "get": {
                 "tags": [
                     "Priority"
@@ -5392,7 +5100,7 @@
                     {
                         "name": "status",
                         "in": "query",
-                        "example": "active"
+                        "example": "OPEN"
                     },
                     {
                         "name": "validityStart",
@@ -5607,6 +5315,63 @@
                                     "properties": {
                                         "message": {
                                             "example": "Compra removida com sucesso"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "example": "Mensagem de error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/purchases/{id}/intentions": {
+            "post": {
+                "tags": [
+                    "Purchases"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "example": "2"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PurchaseIntentionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "example": "Intenções enviadas com sucesso"
                                         }
                                     },
                                     "type": "object"
@@ -6039,6 +5804,89 @@
                                     "properties": {
                                         "error": {
                                             "example": "Mensagem de erro"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accompaniments": {
+            "get": {
+                "tags": [
+                    "Accompaniment"
+                ],
+                "parameters": [
+                    {
+                        "name": "offerCode",
+                        "in": "query",
+                        "example": "OFFER9980"
+                    },
+                    {
+                        "name": "pharmacyId",
+                        "in": "query",
+                        "example": "teste"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "example": "active"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "example": "OFFER"
+                    },
+                    {
+                        "name": "commercial",
+                        "in": "query",
+                        "example": "name"
+                    },
+                    {
+                        "name": "sendType",
+                        "in": "query",
+                        "example": "MANUAL"
+                    },
+                    {
+                        "name": "date1",
+                        "in": "query",
+                        "example": "2020-05-25"
+                    },
+                    {
+                        "name": "date2",
+                        "in": "query",
+                        "example": "2020-06-25"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/RequestListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
                                         }
                                     },
                                     "type": "object"
@@ -7270,7 +7118,7 @@
                     },
                     "isFtpActive": {
                         "type": "boolean",
-                        "example": "true"
+                        "example": "1"
                     },
                     "transferMode": {
                         "type": "string",
@@ -7295,6 +7143,18 @@
                     "returnDirectory": {
                         "type": "string",
                         "example": "/var/www"
+                    },
+                    "port": {
+                        "type": "string",
+                        "example": "22"
+                    },
+                    "removeFile": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "mask": {
+                        "type": "string",
+                        "example": "teste"
                     }
                 },
                 "type": "object"
@@ -7335,7 +7195,7 @@
                 "properties": {
                     "isFtpActive": {
                         "type": "boolean",
-                        "example": "true"
+                        "example": "1"
                     },
                     "transferMode": {
                         "type": "string",
@@ -7360,6 +7220,18 @@
                     "returnDirectory": {
                         "type": "string",
                         "example": "/var/www"
+                    },
+                    "port": {
+                        "type": "string",
+                        "example": "22"
+                    },
+                    "removeFile": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "mask": {
+                        "type": "string",
+                        "example": "teste"
                     }
                 },
                 "type": "object"
@@ -7981,6 +7853,10 @@
                         "type": "int",
                         "example": "3"
                     },
+                    "cityIbgeCode": {
+                        "type": "string",
+                        "example": "12312"
+                    },
                     "contacts": {
                         "type": "array",
                         "items": {
@@ -8453,6 +8329,27 @@
                 },
                 "type": "object"
             },
+            "PurchaseIntentionRequest": {
+                "title": "Purchase Intention request",
+                "required": [
+                    "requests"
+                ],
+                "properties": {
+                    "requests": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "PurchaseRequest": {
                 "title": "Purchase form request",
                 "required": [
@@ -8529,29 +8426,13 @@
                         "type": "integer",
                         "example": "1"
                     },
-                    "partners": {
-                        "type": "array",
-                        "items": {
-                            "properties": {
-                                "id": {
-                                    "type": "string",
-                                    "example": "1"
-                                },
-                                "type": {
-                                    "type": "string",
-                                    "example": "PROVIDER"
-                                },
-                                "ol": {
-                                    "type": "integer",
-                                    "example": "1"
-                                },
-                                "priority": {
-                                    "type": "integer",
-                                    "example": "1"
-                                }
-                            },
-                            "type": "object"
-                        }
+                    "patnerType": {
+                        "type": "string",
+                        "example": "DISTRIBUTOR or PROGRAM"
+                    },
+                    "partner": {
+                        "type": "integer",
+                        "example": "1"
                     },
                     "products": {
                         "type": "array",
@@ -8758,6 +8639,28 @@
                 },
                 "type": "object"
             },
+            "ReturnMorphUpdatorRequest": {
+                "title": "Return morph form request",
+                "properties": {
+                    "returns": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "example": "001"
+                                },
+                                "desc": {
+                                    "type": "integer",
+                                    "example": "TESTE"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ReturnUpdatorRequest": {
                 "title": "Return form request",
                 "properties": {
@@ -8794,7 +8697,7 @@
                     "name",
                     "email",
                     "username",
-                    "profile_id",
+                    "profileId",
                     "type",
                     "status"
                 ],
@@ -9041,8 +8944,8 @@
                         "example": "1"
                     },
                     "ftpActive": {
-                        "type": "string",
-                        "example": "Teste"
+                        "type": "boolean",
+                        "example": "1"
                     },
                     "transferency": {
                         "type": "string",
@@ -9075,6 +8978,18 @@
                     "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
+                    },
+                    "port": {
+                        "type": "string",
+                        "example": "22"
+                    },
+                    "remove_file": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "mask": {
+                        "type": "string",
+                        "example": "teste"
                     }
                 },
                 "type": "Connection"
@@ -10143,7 +10058,7 @@
                         "example": "001"
                     },
                     "image": {
-                        "type": "integer",
+                        "type": "string",
                         "example": "001"
                     },
                     "name": {
@@ -10210,6 +10125,10 @@
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
+                    "billedDate": {
+                        "type": "string",
+                        "example": "2020-05-01 10:00:00"
+                    },
                     "partners": {
                         "type": "array",
                         "items": {
@@ -10267,6 +10186,48 @@
                 },
                 "type": "object"
             },
+            "RequestResourceIntention": {
+                "title": "Request Response",
+                "properties": {
+                    "pharmacyId": {
+                        "type": "integer",
+                        "example": "001"
+                    },
+                    "offerName": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "offerCondition": {
+                        "type": "string",
+                        "example": "true"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "MANUAL"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "CREATED"
+                    },
+                    "sendDate": {
+                        "type": "string",
+                        "example": "2020-09-25"
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RequestProductResource"
+                        }
+                    },
+                    "historic": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RequestHistoricResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "RequestListResource": {
                 "title": "Request List Response",
                 "properties": {
@@ -10297,6 +10258,29 @@
                     "sendDate": {
                         "type": "string",
                         "example": "2020-09-25"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "example": "2020-09-25"
+                    },
+                    "subtotal": {
+                        "type": "string",
+                        "example": "10"
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "8"
+                    },
+                    "qtdItens": {
+                        "type": "integer",
+                        "example": "8"
+                    },
+                    "qtdUnities": {
+                        "type": "integer",
+                        "example": "8"
+                    },
+                    "pharmacy": {
+                        "$ref": "#/components/schemas/PharmacyResource"
                     }
                 },
                 "type": "object"
@@ -10329,25 +10313,53 @@
                         "type": "integer",
                         "example": "001"
                     },
-                    "offerName": {
+                    "pharmacyName": {
                         "type": "string",
                         "example": "Teste"
+                    },
+                    "pharmacyRegister": {
+                        "type": "string",
+                        "example": "00000000191"
+                    },
+                    "offerName": {
+                        "type": "string",
+                        "example": "MANUAL"
                     },
                     "offerCondition": {
                         "type": "string",
                         "example": "true"
                     },
-                    "sendType": {
+                    "qtdItens": {
                         "type": "string",
-                        "example": "MANUAL"
+                        "example": "2"
+                    },
+                    "qtdUnities": {
+                        "type": "string",
+                        "example": "6"
                     },
                     "status": {
                         "type": "string",
-                        "example": "CREATED"
+                        "example": "WAITING_RETURN"
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "100.30"
+                    },
+                    "subtotal": {
+                        "type": "string",
+                        "example": "95"
                     },
                     "sendDate": {
                         "type": "string",
                         "example": "2020-09-25"
+                    },
+                    "sendType": {
+                        "type": "string",
+                        "example": "MANUAL"
+                    },
+                    "partnerName": {
+                        "type": "string",
+                        "example": "TESTE"
                     },
                     "products": {
                         "type": "array",
@@ -10796,9 +10808,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
-                        "tokenUrl": "http://localhost:8000/oauth/token",
-                        "refreshUrl": "http://localhost:8000/token/refresh",
+                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
+                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
+                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
                         "scopes": []
                     }
                 }

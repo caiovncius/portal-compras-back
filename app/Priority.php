@@ -15,6 +15,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Priority extends Model
 {
+
+    const PRIORITY_STATUS_ACTIVE = 'ACTIVE';
+    const PRIORITY_STATUS_INACTIVE = 'INACTIVE';
+
     /**
      * @var array
      */
@@ -28,6 +32,6 @@ class Priority extends Model
      */
     public function partners()
     {
-        return $this->belongsToMany(Distributor::class, 'priority_partners');
+        return $this->belongsToMany(Distributor::class, 'priority_partners', 'priority_id', 'distributor_id');
     }
 }

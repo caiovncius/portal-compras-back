@@ -23,11 +23,11 @@ class ConditionCreator implements ConditionCreatable
 
             foreach ($data['partners'] as $partner) {
                 $partnerType = ConditionPartner::PARTNER_TYPE_DISTRIBUTOR;
-                $hasPartner = Distributor::find($partner['partnerId']);
+                $hasPartner = Distributor::find($partner['id']);
 
                 if ($partner['type'] === ConditionPartner::PARTNER_TYPE_PROGRAM) {
                     $partnerType = ConditionPartner::PARTNER_TYPE_PROGRAM;
-                    $hasPartner = Program::find($partner['partnerId']);
+                    $hasPartner = Program::find($partner['id']);
                 }
 
                 if (is_null($hasPartner)) {
@@ -36,7 +36,7 @@ class ConditionCreator implements ConditionCreatable
 
                 $model->partners()->create([
                     'partner_type' => $partnerType,
-                    'partner_id' => $partner['partnerId']
+                    'partner_id' => $partner['id']
                 ]);
             }
 

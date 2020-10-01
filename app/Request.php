@@ -28,6 +28,7 @@ class Request extends Model
         'partner_type',
         'priority',
         'value',
+        'subtotal',
         'send_date',
         'requestable_id',
         'requestable_type',
@@ -35,6 +36,7 @@ class Request extends Model
 
     protected $casts = [
         'value' => 'float',
+        'subtotal' => 'float',
         'send_date' => 'date'
     ];
 
@@ -76,11 +78,11 @@ class Request extends Model
     public function products()
     {
         return $this->belongsToMany(
-                        'App\ProductDetail',
-                        'request_products',
-                        'request_id',
-                        'product_detail_id'
-                    )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
+            \App\Product::class,
+            'request_products',
+            'request_id',
+            'product_id'
+        )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
     }
 
     /**

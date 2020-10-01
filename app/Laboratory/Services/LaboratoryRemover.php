@@ -18,8 +18,9 @@ class LaboratoryRemover implements LaboratoryRemovable
     public function delete(Laboratory $laboratory)
     {
         try {
-            $laboratory->delete();
-            
+            $laboratory->status = Laboratory::LABORATORY_STATUS_INACTIVE;
+            $laboratory->save();
+
             return true;
         } catch (\Exception $exception) {
             throw $exception;

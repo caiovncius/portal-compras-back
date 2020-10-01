@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreatorRequest;
 use App\Http\Requests\ProductMassCreateRequest;
+use App\Http\Requests\ProductMassUpdateRequest;
 use App\Http\Requests\ProductUpdatorRequest;
 use App\Http\Resources\ProductListResource;
 use App\Http\Resources\ProductResource;
@@ -416,10 +417,10 @@ class ProductController extends Controller
      */
 
     /**
-     * @param ProductMassCreateRequest $request
+     * @param ProductMassUpdateRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function massUpdate(ProductMassCreateRequest $request)
+    public function massUpdate(ProductMassUpdateRequest $request)
     {
         try {
             $updated = 0;
@@ -495,5 +496,15 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
+    }
+
+    /**
+     * @param Product $product
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Product $product)
+    {
+        $this->updaterService->enable($product);
+        return response()->json(['message' => 'Produto ativada com sucesso']);
     }
 }

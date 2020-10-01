@@ -27,7 +27,6 @@ class DistributorCreator implements DistributorCreatable
             }
 
             if (isset($data['returns'])) {
-                $model->returns()->delete();
                 foreach ($data['returns'] as $data) {
                     $model->returns()->create($data);
                 }

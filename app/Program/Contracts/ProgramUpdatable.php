@@ -13,4 +13,10 @@ interface ProgramUpdatable
      * @throws \Exception
      */
     public function update(Program $data, array $newData);
+
+    /**
+     * @param Program $program
+     * @return bool
+     */
+    public function enable(Program $program);
 }

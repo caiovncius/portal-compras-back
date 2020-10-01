@@ -24,7 +24,7 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
          ->name('offer.portal');
     Route::get('offers/{model}/products', 'OfferController@products')
          ->name('offer.products');
-    Route::get('purchases', 'PurchaseController@portal')
+    Route::get('purchases/{pharmacy?}', 'PurchaseController@portal')
          ->name('purchase.portal');
     Route::get('purchases/{model}/products', 'PurchaseController@products')
          ->name('purchase.products');
@@ -60,6 +60,8 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/cities/by-state/{state}', 'CityController@allCities')
          ->name('cities.byState');
 
+    Route::get('/users/search', 'UserController@search')
+        ->name('user.search');
     Route::get('/users', 'UserController@list')
          ->name('user.list')
          ->middleware('acl:User,r');
@@ -83,6 +85,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::post('/users', 'UserController@store')
          ->name('user.store')
          ->middleware('acl:User,r,w');
+    Route::put('/users/enable/{user}', 'UserController@enable')
+        ->name('user.enablePro')
+        ->middleware('acl:User,r,w');
     Route::put('/users/{user}', 'UserController@update')
          ->name('user.update')
          ->middleware('acl:User,r,w');
@@ -105,6 +110,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/profiles/{profile}', 'ProfileController@update')
          ->name('profile.update')
          ->middleware('acl:Profile,r,w');
+    Route::put('/profiles/enable/{profile}', 'ProfileController@enable')
+        ->name('profile.enableUserC')
+        ->middleware('acl:Profile,r,w');
     Route::delete('/profiles/{profile}', 'ProfileController@delete')
          ->name('profile.delete')
          ->middleware('acl:Profile,r,w');
@@ -112,6 +120,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/pharmacies', 'PharmacyController@list')
          ->name('pharmacy.list')
          ->middleware('acl:Pharmacy,r');
+    Route::get('/pharmacies/export', 'PharmacyController@export')
+        ->name('pharmacy.export')
+        ->middleware('acl:Pharmacy,r');
     Route::get('/pharmacies/{pharmacy}', 'PharmacyController@get')
          ->name('pharmacy.get')
          ->middleware('acl:Pharmacy,r');
@@ -121,6 +132,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/pharmacies/{pharmacy}', 'PharmacyController@update')
          ->name('pharmacy.update')
          ->middleware('acl:Pharmacy,r,w');
+    Route::put('/pharmacies/enable/{pharmacy}', 'PharmacyController@enable')
+        ->name('pharmacy.enable')
+        ->middleware('acl:Pharmacy,r,w');
     Route::post('/pharmacies/{pharmacy}/add-contact', 'PharmacyController@addContact')
         ->name('pharmacy.contacts.add')
         ->middleware('acl:Pharmacy,r,w');
@@ -131,6 +145,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/laboratories/active', 'LaboratoryController@active')
          ->name('laboratory.active')
          ->middleware('acl:Laboratory,r');
+    Route::get('/laboratories/export', 'LaboratoryController@export')
+        ->name('laboratory.export')
+        ->middleware('acl:Laboratory,r');
     Route::get('/laboratories', 'LaboratoryController@list')
          ->name('laboratory.list')
          ->middleware('acl:Laboratory,r');
@@ -143,6 +160,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/laboratories/{laboratory}', 'LaboratoryController@update')
          ->name('laboratory.update')
          ->middleware('acl:Laboratory,r,w');
+    Route::put('/laboratories/enable/{laboratory}', 'LaboratoryController@enable')
+        ->name('laboratory.enable')
+        ->middleware('acl:Laboratory,r,w');
     Route::delete('/laboratories/{laboratory}', 'LaboratoryController@delete')
          ->name('laboratory.delete')
          ->middleware('acl:Laboratory,r,w');
@@ -170,6 +190,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/distributors', 'DistributorController@list')
          ->name('distributor.list')
          ->middleware('acl:Distributor,r');
+    Route::get('/distributors/export', 'DistributorController@export')
+        ->name('distributor.list')
+        ->middleware('acl:Distributor,r');
     Route::get('/distributors/all', 'DistributorController@all')
          ->name('distributor.all')
          ->middleware('acl:Distributor,r');
@@ -185,22 +208,25 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/distributors/{distributor}', 'DistributorController@update')
          ->name('distributor.update')
          ->middleware('acl:Distributor,r,w');
+    Route::put('/distributors/enable/{distributor}', 'DistributorController@enable')
+        ->name('distributor.enable')
+        ->middleware('acl:Distributor,r,w');
     Route::delete('/distributors/{distributor}', 'DistributorController@delete')
          ->name('distributor.delete')
          ->middleware('acl:Distributor,r,w');
 
     Route::get('/distributors/{distributor}/connection/test', 'DistributorConnectionController@test')
          ->name('distributor.connection.test')
-         ->middleware('acl:Connection,r');
+         ->middleware('acl:Distributor,r,w');
     Route::post('/distributors/{distributor}/connection', 'DistributorConnectionController@store')
          ->name('distributor.connection.store')
-         ->middleware('acl:Connection,r,w');
+         ->middleware('acl:Distributor,r,w');
     Route::post('/distributors/{distributor}/returns', 'DistributorController@returns')
          ->name('distributor.return.store')
          ->middleware('acl:Distributor,r,w');
     Route::put('/distributors/{distributor}/connection/{connection}', 'DistributorConnectionController@update')
          ->name('distributor.connection.update')
-         ->middleware('acl:Connection,r,w');
+         ->middleware('acl:Distributor,r,w');
 
 
     Route::get('/returns', 'ReturnsController@list')
@@ -218,13 +244,19 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/returns/{id}', 'ReturnsController@update')
          ->name('return.update')
          ->middleware('acl:Return,r,w');
-    Route::delete('/returns/{id}', 'ReturnsController@delete')
+    Route::put('/returns/enable/{returns}', 'ReturnsController@enable')
+        ->name('return.enable')
+        ->middleware('acl:Return,r,w');
+    Route::delete('/returns/{return}', 'ReturnsController@delete')
          ->name('return.delete')
          ->middleware('acl:Return,r,w');
 
     Route::get('/programs', 'ProgramController@list')
          ->name('program.list')
          ->middleware('acl:Program,r');
+    Route::get('/programs/export', 'ProgramController@exportPrograms')
+        ->name('program.export')
+        ->middleware('acl:Program,r');
     Route::get('/programs/search', 'ProgramController@search')
         ->name('program.list')
         ->middleware('acl:Program,r');
@@ -240,6 +272,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/programs/{model}', 'ProgramController@update')
          ->name('program.update')
          ->middleware('acl:Program,r,w');
+    Route::put('/programs/enable/{program}', 'ProgramController@enable')
+        ->name('program.enable')
+        ->middleware('acl:Program,r,w');
     Route::delete('/programs/{model}', 'ProgramController@delete')
          ->name('program.delete')
          ->middleware('acl:Program,r,w');
@@ -272,6 +307,15 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/purchases/{model}', 'PurchaseController@delete')
          ->name('purchase.delete')
          ->middleware('acl:Purchase,r,w');
+    Route::get('/purchases/{purchase}/intentions', 'PurchaseController@intentions')
+        ->name('purchase.intentions')
+        ->middleware('acl:Purchase,r');
+    Route::post('/purchases/{purchase}/intentions', 'PurchaseController@intentionsSend')
+         ->name('purchase.intentions.store')
+         ->middleware('acl:Purchase,r,w');
+    Route::get('/purchases/{purchase}/history', 'PurchaseController@historic')
+        ->name('purchase.historic')
+        ->middleware('acl:Purchase,r');
 
     Route::get('/offers', 'OfferController@list')
          ->name('offer.list')
@@ -285,10 +329,18 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::post('/offers', 'OfferController@store')
          ->name('offer.store')
          ->middleware('acl:Offer,r,w');
+
+    Route::post('/offers/{offer}/import-products', 'OfferController@importProducts')
+        ->name('offer.products.import')
+        ->middleware('acl:Offer,r,w');
+
     Route::put('/offers/{model}', 'OfferController@update')
          ->name('offer.update')
          ->middleware('acl:Offer,r,w');
-    Route::delete('/offers/{model}', 'OfferController@delete')
+    Route::put('/offers/enable/{offer}', 'OfferController@enable')
+        ->name('offer.enable')
+        ->middleware('acl:Offer,r,w');
+    Route::delete('/offers/{offer}', 'OfferController@delete')
          ->name('offer.delete')
          ->middleware('acl:Offer,r,w');
     Route::post('offer-products/{offer}', 'ProductDetailController@offer')
@@ -313,6 +365,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/products/{product}', 'ProductController@update')
          ->name('product.update')
          ->middleware('acl:Product,r,w');
+    Route::put('/products/enable/{product}', 'ProductController@enable')
+        ->name('product.enable')
+        ->middleware('acl:Product,r,w');
     Route::delete('/products/{product}', 'ProductController@delete')
          ->name('product.delete')
          ->middleware('acl:Product,r,w');
@@ -337,6 +392,9 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::put('/conditions/{model}', 'ConditionController@update')
          ->name('condition.update')
          ->middleware('acl:Condition,r,w');
+    Route::put('/conditions/enable/{condition}', 'ConditionController@enable')
+        ->name('condition.enable')
+        ->middleware('acl:Condition,r,w');
     Route::delete('/conditions/{model}', 'ConditionController@delete')
          ->name('condition.delete')
          ->middleware('acl:Condition,r,w');
@@ -354,55 +412,43 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('publicity.remove.image')
          ->middleware('acl:Publicity,r,w');
 
-    Route::get('/accompaniments', 'AccompanimentController@list')
+    Route::get('/accompaniments', 'RequestController@toMonitory')
          ->name('accompaniment.list')
-         ->middleware('acl:Accompaniment,r');
-    Route::get('/accompaniments/{model}', 'AccompanimentController@get')
-         ->name('accompaniment.get')
-         ->middleware('acl:Accompaniment,r');
-    Route::post('/accompaniments', 'AccompanimentController@store')
-         ->name('accompaniment.store')
-         ->middleware('acl:Accompaniment,r,w');
-    Route::put('/accompaniments/{model}', 'AccompanimentController@update')
-         ->name('accompaniment.update')
-         ->middleware('acl:Accompaniment,r,w');
-    Route::delete('/accompaniments/{model}', 'AccompanimentController@delete')
-         ->name('accompaniment.delete')
-         ->middleware('acl:Accompaniment,r,w');
+         ->middleware('acl:Request,r');
 
-    Route::post('/mass-actions/laboratory/create', 'LaboratoryController@massStore')
+    Route::post('/mass-actions/laboratories/create', 'LaboratoryController@massStore')
         ->name('laboratory.mass.create');
-    Route::put('/mass-actions/laboratory/update', 'LaboratoryController@massUpdate')
+    Route::put('/mass-actions/laboratories/update', 'LaboratoryController@massUpdate')
         ->name('laboratory.mass.update');
-    Route::delete('/mass-actions/laboratory/delete', 'LaboratoryController@massDelete')
+    Route::delete('/mass-actions/laboratories/delete', 'LaboratoryController@massDelete')
         ->name('laboratory.mass.delete');
 
-    Route::post('/mass-actions/pharmacy/create', 'PharmacyController@massStore')
+    Route::post('/mass-actions/pharmacies/create', 'PharmacyController@massStore')
         ->name('pharmacy.mass.create');
-    Route::put('/mass-actions/pharmacy/update', 'PharmacyController@massUpdate')
+    Route::put('/mass-actions/pharmacies/update', 'PharmacyController@massUpdate')
         ->name('pharmacy.mass.update');
-    Route::delete('/mass-actions/pharmacy/delete', 'PharmacyController@massDelete')
+    Route::delete('/mass-actions/pharmacies/delete', 'PharmacyController@massDelete')
         ->name('pharmacy.mass.delete');
 
-    Route::post('/mass-actions/product/create', 'ProductController@massStore')
+    Route::post('/mass-actions/products/create', 'ProductController@massStore')
         ->name('product.mass.create');
-    Route::put('/mass-actions/product/update', 'ProductController@massUpdate')
+    Route::put('/mass-actions/products/update', 'ProductController@massUpdate')
         ->name('product.mass.update');
-    Route::delete('/mass-actions/product/delete', 'ProductController@massDelete')
+    Route::delete('/mass-actions/products/delete', 'ProductController@massDelete')
         ->name('product.mass.delete');
 
-    Route::post('/mass-actions/user/create', 'UserController@massStore')
+    Route::post('/mass-actions/users/create', 'UserController@massStore')
         ->name('user.mass.create');
-    Route::put('/mass-actions/user/update', 'UserController@massUpdate')
+    Route::put('/mass-actions/users/update', 'UserController@massUpdate')
         ->name('user.mass.update');
-    Route::delete('/mass-actions/user/delete', 'UserController@massDelete')
+    Route::delete('/mass-actions/users/delete', 'UserController@massDelete')
         ->name('user.mass.delete');
 
-    Route::post('/mass-actions/program/create', 'ProgramController@massStore')
+    Route::post('/mass-actions/programs/create', 'ProgramController@massStore')
         ->name('program.mass.create');
-    Route::put('/mass-actions/program/update', 'ProgramController@massUpdate')
+    Route::put('/mass-actions/programs/update', 'ProgramController@massUpdate')
         ->name('program.mass.update');
-    Route::delete('/mass-actions/program/delete', 'ProgramController@massDelete')
+    Route::delete('/mass-actions/programs/delete', 'ProgramController@massDelete')
         ->name('program.mass.delete');
 
     Route::post('/mass-actions/distributor/create', 'DistributorController@massStore')
@@ -412,12 +458,11 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/mass-actions/distributor/delete', 'DistributorController@massDelete')
         ->name('distributor.mass.delete');
 
+    Route::get('/priorities/search', 'PriorityController@search')
+        ->name('priority.list.search');
+
     Route::get('/priorities', 'PriorityController@list')
         ->name('priority.list')
-        ->middleware('acl:Priority,r');
-
-    Route::get('/priorities/search', 'PriorityController@search')
-        ->name('priority.list.search')
         ->middleware('acl:Priority,r');
 
     Route::get('/priorities/national-partners', 'PriorityController@listNationalPartners')
@@ -438,6 +483,10 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
 
     Route::put('/priorities/{priority}', 'PriorityController@update')
         ->name('priority.update')
+        ->middleware('acl:Priority,r,w');
+
+    Route::put('/priorities/enable/{priority}', 'PriorityController@enable')
+        ->name('priority.enable')
         ->middleware('acl:Priority,r,w');
 
     Route::delete('/priorities/{priority}', 'PriorityController@delete')

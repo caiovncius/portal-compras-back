@@ -27,17 +27,28 @@ class ProgramUpdater implements ProgramUpdatable
                     $model->contacts()->create($data);
                 }
             }
-            
+
             if (isset($data['returns'])) {
                 $model->returns()->delete();
                 foreach ($data['returns'] as $data) {
                     $model->returns()->create($data);
                 }
             }
-            
+
             return $model;
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * @param Program $program
+     * @return bool
+     */
+    public function enable(Program $program)
+    {
+        $program->status = Program::PROGRAM_STATUS_ACTIVE;
+        $program->save();
+        return true;
     }
 }

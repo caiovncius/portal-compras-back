@@ -7,7 +7,9 @@ use App\Distributor\Contracts\DistributorCreatable;
 use App\Distributor\Contracts\DistributorRemovable;
 use App\Distributor\Contracts\DistributorRetrievable;
 use App\Distributor\Contracts\DistributorUpdatable;
+use App\Exports\DistributorExport;
 use App\Http\Requests\DistributorCreatorRequest;
+use App\Http\Requests\DistributorMassUpdatorRequest;
 use App\Http\Requests\DistributorUpdatorRequest;
 use App\Http\Requests\ReturnMorphRequest;
 use App\Http\Resources\DistributorListResource;
@@ -501,7 +503,7 @@ class DistributorController extends Controller
      * @param DistributorMassCreatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function massUpdate(DistributorMassCreatorRequest $request)
+    public function massUpdate(DistributorMassUpdatorRequest $request)
     {
         try {
             $updated = 0;
@@ -624,5 +626,23 @@ class DistributorController extends Controller
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function export()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new DistributorExport(), 'distribuidoras.xls');
+    }
+
+    /**
+     * @param Distributor $distributor
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Distributor $distributor)
+    {
+        $this->updatorService->enable($distributor);
+        return response()->json(['message' => 'Distribuídora ativada com sucesso']);
     }
 }

@@ -24,6 +24,7 @@ class ProductUpdater implements ProductUpdatable
             $model->laboratory_id = $data['laboratoryId'];
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
+            $model->status = $data['status'];
             $model->save();
 
             if (isset($data['secondaryEanCodes'])) {
@@ -37,5 +38,16 @@ class ProductUpdater implements ProductUpdatable
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * @param Product $product
+     * @return bool
+     */
+    public function enable(Product $product)
+    {
+        $product->status = Product::PRODUCT_STATUS_ACTIVE;
+        $product->save();
+        return true;
     }
 }

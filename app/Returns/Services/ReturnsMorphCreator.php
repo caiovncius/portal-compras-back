@@ -15,8 +15,11 @@ class ReturnsMorphCreator implements ReturnsMorphCreatable
     {
         if (isset($data['returns'])) {
             $model->returns()->delete();
-            foreach ($data['returns'] as $data) {
-                $model->returns()->create($data);
+
+            $collection = collect($data['returns']);
+            $uniques = $collection->unique('code');
+            foreach ($uniques->toArray() as $return) {
+                $model->returns()->create($return);
             }
         }
 

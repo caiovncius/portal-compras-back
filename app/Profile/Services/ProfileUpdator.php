@@ -39,4 +39,15 @@ class ProfileUpdator implements ProfileUpdatable
             throw $exception;
         }
     }
+
+    /**
+     * @param Profile $profile
+     * @return bool
+     */
+    public function enable(Profile $profile)
+    {
+        $profile->status = Profile::PROFILE_STATUS_ACTIVE;
+        $profile->save();
+        return true;
+    }
 }

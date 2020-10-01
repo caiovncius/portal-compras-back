@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PharmacyExport;
 use App\Http\Requests\ContactCreatorRequest;
 use App\Http\Requests\PharmacyCreatorRequest;
 use App\Http\Requests\PharmacyMassCreateRequest;
+use App\Http\Requests\PharmacyMassUpdatorRequest;
 use App\Http\Requests\PharmacyUpdatorRequest;
 use App\Http\Resources\PharmacyListResource;
 use App\Http\Resources\PharmacyResource;
@@ -456,10 +458,10 @@ class PharmacyController extends Controller
      */
 
     /**
-     * @param PharmacyMassCreateRequest $request
+     * @param PharmacyMassUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function massUpdate(PharmacyMassCreateRequest $request)
+    public function massUpdate(PharmacyMassUpdatorRequest $request)
     {
         try {
             $updated = 0;
@@ -535,5 +537,20 @@ class PharmacyController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
+    }
+
+    public function export()
+    {
+        return \Maatwebsite\Excel\Facades\Excel::download(new PharmacyExport, 'farmacias.xls');
+    }
+
+    /**
+     * @param Pharmacy $pharmacy
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function enable(Pharmacy $pharmacy)
+    {
+        $this->updaterService->enable($pharmacy);
+        return response()->json(['message' => 'Farmácia ativada com sucesso']);
     }
 }

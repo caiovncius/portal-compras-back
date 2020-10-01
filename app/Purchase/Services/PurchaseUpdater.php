@@ -2,13 +2,10 @@
 
 namespace App\Purchase\Services;
 
-<<<<<<< HEAD
 use App\Distributor;
+use App\Helpers\FileUploader;
 use App\Partner;
 use App\Program;
-=======
-use App\ProductDetail;
->>>>>>> e3af2a0889cd8fd46db81e54dc6c92b3d2ee8300
 use App\Purchase;
 use App\Purchase\Contracts\PurchaseUpdatable;
 
@@ -26,46 +23,44 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->fill($data);
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
-            $model->offer_id = isset($data['offerId']) ? $data['qw'] : null;
             $model->send_type = isset($data['sendType']) ? $data['sendType'] : null;
             $model->validity_start = isset($data['validityStart']) ? $data['validityStart'] : null;
             $model->validity_end = isset($data['validityEnd']) ? $data['validityEnd'] : null;
             $model->until_billing = isset($data['untilBilling']) ? $data['untilBilling'] : null;
-            $model->set_minimum_billing_value = isset($data['setMinimumBillingValue']) ? $data['setMinimumBillingValue'] : null;
-            $model->minimum_billing_value = isset($data['minimumBillingValue']) ? $data['minimumBillingValue'] : null;
-            $model->set_minimum_billing_quantity = isset($data['setMinimumBillingQuantity']) ? $data['setMinimumBillingQuantity'] : null;
-            $model->minimum_billing_quantity = isset($data['minimumBillingQuantity']) ? $data['minimumBillingQuantity'] : null;
+            $model->billing_measure = $data['billingMeasure'];
+            $model->minimum_billing_value = isset($data['minimumBillingValue']) && $data['billingMeasure'] === Purchase::BILLING_TYPE_VALUE ? $data['minimumBillingValue'] : null;
+            $model->minimum_billing_quantity = isset($data['minimumBillingQuantity']) && $data['billingMeasure'] === Purchase::BILLING_TYPE_QUANTITY ? $data['minimumBillingQuantity'] : null;
             $model->total_intentions_value = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;
             $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
+
+            if (isset($data['image'])) {
+                $model->image = FileUploader::uploadFile($data['image']);
+            }
+
             $model->save();
-<<<<<<< HEAD
-            $model->partners()->delete();
 
-            foreach ($data['partners'] as $partner) {
+            if (isset($data['partner']) && !is_null($data['partner'])) {
+                $model->partner()->delete();
+
                 $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
-                $hasPartner = Distributor::find($partner['id']);
+                $partner = Distributor::find($data['partner']);
 
-                if ($partner['type'] === Partner::PARTNER_TYPE_PROGRAM) {
+                if ($data['partnerType'] === Partner::PARTNER_TYPE_PROGRAM) {
                     $partnerType = Partner::PARTNER_TYPE_PROGRAM;
-                    $hasPartner = Program::find($partner['id']);
+                    $partner = Program::find($data['partner']);
                 }
 
-                if (is_null($hasPartner)) {
+                if (is_null($partner)) {
                     throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
                 }
 
-                $model->partners()->create([
+                $model->partner()->create([
                     'partner_type' => $partnerType,
-                    'partner_id' => $partner['id'],
-                    'ol' => $partner['ol'],
-                    'priority' => $partner['priority'],
+                    'partner_id' => $partner->id,
                 ]);
             }
-            
-=======
 
->>>>>>> e3af2a0889cd8fd46db81e54dc6c92b3d2ee8300
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {

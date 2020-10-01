@@ -45,12 +45,12 @@ class ConditionCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:conditions',
+            'code' => 'required|string|unique:conditions,code',
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'partners' => 'array|required|min:1',
             'partners.*.type' => 'required|in:DISTRIBUTOR,PROGRAM',
-            'partners.*.partnerId' => 'required|numeric'
+            'partners.*.id' => 'required|numeric'
         ];
     }
 

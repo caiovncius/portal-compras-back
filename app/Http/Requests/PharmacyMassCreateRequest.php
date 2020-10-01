@@ -39,13 +39,14 @@ class PharmacyMassCreateRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.code' => 'required|string|unique:pharmacies',
+            'data.*.code' => 'required|string|unique:pharmacies,code',
             'data.*.socialName' => 'required|string',
             'data.*.name' => 'required|string',
-            'data.*.cnpj' => 'required|cnpj',
+            'data.*.cnpj' => 'required|cnpj|unique:pharmacies,cnpj',
             'data.*.email' => 'email',
             'data.*.status' => 'nullable|in:ACTIVE,INACTIVE',
             'data.*.cityId' => 'nullable|integer|exists:cities,id',
+            'data.*.cityIbgeCode' => 'nullable',
             'data.*.stateRegistration' => 'string',
             'data.*.phone' => 'string',
             'data.*.supervisorId' => 'exists:users,id',

@@ -23,4 +23,10 @@ interface LaboratoryUpdatable
      * @throws \Exception
      */
     public function addContact(Laboratory $laboratory, array $contactData);
+
+    /**
+     * @param Laboratory $laboratory
+     * @return bool
+     */
+    public function enable(Laboratory $laboratory);
 }

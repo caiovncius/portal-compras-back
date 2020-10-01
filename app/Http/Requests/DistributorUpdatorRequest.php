@@ -38,8 +38,8 @@ class DistributorUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
-            'cnpj' => 'required|cnpj',
+            'code' => 'required|string|unique:distributors,code,' . $this->id,
+            'cnpj' => 'required|cnpj|unique:distributors,cnpj,' . $this->id,
             'name' => 'required|string',
             'status' => 'in:ACTIVE,INACTIVE',
             'category' => 'required|in:NATIONAL,REGIONAL',
@@ -49,6 +49,9 @@ class DistributorUpdatorRequest extends FormRequest
             'contacts.*.name' => 'required|string',
             'contacts.*.email' => 'required|email',
             'contacts.*.telephone' => 'required|string',
+            'returns' => 'array|nullable',
+            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,' . $this->id,
+            'returns.*.description' => 'required|string',
         ];
     }
 

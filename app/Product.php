@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+
+    const PRODUCT_STATUS_ACTIVE = 'ACTIVE';
+    const PRODUCT_STATUS_INACTIVE = 'INACTIVE';
     /**
      * @var array
      */
@@ -60,5 +63,18 @@ class Product extends Model
     public function details()
     {
         return $this->hasMany('App\ProductDetail', 'product_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function requests()
+    {
+        return $this->belongsToMany(
+            'App\Request',
+            'request_products',
+            'product_id',
+            'request_id',
+        )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
     }
 }

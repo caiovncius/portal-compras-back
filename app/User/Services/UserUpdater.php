@@ -27,11 +27,22 @@ class UserUpdater implements UserUpdatable
             $user->profile_id = $data['profileId'];
             $user->updated_id = auth()->guard('api')->user()->id;
             $user->updated_at = date('Y-m-d H:i:s');
+
+            if (isset($data['username'])) {
+                $user->username = $data['username'];
+            }
+
+            if (isset($data['manager'])) {
+                $user->manager_id = $data['manager'];
+            }
+
             $user->save();
 
             if (isset($data['pharmacies'])) {
                 $user->pharmacies()->detach();
-                foreach ($data['pharmacies'] as $data) {
+                $collectPharmacies = collect($data['pharmacies']);
+                $uniquePharmacies = $collectPharmacies->unique('id');
+                foreach ($uniquePharmacies->toArray() as $data) {
                     $user->pharmacies()->attach($data['id']);
                 }
             }
@@ -40,5 +51,16 @@ class UserUpdater implements UserUpdatable
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function enable(User $user)
+    {
+        $user->status = User::USER_STATUS_ACTIVE;
+        $user->save();
+        return true;
     }
 }

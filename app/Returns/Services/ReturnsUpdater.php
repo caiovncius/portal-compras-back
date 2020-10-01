@@ -20,10 +20,21 @@ class ReturnsUpdater implements ReturnsUpdatable
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
             $model->save();
-            
+
             return true;
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * @param Returns $returns
+     * @return bool
+     */
+    public function enable(Returns $returns)
+    {
+        $returns->status = Returns::RETURN_STATUS_ACTIVE;
+        $returns->save();
+        return true;
     }
 }

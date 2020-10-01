@@ -52,7 +52,7 @@ class ProgramMassCreatorRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.code' => 'required|string|unique:programs',
+            'data.*.code' => 'required|string|unique:programs,code',
             'data.*.name' => 'required|string',
             'data.*.status' => 'required|in:ACTIVE,INACTIVE',
             'data.*.contacts' => 'array',

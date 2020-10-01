@@ -27,16 +27,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="totalIntentionsValue", type="integer", example="1"),
  *     @OA\Property(property="totalIntentionsQuantity", type="integer", example="1"),
  *     @OA\Property(property="relatedQuantity", type="integer", example="1"),
- *     @OA\Property(
- *         property="partners",
- *         type="array",
- *         @OA\Items(
- *     @OA\Property(property="id", type="string", example="1"),
- *     @OA\Property(property="type", type="string", example="PROVIDER"),
- *     @OA\Property(property="ol", type="integer", example="1"),
- *     @OA\Property(property="priority", type="integer", example="1"),
- *         )
- *     ),
+ *     @OA\Property(property="patnerType", type="string", example="DISTRIBUTOR or PROGRAM"),
+ *     @OA\Property(property="partner", type="integer", example="1"),
  *     @OA\Property(
  *         property="products",
  *         type="array",
@@ -62,7 +54,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(
  *         property="contacts",
  *         type="array",
- *         @OA\Items(         
+ *         @OA\Items(
  *             @OA\Property(property="send", type="string", example="TO"),
  *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
  *         )
@@ -89,29 +81,27 @@ class PurchaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:purchases',
+            'code' => 'required|string|unique:purchases,code,' . $this->id,
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'status' => 'nullable|in:ACTIVE,INACTIVE',
-            'minimumBillingValue' => 'required',
-            'minimumBillingQuantity' => 'required',
-            'validityStart' => 'required|date',
-            'validityEnd' => 'required|date|after_or_equal:validityStart',
-            'partners' => 'array|nullable',
-            'partners.*.id' => 'required|numeric',
-            'partners.*.type' => 'required|string',
-            'partners.*.ol' => 'required|numeric',
-            'partners.*.priority' => 'required|numeric',
+            'status' => 'nullable|in:OPEN,LATE,READY_SEND,BILLED',
+            'billingMeasure' => 'required',
+            'minimumBillingValue' => 'required_if:billingMeasure,VALUE|nullable',
+            'minimumBillingQuantity' => 'required_if:billingMeasure,QUANTITY|nullable',
+            'validityStart' => 'date|nullable',
+            'validityEnd' => 'date|after_or_equal:validityStart|nullable',
+            'partnerType' => 'string|in:DISTRIBUTOR,PROGRAM|nullable',
+            'partner' => 'numeric|nullable',
             'products' => 'array|nullable',
             'products.*.productId' => 'required',
             'products.*.discountDeferred' => 'numeric',
             'products.*.discountOnCash' => 'numeric',
-            'products.*.minimum' => 'numeric',
+            'products.*.minimum' => 'nullable',
             'products.*.minimumPerFamily' => 'required',
             'products.*.obrigatory' => 'boolean',
-            'products.*.factoryPrice' => 'numeric',
-            'products.*.priceDeferred' => 'numeric',
-            'products.*.priceOnCash' => 'numeric',
+            'products.*.factoryPrice' => 'string',
+            'products.*.priceDeferred' => 'nullable',
+            'products.*.priceOnCash' => 'nullable',
             'products.*.quantityMaximum' => 'numeric',
             'products.*.quantityMinimum' => 'numeric',
             'products.*.stateId' => 'required',
