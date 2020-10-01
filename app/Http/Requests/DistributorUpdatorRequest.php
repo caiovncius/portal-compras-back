@@ -38,8 +38,8 @@ class DistributorUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
-            'cnpj' => 'required|cnpj',
+            'code' => 'required|string|unique:distributors,code,' . $this->id,
+            'cnpj' => 'required|cnpj|unique:distributors,cnpj,' . $this->id,
             'name' => 'required|string',
             'status' => 'in:ACTIVE,INACTIVE',
             'category' => 'required|in:NATIONAL,REGIONAL',

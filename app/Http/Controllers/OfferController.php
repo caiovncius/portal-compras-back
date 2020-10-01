@@ -568,4 +568,9 @@ class OfferController extends Controller
         $this->updatorService->enable($offer);
         return response()->json(['message' => 'Oferta ativada com sucesso']);
     }
+
+    public function importProducts(Request $request, Offer $offer)
+    {
+        dd($request->file);
+    }
 }

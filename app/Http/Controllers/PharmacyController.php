@@ -6,6 +6,7 @@ use App\Exports\PharmacyExport;
 use App\Http\Requests\ContactCreatorRequest;
 use App\Http\Requests\PharmacyCreatorRequest;
 use App\Http\Requests\PharmacyMassCreateRequest;
+use App\Http\Requests\PharmacyMassUpdatorRequest;
 use App\Http\Requests\PharmacyUpdatorRequest;
 use App\Http\Resources\PharmacyListResource;
 use App\Http\Resources\PharmacyResource;
@@ -457,10 +458,10 @@ class PharmacyController extends Controller
      */
 
     /**
-     * @param PharmacyMassCreateRequest $request
+     * @param PharmacyMassUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function massUpdate(PharmacyMassCreateRequest $request)
+    public function massUpdate(PharmacyMassUpdatorRequest $request)
     {
         try {
             $updated = 0;

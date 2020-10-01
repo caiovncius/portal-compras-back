@@ -4,21 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-/**
- * @OA\Schema(
- *     schema="PharmacyMassCreatorRequest",
- *     type="object",
- *     title="Pharmacy mass form request",
- *     required={"data"},
- *     @OA\Property(
- *         property="data",
- *         type="array",
- *         @OA\Items(ref="#/components/schemas/PharmacyCreatorRequest")
- *     ),
- * )
- */
-
-class PharmacyMassCreateRequest extends FormRequest
+class PharmacyMassUpdatorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -39,10 +25,10 @@ class PharmacyMassCreateRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.code' => 'required|string|unique:pharmacies,code',
+            'data.*.code' => 'required|string|unique:pharmacies,code,' . $this->id,
             'data.*.socialName' => 'required|string',
             'data.*.name' => 'required|string',
-            'data.*.cnpj' => 'required|cnpj|unique:pharmacies,cnpj',
+            'data.*.cnpj' => 'required|cnpj|unique:pharmacies,cnpj,' . $this->id,
             'data.*.email' => 'email',
             'data.*.status' => 'nullable|in:ACTIVE,INACTIVE',
             'data.*.cityId' => 'nullable|integer|exists:cities,id',

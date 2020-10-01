@@ -40,7 +40,7 @@ class LaboratoryUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'required|string|unique:laboratories,code,' . $this->id,
             'status' => 'nullable|in:ACTIVE,INACTIVE',
             'name' => 'required|string',
             'contacts' => 'array',

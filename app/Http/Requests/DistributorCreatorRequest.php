@@ -40,7 +40,7 @@ class DistributorCreatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:distributors',
+            'code' => 'required|string|unique:distributors,code',
             'cnpj' => 'required|cnpj',
             'name' => 'required|string',
             'status' => 'in:ACTIVE,INACTIVE',

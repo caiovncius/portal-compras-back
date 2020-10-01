@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ProgramExport;
 use App\Http\Requests\ProgramCreatorRequest;
 use App\Http\Requests\ProgramMassCreatorRequest;
+use App\Http\Requests\ProgramMassUpdatorRequest;
 use App\Http\Requests\ProgramUpdatorRequest;
 use App\Http\Requests\ReturnMorphRequest;
 use App\Http\Resources\ProgramListResource;
@@ -465,7 +466,7 @@ class ProgramController extends Controller
      * @param ProgramMassCreatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function massUpdate(ProgramMassCreatorRequest $request)
+    public function massUpdate(ProgramMassUpdatorRequest $request)
     {
         try {
             $updated = 0;

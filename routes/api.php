@@ -326,6 +326,11 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::post('/offers', 'OfferController@store')
          ->name('offer.store')
          ->middleware('acl:Offer,r,w');
+
+    Route::post('/offers/{offer}/import-products', 'OfferController@importProducts')
+        ->name('offer.products.import')
+        ->middleware('acl:Offer,r,w');
+
     Route::put('/offers/{model}', 'OfferController@update')
          ->name('offer.update')
          ->middleware('acl:Offer,r,w');

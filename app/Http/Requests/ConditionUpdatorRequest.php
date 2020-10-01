@@ -45,7 +45,7 @@ class ConditionUpdatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string',
+            'code' => 'required|string|unique:conditions,code,' . $this->id,
             'description' => 'required|string',
             'status' => 'required|in:ACTIVE,INACTIVE',
             'partners' => 'array|required|min:1',
