@@ -117,7 +117,7 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
             'price_deferred' => $this->getColIndex('priceAp') ? $this->getColIndex('priceAp') : 0,
             'price_on_cash' => $this->getColIndex('priceAv') ? $this->getColIndex('priceAv') : 0,
             'quantity_minimum' => $this->getColIndex('qtdTo') ? $this->getColIndex('qtdTo') : 0,
-            'quantity_maximum' => $this->getColIndex('qtdUntil') ? $this->getColIndex('qtdUntil') : 0,
+            'quantity_maximum' => $this->getColIndex('qtdFrom') ? $this->getColIndex('qtdFrom') : 0,
             'obrigatory' => $this->getColIndex('required') ? $this->getColIndex('required') : false,
         ]);
 

@@ -30,7 +30,7 @@ class ImportProductsRequest extends FormRequest
             'eanCode' => 'required|string',
             'minQtd' => 'required|string',
             'qtdTo' => 'string|nullable',
-            'qtdUntil' => 'string|nullable',
+            'qtdFrom' => 'string|nullable',
             'fabPrice' => 'string|nullable',
             'discountAv' => 'string|nullable',
             'priceAv' => 'string|nullable',
