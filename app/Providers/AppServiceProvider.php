@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use L5Swagger\L5SwaggerServiceProvider;
+use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }

@@ -640,8 +640,16 @@ class ProgramController extends Controller
         }
     }
 
-    public function exportPrograms()
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function export(Request $request)
     {
+        if (is_null($request->query('access_token')) || $request->query('access_token') != env('EXPORT_TOKEN')) {
+            abort(403);
+        }
+
         return \Maatwebsite\Excel\Facades\Excel::download(new ProgramExport, 'programas.xls');
     }
 

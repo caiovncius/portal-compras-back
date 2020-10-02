@@ -18,6 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/laboratories/export', 'LaboratoryController@export')
+    ->name('laboratory.export');
+
+Route::get('/pharmacies/export', 'PharmacyController@export')
+    ->name('pharmacy.export');
+
+Route::get('/distributors/export', 'DistributorController@export')
+    ->name('distributor.list');
+
+Route::get('/programs/export', 'ProgramController@export')
+    ->name('program.export');
+
 
 Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
     Route::get('offers', 'OfferController@portal')
@@ -117,9 +129,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/pharmacies', 'PharmacyController@list')
          ->name('pharmacy.list')
          ->middleware('acl:Pharmacy,r');
-    Route::get('/pharmacies/export', 'PharmacyController@export')
-        ->name('pharmacy.export')
-        ->middleware('acl:Pharmacy,r');
+
     Route::get('/pharmacies/{pharmacy}', 'PharmacyController@get')
          ->name('pharmacy.get')
          ->middleware('acl:Pharmacy,r');
@@ -142,9 +152,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/laboratories/active', 'LaboratoryController@active')
          ->name('laboratory.active')
          ->middleware('acl:Laboratory,r');
-    Route::get('/laboratories/export', 'LaboratoryController@export')
-        ->name('laboratory.export')
-        ->middleware('acl:Laboratory,r');
+
     Route::get('/laboratories', 'LaboratoryController@list')
          ->name('laboratory.list')
          ->middleware('acl:Laboratory,r');
@@ -187,9 +195,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/distributors', 'DistributorController@list')
          ->name('distributor.list')
          ->middleware('acl:Distributor,r');
-    Route::get('/distributors/export', 'DistributorController@export')
-        ->name('distributor.list')
-        ->middleware('acl:Distributor,r');
+
     Route::get('/distributors/all', 'DistributorController@all')
          ->name('distributor.all')
          ->middleware('acl:Distributor,r');
@@ -251,9 +257,7 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/programs', 'ProgramController@list')
          ->name('program.list')
          ->middleware('acl:Program,r');
-    Route::get('/programs/export', 'ProgramController@exportPrograms')
-        ->name('program.export')
-        ->middleware('acl:Program,r');
+
     Route::get('/programs/search', 'ProgramController@search')
         ->name('program.list')
         ->middleware('acl:Program,r');

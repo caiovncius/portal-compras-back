@@ -554,8 +554,12 @@ class LaboratoryController extends Controller
         }
     }
 
-    public function export()
+    public function export(Request $request)
     {
+        if (is_null($request->query('access_token')) || $request->query('access_token') != env('EXPORT_TOKEN')) {
+            abort(403);
+        }
+
         return \Maatwebsite\Excel\Facades\Excel::download(new LaboratoryExport, 'laboratorios.xls');
     }
 
