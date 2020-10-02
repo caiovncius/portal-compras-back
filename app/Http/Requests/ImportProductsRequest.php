@@ -24,18 +24,18 @@ class ImportProductsRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_line' => 'required|numeric',
-            'family_min_qtd' => 'required|string',
-            'state_id' => 'required|exists:states,id',
-            'ean_code' => 'required|string',
-            'min_qtd' => 'required|string',
-            'qtd_to' => 'string|nullable',
-            'qtd_until' => 'string|nullable',
-            'fab_price' => 'string|nullable',
-            'discount_av' => 'string|nullable',
-            'price_av' => 'string|nullable',
-            'discount_ap' => 'string|nullable',
-            'price_ap' => 'string|nullable',
+            'startLine' => 'required|numeric',
+            'familyMinQtd' => 'required|string',
+            'stateId' => 'required|exists:states,id',
+            'eanCode' => 'required|string',
+            'minQtd' => 'required|string',
+            'qtdTo' => 'string|nullable',
+            'qtdUntil' => 'string|nullable',
+            'fabPrice' => 'string|nullable',
+            'discountAv' => 'string|nullable',
+            'priceAv' => 'string|nullable',
+            'discountAp' => 'string|nullable',
+            'priceAp' => 'string|nullable',
             'required' => 'string|nullable',
             'file' => 'required|string'
         ];

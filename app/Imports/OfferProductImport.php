@@ -72,7 +72,7 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
      */
     public function headingRow(): int
     {
-        return (int)$this->colsMap['start_line'] - 1;
+        return (int)$this->colsMap['startLine'] - 1;
     }
 
     /**
@@ -81,7 +81,7 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
     public function rules(): array
     {
         return [
-            $this->getColIndex($this->colsMap['ean_code']) => function($attribute, $value, $onFailure) {
+            $this->getColIndex($this->colsMap['eanCode']) => function($attribute, $value, $onFailure) {
 
                 if (is_null($value) || empty($value)) {
                     $onFailure('Código EAN é obrigatório');
@@ -91,8 +91,8 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
                     $onFailure('Produto não encontrado. Código EAN: ' . $value);
                 }
             },
-            $this->getColIndex($this->colsMap['family_min_qtd']) => 'required',
-            $this->getColIndex($this->colsMap['min_qtd']) => 'required',
+            $this->getColIndex($this->colsMap['familyMinQtd']) => 'required',
+            $this->getColIndex($this->colsMap['minQtd']) => 'required',
         ];
     }
 
@@ -108,18 +108,17 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
 
         return $this->model->products()->create([
             'product_id' => !is_null($product) ? $product->id : null,
-            'state_id' => $this->colsMap['state_id'],
-            'discount_deferred' => $this->getColIndex('discount_ap') ? $this->getColIndex('discount_ap') : 0,
-            'discount_on_cash' => $this->getColIndex('discount_av') ? $this->getColIndex('discount_av') : 0,
-            'minimum_per_family' => $this->getColIndex('family_min_qtd'),
-            'minimum' => $this->getColIndex('qtd_minima'),
-            'factory_price' => $this->getColIndex('fab_price') ? $this->getColIndex('fab_price') : 0,
-            'price_deferred' => $this->getColIndex('price_ap') ? $this->getColIndex('price_ap') : 0,
-            'price_on_cash' => $this->getColIndex('price_av') ? $this->getColIndex('price_av') : 0,
-            'quantity_minimum' => $this->getColIndex('qtd_to') ? $this->getColIndex('qtd_to') : 0,
-            'quantity_maximum' => $this->getColIndex('qtd_until') ? $this->getColIndex('qtd_until') : 0,
+            'state_id' => $this->colsMap['stateId'],
+            'discount_deferred' => $this->getColIndex('discountAp') ? $this->getColIndex('discountAp') : 0,
+            'discount_on_cash' => $this->getColIndex('discountAv') ? $this->getColIndex('discountAv') : 0,
+            'minimum_per_family' => $this->getColIndex('familyMinQtd'),
+            'minimum' => $this->getColIndex('qtdMinima'),
+            'factory_price' => $this->getColIndex('fabPrice') ? $this->getColIndex('fabPrice') : 0,
+            'price_deferred' => $this->getColIndex('priceAp') ? $this->getColIndex('priceAp') : 0,
+            'price_on_cash' => $this->getColIndex('priceAv') ? $this->getColIndex('priceAv') : 0,
+            'quantity_minimum' => $this->getColIndex('qtdTo') ? $this->getColIndex('qtdTo') : 0,
+            'quantity_maximum' => $this->getColIndex('qtdUntil') ? $this->getColIndex('qtdUntil') : 0,
             'obrigatory' => $this->getColIndex('required') ? $this->getColIndex('required') : false,
-            'updated_id' => auth()
         ]);
 
     }
@@ -147,7 +146,7 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
      */
     protected function getProductId(array $row)
     {
-        $eanCode = $row[$this->getColIndex($this->colsMap['ean_code'])];
+        $eanCode = $row[$this->getColIndex($this->colsMap['eanCode'])];
         return $this->getProduct($eanCode);
     }
 

@@ -591,8 +591,8 @@ class OfferController extends Controller
         $import->import(storage_path('app/spreadsheets/' . $tmpName));
 
         $response = [
-            'total_imported_rows' => $import->getRowCount(),
-            'total_errors' => $import->failures()->count(),
+            'totalImportedRows' => $import->getRowCount(),
+            'totalErrors' => $import->failures()->count(),
             'errors' => []
         ];
 
@@ -605,6 +605,6 @@ class OfferController extends Controller
         }
 
 
-        return response()->json(['errors' => $response], 200);
+        return response()->json($response, 200);
     }
 }
