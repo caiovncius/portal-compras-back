@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Offer;
 use App\Product;
+use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
@@ -34,18 +35,18 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
     /**
      * @var Offer
      */
-    private $offer;
+    private $model;
 
     private $rows = 0;
 
     /**
      * OfferProductImport constructor.
-     * @param Offer $offer
+     * @param Model $model
      * @param array $colsMap
      */
-    public function __construct(Offer $offer, array $colsMap)
+    public function __construct(Model $model, array $colsMap)
     {
-        $this->offer = $offer;
+        $this->model = $model;
         $this->colsMap = $colsMap;
         $this->cols = range('A', 'Z');
     }
@@ -105,7 +106,7 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
         $clearRows = array_values($row);
         $product = $this->getProductId($clearRows);
 
-        return $this->offer->products()->create([
+        return $this->model->products()->create([
             'product_id' => !is_null($product) ? $product->id : null,
             'state_id' => $this->colsMap['state_id'],
             'discount_deferred' => $this->getColIndex('discount_ap') ? $this->getColIndex('discount_ap') : 0,

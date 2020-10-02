@@ -577,6 +577,7 @@ class OfferController extends Controller
     /**
      * @param ImportProductsRequest $request
      * @param Offer $offer
+     * @return \Illuminate\Http\JsonResponse
      */
     public function importProducts(ImportProductsRequest $request, Offer $offer)
     {
@@ -590,7 +591,7 @@ class OfferController extends Controller
         $import->import(storage_path('app/spreadsheets/' . $tmpName));
 
         $response = [
-            'total_rows' => $import->getRowCount(),
+            'total_imported_rows' => $import->getRowCount(),
             'total_errors' => $import->failures()->count(),
             'errors' => []
         ];
@@ -605,9 +606,5 @@ class OfferController extends Controller
 
 
         return response()->json(['errors' => $response], 200);
-        dd($import->errors());
-//        $import = \Excel::import(new OfferProductImport($offer, $importParams), storage_path('app/spreadsheets/' . $tmpName));
-        dd($import);
-
     }
 }
