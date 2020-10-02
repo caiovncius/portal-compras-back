@@ -41,7 +41,7 @@ class DistributorCreatorRequest extends FormRequest
     {
         return [
             'code' => 'required|string|unique:distributors,code',
-            'cnpj' => 'required|cnpj',
+            'cnpj' => 'required|cnpj|unique:distributors,cnpj',
             'name' => 'required|string',
             'status' => 'in:ACTIVE,INACTIVE',
             'category' => 'required|in:NATIONAL,REGIONAL',
