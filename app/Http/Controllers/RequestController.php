@@ -181,11 +181,11 @@ class RequestController extends Controller
      */
     public function dashboard()
     {
-        //try {
+        try {
             return (new PortalDashboard())->dashboard();
-        /*} catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
-        }*/
+        }
     }
 
     /**

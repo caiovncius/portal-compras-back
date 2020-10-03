@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
+Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
     Route::get('offers', 'OfferController@portal')
          ->name('offer.portal');
     Route::get('offers/{model}/products', 'OfferController@products')
