@@ -77,8 +77,8 @@ class PortalDashboard
                 'qtd' => $items->count()
             ];
         });
-        
-        return $values;
+
+        return $values->sortByDesc('qtd')->take(10);
     }
 
     public function getPharmacies($requests)
@@ -92,6 +92,6 @@ class PortalDashboard
             ];
         });
 
-        return $data->sortByDesc('count')->take(10)->toArray();
+        return $data->sortByDesc('count')->take(10);
     }
 }
