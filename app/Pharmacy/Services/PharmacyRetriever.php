@@ -45,9 +45,9 @@ class PharmacyRetriever implements PharmacyRetrievable
                 $query->where('city_id', $params['city']);
             }
 
-            if (isset($params['comercial'])) {
+            if (isset($params['commercial'])) {
                 $query->whereHas('users', function($q) use($params) {
-                    $q->where('name', 'like', '%' . $params['comercial'] . '%');
+                    $q->where('name', 'like', '%' . $params['commercial'] . '%');
                 });
             }
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImportProductsRequest;
 use App\Http\Requests\OfferCreatorRequest;
 use App\Http\Requests\OfferUpdatorRequest;
 use App\Http\Resources\OfferListResource;
 use App\Http\Resources\OfferPortalResource;
 use App\Http\Resources\ProductDetailPortalResource;
+use App\Imports\OfferProductImport;
 use App\Offer;
 use App\Offer\Contracts\OfferCreatable;
 use App\Product\Contracts\ProductDetailRetrievable;
@@ -14,6 +16,9 @@ use App\Offer\Contracts\OfferRemovable;
 use App\Offer\Contracts\OfferRetrievable;
 use App\Offer\Contracts\OfferUpdatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Reader\Xls;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class OfferController extends Controller
 {
@@ -569,8 +574,37 @@ class OfferController extends Controller
         return response()->json(['message' => 'Oferta ativada com sucesso']);
     }
 
-    public function importProducts(Request $request, Offer $offer)
+    /**
+     * @param ImportProductsRequest $request
+     * @param Offer $offer
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function importProducts(ImportProductsRequest $request, Offer $offer)
     {
-        dd($request->file);
+        $base64Data = explode('base64,', $request->file);
+        $fileData = base64_decode(end($base64Data));
+        $tmpName = time() . '.xlsx';
+        Storage::put("/spreadsheets/{$tmpName}", $fileData);
+        $importParams = $request->all();
+        unset($importParams['file']);
+        $import = new OfferProductImport($offer, $importParams);
+        $import->import(storage_path('app/spreadsheets/' . $tmpName));
+
+        $response = [
+            'totalImportedRows' => $import->getRowCount(),
+            'totalErrors' => $import->failures()->count(),
+            'errors' => []
+        ];
+
+        foreach ($import->failures() as $failure) {
+            $response['errors'][] = [
+                'row' => $failure->row(),
+                'col' => $import->cols[$failure->attribute()],
+                'errors' => $failure->errors()
+            ];
+        }
+
+
+        return response()->json($response, 200);
     }
 }

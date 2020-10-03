@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImportProductsRequest;
 use App\Http\Requests\PurchaseIntentionRequest;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Resources\ProductDetailPortalResource;
@@ -10,6 +11,7 @@ use App\Http\Resources\PurchaseListResource;
 use App\Http\Resources\RequestIntentionResource;
 use App\Http\Resources\RequestListResource;
 use App\Http\Resources\RequestResource;
+use App\Imports\OfferProductImport;
 use App\Pharmacy;
 use App\Product\Contracts\ProductDetailRetrievable;
 use App\Purchase;
@@ -20,6 +22,7 @@ use App\Purchase\Contracts\PurchaseRetrievable;
 use App\Purchase\Contracts\PurchaseUpdatable;
 use App\Services\RequestPurchase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PurchaseController extends Controller
 {
@@ -571,5 +574,38 @@ class PurchaseController extends Controller
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
+    }
+
+    /**
+     * @param ImportProductsRequest $request
+     * @param Purchase $purchase
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function importProducts(ImportProductsRequest $request, Purchase $purchase)
+    {
+        $base64Data = explode('base64,', $request->file);
+        $fileData = base64_decode(end($base64Data));
+        $tmpName = time() . '.xlsx';
+        Storage::put("/spreadsheets/{$tmpName}", $fileData);
+        $importParams = $request->all();
+        unset($importParams['file']);
+        $import = new OfferProductImport($purchase, $importParams);
+        $import->import(storage_path('app/spreadsheets/' . $tmpName));
+
+        $response = [
+            'total_imported_rows' => $import->getRowCount(),
+            'total_errors' => $import->failures()->count(),
+            'errors' => []
+        ];
+
+        foreach ($import->failures() as $failure) {
+            $response['errors'][] = [
+                'row' => $failure->row(),
+                'col' => $import->cols[$failure->attribute()],
+                'errors' => $failure->errors()
+            ];
+        }
+
+        return response()->json(['errors' => $response], 200);
     }
 }
