@@ -189,6 +189,10 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('laboratory.active')
          ->middleware('acl:Laboratory,r');
 
+    Route::get('/laboratories/search', 'LaboratoryController@search')
+        ->name('laboratory.search')
+        ->middleware('acl:Laboratory,r');
+
     Route::get('/laboratories', 'LaboratoryController@list')
          ->name('laboratory.list')
          ->middleware('acl:Laboratory,r');

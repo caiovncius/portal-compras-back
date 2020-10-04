@@ -27,6 +27,10 @@ class LaboratoryRetriever implements LaboratoryRetrievable
                 $query->where('status', $params['status']);
             }
 
+            if (isset($params['cnpj'])) {
+                $query->where('cnpj', 'like',  '%' . $params['cnpj'] . '%');
+            }
+
             if (isset($params['name'])) {
                 $query->where('name', 'like',  '%' . $params['name'] . '%');
             }
