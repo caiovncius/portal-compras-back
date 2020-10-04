@@ -20,6 +20,7 @@ class ProductResource extends JsonResource
             'codeEan' => $this->code_ean,
             'description' => $this->description,
             'laboratoryId' => !is_null($this->laboratory) ? $this->laboratory->id : null,
+            'laboratory' => !is_null($this->laboratory) ? LaboratoryListResource::make($this->laboratory) : null,
             'status' => $this->status,
             'secondaryEanCodes' => ProductSecondaryEanCode::collection($this->secondaryEanCodes),
             'createdAt' => $this->created_at,
