@@ -18,6 +18,9 @@ class CreateReturnsTable extends Migration
             $table->integer('code');
             $table->string('desc');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
+            $table->bigInteger('updated_id')->nullable();
+            $table->bigInteger('returnable_id')->nullable();
+            $table->string('returnable_type')->nullable();
             $table->timestamps();
         });
     }

@@ -15,11 +15,11 @@ class CreatePharmaciesTable extends Migration
     {
         Schema::create('pharmacies', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('company_name');
             $table->string('name');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
-            $table->string('cnpj');
+            $table->string('cnpj')->unique();
             $table->string('state_registration')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
@@ -31,6 +31,7 @@ class CreatePharmaciesTable extends Migration
             $table->string('district')->nullable();
             $table->string('zip_code')->nullable();
             $table->unsignedBigInteger('city_id');
+            $table->bigInteger('updated_id')->nullable();
             $table->timestamps();
 
             $table->foreign('city_id')->references('id')->on('cities');

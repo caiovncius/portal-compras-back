@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->string('phone_2')->nullable();
             $table->unsignedBigInteger('profile_id');
             $table->bigInteger('manager_id')->nullable();
+            $table->bigInteger('updated_id')->nullable();
+            $table->datetime('last_login')->nullable();
+            $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

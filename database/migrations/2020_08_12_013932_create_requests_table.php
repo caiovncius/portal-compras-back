@@ -16,12 +16,20 @@ class CreateRequestsTable extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacy_id');
-            $table->unsignedBigInteger('offer_id');
             $table->string('status')->nullable();
+            $table->integer('partner_id')->nullable();
+            $table->string('partner_type')->nullable();
+            $table->integer('priority')->nullable();
+            $table->integer('requestable_id')->nullable();
+            $table->string('requestable_type')->nullable();
+            $table->enum('status', ['NOT_SEND', 'CREATED', 'WAITING_RETURN', 'ERROR_ON_SEND', 'BILLED', 'BILLED_PARTIAL', 'NOT_BILLED']);
+            $table->decimal('value', 10, 2);
+            $table->date('send_date')->nullable();
+            $table->decimal('subtotal', 10, 2)->nullable();
+            $table->enum('payment_method', ['CASH', 'TERM'])->after('id')->default('CASH');
             $table->unsignedBigInteger('updated_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('offer_id')->references('id')->on('offers');
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies');
         });
     }

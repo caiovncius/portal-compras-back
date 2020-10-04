@@ -15,9 +15,10 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('name');
             $table->string('status');
+            $table->bigInteger('updated_id')->nullable();
             $table->timestamps();
         });
     }

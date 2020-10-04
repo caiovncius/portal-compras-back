@@ -15,11 +15,12 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('code_ean');
+            $table->string('code')->unique();
+            $table->string('code_ean')->unique();
             $table->string('description');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->unsignedBigInteger('laboratory_id');
+            $table->bigInteger('updated_id')->nullable();
             $table->timestamps();
 
             $table->foreign('laboratory_id')->references('id')->on('laboratories');

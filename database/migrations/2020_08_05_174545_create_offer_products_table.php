@@ -13,29 +13,29 @@ class CreateOfferProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('offer_products', function (Blueprint $table) {
+        Schema::create('product_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('offer_id');
             $table->unsignedBigInteger('product_id');
-            $table->integer('discountDeferred');
-            $table->integer('discountOnCash');
+            $table->integer('discount_deferred');
+            $table->integer('discount_on_cash');
             $table->integer('minimum');
-            $table->integer('minimumPerFamily');
+            $table->integer('minimum_per_family');
             $table->boolean('obrigatory')->default(0);
             $table->boolean('variable')->default(0);
             $table->boolean('family')->default(0);
             $table->boolean('gift')->default(0);
-            $table->decimal('factoryPrice', 10, 2);
-            $table->decimal('priceDeferred', 10, 2);
-            $table->decimal('priceOnCash', 10, 2);
-            $table->string('productName');
-            $table->integer('quantityMaximum');
-            $table->integer('quantityMinimum');
+            $table->decimal('factory_price', 10, 2);
+            $table->decimal('price_deferred', 10, 2);
+            $table->decimal('price_on_cash', 10, 2);
+            $table->string('product_name');
+            $table->integer('quantity_maximum');
+            $table->integer('quantity_minimum');
             $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('updated_id')->nullable();
+            $table->bigInteger('productable_id')->nullable();
+            $table->string('productable_type')->nullable();
             $table->timestamps();
 
-            $table->foreign('offer_id')->references('id')->on('offers');
             $table->foreign('state_id')->references('id')->on('states');
             $table->foreign('product_id')->references('id')->on('products');
         });

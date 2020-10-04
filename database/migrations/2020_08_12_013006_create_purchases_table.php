@@ -15,25 +15,27 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('offer_id');
             $table->longText('image')->nullable();
             $table->string('code')->nullable();
             $table->string('name')->nullable();
-            $table->string('sendType')->nullable();
+            $table->string('send_type')->nullable();
             $table->enum('status', ['OPEN', 'LATE', 'READY_SEND', 'BILLED'])
                 ->default('OPEN');
-            $table->date('validityStart')->nullable();
-            $table->date('validityEnd')->nullable();
-            $table->boolean('untilBilling')->default(0);
-            $table->integer('setMinimumBillingValue')->nullable();
-            $table->integer('minimumBillingValue')->nullable();
-            $table->integer('setMinimumBillingQuantity')->nullable();
-            $table->integer('minimumBillingQuantity')->nullable();
-            $table->integer('totalIntentionsValue')->nullable();
-            $table->integer('totalIntentionsQuantity')->nullable();
-            $table->integer('relatedQuantity')->nullable();
+            $table->date('validity_start')->nullable();
+            $table->date('validity_end')->nullable();
+            $table->boolean('until_billing')->default(0);
+            $table->enum('billing_measure', ['VALUE', 'QUANTITY'])->default('VALUE');
+            $table->integer('set_minimum_billing_value')->nullable();
+            $table->integer('minimum_billing_value')->nullable();
+            $table->integer('set_minimum_billing_quantity')->nullable();
+            $table->integer('minimum_billing_quantity')->nullable();
+            $table->integer('total_intentions_value')->nullable();
+            $table->integer('total_intentions_quantity')->nullable();
+            $table->integer('related_quantity')->nullable();
             $table->mediumText('description')->nullable();
+            $table->datetime('billed_date')->nullable();
             $table->unsignedBigInteger('updated_id')->nullable();
+            $table->json('contacts')->nullable();
             $table->timestamps();
         });
     }

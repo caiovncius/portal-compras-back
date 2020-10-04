@@ -13,7 +13,7 @@ class CreateDistributorConnectionTable extends Migration
      */
     public function up()
     {
-        Schema::create('distributor_connections', function (Blueprint $table) {
+        Schema::create('connections', function (Blueprint $table) {
             $table->id();
             $table->boolean('ftp_active');
             $table->string('transferency');
@@ -22,7 +22,12 @@ class CreateDistributorConnectionTable extends Migration
             $table->string('login');
             $table->string('password');
             $table->string('path_return');
-            $table->unsignedBigInteger('distributor_id');
+            $table->string('mask')->nullable();
+            $table->boolean('remove_file')->nullable();
+            $table->string('port')->nullable();
+            $table->bigInteger('updated_id')->nullable();
+            $table->bigInteger('connectionable_id')->nullable();
+            $table->string('connectionable_type')->nullable();
             $table->timestamps();
 
             $table->foreign('distributor_id')->references('id')->on('distributors');

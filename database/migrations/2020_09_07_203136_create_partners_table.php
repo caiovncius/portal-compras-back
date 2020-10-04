@@ -13,7 +13,6 @@ class   CreatePartnersTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('distributor_offer');
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('typable_id');

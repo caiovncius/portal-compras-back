@@ -18,6 +18,7 @@ class CreateProfileTable extends Migration
             $table->string('name');
             $table->enum('type', ['COMMERCIAL', 'PHARMACY', 'SUPPLIER', 'MASTER'])->default('PHARMACY');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
+            $table->bigInteger('updated_id')->nullable();
             $table->timestamps();
         });
     }

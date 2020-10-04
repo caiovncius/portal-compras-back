@@ -15,12 +15,13 @@ class CreateDistributorsTable extends Migration
     {
         Schema::create('distributors', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('cnpj');
+            $table->string('code')->unique();
+            $table->string('cnpj')->unique();
             $table->string('name');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->enum('category', ['NATIONAL', 'REGIONAL'])->default('NATIONAL');
             $table->unsignedBigInteger('state_id');
+            $table->bigInteger('updated_id')->nullable();
             $table->timestamps();
         });
     }

@@ -20,16 +20,19 @@ class CreateOffersTable extends Migration
             $table->string('name');
             $table->string('status');
             $table->string('description');
-            $table->datetime('startDate')->nullable();
-            $table->datetime('endDate')->nullable();
-            $table->string('condition')->nullable();
-            $table->string('minimumPrice')->nullable();
-            $table->enum('offerType', ['NORMAL', 'COMBO', 'COLLECTIVE_BUYING'])->nullable();
-            $table->enum('sendType', ['MANUAL', 'AUTOMATIC'])->nullable();
-            $table->boolean('noAutomaticSending')->default(1)->nullable();
+            $table->datetime('start_fate')->nullable();
+            $table->datetime('end_date')->nullable();
+            $table->bigInteger('condition_id')->nullable();
+            $table->string('minimum_price')->nullable();
+            $table->enum('offer_type', ['NORMAL', 'COMBO', 'COLLECTIVE_BUYING'])->nullable();
+            $table->enum('send_type', ['MANUAL', 'AUTOMATIC'])->nullable();
+            $table->boolean('no_automatic_sending')->default(1)->nullable();
             $table->boolean('impound')->default(0)->nullable();
             $table->json('emails')->nullable();
+            $table->bigInteger('updated_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('condition_id')->references('id')->on('conditions');
         });
     }
 

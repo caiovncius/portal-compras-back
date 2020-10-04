@@ -13,12 +13,19 @@ class CreateProductRequestTable extends Migration
      */
     public function up()
     {
-        Schema::create('offerProduct_request', function (Blueprint $table) {
-            $table->unsignedBigInteger('offer_product_id');
+        Schema::create('request_products', function (Blueprint $table) {
+            $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('request_id');
+            $table->unsignedBigInteger('return_id')->nullable();
             $table->integer('qtd');
+            $table->integer('qtd_return')->nullable();
+            $table->enum('status', ['CREATED', 'ATTENDED', 'ATTENDED_PARTIAL', 'NOT_ATTENDED']);
+            $table->decimal('value', 10, 2);
+            $table->bigInteger('partner_id')->nullable();
+            $table->string('partner_type')->nullable();
 
-            $table->foreign('offer_product_id')->references('id')->on('offer_products');
+            $table->foreign('return_id')->references('id')->on('returns');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('request_id')->references('id')->on('requests');
         });
     }
