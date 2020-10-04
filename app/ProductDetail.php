@@ -74,4 +74,16 @@ class ProductDetail extends Model
     {
         return $this->belongsTo('App\State', 'state_id');
     }
+
+    /**
+     * @param $factoryPrice
+     * @param $discount
+     * @return float|int
+     */
+    public static function sumDiscount($factoryPrice, $discount)
+    {
+        if (is_null($factoryPrice) || empty($factoryPrice) || $factoryPrice == 0) return 0;
+        if (is_null($discount) || empty($discount) || $discount == 0) return $factoryPrice;
+        return $factoryPrice - ($factoryPrice / 100 * $discount);
+    }
 }

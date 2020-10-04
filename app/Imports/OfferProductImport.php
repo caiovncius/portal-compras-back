@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Offer;
 use App\Product;
+use App\ProductDetail;
 use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
@@ -56,7 +57,7 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
      */
     public function startRow(): int
     {
-        return (int)$this->colsMap['start_line'];
+        return (int)$this->colsMap['startLine'];
     }
 
     /**
@@ -65,14 +66,6 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
     public function batchSize(): int
     {
         return 100;
-    }
-
-    /**
-     * @return int
-     */
-    public function headingRow(): int
-    {
-        return (int)$this->colsMap['startLine'] - 1;
     }
 
     /**
@@ -105,20 +98,23 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
         ++$this->rows;
         $clearRows = array_values($row);
         $product = $this->getProductId($clearRows);
+        $factoryPrice = !is_null($this->getIndexByColMap('fabPrice')) ? $row[$this->getIndexByColMap('fabPrice')] : 0;
+        $discountOnCash = !is_null($this->getIndexByColMap('discountAv')) ? $row[$this->getIndexByColMap('discountAv')] : 0;
+        $discountOnDeferred = !is_null($this->getIndexByColMap('discountAp')) ? $row[$this->getIndexByColMap('discountAp')] : 0;
 
         return $this->model->products()->create([
             'product_id' => !is_null($product) ? $product->id : null,
             'state_id' => $this->colsMap['stateId'],
-            'discount_deferred' => $this->getColIndex('discountAp') ? $this->getColIndex('discountAp') : 0,
-            'discount_on_cash' => $this->getColIndex('discountAv') ? $this->getColIndex('discountAv') : 0,
-            'minimum_per_family' => $this->getColIndex('familyMinQtd'),
-            'minimum' => $this->getColIndex('qtdMinima'),
-            'factory_price' => $this->getColIndex('fabPrice') ? $this->getColIndex('fabPrice') : 0,
-            'price_deferred' => $this->getColIndex('priceAp') ? $this->getColIndex('priceAp') : 0,
-            'price_on_cash' => $this->getColIndex('priceAv') ? $this->getColIndex('priceAv') : 0,
-            'quantity_minimum' => $this->getColIndex('qtdTo') ? $this->getColIndex('qtdTo') : 0,
-            'quantity_maximum' => $this->getColIndex('qtdFrom') ? $this->getColIndex('qtdFrom') : 0,
-            'obrigatory' => $this->getColIndex('required') ? $this->getColIndex('required') : false,
+            'minimum_per_family' => $row[$this->getIndexByColMap('familyMinQtd')],
+            'minimum' => $row[$this->getIndexByColMap('minQtd')],
+            'factory_price' => $factoryPrice,
+            'discount_on_cash' => $discountOnCash,
+            'price_on_cash' => ProductDetail::sumDiscount($factoryPrice, $discountOnCash),
+            'discount_deferred' => $discountOnDeferred,
+            'price_deferred' => ProductDetail::sumDiscount($factoryPrice, $discountOnDeferred),
+            'quantity_minimum' => !is_null($this->getIndexByColMap('qtdTo')) ? $row[$this->getIndexByColMap('qtdTo')] : 0,
+            'quantity_maximum' => !is_null($this->getIndexByColMap('qtdFrom')) ? $row[$this->getIndexByColMap('qtdFrom')] : 0,
+            'obrigatory' => !is_null($this->getIndexByColMap('required')) ? (strtoupper($row[$this->getIndexByColMap('required')]) === 'SIM' ? true : false) : false,
         ]);
 
     }
@@ -129,6 +125,16 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
     public function getRowCount(): int
     {
         return $this->rows;
+    }
+
+    /**
+     * @param $col
+     * @return false|int|string|null
+     */
+    protected function getIndexByColMap($col)
+    {
+        if (!isset($this->colsMap[$col])) return null;
+        return $this->getColIndex($this->colsMap[$col]);
     }
 
     /**

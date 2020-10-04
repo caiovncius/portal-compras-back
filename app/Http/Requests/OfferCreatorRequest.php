@@ -95,17 +95,17 @@ class   OfferCreatorRequest extends FormRequest
             'partners.*.priority' => 'required|numeric',
             'products' => 'array|nullable',
             'products.*.productId' => 'required',
-            'products.*.discountDeferred' => 'numeric',
-            'products.*.discountOnCash' => 'numeric',
+            'products.*.discountDeferred' => 'numeric|nullable',
+            'products.*.discountOnCash' => 'numeric|nullable',
             'products.*.minimum' => 'string|nullable',
             'products.*.minimumPerFamily' => 'required',
             'products.*.obrigatory' => 'boolean',
             'products.*.factoryPrice' => 'string|nullable',
-            'products.*.priceDeferred' => 'numeric',
-            'products.*.priceOnCash' => 'numeric',
+            'products.*.priceDeferred' => 'numeric|nullable',
+            'products.*.priceOnCash' => 'numeric|nullable',
             'products.*.quantityMaximum' => 'numeric|nullable',
             'products.*.quantityMinimum' => 'numeric|nullable',
-            'products.*.stateId' => 'required|required',
+            'products.*.stateId' => 'required',
         ];
     }
 
