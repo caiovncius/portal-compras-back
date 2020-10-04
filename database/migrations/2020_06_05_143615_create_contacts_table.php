@@ -23,8 +23,6 @@ class CreateContactsTable extends Migration
             $table->string('contactable_type');
             $table->bigInteger('updated_id')->nullable();
             $table->timestamps();
-
-            $table->foreign('distributor_id')->references('id')->on('distributors');
         });
     }
 

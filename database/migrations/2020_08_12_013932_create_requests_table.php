@@ -16,7 +16,6 @@ class CreateRequestsTable extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacy_id');
-            $table->string('status')->nullable();
             $table->integer('partner_id')->nullable();
             $table->string('partner_type')->nullable();
             $table->integer('priority')->nullable();
@@ -26,7 +25,7 @@ class CreateRequestsTable extends Migration
             $table->decimal('value', 10, 2);
             $table->date('send_date')->nullable();
             $table->decimal('subtotal', 10, 2)->nullable();
-            $table->enum('payment_method', ['CASH', 'TERM'])->after('id')->default('CASH');
+            $table->enum('payment_method', ['CASH', 'TERM'])->default('CASH');
             $table->unsignedBigInteger('updated_id')->nullable();
             $table->timestamps();
 

@@ -22,7 +22,7 @@ class CreateOffersTable extends Migration
             $table->string('description');
             $table->datetime('start_fate')->nullable();
             $table->datetime('end_date')->nullable();
-            $table->bigInteger('condition_id')->nullable();
+            $table->unsignedBigInteger('condition_id')->nullable();
             $table->string('minimum_price')->nullable();
             $table->enum('offer_type', ['NORMAL', 'COMBO', 'COLLECTIVE_BUYING'])->nullable();
             $table->enum('send_type', ['MANUAL', 'AUTOMATIC'])->nullable();

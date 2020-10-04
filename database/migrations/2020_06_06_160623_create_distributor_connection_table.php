@@ -29,8 +29,6 @@ class CreateDistributorConnectionTable extends Migration
             $table->bigInteger('connectionable_id')->nullable();
             $table->string('connectionable_type')->nullable();
             $table->timestamps();
-
-            $table->foreign('distributor_id')->references('id')->on('distributors');
         });
     }
 
