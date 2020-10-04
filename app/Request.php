@@ -57,15 +57,6 @@ class Request extends Model
     }
 
     /**
-     * @return mixed
-     */
-    public function getPartnerAttribute()
-    {
-        if (is_null($this->partner_type)) return null;
-        return $this->partner_type == 'App\Distributor' ? Distributor::find($this->partner_id) : Program::find($this->partner_id);
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function historics()
@@ -92,5 +83,22 @@ class Request extends Model
             'request_id',
             'product_id'
         )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPartnerAttribute()
+    {
+        if (is_null($this->partner_type)) return null;
+        return $this->partner_type == 'App\Distributor' ? Distributor::find($this->partner_id) : Program::find($this->partner_id);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMonthAttribute()
+    {
+        return date('m', strtotime($this->created_at));
     }
 }

@@ -13,6 +13,7 @@ use App\Request\Contracts\RequestProductUpdatable;
 use App\Request\Contracts\RequestRemovable;
 use App\Request\Contracts\RequestRetrievable;
 use App\Request\Contracts\RequestUpdatable;
+use App\Services\PortalDashboard;
 use Illuminate\Http\Request;
 
 class RequestController extends Controller
@@ -137,6 +138,51 @@ class RequestController extends Controller
     {
         try {
             return RequestListResource::collection($this->retrieverService->getRequests($request->query())->paginate(10));
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *     tags={"Portal"},
+     *     path="/portal/dashboard",
+     *     @OA\Response(
+     *         response=200,
+     *         description="",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="data",
+     *                     type="array",
+     *                     @OA\Items(ref="#/components/schemas/RequestListResource"),
+     *                 ),
+     *                 @OA\Property(
+     *                     property="links",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationLinks"),
+     *                     }
+     *                 ),
+     *                  @OA\Property(
+     *                     property="meta",
+     *                     allOf={
+     *                         @OA\Items(ref="#/components/schemas/PaginationMeta"),
+     *                     }
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function dashboard()
+    {
+        try {
+            return (new PortalDashboard())->dashboard();
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

@@ -31,7 +31,7 @@ Route::get('/programs/export', 'ProgramController@export')
     ->name('program.export');
 
 
-Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
+Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
     Route::get('offers', 'OfferController@portal')
          ->name('offer.portal');
 
@@ -46,6 +46,9 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function(){
 
     Route::get('requests', 'RequestController@list')
          ->name('request.list');
+
+    Route::get('dashboard', 'RequestController@dashboard')
+         ->name('request.dashboard');
 
     Route::get('pharmacies/{id}/requests', 'RequestController@byPharmacy')
          ->name('request.byPharmacy');
