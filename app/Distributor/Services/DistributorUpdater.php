@@ -2,6 +2,7 @@
 
 namespace App\Distributor\Services;
 
+use App\Connection\Contracts\ConnectionUpdatable;
 use App\Contact;
 use App\Distributor;
 use App\Distributor\Contracts\DistributorUpdatable;
@@ -35,6 +36,11 @@ class DistributorUpdater implements DistributorUpdatable
                 foreach ($data['returns'] as $data) {
                     $model->returns()->create($data);
                 }
+            }
+
+            if (isset($data['connection'])) {
+                $connectionService = app()->make(ConnectionUpdatable::class);
+                $connectionService->update($model, $data['connection']);
             }
 
             return true;
