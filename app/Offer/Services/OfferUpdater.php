@@ -34,11 +34,12 @@ class OfferUpdater implements OfferUpdatable
             if (isset($data['image']) && strpos($data['image'], 'base64') !== false) {
                 $model->image = FileUploader::uploadFile($data['image']);
             }
+
             $model->condition_id = isset($data['conditionId']) ? $data['conditionId'] : null;
             $model->save();
             $model->partners()->delete();
 
-            if (isset($data['partners']) && !empty($data['partners'])) {
+            if ($data['sendType'] === 'AUTOMATIC' && isset($data['partners']) && !empty($data['partners'])) {
                 foreach ($data['partners'] as $partner) {
                     $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
                     $hasPartner = Distributor::find($partner['id']);

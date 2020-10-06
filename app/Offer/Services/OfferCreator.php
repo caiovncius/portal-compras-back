@@ -36,7 +36,7 @@ class OfferCreator implements OfferCreatable
             $data['condition_id'] = isset($data['conditionId']) ? $data['conditionId'] : null;
             $model = Offer::create($data);
 
-            if (isset($data['partners']) && !empty($data['partners'])) {
+            if ($data['sendType'] === 'AUTOMATIC' && isset($data['partners']) && !empty($data['partners'])) {
                 foreach ($data['partners'] as $partner) {
                     $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
                     $hasPartner = Distributor::find($partner['id']);
