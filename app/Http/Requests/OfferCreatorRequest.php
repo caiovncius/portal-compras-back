@@ -88,7 +88,7 @@ class   OfferCreatorRequest extends FormRequest
             'endDate' => 'required|date|after_or_equal:startDate',
             'conditionId' => 'exists:conditions,id',
             'endDate' => 'date|after_or_equal:startDate',
-            'partners' => 'array|nullable',
+            'partners' => 'array|nullable|',
             'partners.*.id' => 'required|numeric',
             'partners.*.type' => 'required|string',
             'partners.*.ol' => 'required|numeric',

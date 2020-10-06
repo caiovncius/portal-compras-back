@@ -34,7 +34,8 @@ class Connection extends Model
         'updated_id',
         'mask',
         'remove_file',
-        'port'
+        'port',
+        'layout'
     ];
 
     protected $casts = [
