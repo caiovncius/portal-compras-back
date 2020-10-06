@@ -88,7 +88,7 @@ class OfferUpdatorRequest extends FormRequest
             'partners' => 'array|nullable',
             'partners.*.id' => 'required|numeric',
             'partners.*.type' => 'required|string',
-            'partners.*.ol' => 'required|string',
+            'partners.*.ol' => 'required',
             'partners.*.priority' => 'required|numeric',
             'products' => 'array|nullable',
             'products.*.productId' => 'required',
