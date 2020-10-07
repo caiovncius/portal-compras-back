@@ -4,6 +4,7 @@ namespace App\Imports;
 
 use App\Offer;
 use App\Product;
+use App\ProductDetail;
 use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
@@ -56,7 +57,7 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
      */
     public function startRow(): int
     {
-        return (int)$this->colsMap['start_line'];
+        return (int)$this->colsMap['startLine'];
     }
 
     /**
@@ -68,19 +69,11 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
     }
 
     /**
-     * @return int
-     */
-    public function headingRow(): int
-    {
-        return (int)$this->colsMap['startLine'] - 1;
-    }
-
-    /**
      * @return array
      */
     public function rules(): array
     {
-        return [
+        $validation = [
             $this->getColIndex($this->colsMap['eanCode']) => function($attribute, $value, $onFailure) {
 
                 if (is_null($value) || empty($value)) {
@@ -91,9 +84,44 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
                     $onFailure('Produto não encontrado. Código EAN: ' . $value);
                 }
             },
-            $this->getColIndex($this->colsMap['familyMinQtd']) => 'required',
-            $this->getColIndex($this->colsMap['minQtd']) => 'required',
+            $this->getColIndex($this->colsMap['familyMinQtd']) => 'required|numeric',
+            $this->getColIndex($this->colsMap['minQtd']) => 'required|numeric',
+            $this->getColIndex($this->colsMap['startLine']) => 'required|numeric',
         ];
+
+        if (!is_null($this->getIndexByColMap('qtdTo'))) {
+            $validation[$this->getIndexByColMap('qtdTo')] = 'numeric|nullable';
+        }
+
+        if (!is_null($this->getIndexByColMap('qtdFrom'))) {
+            $validation[$this->getIndexByColMap('qtdFrom')] = 'numeric|nullable';
+        }
+
+        if (!is_null($this->getIndexByColMap('fabPrice'))) {
+            $validation[$this->getIndexByColMap('fabPrice')] = 'numeric|nullable';
+        }
+
+        if (!is_null($this->getIndexByColMap('discountAv'))) {
+            $validation[$this->getIndexByColMap('discountAv')] = 'numeric|nullable';
+        }
+
+        if (!is_null($this->getIndexByColMap('priceAv'))) {
+            $validation[$this->getIndexByColMap('priceAv')] = 'numeric|nullable';
+        }
+
+        if (!is_null($this->getIndexByColMap('discountAp'))) {
+            $validation[$this->getIndexByColMap('discountAp')] = 'numeric|nullable';
+        }
+
+        if (!is_null($this->getIndexByColMap('priceAp'))) {
+            $validation[$this->getIndexByColMap('priceAp')] = 'numeric|nullable';
+        }
+
+        if (!is_null($this->getIndexByColMap('required'))) {
+            $validation[$this->getIndexByColMap('required')] = 'string|nullable|in:SIM,NÃO';
+        }
+
+        return $validation;
     }
 
     /**
@@ -105,20 +133,25 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
         ++$this->rows;
         $clearRows = array_values($row);
         $product = $this->getProductId($clearRows);
+        $factoryPrice = !is_null($this->getIndexByColMap('fabPrice')) ? $row[$this->getIndexByColMap('fabPrice')] : 0;
+        $discountOnCash = !is_null($this->getIndexByColMap('discountAv')) ? $row[$this->getIndexByColMap('discountAv')] : 0;
+        $discountOnDeferred = !is_null($this->getIndexByColMap('discountAp')) ? $row[$this->getIndexByColMap('discountAp')] : 0;
+        $priceOnCash = !is_null($this->getIndexByColMap('priceAv')) ? self::cleanNumber($row[$this->getIndexByColMap('priceAv')]) : ProductDetail::sumDiscount($factoryPrice, $discountOnCash);
+        $priceDeferred = !is_null($this->getIndexByColMap('priceAp')) ? self::cleanNumber($row[$this->getIndexByColMap('priceAp')]) : ProductDetail::sumDiscount($factoryPrice, $discountOnDeferred);
 
         return $this->model->products()->create([
             'product_id' => !is_null($product) ? $product->id : null,
             'state_id' => $this->colsMap['stateId'],
-            'discount_deferred' => $this->getColIndex('discountAp') ? $this->getColIndex('discountAp') : 0,
-            'discount_on_cash' => $this->getColIndex('discountAv') ? $this->getColIndex('discountAv') : 0,
-            'minimum_per_family' => $this->getColIndex('familyMinQtd'),
-            'minimum' => $this->getColIndex('qtdMinima'),
-            'factory_price' => $this->getColIndex('fabPrice') ? $this->getColIndex('fabPrice') : 0,
-            'price_deferred' => $this->getColIndex('priceAp') ? $this->getColIndex('priceAp') : 0,
-            'price_on_cash' => $this->getColIndex('priceAv') ? $this->getColIndex('priceAv') : 0,
-            'quantity_minimum' => $this->getColIndex('qtdTo') ? $this->getColIndex('qtdTo') : 0,
-            'quantity_maximum' => $this->getColIndex('qtdFrom') ? $this->getColIndex('qtdFrom') : 0,
-            'obrigatory' => $this->getColIndex('required') ? $this->getColIndex('required') : false,
+            'minimum_per_family' => $row[$this->getIndexByColMap('familyMinQtd')],
+            'minimum' => $row[$this->getIndexByColMap('minQtd')],
+            'factory_price' => $factoryPrice,
+            'discount_on_cash' => $discountOnCash,
+            'price_on_cash' => $priceOnCash,
+            'discount_deferred' => $discountOnDeferred,
+            'price_deferred' => $priceDeferred,
+            'quantity_minimum' => !is_null($this->getIndexByColMap('qtdTo')) ? $row[$this->getIndexByColMap('qtdTo')] : 0,
+            'quantity_maximum' => !is_null($this->getIndexByColMap('qtdFrom')) ? $row[$this->getIndexByColMap('qtdFrom')] : 0,
+            'obrigatory' => !is_null($this->getIndexByColMap('required')) ? (strtoupper($row[$this->getIndexByColMap('required')]) === 'SIM' ? true : false) : false,
         ]);
 
     }
@@ -129,6 +162,21 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
     public function getRowCount(): int
     {
         return $this->rows;
+    }
+
+    public static function cleanNumber($string)
+    {
+        return preg_replace("/[^a-zA-Z]/", "", $string);
+    }
+
+    /**
+     * @param $col
+     * @return false|int|string|null
+     */
+    protected function getIndexByColMap($col)
+    {
+        if (!isset($this->colsMap[$col])) return null;
+        return $this->getColIndex($this->colsMap[$col]);
     }
 
     /**

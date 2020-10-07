@@ -2,6 +2,8 @@
 
 namespace App\Distributor\Services;
 
+use App\Connection\Contracts\ConnectionCreatable;
+use App\Connection\Contracts\ConnectionUpdatable;
 use App\Contact;
 use App\Distributor;
 use App\Distributor\Contracts\DistributorUpdatable;
@@ -18,6 +20,15 @@ class DistributorUpdater implements DistributorUpdatable
     {
         try {
             $data['state_id'] = $data['stateId'];
+
+            if ($model->code === $data['code']) {
+                unset($data['code']);
+            }
+
+            if ($model->cnpj === $data['cnpj']) {
+                unset($data['cnpj']);
+            }
+
             $model->fill($data);
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
@@ -34,6 +45,16 @@ class DistributorUpdater implements DistributorUpdatable
                 $model->returns()->delete();
                 foreach ($data['returns'] as $data) {
                     $model->returns()->create($data);
+                }
+            }
+
+            if (isset($data['connection'])) {
+                if (is_null($model->connection)) {
+                    $connectionService = app()->make(ConnectionCreatable::class);
+                    $connectionService->store($model, $data['connection']);
+                } else {
+                    $connectionService = app()->make(ConnectionUpdatable::class);
+                    $connectionService->update($model, $data['connection']);
                 }
             }
 

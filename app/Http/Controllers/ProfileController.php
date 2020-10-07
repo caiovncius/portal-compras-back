@@ -454,7 +454,7 @@ class ProfileController extends Controller
      */
     public function byType($type)
     {
-        return ProfileListResource::collection(Profile::byType($type)->get());
+        return ProfileListResource::collection(Profile::byType($type)->where('status', Profile::PROFILE_STATUS_ACTIVE)->get());
     }
 
     /**

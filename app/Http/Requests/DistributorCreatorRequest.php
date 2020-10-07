@@ -18,6 +18,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="category", type="string", example="NATIONAL or REGIONAL"),
  *     @OA\Property(property="stateId", type="integer", example="2"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(property="connection", ref="#/components/schemas/ConnectionCreatorRequest")
  * )
  */
 class DistributorCreatorRequest extends FormRequest
@@ -54,6 +55,17 @@ class DistributorCreatorRequest extends FormRequest
             'returns' => 'array|nullable',
             'returns.*.code' => 'required|string|unique:returns,code,returnable_type,',
             'returns.*.description' => 'required|string',
+            'connection' => 'nullable',
+            'connection.isFtpActive' => 'required|boolean',
+            'connection.transferMode' => 'required|string',
+            'connection.host' => 'required|string',
+            'connection.sendDirectory' => 'required|string',
+            'connection.login' => 'required|string',
+            'connection.password' => 'required|string',
+            'connection.returnDirectory' => 'required|string',
+            'connection.port' => 'numeric',
+            'connection.mask' => 'string',
+            'connection.removeFile' => 'boolean'
         ];
     }
 

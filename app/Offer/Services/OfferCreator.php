@@ -8,6 +8,7 @@ use App\Helpers\FileUploader;
 use App\Offer;
 use App\Partner;
 use App\Offer\Contracts\OfferCreatable;
+use App\ProductDetail;
 use App\Program;
 
 class OfferCreator implements OfferCreatable
@@ -35,7 +36,7 @@ class OfferCreator implements OfferCreatable
             $data['condition_id'] = isset($data['conditionId']) ? $data['conditionId'] : null;
             $model = Offer::create($data);
 
-            if (isset($data['partners']) && !empty($data['partners'])) {
+            if ($data['sendType'] === 'AUTOMATIC' && isset($data['partners']) && !empty($data['partners'])) {
                 foreach ($data['partners'] as $partner) {
                     $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
                     $hasPartner = Distributor::find($partner['id']);
@@ -61,14 +62,19 @@ class OfferCreator implements OfferCreatable
 
             if (isset($data['products'])) {
                 foreach ($data['products'] as $item) {
-                    $item['discount_deferred'] = isset($item['discountDeferred']) ? $item['discountDeferred'] : null;
-                    $item['discount_on_cash'] = isset($item['discountOnCash']) ? $item['discountOnCash'] : null;
-                    $item['minimum_per_family'] = isset($item['minimumPerFamily']) ? $item['minimumPerFamily'] : null;
-                    $item['factory_price'] = isset($item['factoryPrice']) ? $item['factoryPrice'] : null;
-                    $item['price_deferred'] = isset($item['priceDeferred']) ? $item['priceDeferred'] : null;
-                    $item['price_on_cash'] = isset($item['priceOnCash']) ? $item['priceOnCash'] : null;
-                    $item['quantity_maximum'] = isset($item['quantityMaximum']) ? $item['quantityMaximum'] : null;
-                    $item['quantity_minimum'] = isset($item['quantityMinimum']) ? $item['quantityMinimum'] : null;
+
+                    $factoryPrice = isset($item['factoryPrice']) ? $item['factoryPrice'] : 0;
+                    $discountOnCash = isset($item['discountOnCash']) ? $item['discountOnCash'] : 0;
+                    $discountDeferred = isset($item['discountDeferred']) ? $item['discountDeferred'] : 0;
+
+                    $item['discount_deferred'] = $discountDeferred;
+                    $item['discount_on_cash'] = $discountOnCash;
+                    $item['minimum_per_family'] = isset($item['minimumPerFamily']) ? $item['minimumPerFamily'] : 0;
+                    $item['factory_price'] = $factoryPrice;
+                    $item['price_deferred'] = ProductDetail::sumDiscount($factoryPrice, $discountDeferred);
+                    $item['price_on_cash'] = ProductDetail::sumDiscount($factoryPrice, $discountOnCash);
+                    $item['quantity_maximum'] = isset($item['quantityMaximum']) ? $item['quantityMaximum'] : 0;
+                    $item['quantity_minimum'] = isset($item['quantityMinimum']) ? $item['quantityMinimum'] : 0;
                     $item['state_id'] = $item['stateId'];
                     $item['product_id'] = $item['productId'];
                     $model->products()->create($item);

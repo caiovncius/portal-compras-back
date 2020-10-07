@@ -16,6 +16,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="category", type="string", example="NATIONAL or REGIONAL"),
  *     @OA\Property(property="stateId", type="integer", example="2"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(property="connection", ref="#/components/schemas/ConnectionCreatorRequest"),
  * )
  */
 class DistributorUpdatorRequest extends FormRequest
@@ -37,9 +38,10 @@ class DistributorUpdatorRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'code' => 'required|string|unique:distributors,code,' . $this->id,
-            'cnpj' => 'required|cnpj|unique:distributors,cnpj,' . $this->id,
+            'code' => 'string|unique:distributors,code,' . $this->distributor->id,
+            'cnpj' => 'cnpj|unique:distributors,cnpj,' . $this->distributor->id,
             'name' => 'required|string',
             'status' => 'in:ACTIVE,INACTIVE',
             'category' => 'required|in:NATIONAL,REGIONAL',
@@ -52,6 +54,17 @@ class DistributorUpdatorRequest extends FormRequest
             'returns' => 'array|nullable',
             'returns.*.code' => 'required|string|unique:returns,code,returnable_type,' . $this->id,
             'returns.*.description' => 'required|string',
+            'connection' => 'nullable',
+            'connection.isFtpActive' => 'required|boolean',
+            'connection.transferMode' => 'required|string',
+            'connection.host' => 'required|string',
+            'connection.sendDirectory' => 'required|string',
+            'connection.login' => 'required|string',
+            'connection.password' => 'required|string',
+            'connection.returnDirectory' => 'required|string',
+            'connection.port' => 'numeric',
+            'connection.mask' => 'string',
+            'connection.removeFile' => 'boolean'
         ];
     }
 

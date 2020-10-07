@@ -81,6 +81,7 @@ class PurchaseListResource extends JsonResource
             'description' => $this->description,
             'partnerType' => !is_null($this->partner) ? $this->partner->partner_type : null,
             'partner' => !is_null($this->partner) ?  PartnerListResource::make($this->partner) : null,
+            'partnerId' => !is_null($this->partner) ?  $this->partner->id : null,
             'contacts' => $this->contacts,
             'hasRequest' => $this->when($request->get('pharmacyId'), function() use($request) {
                 return $this->requests()->where('pharmacy_id', $request->get('pharmacyId'))->count() > 0;

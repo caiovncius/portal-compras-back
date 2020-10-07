@@ -45,6 +45,20 @@ class ProgramCreatorRequest extends FormRequest
             'contacts.*.name' => 'required|string',
             'contacts.*.email' => 'required|email',
             'contacts.*.telephone' => 'required|string',
+            'returns' => 'array|nullable',
+            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,',
+            'returns.*.description' => 'required|string',
+            'connection' => 'nullable',
+            'connection.isFtpActive' => 'required|boolean',
+            'connection.transferMode' => 'required|string',
+            'connection.host' => 'required|string',
+            'connection.sendDirectory' => 'required|string',
+            'connection.login' => 'required|string',
+            'connection.password' => 'required|string',
+            'connection.returnDirectory' => 'required|string',
+            'connection.port' => 'numeric',
+            'connection.mask' => 'string',
+            'connection.removeFile' => 'boolean'
         ];
     }
 

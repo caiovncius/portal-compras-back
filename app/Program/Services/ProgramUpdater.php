@@ -2,6 +2,8 @@
 
 namespace App\Program\Services;
 
+use App\Connection\Contracts\ConnectionCreatable;
+use App\Connection\Contracts\ConnectionUpdatable;
 use App\Program;
 use App\Program\Contracts\ProgramUpdatable;
 
@@ -32,6 +34,16 @@ class ProgramUpdater implements ProgramUpdatable
                 $model->returns()->delete();
                 foreach ($data['returns'] as $data) {
                     $model->returns()->create($data);
+                }
+            }
+
+            if (isset($data['connection'])) {
+                if (is_null($model->connection)) {
+                    $connectionService = app()->make(ConnectionCreatable::class);
+                    $connectionService->store($model, $data['connection']);
+                } else {
+                    $connectionService = app()->make(ConnectionUpdatable::class);
+                    $connectionService->update($model, $data['connection']);
                 }
             }
 

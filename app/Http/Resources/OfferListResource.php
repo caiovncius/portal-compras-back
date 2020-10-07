@@ -63,7 +63,7 @@ class OfferListResource extends JsonResource
             'condition' => $this->condition_id,
             'minimumPrice' => $this->minimum_price,
             'offerType' => $this->offer_type,
-            'sendType' => $this->sendType,
+            'sendType' => $this->send_type,
             'noAutomaticSending' => $this->no_automatic_sending,
             'impound' => $this->impound,
             'description' => $this->description,

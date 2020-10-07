@@ -102,8 +102,8 @@ class PurchaseRequest extends FormRequest
             'products.*.factoryPrice' => 'string',
             'products.*.priceDeferred' => 'nullable',
             'products.*.priceOnCash' => 'nullable',
-            'products.*.quantityMaximum' => 'numeric',
-            'products.*.quantityMinimum' => 'numeric',
+            'products.*.quantityMaximum' => 'numeric|nullable',
+            'products.*.quantityMinimum' => 'numeric|nullable',
             'products.*.stateId' => 'required',
         ];
     }

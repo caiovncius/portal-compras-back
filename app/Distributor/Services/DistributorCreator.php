@@ -2,6 +2,7 @@
 
 namespace App\Distributor\Services;
 
+use App\Connection\Contracts\ConnectionCreatable;
 use App\Contact;
 use App\Distributor;
 use App\Distributor\Contracts\DistributorCreatable;
@@ -31,6 +32,12 @@ class DistributorCreator implements DistributorCreatable
                     $model->returns()->create($data);
                 }
             }
+
+            if (isset($data['connection'])) {
+                $connectionService = app()->make(ConnectionCreatable::class);
+                $connectionService->store($model, $data['connection']);
+            }
+
             return $model;
         } catch (\Exception $exception) {
             throw $exception;

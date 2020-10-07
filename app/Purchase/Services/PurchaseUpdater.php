@@ -5,6 +5,7 @@ namespace App\Purchase\Services;
 use App\Distributor;
 use App\Helpers\FileUploader;
 use App\Partner;
+use App\ProductDetail;
 use App\Program;
 use App\Purchase;
 use App\Purchase\Contracts\PurchaseUpdatable;
@@ -64,19 +65,24 @@ class PurchaseUpdater implements PurchaseUpdatable
             if (isset($data['products'])) {
                 $model->products()->delete();
                 foreach ($data['products'] as $item) {
+
+                    $factoryPrice = isset($item['factoryPrice']) ? $item['factoryPrice'] : 0;
+                    $discountOnCash = isset($item['discountOnCash']) ? $item['discountOnCash'] : 0;
+                    $discountDeferred = isset($item['discountDeferred']) ? $item['discountDeferred'] : 0;
+
                     $model->products()->create([
                         'product_id' => $item['productId'],
-                        'discount_deferred' => isset($item['discountDeferred']) ? $item['discountDeferred'] : null,
-                        'discount_on_cash' => isset($item['discountOnCash']) ? $item['discountOnCash'] : null,
+                        'factory_price' => $factoryPrice,
+                        'discount_deferred' => $discountDeferred,
+                        'price_deferred' => ProductDetail::sumDiscount($factoryPrice, $discountDeferred),
+                        'discount_on_cash' => $discountOnCash,
+                        'price_on_cash' => ProductDetail::sumDiscount($factoryPrice, $discountOnCash),
                         'minimum' => isset($item['minimum']) ? $item['minimum'] : null,
                         'minimum_per_family' => $item['minimumPerFamily'],
                         'obrigatory' => isset($item['obrigatory']) ? $item['obrigatory'] : null,
                         'variable' => isset($item['variable']) ? $item['variable'] : null,
                         'family' => isset($item['family']) ? $item['family'] : null,
                         'gift' => isset($item['gift']) ? $item['gift'] : null,
-                        'factory_price' => isset($item['factoryPrice']) ? $item['factoryPrice'] : null,
-                        'price_deferred' => isset($item['priceDeferred']) ? $item['priceDeferred'] : null,
-                        'price_on_cash' => isset($item['priceOnCash']) ? $item['priceOnCash'] : null,
                         'quantity_maximum' => isset($item['quantityMaximum']) ? $item['quantityMaximum'] : null,
                         'quantity_minimum' => isset($item['quantityMinimum']) ? $item['quantityMinimum'] : null,
                         'state_id' => $item['stateId'],

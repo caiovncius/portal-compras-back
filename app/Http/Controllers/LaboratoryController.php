@@ -8,6 +8,7 @@ use App\Http\Requests\LaboratoryCreatorRequest;
 use App\Http\Requests\LaboratoryMassCreateRequest;
 use App\Http\Requests\LaboratoryMassUpdateRequest;
 use App\Http\Requests\LaboratoryUpdatorRequest;
+use App\Http\Resources\LaboratoryAutoCompleteResource;
 use App\Http\Resources\LaboratoryListResource;
 use App\Laboratory;
 use App\Laboratory\Contracts\LaboratoryCreatable;
@@ -554,6 +555,10 @@ class LaboratoryController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function export(Request $request)
     {
         if (is_null($request->query('access_token')) || $request->query('access_token') != env('EXPORT_TOKEN')) {
@@ -571,5 +576,18 @@ class LaboratoryController extends Controller
     {
         $this->updaterService->enable($laboratory);
         return response()->json(['message' => 'Laboratório ativado com sucesso']);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function search(Request $request)
+    {
+        try {
+            return LaboratoryAutoCompleteResource::collection($this->retreiverService->laboratories($request->all())->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
     }
 }
