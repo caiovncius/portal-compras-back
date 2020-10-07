@@ -15,6 +15,17 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="code", type="integer", example="001"),
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     @OA\Property(
+ *         property="contacts",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ContactCreatorRequest")
+ *     ),
+ *     @OA\Property(
+ *         property="returns",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ReturnCreatorRequest")
+ *     ),
+ *     @OA\Property(property="connection", ref="#/components/schemas/ConnectionCreatorRequest"),
  * )
  */
 class ProgramCreatorRequest extends FormRequest

@@ -12,7 +12,6 @@ use Illuminate\Foundation\Http\FormRequest;
  *     type="object",
  *     title="DistributorConnection form request",
  *     required={"isFtpActive", "transferMode", "host", "sendDirectory", "login", "password", "returnDirectory"},
- *     @OA\Property(property="distributorId", type="boolean", example="1"),
  *     @OA\Property(property="isFtpActive", type="boolean", example="1"),
  *     @OA\Property(property="transferMode", type="string", example="ASCI"),
  *     @OA\Property(property="host", type="string", example="127.0.0.1"),

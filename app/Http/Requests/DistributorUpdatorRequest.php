@@ -16,7 +16,9 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="category", type="string", example="NATIONAL or REGIONAL"),
  *     @OA\Property(property="stateId", type="integer", example="2"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
- *     @OA\Property(property="connection", ref="#/components/schemas/ConnectionCreatorRequest"),
+ *     @OA\Property(property="return", ref="#/components/schemas/ReturnCreatorRequest"),
+ *     @OA\Property(property="contacts", ref="#/components/schemas/ConnectionCreatorRequest"),
+ *     @OA\Property(property="connection", ref="#/components/schemas/ContactCreatorRequest"),
  * )
  */
 class DistributorUpdatorRequest extends FormRequest

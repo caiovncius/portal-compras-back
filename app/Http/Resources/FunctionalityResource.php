@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     title="FunctionalityList Response",
  *     @OA\Property(property="id", type="integer", example="1"),
  *     @OA\Property(property="name", type="string", example="Teste 02"),
- *     @OA\Property(property="key", type="integer", example="002W"),
+ *     @OA\Property(property="functionality", type="integer", example="002W"),
  *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
  *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
  * )

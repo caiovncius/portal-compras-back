@@ -11,10 +11,12 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="ProgramMassFormCreatorRequest",
  *     type="object",
  *     title="Program form request",
- *     required={"code", "name", "status"},
- *     @OA\Property(property="code", type="integer", example="001"),
- *     @OA\Property(property="name", type="string", example="Teste"),
- *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
+ *     required={"data"},
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ProgramCreatorRequest")
+ *     ),
  * )
  */
 

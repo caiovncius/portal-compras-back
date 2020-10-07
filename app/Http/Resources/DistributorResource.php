@@ -15,7 +15,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="name", type="string", example="Teste"),
  *     @OA\Property(property="category", type="string", example="NATIONAL"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
- *     @OA\Property(property="state", ref="#/components/schemas/StateResource"),
+ *     @OA\Property(property="stateId", ref="#/components/schemas/StateResource"),
  *     @OA\Property(property="updated_user", type="string", example="Nome usuário"),
  *     @OA\Property(property="updated_date", type="string", example="2020-05-01 10:00:00"),
  *     @OA\Property(

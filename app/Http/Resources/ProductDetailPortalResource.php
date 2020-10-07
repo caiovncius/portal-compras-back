@@ -27,6 +27,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="price", type="string", example="10"),
  *     @OA\Property(property="priceWithDiscount", type="integer", example="15"),
  *     @OA\Property(property="obrigatory", type="boolean", example="1"),
+ *     @OA\Property(property="laboratory", type="string", example="teste"),
  *     @OA\Property(
  *         property="values",
  *         type="array",

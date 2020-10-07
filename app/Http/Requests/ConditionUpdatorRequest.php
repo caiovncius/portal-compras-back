@@ -19,7 +19,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *         property="partners",
  *         type="array",
  *         @OA\Items(
- *          @OA\Property(property="partnerId", type="integer", example="1"),
+ *          @OA\Property(property="id", type="integer", example="1"),
  *          @OA\Property(property="type", type="string", example="DISTRIBUTOR or PROGRAM"),
  *         )
  *     ),

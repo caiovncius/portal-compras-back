@@ -9,10 +9,6 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="ProductDetailRequest",
  *     type="object",
  *     title="product detail form request",
- *     @OA\Property(
- *         property="products",
- *         type="array",
- *         @OA\Items(
  *     @OA\Property(property="discountDeferred", type="string", example="2"),
  *     @OA\Property(property="discountOnCash", type="string", example="4"),
  *     @OA\Property(property="minimum", type="integer", example="10"),
@@ -28,9 +24,6 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
  *     @OA\Property(property="state_id", type="string", example="5"),
  *     @OA\Property(property="product_id", type="string", example="5"),
-           )
- *     ),
-
  * )
  */
 class ProductDetailRequest extends FormRequest

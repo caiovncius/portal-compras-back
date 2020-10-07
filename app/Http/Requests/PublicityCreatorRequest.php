@@ -5,17 +5,17 @@ namespace App\Http\Requests;
 use App\Publicity;
 use Illuminate\Foundation\Http\FormRequest;
 
-
 /**
  * @OA\Schema(
  *     schema="PublicityCreatorRequest",
  *     type="object",
  *     title="Publicity form request",
- *     required={"code", "desc", "date_create", "date_publish", "image"},
+ *     required={"code", "description", "createDate", "publishDate", "image"},
  *     @OA\Property(property="code", type="string", example="001"),
  *     @OA\Property(property="description", type="integer", example="Teste"),
  *     @OA\Property(property="createDate", type="date", example="1992-01-87"),
  *     @OA\Property(property="publishDate", type="date", example="1992-10-87"),
+ *     @OA\Property(property="image", type="string", example="teste"),
  * )
  */
 class PublicityCreatorRequest extends FormRequest

@@ -8,9 +8,9 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="ConnectionTestRequest",
  *     type="object",
  *     title="ConnectionTestRequest form request",
- *     required={"host", "username", "password"},
+ *     required={"host", "login", "password"},
  *     @OA\Property(property="host", type="strong", example="127.0.0.1"),
- *     @OA\Property(property="username", type="string", example="name"),
+ *     @OA\Property(property="login", type="string", example="name"),
  *     @OA\Property(property="password", type="string", example="123446"),
  * )
  */

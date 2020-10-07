@@ -3,7 +3,19 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+/**
+ * @OA\Schema(
+ *     schema="ProgramMassUpdatorRequest",
+ *     type="object",
+ *     title="Program updator request",
+ *     required={"data"},
+ *     @OA\Property(
+ *         property="data",
+ *         type="array",
+ *         @OA\Items(ref="#/components/schemas/ProgramCreatorRequest")
+ *     ),
+ * )
+ */
 class ProgramMassUpdatorRequest extends FormRequest
 {
     /**

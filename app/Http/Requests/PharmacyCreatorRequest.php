@@ -19,7 +19,6 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="stateRegistration", type="string", example="424343"),
  *     @OA\Property(property="email", type="string", example="email@example.com"),
  *     @OA\Property(property="phone", type="string", example="(11) 9 9999-9999"),
- *     @OA\Property(property="supervisorId", type="string", example="1"),
  *     @OA\Property(property="partnerPriority", type="integer", example="12"),
  *     @OA\Property(property="address", type="string", example="Rua 12"),
  *     @OA\Property(property="address2", type="string", example="Complemento"),
@@ -32,6 +31,13 @@ use Illuminate\Foundation\Http\FormRequest;
  *         property="contacts",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/ContactCreatorRequest")
+ *     ),
+ *     @OA\Property(
+ *         property="supervisor",
+ *         type="array",
+ *         @OA\Items(
+ *             @OA\Property(property="id", type="int", example="3"),
+ *         )
  *     ),
  * )
  */

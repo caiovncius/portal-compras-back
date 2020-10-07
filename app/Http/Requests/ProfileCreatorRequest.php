@@ -12,12 +12,12 @@ use Illuminate\Foundation\Http\FormRequest;
  *     schema="ProfileCreatorRequest",
  *     type="object",
  *     title="Profile form request",
- *     required={"name", "type", "status", "functions"},
+ *     required={"name", "type", "status", "permissions"},
  *     @OA\Property(property="name", type="string", example="Manager"),
  *     @OA\Property(property="type", ref="#/components/schemas/UserType"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  *     @OA\Property(
- *         property="functions",
+ *         property="permissions",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/ProfileFunctions")
  *     ),

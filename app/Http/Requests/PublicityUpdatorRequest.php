@@ -15,6 +15,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="description", type="integer", example="Teste"),
  *     @OA\Property(property="createDate", type="date", example="1992-01-87"),
  *     @OA\Property(property="publishDate", type="date", example="1992-10-87"),
+ *     @OA\Property(property="image", type="string", example="teste"),
  * )
  */
 class PublicityUpdatorRequest extends FormRequest

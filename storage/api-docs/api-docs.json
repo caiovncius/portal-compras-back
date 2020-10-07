@@ -4,11 +4,6 @@
         "title": "API Portal de compras - Farmácias Associadas",
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": ""
-        }
-    ],
     "paths": {
         "/cities/by-state/{state}": {
             "get": {
@@ -5537,6 +5532,47 @@
                 }
             }
         },
+        "/portal/dashboard": {
+            "get": {
+                "tags": [
+                    "Portal"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/RequestListResource"
+                                            }
+                                        },
+                                        "links": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationLinks"
+                                                }
+                                            ]
+                                        },
+                                        "meta": {
+                                            "allOf": [
+                                                {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/portal/pharmacies/{id}/requests": {
             "get": {
                 "tags": [
@@ -7046,7 +7082,7 @@
                         "type": "array",
                         "items": {
                             "properties": {
-                                "partnerId": {
+                                "id": {
                                     "type": "integer",
                                     "example": "1"
                                 },
@@ -7085,7 +7121,7 @@
                         "type": "array",
                         "items": {
                             "properties": {
-                                "partnerId": {
+                                "id": {
                                     "type": "integer",
                                     "example": "1"
                                 },
@@ -7112,10 +7148,6 @@
                     "returnDirectory"
                 ],
                 "properties": {
-                    "distributorId": {
-                        "type": "boolean",
-                        "example": "1"
-                    },
                     "isFtpActive": {
                         "type": "boolean",
                         "example": "1"
@@ -7163,7 +7195,7 @@
                 "title": "ConnectionTestRequest form request",
                 "required": [
                     "host",
-                    "username",
+                    "login",
                     "password"
                 ],
                 "properties": {
@@ -7171,7 +7203,7 @@
                         "type": "strong",
                         "example": "127.0.0.1"
                     },
-                    "username": {
+                    "login": {
                         "type": "string",
                         "example": "name"
                     },
@@ -7322,6 +7354,15 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "return": {
+                        "$ref": "#/components/schemas/ReturnCreatorRequest"
+                    },
+                    "contacts": {
+                        "$ref": "#/components/schemas/ConnectionCreatorRequest"
+                    },
+                    "connection": {
+                        "$ref": "#/components/schemas/ContactCreatorRequest"
                     }
                 },
                 "type": "object"
@@ -7402,6 +7443,15 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "return": {
+                        "$ref": "#/components/schemas/ReturnCreatorRequest"
+                    },
+                    "contacts": {
+                        "$ref": "#/components/schemas/ConnectionCreatorRequest"
+                    },
+                    "connection": {
+                        "$ref": "#/components/schemas/ContactCreatorRequest"
                     }
                 },
                 "type": "object"
@@ -7559,73 +7609,7 @@
                     "products": {
                         "type": "array",
                         "items": {
-                            "properties": {
-                                "discountDeferred": {
-                                    "type": "string",
-                                    "example": "2"
-                                },
-                                "discountOnCash": {
-                                    "type": "string",
-                                    "example": "4"
-                                },
-                                "minimum": {
-                                    "type": "integer",
-                                    "example": "10"
-                                },
-                                "minimumPerFamily": {
-                                    "type": "integer",
-                                    "example": "15"
-                                },
-                                "obrigatory": {
-                                    "type": "boolean",
-                                    "example": "1"
-                                },
-                                "variable": {
-                                    "type": "boolean",
-                                    "example": "1"
-                                },
-                                "family": {
-                                    "type": "boolean",
-                                    "example": "0"
-                                },
-                                "gift": {
-                                    "type": "boolean",
-                                    "example": "0"
-                                },
-                                "factoryPrice": {
-                                    "type": "string",
-                                    "example": "10.00"
-                                },
-                                "priceDeferred": {
-                                    "type": "string",
-                                    "example": "11.00"
-                                },
-                                "priceOnCash": {
-                                    "type": "string",
-                                    "example": "10.51"
-                                },
-                                "productName": {
-                                    "type": "string",
-                                    "example": "Teste"
-                                },
-                                "quantityMaximum": {
-                                    "type": "integer",
-                                    "example": "6"
-                                },
-                                "quantityMinimum": {
-                                    "type": "integer",
-                                    "example": "10"
-                                },
-                                "stateId": {
-                                    "type": "string",
-                                    "example": "5"
-                                },
-                                "productId": {
-                                    "type": "string",
-                                    "example": "5"
-                                }
-                            },
-                            "type": "object"
+                            "$ref": "#/components/schemas/ProductDetailRequest"
                         }
                     }
                 },
@@ -7708,73 +7692,7 @@
                     "products": {
                         "type": "array",
                         "items": {
-                            "properties": {
-                                "discountDeferred": {
-                                    "type": "string",
-                                    "example": "2"
-                                },
-                                "discountOnCash": {
-                                    "type": "string",
-                                    "example": "4"
-                                },
-                                "minimum": {
-                                    "type": "integer",
-                                    "example": "10"
-                                },
-                                "minimumPerFamily": {
-                                    "type": "integer",
-                                    "example": "15"
-                                },
-                                "obrigatory": {
-                                    "type": "boolean",
-                                    "example": "1"
-                                },
-                                "variable": {
-                                    "type": "boolean",
-                                    "example": "1"
-                                },
-                                "family": {
-                                    "type": "boolean",
-                                    "example": "0"
-                                },
-                                "gift": {
-                                    "type": "boolean",
-                                    "example": "0"
-                                },
-                                "factoryPrice": {
-                                    "type": "string",
-                                    "example": "10.00"
-                                },
-                                "priceDeferred": {
-                                    "type": "string",
-                                    "example": "11.00"
-                                },
-                                "priceOnCash": {
-                                    "type": "string",
-                                    "example": "10.51"
-                                },
-                                "productName": {
-                                    "type": "string",
-                                    "example": "Teste"
-                                },
-                                "quantityMaximum": {
-                                    "type": "integer",
-                                    "example": "6"
-                                },
-                                "quantityMinimum": {
-                                    "type": "integer",
-                                    "example": "10"
-                                },
-                                "stateId": {
-                                    "type": "string",
-                                    "example": "5"
-                                },
-                                "productId": {
-                                    "type": "string",
-                                    "example": "5"
-                                }
-                            },
-                            "type": "object"
+                            "$ref": "#/components/schemas/ProductDetailRequest"
                         }
                     }
                 },
@@ -7821,10 +7739,6 @@
                         "type": "string",
                         "example": "(11) 9 9999-9999"
                     },
-                    "supervisorId": {
-                        "type": "string",
-                        "example": "1"
-                    },
                     "partnerPriority": {
                         "type": "integer",
                         "example": "12"
@@ -7861,6 +7775,18 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/ContactCreatorRequest"
+                        }
+                    },
+                    "supervisor": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "int",
+                                    "example": "3"
+                                }
+                            },
+                            "type": "object"
                         }
                     }
                 },
@@ -8020,73 +7946,65 @@
             "ProductDetailRequest": {
                 "title": "product detail form request",
                 "properties": {
-                    "products": {
-                        "type": "array",
-                        "items": {
-                            "properties": {
-                                "discountDeferred": {
-                                    "type": "string",
-                                    "example": "2"
-                                },
-                                "discountOnCash": {
-                                    "type": "string",
-                                    "example": "4"
-                                },
-                                "minimum": {
-                                    "type": "integer",
-                                    "example": "10"
-                                },
-                                "minimumPerFamily": {
-                                    "type": "integer",
-                                    "example": "15"
-                                },
-                                "obrigatory": {
-                                    "type": "boolean",
-                                    "example": "1"
-                                },
-                                "variable": {
-                                    "type": "boolean",
-                                    "example": "1"
-                                },
-                                "family": {
-                                    "type": "boolean",
-                                    "example": "0"
-                                },
-                                "gift": {
-                                    "type": "boolean",
-                                    "example": "0"
-                                },
-                                "factoryPrice": {
-                                    "type": "string",
-                                    "example": "10.00"
-                                },
-                                "priceDeferred": {
-                                    "type": "string",
-                                    "example": "11.00"
-                                },
-                                "priceOnCash": {
-                                    "type": "string",
-                                    "example": "10.51"
-                                },
-                                "quantityMaximum": {
-                                    "type": "integer",
-                                    "example": "6"
-                                },
-                                "quantityMinimum": {
-                                    "type": "integer",
-                                    "example": "10"
-                                },
-                                "state_id": {
-                                    "type": "string",
-                                    "example": "5"
-                                },
-                                "product_id": {
-                                    "type": "string",
-                                    "example": "5"
-                                }
-                            },
-                            "type": "object"
-                        }
+                    "discountDeferred": {
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "discountOnCash": {
+                        "type": "string",
+                        "example": "4"
+                    },
+                    "minimum": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "minimumPerFamily": {
+                        "type": "integer",
+                        "example": "15"
+                    },
+                    "obrigatory": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "variable": {
+                        "type": "boolean",
+                        "example": "1"
+                    },
+                    "family": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "gift": {
+                        "type": "boolean",
+                        "example": "0"
+                    },
+                    "factoryPrice": {
+                        "type": "string",
+                        "example": "10.00"
+                    },
+                    "priceDeferred": {
+                        "type": "string",
+                        "example": "11.00"
+                    },
+                    "priceOnCash": {
+                        "type": "string",
+                        "example": "10.51"
+                    },
+                    "quantityMaximum": {
+                        "type": "integer",
+                        "example": "6"
+                    },
+                    "quantityMinimum": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "state_id": {
+                        "type": "string",
+                        "example": "5"
+                    },
+                    "product_id": {
+                        "type": "string",
+                        "example": "5"
                     }
                 },
                 "type": "object"
@@ -8143,7 +8061,7 @@
                     "name",
                     "type",
                     "status",
-                    "functions"
+                    "permissions"
                 ],
                 "properties": {
                     "name": {
@@ -8156,7 +8074,7 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
-                    "functions": {
+                    "permissions": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/ProfileFunctions"
@@ -8183,7 +8101,7 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
-                    "functions": {
+                    "permissions": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/ProfileFunctions"
@@ -8210,6 +8128,21 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactCreatorRequest"
+                        }
+                    },
+                    "returns": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ReturnCreatorRequest"
+                        }
+                    },
+                    "connection": {
+                        "$ref": "#/components/schemas/ConnectionCreatorRequest"
                     }
                 },
                 "type": "object"
@@ -8217,21 +8150,14 @@
             "ProgramMassFormCreatorRequest": {
                 "title": "Program form request",
                 "required": [
-                    "code",
-                    "name",
-                    "status"
+                    "data"
                 ],
                 "properties": {
-                    "code": {
-                        "type": "integer",
-                        "example": "001"
-                    },
-                    "name": {
-                        "type": "string",
-                        "example": "Teste"
-                    },
-                    "status": {
-                        "$ref": "#/components/schemas/UserStatus"
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProgramCreatorRequest"
+                        }
                     }
                 },
                 "type": "object"
@@ -8251,6 +8177,21 @@
                 },
                 "type": "object"
             },
+            "ProgramMassUpdatorRequest": {
+                "title": "Program updator request",
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProgramCreatorRequest"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ProgramUpdatorRequest": {
                 "title": "Program update form request",
                 "properties": {
@@ -8264,6 +8205,21 @@
                     },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
+                    },
+                    "contacts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ContactCreatorRequest"
+                        }
+                    },
+                    "returns": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ReturnCreatorRequest"
+                        }
+                    },
+                    "connection": {
+                        "$ref": "#/components/schemas/ConnectionCreatorRequest"
                     }
                 },
                 "type": "object"
@@ -8272,9 +8228,9 @@
                 "title": "Publicity form request",
                 "required": [
                     "code",
-                    "desc",
-                    "date_create",
-                    "date_publish",
+                    "description",
+                    "createDate",
+                    "publishDate",
                     "image"
                 ],
                 "properties": {
@@ -8293,6 +8249,10 @@
                     "publishDate": {
                         "type": "date",
                         "example": "1992-10-87"
+                    },
+                    "image": {
+                        "type": "string",
+                        "example": "teste"
                     }
                 },
                 "type": "object"
@@ -8325,6 +8285,10 @@
                     "publishDate": {
                         "type": "date",
                         "example": "1992-10-87"
+                    },
+                    "image": {
+                        "type": "string",
+                        "example": "teste"
                     }
                 },
                 "type": "object"
@@ -8355,9 +8319,8 @@
                 "required": [
                     "code",
                     "name",
+                    "billingMeasure",
                     "sendType",
-                    "validityStart",
-                    "validityEnd",
                     "minimumBillingValue",
                     "minimumBillingQuantity"
                 ],
@@ -8378,6 +8341,10 @@
                         "type": "string",
                         "example": "Teste"
                     },
+                    "billingMeasure": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
                     "validityStart": {
                         "type": "date",
                         "example": "2020-05-25"
@@ -8388,7 +8355,7 @@
                     },
                     "status": {
                         "type": "string",
-                        "example": "ACTIVE"
+                        "example": "OPEN"
                     },
                     "sendType": {
                         "type": "string",
@@ -8437,73 +8404,7 @@
                     "products": {
                         "type": "array",
                         "items": {
-                            "properties": {
-                                "discountDeferred": {
-                                    "type": "string",
-                                    "example": "2"
-                                },
-                                "discountOnCash": {
-                                    "type": "string",
-                                    "example": "4"
-                                },
-                                "minimum": {
-                                    "type": "integer",
-                                    "example": "10"
-                                },
-                                "minimumPerFamily": {
-                                    "type": "integer",
-                                    "example": "15"
-                                },
-                                "obrigatory": {
-                                    "type": "boolean",
-                                    "example": "1"
-                                },
-                                "variable": {
-                                    "type": "boolean",
-                                    "example": "1"
-                                },
-                                "family": {
-                                    "type": "boolean",
-                                    "example": "0"
-                                },
-                                "gift": {
-                                    "type": "boolean",
-                                    "example": "0"
-                                },
-                                "factoryPrice": {
-                                    "type": "string",
-                                    "example": "10.00"
-                                },
-                                "priceDeferred": {
-                                    "type": "string",
-                                    "example": "11.00"
-                                },
-                                "priceOnCash": {
-                                    "type": "string",
-                                    "example": "10.51"
-                                },
-                                "productName": {
-                                    "type": "string",
-                                    "example": "Teste"
-                                },
-                                "quantityMaximum": {
-                                    "type": "integer",
-                                    "example": "6"
-                                },
-                                "quantityMinimum": {
-                                    "type": "integer",
-                                    "example": "10"
-                                },
-                                "stateId": {
-                                    "type": "string",
-                                    "example": "5"
-                                },
-                                "productId": {
-                                    "type": "string",
-                                    "example": "5"
-                                }
-                            },
-                            "type": "object"
+                            "$ref": "#/components/schemas/ProductDetailRequest"
                         }
                     },
                     "contacts": {
@@ -8919,6 +8820,10 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
+                    "visible": {
+                        "type": "integer",
+                        "example": "1"
+                    },
                     "updated_user": {
                         "type": "string",
                         "example": "Nome usuário"
@@ -8943,11 +8848,11 @@
                         "type": "integer",
                         "example": "1"
                     },
-                    "ftpActive": {
+                    "isFtpActive": {
                         "type": "boolean",
                         "example": "1"
                     },
-                    "transferency": {
+                    "transferMode": {
                         "type": "string",
                         "example": "teste"
                     },
@@ -8955,7 +8860,7 @@
                         "type": "string",
                         "example": "localhost"
                     },
-                    "pathSend": {
+                    "sendDirectory": {
                         "type": "string",
                         "example": "123"
                     },
@@ -8967,7 +8872,7 @@
                         "type": "string",
                         "example": "123"
                     },
-                    "pathReturn": {
+                    "returnDirectory": {
                         "type": "string",
                         "example": "123"
                     },
@@ -8983,7 +8888,7 @@
                         "type": "string",
                         "example": "22"
                     },
-                    "remove_file": {
+                    "removeFile": {
                         "type": "boolean",
                         "example": "0"
                     },
@@ -9047,18 +8952,6 @@
                         "type": "string",
                         "example": "Goiás"
                     },
-                    "type": {
-                        "type": "string",
-                        "example": "DISTRIBUTOR"
-                    },
-                    "ol": {
-                        "type": "integer",
-                        "example": "1"
-                    },
-                    "priority": {
-                        "type": "integer",
-                        "example": "1"
-                    },
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     }
@@ -9091,7 +8984,7 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
-                    "state": {
+                    "stateId": {
                         "$ref": "#/components/schemas/StateResource"
                     },
                     "updated_user": {
@@ -9125,7 +9018,7 @@
                         "type": "string",
                         "example": "Teste 02"
                     },
-                    "key": {
+                    "functionality": {
                         "type": "integer",
                         "example": "002W"
                     },
@@ -9235,7 +9128,7 @@
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
                     },
-                    "email": {
+                    "emails": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Email"
@@ -9375,6 +9268,18 @@
                     "updated_date": {
                         "type": "string",
                         "example": "2020-05-01 10:00:00"
+                    },
+                    "emails": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Email"
+                        }
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ProductDetailResource"
+                        }
                     }
                 },
                 "type": "object"
@@ -9427,11 +9332,7 @@
             "PartnerResource": {
                 "title": "Partner Response",
                 "properties": {
-                    "partnerId": {
-                        "type": "integer",
-                        "example": "1"
-                    },
-                    "partnerType": {
+                    "type": {
                         "type": "string",
                         "example": "DISTRIBUTOR"
                     },
@@ -9739,6 +9640,10 @@
                         "type": "boolean",
                         "example": "1"
                     },
+                    "laboratory": {
+                        "type": "string",
+                        "example": "teste"
+                    },
                     "values": {
                         "type": "array",
                         "items": {
@@ -9795,10 +9700,6 @@
                         "type": "string",
                         "example": "10.51"
                     },
-                    "productName": {
-                        "type": "string",
-                        "example": "Teste"
-                    },
                     "quantityMaximum": {
                         "type": "integer",
                         "example": "6"
@@ -9807,13 +9708,17 @@
                         "type": "integer",
                         "example": "10"
                     },
-                    "state_id": {
+                    "stateId": {
                         "type": "string",
                         "example": "5"
                     },
-                    "product_id": {
+                    "productId": {
                         "type": "string",
                         "example": "5"
+                    },
+                    "productName": {
+                        "type": "string",
+                        "example": "teste"
                     },
                     "updated_user": {
                         "type": "string",
@@ -9848,13 +9753,46 @@
                     "status": {
                         "$ref": "#/components/schemas/UserStatus"
                     },
+                    "laboratory": {
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "createdAt": {
+                        "type": "datetime",
+                        "example": "2020-05-25T05:09:15.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductResource": {
+                "title": "Product Response",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "codeEan": {
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Teste"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/UserStatus"
+                    },
                     "laboratoryId": {
                         "type": "integer",
                         "example": "4"
                     },
-                    "laboratoryName": {
+                    "laboratory": {
                         "type": "string",
-                        "example": "Teste"
+                        "example": "asd"
                     },
                     "createdAt": {
                         "type": "datetime",
@@ -10808,9 +10746,9 @@
                 "scheme": "https",
                 "flows": {
                     "password": {
-                        "authorizationUrl": "http://git-portal-compras-back.test/oauth/authorize",
-                        "tokenUrl": "http://git-portal-compras-back.test/oauth/token",
-                        "refreshUrl": "http://git-portal-compras-back.test/token/refresh",
+                        "authorizationUrl": "http://localhost:8000/oauth/authorize",
+                        "tokenUrl": "http://localhost:8000/oauth/token",
+                        "refreshUrl": "http://localhost:8000/token/refresh",
                         "scopes": []
                     }
                 }

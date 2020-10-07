@@ -14,8 +14,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="codeEan", type="integer", example="3"),
  *     @OA\Property(property="description", type="string", example="Teste"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
- *     @OA\Property(property="laboratoryId",  type="integer", example="4"),
- *     @OA\Property(property="laboratoryName",  type="string", example="Teste"),
+ *     @OA\Property(property="laboratory",  type="integer", example="4"),
  *     @OA\Property(property="createdAt",  type="datetime", example="2020-05-25T05:09:15.000000Z"),
  * )
  */

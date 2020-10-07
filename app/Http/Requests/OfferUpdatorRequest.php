@@ -35,25 +35,8 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(
  *         property="products",
  *         type="array",
- *         @OA\Items(
- *     @OA\Property(property="discountDeferred", type="string", example="2"),
- *     @OA\Property(property="discountOnCash", type="string", example="4"),
- *     @OA\Property(property="minimum", type="integer", example="10"),
- *     @OA\Property(property="minimumPerFamily", type="integer", example="15"),
- *     @OA\Property(property="obrigatory", type="boolean", example="1"),
- *     @OA\Property(property="variable", type="boolean", example="1"),
- *     @OA\Property(property="family", type="boolean", example="0"),
- *     @OA\Property(property="gift", type="boolean", example="0"),
- *     @OA\Property(property="factoryPrice", type="string", example="10.00"),
- *     @OA\Property(property="priceDeferred", type="string", example="11.00"),
- *     @OA\Property(property="priceOnCash", type="string", example="10.51"),
- *     @OA\Property(property="productName", type="string", example="Teste"),
- *     @OA\Property(property="quantityMaximum", type="integer", example="6"),
- *     @OA\Property(property="quantityMinimum", type="integer", example="10"),
- *     @OA\Property(property="stateId", type="string", example="5"),
- *     @OA\Property(property="productId", type="string", example="5"),
-           )
- *     ),
+ *         @OA\Items(ref="#/components/schemas/ProductDetailRequest"),
+ *     )
  * )
  */
 class OfferUpdatorRequest extends FormRequest

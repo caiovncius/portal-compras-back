@@ -16,7 +16,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     @OA\Property(property="type", ref="#/components/schemas/UserType"),
  *     @OA\Property(property="status", ref="#/components/schemas/UserStatus"),
  *     @OA\Property(
- *         property="functions",
+ *         property="permissions",
  *         type="array",
  *         @OA\Items(ref="#/components/schemas/ProfileFunctions")
  *     ),
