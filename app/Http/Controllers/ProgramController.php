@@ -435,6 +435,25 @@ class ProgramController extends Controller
 
             try {
 
+                if (!isset($model['code']) || empty($model['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
+
+                $localData = Program::where('code', $model['code'])->first();
+
+                if (!is_null($localData)) {
+                    $errors[] = [
+                        'message' => 'code already in use',
+                        'data' => $model['code']
+                    ];
+
+                    continue;
+                }
+
                 $this->creatorService->store($model);
 
             } catch (\Exception $e) {
@@ -493,6 +512,15 @@ class ProgramController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($model['code']) || empty($model['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
+
                 $localData = Program::where('code', $model['code'])->first();
 
                 if (is_null($localData)) {
@@ -562,6 +590,15 @@ class ProgramController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($model['code']) || empty($model['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
+
                 $localData = Program::where('code', $model['code'])->first();
 
                 if (is_null($localData)) {

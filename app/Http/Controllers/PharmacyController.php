@@ -16,6 +16,7 @@ use App\Pharmacy\Contracts\PharmacyUpdatable;
 use App\Pharmacy\Contracts\PharmacyRemovable;
 use App\Pharmacy\Contracts\PharmacyRetrievable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PharmacyController extends Controller
 {
@@ -430,6 +431,37 @@ class PharmacyController extends Controller
 
             try {
 
+                if (!isset($pharmacy['code']) || empty($pharmacy['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
+
+                $localData = Pharmacy::where('code', $pharmacy['code'])->first();
+
+                if (!is_null($localData)) {
+                    $errors[] = [
+                        'message' => 'code already in use',
+                        'data' => $pharmacy['code']
+                    ];
+
+                    continue;
+                }
+
+                $localData = Pharmacy::where('cnpj',  preg_replace('/[^0-9]/', '', $pharmacy['cnpj']))
+                    ->first();
+
+                if (!is_null($localData)) {
+                    $errors[] = [
+                        'message' => 'cnpj already in use',
+                        'data' => $pharmacy['cnpj']
+                    ];
+
+                    continue;
+                }
+
                 $this->creatorService->store($pharmacy);
 
             } catch (\Exception $e) {
@@ -477,7 +509,7 @@ class PharmacyController extends Controller
      * @param PharmacyMassUpdatorRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function massUpdate(PharmacyMassUpdatorRequest $request)
+    public function massUpdate(PharmacyMassCreateRequest $request)
     {
         $errors = [];
         $lines = 0;
@@ -487,6 +519,14 @@ class PharmacyController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($pharmacy['code']) || empty($pharmacy['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = Pharmacy::where('code', $pharmacy['code'])->first();
 
@@ -557,6 +597,14 @@ class PharmacyController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($pharmacy['code']) || empty($pharmacy['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = Laboratory::where('code', $pharmacy['code'])->first();
 

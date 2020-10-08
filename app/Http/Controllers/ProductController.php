@@ -390,6 +390,25 @@ class ProductController extends Controller
 
             try {
 
+                if (!isset($product['code']) || empty($product['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
+
+                $localData = Product::where('code', $product['code'])->first();
+
+                if (!is_null($localData)) {
+                    $errors[] = [
+                        'message' => 'code already in use',
+                        'data' => $product['code']
+                    ];
+
+                    continue;
+                }
+
                 $this->creatorService->store($product);
 
             } catch (\Exception $e) {
@@ -448,6 +467,14 @@ class ProductController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($product['code']) || empty($product['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = Product::where('code', $product['code'])->first();
 
@@ -517,6 +544,14 @@ class ProductController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($product['code']) || empty($product['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = Product::where('code', $product['code'])->first();
 

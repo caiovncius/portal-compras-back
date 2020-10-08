@@ -9,6 +9,7 @@ use App\Distributor\Contracts\DistributorRetrievable;
 use App\Distributor\Contracts\DistributorUpdatable;
 use App\Exports\DistributorExport;
 use App\Http\Requests\DistributorCreatorRequest;
+use App\Http\Requests\DistributorMassCreatorRequest;
 use App\Http\Requests\DistributorMassUpdatorRequest;
 use App\Http\Requests\DistributorUpdatorRequest;
 use App\Http\Requests\ReturnMorphRequest;
@@ -473,6 +474,25 @@ class DistributorController extends Controller
 
             try {
 
+                if (!isset($distributor['code']) || empty($distributor['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
+
+                $localData = Distributor::where('code', $distributor['code'])->first();
+
+                if (!is_null($localData)) {
+                    $errors[] = [
+                        'message' => 'code already in use',
+                        'data' => $distributor['code']
+                    ];
+
+                    continue;
+                }
+
                 $this->creatorService->store($distributor);
 
             } catch (\Exception $e) {
@@ -532,6 +552,14 @@ class DistributorController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($model['code']) || empty($model['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = Distributor::where('code', $model['code'])->first();
 
@@ -602,6 +630,14 @@ class DistributorController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($model['code']) || empty($model['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = Distributor::where('code', $model['code'])->first();
 

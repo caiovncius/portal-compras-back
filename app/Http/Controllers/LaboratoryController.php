@@ -446,6 +446,25 @@ class LaboratoryController extends Controller
 
             try {
 
+                if (!isset($laboratory['code']) || empty($laboratory['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
+
+                $localData = Laboratory::where('code', $laboratory['code'])->first();
+
+                if (!is_null($localData)) {
+                    $errors[] = [
+                        'message' => 'code already in use',
+                        'data' => $laboratory['code']
+                    ];
+
+                    continue;
+                }
+
                 $this->creatorService->store($laboratory);
 
             } catch (\Exception $e) {
@@ -504,6 +523,14 @@ class LaboratoryController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($laboratory['code']) || empty($laboratory['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = Laboratory::where('code', $laboratory['code'])->first();
 
@@ -575,6 +602,14 @@ class LaboratoryController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($laboratory['code']) || empty($laboratory['code'])) {
+                    $errors[] = [
+                        'message' => 'code is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = Laboratory::where('code', $laboratory['code'])->first();
 

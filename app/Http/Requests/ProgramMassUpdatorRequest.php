@@ -25,14 +25,6 @@ class ProgramMassUpdatorRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.code' => 'required|string',
-            'data.*.name' => 'required|string',
-            'data.*.status' => 'required|in:ACTIVE,INACTIVE',
-            'data.*.contacts' => 'array',
-            'data.*.contacts.*.function' => 'required|string',
-            'data.*.contacts.*.name' => 'required|string',
-            'data.*.contacts.*.email' => 'required|email',
-            'data.*.contacts.*.telephone' => 'required|string',
         ];
     }
 }

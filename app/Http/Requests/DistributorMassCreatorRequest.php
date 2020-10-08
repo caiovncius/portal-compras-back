@@ -55,17 +55,6 @@ class DistributorMassCreatorRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.code' => 'required|string|unique:distributors,code',
-            'data.*.cnpj' => 'required|cnpj|unique:distributors,cnpj',
-            'data.*.name' => 'required|string',
-            'data.*.status' => 'required|in:ACTIVE,INACTIVE',
-            'data.*.category' => 'required|in:NATIONAL,REGIONAL',
-            'data.*.stateId' => 'required',
-            'data.*.contacts' => 'nullable|array',
-            'data.*.contacts.*.function' => 'required|string',
-            'data.*.contacts.*.name' => 'required|string',
-            'data.*.contacts.*.email' => 'required|email',
-            'data.*.contacts.*.telephone' => 'required|string',
         ];
     }
 

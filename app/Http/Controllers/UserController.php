@@ -587,6 +587,36 @@ class UserController extends Controller
 
             try {
 
+                if (!isset($user['username']) || empty($user['username'])) {
+                    $errors[] = [
+                        'message' => 'username is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
+
+                $localData = User::where('username', $user['username'])->first();
+
+                if (!is_null($localData)) {
+                    $errors[] = [
+                        'message' => 'username already in use',
+                        'data' => $user['username']
+                    ];
+
+                    continue;
+                }
+
+                $localData = User::where('email', $user['email'])->first();
+
+                if (!is_null($localData)) {
+                    $errors[] = [
+                        'message' => 'email already in use',
+                        'data' => $user['email']
+                    ];
+
+                    continue;
+                }
+
                 $this->creatorService->store($user);
 
             } catch (\Exception $e) {
@@ -644,6 +674,14 @@ class UserController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($user['username']) || empty($user['username'])) {
+                    $errors[] = [
+                        'message' => 'username is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = User::where('username', $user['username'])->first();
 
@@ -714,6 +752,14 @@ class UserController extends Controller
             $lines++;
 
             try {
+
+                if (!isset($user['username']) || empty($user['username'])) {
+                    $errors[] = [
+                        'message' => 'username is required',
+                        'data' => null
+                    ];
+                    continue;
+                }
 
                 $localData = User::where('username', $user['username'])->first();
 

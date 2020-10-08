@@ -25,13 +25,6 @@ class ProductMassUpdateRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.code' => 'required|string',
-            'data.*.codeEan' => 'required|string',
-            'data.*.description' => 'required|string',
-            'data.*.status' => 'nullable|in:ACTIVE,INACTIVE',
-            'data.*.laboratoryId' => 'nullable|exists:laboratories,id',
-            'data.*.secondaryEanCodes' => 'array',
-            'data.*.secondaryEanCodes.*.name' => 'string|required',
         ];
     }
 }

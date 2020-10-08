@@ -57,15 +57,6 @@ class UserMassCreateRequest extends FormRequest
     {
         return [
             'data' => 'array|required',
-            'data.*.name' => 'required|string',
-            'data.*.username' => 'required|string|unique:users,username',
-            'data.*.email' => 'required|email|unique:users,email',
-            'data.*.type' => 'required|in:' . User::USER_TYPE_MASTER . ',' . User::USER_TYPE_COMMERCIAL . ',' . User::USER_TYPE_PHARMACY,
-            'data.*.status' => 'required|in:' . User::USER_STATUS_ACTIVE . ',' . User::USER_STATUS_INACTIVE,
-            'data.*.profileId' => 'required|exists:profiles,id',
-            'data.*.phone1' => 'string|nullable',
-            'data.*.phone2' => 'string|nullable',
-            'data.*.password' => 'string|required',
         ];
     }
 }
