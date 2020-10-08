@@ -437,14 +437,31 @@ class LaboratoryController extends Controller
      */
     public function massStore(LaboratoryMassCreateRequest $request)
     {
-        try {
-            foreach ($request->data as $laboratory) {
+        $errors = [];
+        $lines = 0;
+
+        foreach ($request->data as $laboratory) {
+
+            $lines++;
+
+            try {
+
                 $this->creatorService->store($laboratory);
+
+            } catch (\Exception $e) {
+                $errors[] = [
+                    'message' => $e->getMessage(),
+                    'data' => $laboratory
+                ];
             }
-            return response()->json(['message' => 'Laboratorios adicionados com sucesso!'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
         }
+
+        return response()->json([
+            'totalProcessed' => $lines,
+            'successfully' => $lines - count($errors),
+            'errors' => $errors
+        ], 200);
+
     }
 
     /**
@@ -479,26 +496,42 @@ class LaboratoryController extends Controller
      */
     public function massUpdate(LaboratoryMassUpdateRequest $request)
     {
-        try {
-            $updated = 0;
-            $notFound = 0;
-            foreach ($request->data as $laboratory) {
+        $errors = [];
+        $lines = 0;
+
+        foreach ($request->data as $laboratory) {
+
+            $lines++;
+
+            try {
+
                 $localData = Laboratory::where('code', $laboratory['code'])->first();
 
                 if (is_null($localData)) {
-                    $notFound += 1;
+                    $errors[] = [
+                        'message' => 'Entity not found',
+                        'data' => $laboratory['code']
+                    ];
+
+                    continue;
                 }
 
                 $this->updaterService->update($localData, $laboratory);
-                $updated += 1;
+
+            } catch (\Exception $e) {
+                $errors[] = [
+                    'message' => $e->getMessage(),
+                    'data' => $laboratory
+                ];
             }
-            return response()->json([
-                'message' => "Processo concluído com sucesso! Atualizados: {$updated} | não encontrados: {$notFound}"],
-                200
-            );
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
         }
+
+        return response()->json([
+            'totalProcessed' => $lines,
+            'successfully' => $lines - count($errors),
+            'errors' => $errors
+        ], 200);
+
     }
 
     /**
@@ -533,26 +566,42 @@ class LaboratoryController extends Controller
      */
     public function massDelete(LaboratoryMassCreateRequest $request)
     {
-        try {
-            $updated = 0;
-            $notFound = 0;
-            foreach ($request->data as $laboratory) {
+
+        $errors = [];
+        $lines = 0;
+
+        foreach ($request->data as $laboratory) {
+
+            $lines++;
+
+            try {
+
                 $localData = Laboratory::where('code', $laboratory['code'])->first();
 
                 if (is_null($localData)) {
-                    $notFound += 1;
+                    $errors[] = [
+                        'message' => 'Entity not found',
+                        'data' => $laboratory['code']
+                    ];
+
+                    continue;
                 }
 
                 $this->removerService->delete($localData);
-                $updated += 1;
+
+            } catch (\Exception $e) {
+                $errors[] = [
+                    'message' => $e->getMessage(),
+                    'data' => $laboratory
+                ];
             }
-            return response()->json([
-                'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
-                200
-            );
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
         }
+
+        return response()->json([
+            'totalProcessed' => $lines,
+            'successfully' => $lines - count($errors),
+            'errors' => $errors
+        ], 200);
     }
 
     /**

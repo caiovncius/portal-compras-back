@@ -421,14 +421,30 @@ class PharmacyController extends Controller
      */
     public function massStore(PharmacyMassCreateRequest $request)
     {
-        try {
-            foreach ($request->data as $pharmacy) {
+        $errors = [];
+        $lines = 0;
+
+        foreach ($request->data as $pharmacy) {
+
+            $lines++;
+
+            try {
+
                 $this->creatorService->store($pharmacy);
+
+            } catch (\Exception $e) {
+                $errors[] = [
+                    'message' => $e->getMessage(),
+                    'data' => $pharmacy
+                ];
             }
-            return response()->json(['message' => 'Farmacias criadas com sucesso!'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
         }
+
+        return response()->json([
+            'totalProcessed' => $lines,
+            'successfully' => $lines - count($errors),
+            'errors' => $errors
+        ], 200);
     }
 
     /**
@@ -463,26 +479,42 @@ class PharmacyController extends Controller
      */
     public function massUpdate(PharmacyMassUpdatorRequest $request)
     {
-        try {
-            $updated = 0;
-            $notFound = 0;
-            foreach ($request->data as $pharmacy) {
+        $errors = [];
+        $lines = 0;
+
+        foreach ($request->data as $pharmacy) {
+
+            $lines++;
+
+            try {
+
                 $localData = Pharmacy::where('code', $pharmacy['code'])->first();
 
                 if (is_null($localData)) {
-                    $notFound += 1;
+
+                    $errors[] = [
+                        'message' => 'Entity not found',
+                        'data' => $pharmacy['code']
+                    ];
+
+                    continue;
                 }
 
                 $this->updaterService->update($localData, $pharmacy);
-                $updated += 1;
+
+            } catch (\Exception $e) {
+                $errors[] = [
+                    'message' => $e->getMessage(),
+                    'data' => $pharmacy
+                ];
             }
-            return response()->json([
-                'message' => "Processo concluído com sucesso! Atualizados: {$updated} | não encontrados: {$notFound}"],
-                200
-            );
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
         }
+
+        return response()->json([
+            'totalProcessed' => $lines,
+            'successfully' => $lines - count($errors),
+            'errors' => $errors
+        ], 200);
     }
 
     /**
@@ -517,26 +549,41 @@ class PharmacyController extends Controller
      */
     public function massDelete(PharmacyMassCreateRequest $request)
     {
-        try {
-            $updated = 0;
-            $notFound = 0;
-            foreach ($request->data as $pharmacy) {
+        $errors = [];
+        $lines = 0;
+
+        foreach ($request->data as $pharmacy) {
+
+            $lines++;
+
+            try {
+
                 $localData = Laboratory::where('code', $pharmacy['code'])->first();
 
                 if (is_null($localData)) {
-                    $notFound += 1;
+                    $errors[] = [
+                        'message' => 'Entity not found',
+                        'data' => $pharmacy['code']
+                    ];
+
+                    continue;
                 }
 
                 $this->removerService->delete($localData);
-                $updated += 1;
+
+            } catch (\Exception $e) {
+                $errors[] = [
+                    'message' => $e->getMessage(),
+                    'data' => $pharmacy
+                ];
             }
-            return response()->json([
-                'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
-                200
-            );
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
         }
+
+        return response()->json([
+            'totalProcessed' => $lines,
+            'successfully' => $lines - count($errors),
+            'errors' => $errors
+        ], 200);
     }
 
     /**

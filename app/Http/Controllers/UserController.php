@@ -578,14 +578,30 @@ class UserController extends Controller
      */
     public function massStore(UserMassCreateRequest $request)
     {
-        try {
-            foreach ($request->data as $user) {
+        $errors = [];
+        $lines = 0;
+
+        foreach ($request->data as $user) {
+
+            $lines++;
+
+            try {
+
                 $this->creatorService->store($user);
+
+            } catch (\Exception $e) {
+                $errors[] = [
+                    'message' => $e->getMessage(),
+                    'data' => $user
+                ];
             }
-            return response()->json(['message' => 'Usuários criados com sucesso!'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
         }
+
+        return response()->json([
+            'totalProcessed' => $lines,
+            'successfully' => $lines - count($errors),
+            'errors' => $errors
+        ], 200);
     }
 
     /**
@@ -620,26 +636,41 @@ class UserController extends Controller
      */
     public function massUpdate(UserMassCreateRequest $request)
     {
-        try {
-            $updated = 0;
-            $notFound = 0;
-            foreach ($request->data as $user) {
+        $errors = [];
+        $lines = 0;
+
+        foreach ($request->data as $user) {
+
+            $lines++;
+
+            try {
+
                 $localData = User::where('username', $user['username'])->first();
 
                 if (is_null($localData)) {
-                    $notFound += 1;
+                    $errors[] = [
+                        'message' => 'Entity not found',
+                        'data' => $user['username']
+                    ];
+
+                    continue;
                 }
 
                 $this->updaterService->update($localData, $user);
-                $updated += 1;
+
+            } catch (\Exception $e) {
+                $errors[] = [
+                    'message' => $e->getMessage(),
+                    'data' => $user
+                ];
             }
-            return response()->json([
-                'message' => "Processo concluído com sucesso! Atualizados: {$updated} | não encontrados: {$notFound}"],
-                200
-            );
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
         }
+
+        return response()->json([
+            'totalProcessed' => $lines,
+            'successfully' => $lines - count($errors),
+            'errors' => $errors
+        ], 200);
     }
 
     /**
@@ -674,26 +705,42 @@ class UserController extends Controller
      */
     public function massDelete(UserMassCreateRequest $request)
     {
-        try {
-            $updated = 0;
-            $notFound = 0;
-            foreach ($request->data as $user) {
-                $localData = User::where('code', $user['username'])->first();
+
+        $errors = [];
+        $lines = 0;
+
+        foreach ($request->data as $user) {
+
+            $lines++;
+
+            try {
+
+                $localData = User::where('username', $user['username'])->first();
 
                 if (is_null($localData)) {
-                    $notFound += 1;
+                    $errors[] = [
+                        'message' => 'Entity not found',
+                        'data' => $user['username']
+                    ];
+
+                    continue;
                 }
 
                 $this->removerService->delete($localData);
-                $updated += 1;
+
+            } catch (\Exception $e) {
+                $errors[] = [
+                    'message' => $e->getMessage(),
+                    'data' => $user
+                ];
             }
-            return response()->json([
-                'message' => "Processo concluído com sucesso! Removidos: {$updated} | não encontrados: {$notFound}"],
-                200
-            );
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 400);
         }
+
+        return response()->json([
+            'totalProcessed' => $lines,
+            'successfully' => $lines - count($errors),
+            'errors' => $errors
+        ], 200);
     }
 
     /**
