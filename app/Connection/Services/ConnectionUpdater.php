@@ -21,6 +21,7 @@ class ConnectionUpdater implements ConnectionUpdatable
                 'ftp_active' => $data['isFtpActive'] ,
                 'transferency' => $data['transferMode'],
                 'path_send' => $data['sendDirectory'],
+                'login' => $data['login'],
                 'path_return' => $data['returnDirectory'],
                 'remove_file' => isset($data['removeFile']) ? $data['removeFile'] : false,
                 'mask' => isset($data['mask']) ? $data['mask'] : null,
