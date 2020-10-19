@@ -107,6 +107,14 @@ class OfferUpdatorRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'emails.required_if' => 'Emails obrigatórios para envio manual',
+            'partners.required_if' => 'Parceiros obrigatórios para envio automático',
+        ];
+    }
+
     /**
      * Get custom attributes for validator errors.
      *
@@ -124,6 +132,8 @@ class OfferUpdatorRequest extends FormRequest
             'sendType' => 'Tipo de Envio',
             'startDate' => 'Data inicial',
             'endDate' => 'Data final',
+            'emails' => 'Emails',
+            'partners' => 'Parceiros',
         ];
     }
 }
