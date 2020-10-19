@@ -52,7 +52,7 @@ class DistributorUpdatorRequest extends FormRequest
             'contacts.*.email' => 'required|email',
             'contacts.*.telephone' => 'required|string',
             'returns' => 'array|nullable',
-            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,' . $this->id,
+            'returns.*.code' => 'required|string|unique:returns,code,returnable_id,' . $this->id,
             'returns.*.description' => 'required|string',
             'connection' => 'nullable',
             'connection.isFtpActive' => 'required|boolean',
