@@ -110,8 +110,8 @@ class OfferUpdatorRequest extends FormRequest
     public function messages()
     {
         return [
-            'emails.required_if' => 'Emails obrigatórios para envio manual',
-            'partners.required_if' => 'Parceiros obrigatórios para envio automático',
+            'emails.required_if' => 'Os Emails obrigatórios para envio manual',
+            'partners.required_if' => 'Os Parceiros obrigatórios para envio automático',
         ];
     }
 
