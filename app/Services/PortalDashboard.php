@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Request;
+use Illuminate\Support\Carbon;
 use stdClass;
 
 class PortalDashboard
@@ -44,9 +45,13 @@ class PortalDashboard
     {
         $data = [];
         for ($i=1; $i<=12; $i++) {
-            $data[$i] = $requests->where('month', $i)
-                                ->unique('pharmacy_id')
-                                ->count();
+            $monthName = (new Carbon)->month($i)->monthName;
+            $data[$i] = [
+                'label' => $monthName,
+                'value' => $requests->where('month', $i)
+                    ->unique('pharmacy_id')
+                    ->count()
+            ];
         }
 
         return $data;
@@ -70,7 +75,7 @@ class PortalDashboard
                 $products[] = $item;
             }
         }
-        
+
         $values = collect($products)->groupBy('product')->map(function ($items) {
             return [
                 'item' => $items->first()['product'],
