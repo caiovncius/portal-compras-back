@@ -35,7 +35,10 @@ class PortalDashboard
     {
         $data = [];
         for ($i=1; $i<=12; $i++) {
-            $data[$i] = $requests->where('month', $i)->count();
+            $data[$i] = [
+                'label' => (new Carbon)->month($i)->monthName,
+                'value' => $requests->where('month', $i)->count()
+            ];
         }
 
         return $data;
@@ -45,9 +48,8 @@ class PortalDashboard
     {
         $data = [];
         for ($i=1; $i<=12; $i++) {
-            $monthName = (new Carbon)->month($i)->monthName;
             $data[$i] = [
-                'label' => $monthName,
+                'label' => (new Carbon)->month($i)->monthName,
                 'value' => $requests->where('month', $i)
                     ->unique('pharmacy_id')
                     ->count()
