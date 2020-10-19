@@ -54,7 +54,7 @@ class OfferListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'image' => is_null($this->image) ? null : env('APP_URL') . $this->image,
+            'image' => $this->image,
             'code' => $this->code,
             'name' => $this->name,
             'status' => $this->status,
