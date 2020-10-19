@@ -109,6 +109,14 @@ class   OfferCreatorRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'emails.required_if' => 'Emails obrigatórios para envio manual',
+            'partners.required_if' => 'Parceiros obrigatórios para envio automático',
+        ];
+    }
+
     /**
      * Get custom attributes for validator errors.
      *
@@ -126,6 +134,8 @@ class   OfferCreatorRequest extends FormRequest
             'sendType' => 'Tipo de Envio',
             'startDate' => 'Data inicial',
             'endDate' => 'Data final',
+            'emails' => 'Emails',
+            'partners' => 'Parceiros',
             'products.*.product_id' => 'Produto',
             'products.*.discountDeferred' => 'Desconto à prazo',
             'products.*.discountOnCash' => 'Desconto à vista',
