@@ -82,6 +82,16 @@ class DistributorUpdatorRequest extends FormRequest
             'contacts.*.name' => 'Nome',
             'contacts.*.email' => 'Email',
             'contacts.*.telephone' => 'Telefone',
+            'connection.isFtpActive' => 'FTP Ativo',
+            'connection.transferMode' => 'Modo de transferência',
+            'connection.host' => 'Host',
+            'connection.sendDirectory' => 'Diretório Envio Pedido',
+            'connection.login' => 'Login',
+            'connection.password' => 'Senha',
+            'connection.returnDirectory' => 'Diretório Retorno Pedido',
+            'connection.port' => 'Porta',
+            'connection.mask' => 'Máscara download',
+            'connection.removeFile' => 'Remover arquivos'
         ];
     }
 }
