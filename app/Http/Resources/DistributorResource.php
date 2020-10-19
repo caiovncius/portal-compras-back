@@ -45,6 +45,7 @@ class DistributorResource extends JsonResource
             'status' => $this->status,
             'category' => $this->category,
             'stateId' => $this->state->id,
+            'returns' => ReturnListResource::collection($this->returns),
             'contacts' =>ContactListResource::collection($this->contacts),
             'connection' => ConnectionListResource::make($this->connection),
             'updated_user' => $this->user ? $this->user->name : '',
