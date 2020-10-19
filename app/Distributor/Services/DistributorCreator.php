@@ -22,14 +22,14 @@ class DistributorCreator implements DistributorCreatable
             $model = Distributor::create($data);
 
             if (isset($data['contacts'])) {
-                foreach ($data['contacts'] as $data) {
-                    $model->contacts()->create($data);
+                foreach ($data['contacts'] as $contact) {
+                    $model->contacts()->create($contact);
                 }
             }
 
             if (isset($data['returns'])) {
-                foreach ($data['returns'] as $data) {
-                    $model->returns()->create($data);
+                foreach ($data['returns'] as $return) {
+                    $model->returns()->create($return);
                 }
             }
 

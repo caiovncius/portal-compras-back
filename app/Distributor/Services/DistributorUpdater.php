@@ -36,15 +36,15 @@ class DistributorUpdater implements DistributorUpdatable
 
             if (isset($data['contacts'])) {
                 $model->contacts()->delete();
-                foreach ($data['contacts'] as $data) {
-                    $model->contacts()->create($data);
+                foreach ($data['contacts'] as $contact) {
+                    $model->contacts()->create($contact);
                 }
             }
 
             if (isset($data['returns'])) {
                 $model->returns()->delete();
-                foreach ($data['returns'] as $data) {
-                    $model->returns()->create($data);
+                foreach ($data['returns'] as $return) {
+                    $model->returns()->create($return);
                 }
             }
 
