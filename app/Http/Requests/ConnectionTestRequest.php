@@ -34,9 +34,9 @@ class ConnectionTestRequest extends FormRequest
     public function rules()
     {
         return [
-            'host' => 'required',
-            'login' => 'required',
-            'password' => 'required'
+            'connection.host' => 'required',
+            'connection.login' => 'required',
+            'connection.password' => 'required'
         ];
     }
 }

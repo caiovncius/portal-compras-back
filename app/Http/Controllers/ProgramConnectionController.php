@@ -151,7 +151,7 @@ class ProgramConnectionController extends Controller
             'message' => 'Erro ao tentar conectar no ftp. Verifique as credenciais'
         ];
 
-        $connecttionResult = @ftp_login(ftp_connect($request->host), $request->login, $request->password);
+        $connecttionResult = @ftp_login(ftp_connect($request->connection['host']), $request->connection['login'], $request->connection['password']);
 
         if ($connecttionResult) {
             $result['status'] = true;
