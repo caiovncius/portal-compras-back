@@ -628,6 +628,14 @@ class OfferController extends Controller
 
         $programsQuery = Program::query()->select('id','name')->unionAll($distributorsQuery);
 
+        if ($request->query('type')) {
+            if ($request->query('type') === 'DISTRIBUTOR') {
+                $programsQuery = Distributor::query()->select('id','name');
+            } else {
+                $programsQuery = Program::query()->select('id','name');
+            }
+        }
+
         if ($request->query('name')) {
             $programsQuery->where('name', 'like', '%' . $request->query('name').'%');
         }
