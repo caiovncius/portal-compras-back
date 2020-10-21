@@ -233,8 +233,7 @@ class OfferController extends Controller
         try {
             $input = $request->all();
             $input['status'] = 'ACTIVE';
-            $input['endDate1'] = '2020-01-01';
-            $input['endDate2'] = Carbon::today()->format('Y-m-d');
+            $input['endDate1'] = Carbon::today()->format('Y-m-d');
 
             return OfferPortalResource::collection($this->retrieverService->getOffers($input)->get());
         } catch (\Exception $exception) {
