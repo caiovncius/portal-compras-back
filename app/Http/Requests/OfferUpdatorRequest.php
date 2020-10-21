@@ -86,7 +86,7 @@ class OfferUpdatorRequest extends FormRequest
             'endDate' => 'required|date|after_or_equal:startDate',
             'conditionId' => 'exists:conditions,id',
             'emails' => 'required_if:sendType,MANUAL|array|nullable',
-            'minimumFamily' => 'required',
+            'minimumPerFamily' => 'required',
             'partners' => 'required_if:sendType,AUTOMATIC|array|nullable',
             'partners.*.id' => 'required|numeric',
             'partners.*.type' => 'required|string',

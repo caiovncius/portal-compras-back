@@ -28,7 +28,7 @@ class OfferCreator implements OfferCreatable
             $data['offer_type'] = isset($data['offerType']) ? $data['offerType'] : null;
             $data['send_type'] = isset($data['sendType']) ? $data['sendType'] : null;
             $data['no_automatic_sending'] = isset($data['noAutomaticSending']) ? $data['noAutomaticSending'] : null;
-            $data['minimum_family'] = isset($data['minimumFamily']) ? $data['minimumFamily'] : 0;
+            $data['minimum_family'] = isset($data['minimumPerFamily']) ? $data['minimumPerFamily'] : 0;
 
             if (isset($data['image']) && strpos($data['image'], 'base64') !== false) {
                 $data['image'] = FileUploader::uploadFile($data['image']);

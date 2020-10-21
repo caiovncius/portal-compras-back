@@ -34,7 +34,7 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->total_intentions_value = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;
             $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
-            $model->minimum_family = isset($data['minimumFamily']) ? $data['minimumFamily'] : 0;
+            $model->minimum_family = isset($data['minimumPerFamily']) ? $data['minimumPerFamily'] : 0;
 
             if (isset($data['image'])) {
                 $model->image = FileUploader::uploadFile($data['image']);

@@ -29,7 +29,7 @@ class OfferUpdater implements OfferUpdatable
             $model->offer_type = isset($data['offerType']) ? $data['offerType'] : null;
             $model->send_type = isset($data['sendType']) ? $data['sendType'] : null;
             $model->no_automatic_sending = isset($data['noAutomaticSending']) ? $data['noAutomaticSending'] : null;
-            $model->minimum_family = isset($data['minimumFamily']) ? $data['minimumFamily'] : 0;
+            $model->minimum_family = isset($data['minimumPerFamily']) ? $data['minimumPerFamily'] : 0;
 
 
             if (isset($data['image']) && strpos($data['image'], 'base64') !== false) {

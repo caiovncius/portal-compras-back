@@ -26,7 +26,7 @@ class PurchaseCreator implements PurchaseCreatable
             $data['validity_end'] = isset($data['validityEnd']) ? $data['validityEnd'] : null;
             $data['until_billing'] = isset($data['untilBilling']) ? $data['untilBilling'] : 0;
             $data['billing_measure'] = $data['billingMeasure'];
-            $data['minimum_family'] = isset($data['minimumFamily']) ? $data['minimumFamily'] : 0;
+            $data['minimum_family'] = isset($data['minimumPerFamily']) ? $data['minimumPerFamily'] : 0;
             $data['minimum_billing_value'] = isset($data['minimumBillingValue']) && $data['billingMeasure'] === Purchase::BILLING_TYPE_VALUE ? $data['minimumBillingValue'] : null;
             $data['minimum_billing_quantity'] = isset($data['minimumBillingQuantity']) && $data['billingMeasure'] === Purchase::BILLING_TYPE_QUANTITY ? $data['minimumBillingQuantity'] : null;
             $data['total_intentions_value'] = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;

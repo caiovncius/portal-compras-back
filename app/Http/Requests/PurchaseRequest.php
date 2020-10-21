@@ -92,7 +92,7 @@ class PurchaseRequest extends FormRequest
             'validityEnd' => 'date|after_or_equal:validityStart|nullable',
             'partnerType' => 'string|in:DISTRIBUTOR,PROGRAM|nullable',
             'partner' => 'numeric|nullable',
-            'minimumFamily' => 'required',
+            'minimumPerFamily' => 'required',
             'products' => 'array|nullable',
             'products.*.productId' => 'required',
             'products.*.discountDeferred' => 'numeric',

@@ -88,7 +88,7 @@ class   OfferCreatorRequest extends FormRequest
             'conditionId' => 'exists:conditions,id',
             'endDate' => 'date|after_or_equal:startDate',
             'emails' => 'required_if:sendType,MANUAL|array|nullable',
-            'minimumFamily' => 'required',
+            'minimumPerFamily' => 'required',
             'partners' => 'required_if:sendType,AUTOMATIC|array|nullable',
             'partners.*.id' => 'required|numeric',
             'partners.*.type' => 'required|string',
