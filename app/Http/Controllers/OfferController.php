@@ -23,6 +23,7 @@ use App\Offer\Contracts\OfferUpdatable;
 use App\Program;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
@@ -232,6 +233,8 @@ class OfferController extends Controller
         try {
             $input = $request->all();
             $input['status'] = 'ACTIVE';
+            $input['endDate1'] = '2020-01-01';
+            $input['endDate2'] = Carbon::today()->format('Y-m-d');
 
             return OfferPortalResource::collection($this->retrieverService->getOffers($input)->get());
         } catch (\Exception $exception) {
