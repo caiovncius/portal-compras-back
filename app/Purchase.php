@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $related_quantity
  * @property string $description
  * @property int $updated_id
+ * @property int $minimum_family
  */
 class Purchase extends Model
 {
@@ -53,31 +54,50 @@ class Purchase extends Model
         'description',
         'updated_id',
         'contacts',
-        'billed_date'
+        'billed_date',
+        'minimum_family'
     ];
 
+    /**
+     * @var array
+     */
     protected $casts = ['contacts' => 'array', 'billed_date' => 'datetime'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
     public function partner()
     {
         return $this->morphOne(Partner::class, 'typable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User', 'updated_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function offer()
     {
         return $this->belongsTo('App\Offer', 'offer_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function products()
     {
         return $this->morphMany('App\ProductDetail', 'productable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function requests()
     {
         return $this->morphMany('App\Request', 'requestable');

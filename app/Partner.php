@@ -31,10 +31,18 @@ class Partner extends Model
         return $this->morphTo();
     }
 
+    public function partner()
+    {
+        if (is_null($this->partner_type)) return null;
+        return $this->partner_type === self::PARTNER_TYPE_DISTRIBUTOR
+            ? $this->belongsTo(Distributor::class, 'partner_id')
+            : $this->belongsTo(\App\Program::class, 'partner_id');
+    }
+
     /**
      * @return mixed
      */
-    public function getPartnerAttribute()
+    public function getPartnersAttribute()
     {
         if (is_null($this->partner_type)) return null;
         return $this->partner_type == self::PARTNER_TYPE_DISTRIBUTOR ? Distributor::find($this->partner_id) : Program::find($this->partner_id);

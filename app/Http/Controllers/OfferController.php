@@ -2,20 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Distributor;
 use App\Http\Requests\ImportProductsRequest;
 use App\Http\Requests\OfferCreatorRequest;
 use App\Http\Requests\OfferUpdatorRequest;
 use App\Http\Resources\OfferListResource;
 use App\Http\Resources\OfferPortalResource;
+use App\Http\Resources\PartnerListResource;
+use App\Http\Resources\PartnerResource;
+use App\Http\Resources\PartnerToAutocompleteResource;
 use App\Http\Resources\ProductDetailPortalResource;
 use App\Imports\OfferProductImport;
 use App\Offer;
 use App\Offer\Contracts\OfferCreatable;
+use App\Partner;
 use App\Product\Contracts\ProductDetailRetrievable;
 use App\Offer\Contracts\OfferRemovable;
 use App\Offer\Contracts\OfferRetrievable;
 use App\Offer\Contracts\OfferUpdatable;
+use App\Program;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
@@ -606,5 +614,23 @@ class OfferController extends Controller
 
 
         return response()->json($response, 200);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAllPartners(Request $request)
+    {
+        $distributorsQuery = Distributor::query()->select('id','name');
+
+        $programsQuery = Program::query()->select('id','name')->unionAll($distributorsQuery);
+
+        if ($request->query('name')) {
+            $programsQuery->where('name', 'like', '%' . $request->query('name').'%');
+        }
+
+        $result = PartnerToAutocompleteResource::collection($programsQuery->get());
+        return response()->json(['data' => $result]);
     }
 }

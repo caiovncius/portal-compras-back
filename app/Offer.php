@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $impound
  * @property json $emails
  * @property integer $updated_id
+ * @property integer $minimum_family
  */
 class Offer extends Model
 {
@@ -46,7 +47,8 @@ class Offer extends Model
         'no_automatic_sending',
         'impound',
         'emails',
-        'updated_id'
+        'updated_id',
+        'minimum_family'
     ];
 
     protected $casts = [

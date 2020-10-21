@@ -47,6 +47,9 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
     Route::get('requests', 'RequestController@list')
          ->name('request.list');
 
+    Route::put('requests/{request}/cancel', 'RequestController@cancelRequest')
+        ->name('request.cancel');
+
     Route::get('dashboard', 'RequestController@dashboard')
          ->name('request.dashboard');
 
@@ -406,6 +409,10 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::get('/offers', 'OfferController@list')
          ->name('offer.list')
          ->middleware('acl:Offer,r');
+
+    Route::get('/offers/all-partners', 'OfferController@getAllPartners')
+        ->name('offer.allPartners')
+        ->middleware('acl:Offer,r');
 
     Route::get('/offers/search', 'OfferController@search')
         ->name('offer.search')

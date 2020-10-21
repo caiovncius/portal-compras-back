@@ -612,4 +612,18 @@ class RequestController extends Controller
             return response()->json(['error' => $exception->getMessage()], 400);
         }
     }
+
+    /**
+     * @param RequestModel $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function cancelRequest(\App\Request $request)
+    {
+        try {
+            $this->updatorService->cancel($request);
+            return response()->json(['message' => 'Pedido cancelado com sucesso'], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
 }

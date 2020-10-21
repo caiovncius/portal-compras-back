@@ -8,6 +8,10 @@ use stdClass;
 
 class PortalDashboard
 {
+    /**
+     * @return array
+     * @throws \Exception
+     */
     public function dashboard()
     {
         $user = auth()->guard('api')->user();
@@ -31,6 +35,11 @@ class PortalDashboard
         return $dash;
     }
 
+    /**
+     * @param $requests
+     * @return array
+     * @throws \Exception
+     */
     public function getQtdRequestsByMonth($requests)
     {
         $data = [];
@@ -44,6 +53,11 @@ class PortalDashboard
         return $data;
     }
 
+    /**
+     * @param $requests
+     * @return array
+     * @throws \Exception
+     */
     public function getQtdPharmaciesByMonth($requests)
     {
         $data = [];
@@ -59,6 +73,10 @@ class PortalDashboard
         return $data;
     }
 
+    /**
+     * @param $requests
+     * @return \Illuminate\Support\Collection
+     */
     public function getPromotions($requests)
     {
         $arr = $requests->map(function ($request) {
@@ -88,6 +106,10 @@ class PortalDashboard
         return $values->sortByDesc('qtd')->take(10);
     }
 
+    /**
+     * @param $requests
+     * @return mixed
+     */
     public function getPharmacies($requests)
     {
         $data = $requests->groupBy('pharmacy_id')->map(function ($item, $key) {

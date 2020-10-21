@@ -35,4 +35,28 @@ class RequestUpdater implements RequestUpdatable
             throw $e;
         }
     }
+
+    /**
+     * @param Request $request
+     * @return bool
+     * @throws \Exception
+     */
+    public function cancel(Request $request)
+    {
+        try {
+            $request->status = 'CANCELED';
+            $request->save();
+
+            $request->historics()->create([
+                'user' => auth()->guard('api')->user()->name,
+                'action' => 'Pedido cancelado',
+                'status' => 'CANCELADO'
+            ]);
+
+            return true;
+
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }

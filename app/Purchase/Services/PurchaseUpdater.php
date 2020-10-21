@@ -34,6 +34,7 @@ class PurchaseUpdater implements PurchaseUpdatable
             $model->total_intentions_value = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;
             $model->total_intentions_quantity = isset($data['totalIntentionsQuantity']) ? $data['totalIntentionsQuantity'] : null;
             $model->related_quantity = isset($data['relatedQuantity']) ? $data['relatedQuantity'] : null;
+            $model->minimum_family = isset($data['minimumFamily']) ? $data['minimumFamily'] : 0;
 
             if (isset($data['image'])) {
                 $model->image = FileUploader::uploadFile($data['image']);
@@ -78,7 +79,7 @@ class PurchaseUpdater implements PurchaseUpdatable
                         'discount_on_cash' => $discountOnCash,
                         'price_on_cash' => ProductDetail::sumDiscount($factoryPrice, $discountOnCash),
                         'minimum' => isset($item['minimum']) ? $item['minimum'] : null,
-                        'minimum_per_family' => $item['minimumPerFamily'],
+                        'minimum_per_family' => 0,
                         'obrigatory' => isset($item['obrigatory']) ? $item['obrigatory'] : null,
                         'variable' => isset($item['variable']) ? $item['variable'] : null,
                         'family' => isset($item['family']) ? $item['family'] : null,

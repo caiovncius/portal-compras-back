@@ -13,4 +13,6 @@ interface RequestUpdatable
      * @throws \Exception
      */
     public  function update(Request $data, array $newData);
+
+    public function cancel(Request $request);
 }

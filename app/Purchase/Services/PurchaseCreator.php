@@ -26,6 +26,7 @@ class PurchaseCreator implements PurchaseCreatable
             $data['validity_end'] = isset($data['validityEnd']) ? $data['validityEnd'] : null;
             $data['until_billing'] = isset($data['untilBilling']) ? $data['untilBilling'] : 0;
             $data['billing_measure'] = $data['billingMeasure'];
+            $data['minimum_family'] = isset($data['minimumFamily']) ? $data['minimumFamily'] : 0;
             $data['minimum_billing_value'] = isset($data['minimumBillingValue']) && $data['billingMeasure'] === Purchase::BILLING_TYPE_VALUE ? $data['minimumBillingValue'] : null;
             $data['minimum_billing_quantity'] = isset($data['minimumBillingQuantity']) && $data['billingMeasure'] === Purchase::BILLING_TYPE_QUANTITY ? $data['minimumBillingQuantity'] : null;
             $data['total_intentions_value'] = isset($data['totalIntentionsValue']) ? $data['totalIntentionsValue'] : null;
@@ -73,7 +74,7 @@ class PurchaseCreator implements PurchaseCreatable
                         'discount_on_cash' => $discountOnCash,
                         'price_on_cash' => ProductDetail::sumDiscount($factoryPrice, $discountOnCash),
                         'minimum' => isset($item['minimum']) ? $item['minimum'] : null,
-                        'minimum_per_family' => $item['minimumPerFamily'],
+                        'minimum_per_family' => 0,
                         'obrigatory' => isset($item['obrigatory']) ? $item['obrigatory'] : null,
                         'variable' => isset($item['variable']) ? $item['variable'] : null,
                         'family' => isset($item['family']) ? $item['family'] : null,
