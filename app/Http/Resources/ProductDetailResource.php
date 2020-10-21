@@ -43,7 +43,6 @@ class ProductDetailResource extends JsonResource
             'discountDeferred' => $this->discount_deferred,
             'discountOnCash' => $this->discount_on_cash,
             'minimum' => $this->minimum,
-            'minimumPerFamily' => $this->minimum_per_family,
             'obrigatory' => $this->obrigatory,
             'variable' => $this->variable,
             'family' => $this->family,

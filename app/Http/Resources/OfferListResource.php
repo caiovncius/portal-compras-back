@@ -68,6 +68,7 @@ class OfferListResource extends JsonResource
             'impound' => $this->impound,
             'description' => $this->description,
             'emails' => $this->emails,
+            'minimumFamily' => $this->minimum_family,
             'partners' => PartnerListResource::collection($this->partners),
             'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
