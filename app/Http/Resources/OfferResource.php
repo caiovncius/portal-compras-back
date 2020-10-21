@@ -54,7 +54,7 @@ class OfferResource extends JsonResource
             'impound' => $this->impound,
             'description' => $this->description,
             'emails' => $this->emails,
-            'minimumFamily' => $this->minimum_family,
+            'minimumPerFamily' => $this->minimum_family,
             'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
