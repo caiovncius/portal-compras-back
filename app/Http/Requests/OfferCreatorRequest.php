@@ -147,7 +147,8 @@ class   OfferCreatorRequest extends FormRequest
             'products.*.priceOnCash' => 'Preço à vista',
             'products.*.quantityMaximum' => 'QTD máxima',
             'products.*.quantityMinimum' => 'QTD mínima',
-            'products.*.state_id' => 'Estado'
+            'products.*.state_id' => 'Estado',
+            'minimumPerFamily' => 'Minimo por familia'
         ];
     }
 }

@@ -134,6 +134,7 @@ class OfferUpdatorRequest extends FormRequest
             'endDate' => 'Data final',
             'emails' => 'Emails',
             'partners' => 'Parceiros',
+            'minimumPerFamily' => 'Minimo por familia'
         ];
     }
 }
