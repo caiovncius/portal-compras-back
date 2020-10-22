@@ -124,6 +124,7 @@ class PurchaseRequest extends FormRequest
             'validityEnd' => 'Data Vigência final',
             'minimumBillingValue' => 'Valor mínimo para faturamento',
             'minimumBillingQuantity' => 'Qtd  mínima para faturamento',
+            'minimumPerFamily' => 'Minimo por familia'
         ];
     }
 }
