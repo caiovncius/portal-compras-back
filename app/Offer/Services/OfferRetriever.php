@@ -57,7 +57,7 @@ class OfferRetriever implements OfferRetrievable
             if (isset($params['partner']) && !empty($params['partner'])) {
                 $partner = $params['partner'];
                 $query->whereHas('partners', function ($related) use($partner) {
-                    $related->where('distributor_offer.distributor_id', $partner);
+                    $related->where('partners.partner_id', $partner);
                 });
             }
 
