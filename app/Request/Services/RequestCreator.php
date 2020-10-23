@@ -56,13 +56,11 @@ class RequestCreator implements RequestCreatable
             }
 
             if ($model->send_type === 'AUTOMATIC') {
-
                 AutomaticOffers::dispatch($request);
-//                (new AutomaticOffers($request))->onQueue('automatticOffers');
             }
 
             if ($model->send_type === 'MANUAL' && $data['modelType'] == 'OFFER') {
-                (new ManualOffers($model))->onQueue('emails');
+                ManualOffers::dispatch($model);
             }
 
             return $request;
