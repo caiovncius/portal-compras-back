@@ -3,6 +3,7 @@
 namespace App\Request\Services;
 
 use App\Jobs\AutomaticOffers;
+use App\Jobs\ManualOffers;
 use App\Offer;
 use App\Purchase;
 use App\Request;
@@ -56,6 +57,10 @@ class RequestCreator implements RequestCreatable
 
             if ($model->send_type === 'AUTOMATIC') {
                 (new AutomaticOffers($request))->onQueue('automatticOffers');
+            }
+
+            if ($model->send_type === 'MANUAL' && $data['modelType'] == 'OFFER') {
+                (new ManualOffers($model))->onQueue('emails');
             }
 
             return $request;
