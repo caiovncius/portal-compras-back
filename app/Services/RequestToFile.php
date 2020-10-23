@@ -25,7 +25,6 @@ class RequestToFile
     {
         Storage::disk('onthefly')->put(
             $path.'/'.$filename, $file,
-            ['visibility' => 'public']
         );
 
         return true;
