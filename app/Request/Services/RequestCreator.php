@@ -2,6 +2,7 @@
 
 namespace App\Request\Services;
 
+use App\Jobs\AutomaticOffers;
 use App\Offer;
 use App\Purchase;
 use App\Request;
@@ -35,9 +36,9 @@ class RequestCreator implements RequestCreatable
             $data['requestable_id'] = $data['modelId'];
             $data['requestable_type'] = $type;
             $data['status'] = 'NOT_SEND';
-            $model = Request::create($data);
+            $request = Request::create($data);
 
-            $model->historics()->create([
+            $request->historics()->create([
                 'user' => auth()->guard('api')->user()->name,
                 'action' => 'Pedido criado',
                 'status' => 'ENVIADO'
@@ -45,7 +46,7 @@ class RequestCreator implements RequestCreatable
 
             if (isset($data['products'])) {
                 foreach ($data['products'] as $product) {
-                    $model->products()->attach($product['productId'], [
+                    $request->products()->attach($product['productId'], [
                         'qtd' => $product['quantity'],
                         'status' => 'CREATED',
                         'value' => $product['value']
@@ -53,11 +54,11 @@ class RequestCreator implements RequestCreatable
                 }
             }
 
-            if ($data['modelType'] == 'OFFER') {
-                (new RequestOffer())->send($model);
+            if ($model->send_type === 'AUTOMATIC') {
+                (new AutomaticOffers($request))->onQueue('automatticOffers');
             }
 
-            return $model;
+            return $request;
         } catch (\Exception $exception) {
             throw $exception;
         }
