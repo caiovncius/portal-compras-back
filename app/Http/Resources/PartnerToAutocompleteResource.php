@@ -15,7 +15,6 @@ class PartnerToAutocompleteResource extends JsonResource
      */
     public function toArray($request)
     {
-        $lo = $this->resource;
         return [
             'id' => $this->id,
             'name' => $this->name,
