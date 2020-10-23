@@ -9,6 +9,8 @@ class FtpService
         config(['filesystems.disks.onthefly' => [
             'driver' => 'ftp',
             'host' => $params->host,
+            'port' => $params->port ? $params->port : 21,
+            'passive'  => true,
             'username' => $params->login,
             'password' => $params->password
         ]]);
@@ -32,7 +34,7 @@ class FtpService
             $arr['value'] = $data[6];
             $lines[] = $arr;
         }
-        
+
         return $lines;
     }
 
