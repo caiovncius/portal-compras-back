@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Program;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PartnerToAutocompleteResource extends JsonResource
@@ -14,9 +15,13 @@ class PartnerToAutocompleteResource extends JsonResource
      */
     public function toArray($request)
     {
+        $lo = $this->resource;
         return [
             'id' => $this->id,
-            'name' => $this->name
+            'name' => $this->name,
+            'type' => $this->type === Program::PROGRAM_STATUS_ACTIVE || $this->type === Program::PROGRAM_STATUS_INACTIVE
+                ? 'PROGRAM'
+                : 'DISTRIBUTOR'
         ];
     }
 }

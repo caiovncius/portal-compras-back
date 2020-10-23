@@ -624,15 +624,15 @@ class OfferController extends Controller
      */
     public function getAllPartners(Request $request)
     {
-        $distributorsQuery = Distributor::query()->select('id','name');
+        $distributorsQuery = Distributor::query()->select('id','name', 'cnpj as type');
 
-        $programsQuery = Program::query()->select('id','name')->unionAll($distributorsQuery);
+        $programsQuery = Program::query()->select('id','name', 'status as type')->unionAll($distributorsQuery);
 
         if ($request->query('type')) {
             if ($request->query('type') === 'DISTRIBUTOR') {
-                $programsQuery = Distributor::query()->select('id','name');
+                $programsQuery = Distributor::query()->select('id','name', 'cnpj as type');
             } else {
-                $programsQuery = Program::query()->select('id','name');
+                $programsQuery = Program::query()->select('id','name', 'status as type');
             }
         }
 
