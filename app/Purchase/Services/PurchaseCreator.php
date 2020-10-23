@@ -74,7 +74,7 @@ class PurchaseCreator implements PurchaseCreatable
                         'discount_on_cash' => $discountOnCash,
                         'price_on_cash' => ProductDetail::sumDiscount($factoryPrice, $discountOnCash),
                         'minimum' => isset($item['minimum']) ? $item['minimum'] : null,
-                        'minimum_per_family' => 0,
+                        'minimum_per_family' => null,
                         'obrigatory' => isset($item['obrigatory']) ? $item['obrigatory'] : null,
                         'variable' => isset($item['variable']) ? $item['variable'] : null,
                         'family' => isset($item['family']) ? $item['family'] : null,

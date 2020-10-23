@@ -28,7 +28,7 @@ class OfferCreator implements OfferCreatable
             $data['offer_type'] = isset($data['offerType']) ? $data['offerType'] : null;
             $data['send_type'] = isset($data['sendType']) ? $data['sendType'] : null;
             $data['no_automatic_sending'] = isset($data['noAutomaticSending']) ? $data['noAutomaticSending'] : null;
-            $data['minimum_family'] = isset($data['minimumPerFamily']) ? $data['minimumPerFamily'] : 0;
+            $data['minimum_family'] = isset($data['minimumPerFamily']) ? $data['minimumPerFamily'] : null;
 
             if (isset($data['image']) && strpos($data['image'], 'base64') !== false) {
                 $data['image'] = FileUploader::uploadFile($data['image']);
@@ -64,9 +64,9 @@ class OfferCreator implements OfferCreatable
             if (isset($data['products'])) {
                 foreach ($data['products'] as $item) {
 
-                    $factoryPrice = isset($item['factoryPrice']) ? $item['factoryPrice'] : 0;
-                    $discountOnCash = isset($item['discountOnCash']) ? $item['discountOnCash'] : 0;
-                    $discountDeferred = isset($item['discountDeferred']) ? $item['discountDeferred'] : 0;
+                    $factoryPrice = isset($item['factoryPrice']) ? $item['factoryPrice'] : null;
+                    $discountOnCash = isset($item['discountOnCash']) ? $item['discountOnCash'] : null;
+                    $discountDeferred = isset($item['discountDeferred']) ? $item['discountDeferred'] : null;
 
                     $item['discount_deferred'] = $discountDeferred;
                     $item['discount_on_cash'] = $discountOnCash;
@@ -74,8 +74,8 @@ class OfferCreator implements OfferCreatable
                     $item['factory_price'] = $factoryPrice;
                     $item['price_deferred'] = ProductDetail::sumDiscount($factoryPrice, $discountDeferred);
                     $item['price_on_cash'] = ProductDetail::sumDiscount($factoryPrice, $discountOnCash);
-                    $item['quantity_maximum'] = isset($item['quantityMaximum']) ? $item['quantityMaximum'] : 0;
-                    $item['quantity_minimum'] = isset($item['quantityMinimum']) ? $item['quantityMinimum'] : 0;
+                    $item['quantity_maximum'] = isset($item['quantityMaximum']) ? $item['quantityMaximum'] : null;
+                    $item['quantity_minimum'] = isset($item['quantityMinimum']) ? $item['quantityMinimum'] : null;
                     $item['state_id'] = $item['stateId'];
                     $item['product_id'] = $item['productId'];
                     $model->products()->create($item);
