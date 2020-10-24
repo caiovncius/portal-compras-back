@@ -33,9 +33,9 @@ class PartnerListResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->partner->id,
-            'code' => $this->partner->code,
-            'cnpj' => $this->partner->cnpj,
+            'id' => $this->partners->id,
+            'code' => $this->partners->code,
+            'cnpj' => $this->partners->cnpj,
             'name' => $this->partner->name,
             'status' => $this->partner->status,
             'category' => $this->partner->category,
