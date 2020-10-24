@@ -84,9 +84,7 @@ class PurchaseListResource extends JsonResource
             'partner' => !is_null($this->partner) ?  PartnerListResource::make($this->partner) : null,
             'partnerId' => !is_null($this->partner) ?  $this->partner->id : null,
             'contacts' => $this->contacts,
-            'hasRequest' => $this->when($request->get('pharmacyId'), function() use($request) {
-                return $this->requests()->where('pharmacy_id', $request->get('pharmacyId'))->count() > 0;
-            }),
+            'hasRequest' => $this->hasRequest,
             'products' => ProductDetailResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at,

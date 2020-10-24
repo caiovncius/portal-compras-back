@@ -214,8 +214,18 @@ class PurchaseController extends Controller
         try {
             $input = $request->all();
             $input['status'] = 'OPEN';
-//            $input['date'] = date('Y-m-d');
-            return PurchaseListResource::collection($this->retrieverService->getPurchases($input)->get());
+
+            $purchases = $this->retrieverService->getPurchases($input)->get();
+
+            $purchases->each(function($purchase) use($request) {
+                $purchase->hasRequest = !$request->query('pharmacyId')
+                    ? false
+                    : $purchase->requests()
+                        ->where('pharmacy_id', $request->query('pharmacyId'))
+                        ->count() > 0;
+            });
+
+            return PurchaseListResource::collection($purchases);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

@@ -235,7 +235,18 @@ class OfferController extends Controller
             $input['status'] = 'ACTIVE';
             $input['endDate1'] = Carbon::today()->format('Y-m-d');
 
-            return OfferPortalResource::collection($this->retrieverService->getOffers($input)->get());
+            $offers = $this->retrieverService->getOffers($input)->get();
+
+            $offers->each(function ($offer) use($request) {
+                $offer->hasRequest = !$request->query('pharmacyId')
+                    ? false
+                    : $offer->requests()
+                        ->where('pharmacy_id', $request->query('pharmacyId'))
+                        ->count() > 0;
+            });
+
+
+            return OfferPortalResource::collection($offers);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }

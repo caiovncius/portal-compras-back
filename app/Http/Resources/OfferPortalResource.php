@@ -47,7 +47,8 @@ class OfferPortalResource extends JsonResource
             'sendType' => $this->send_type,
             'noAutomaticSending' => $this->no_automatic_sending,
             'impound' => $this->impound,
-            'description' => $this->description
+            'description' => $this->description,
+            'hasRequest' => $this->hasRequest
         ];
     }
 }
