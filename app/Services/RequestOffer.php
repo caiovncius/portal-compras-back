@@ -7,6 +7,7 @@ use App\Returns;
 use App\Services\FileReturn;
 use App\Services\FtpService;
 use App\Services\RequestToFile;
+use Illuminate\Support\Facades\Log;
 
 class RequestOffer
 {
@@ -68,6 +69,7 @@ class RequestOffer
             $mask = str_replace('*.', '', $request->mask);
             $filename = $partnerConnection->path_return.'/'.str_replace('ped', $mask, $file);
             if (! \Storage::disk('onthefly')->exists($filename)) {
+                Log::info('Return file not found on partner server:' . $filename);
                 continue;
             }
             $fileReturn = (new FileReturn)->file($filename);
