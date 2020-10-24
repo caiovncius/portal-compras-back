@@ -68,6 +68,7 @@ class RequestOffer
             $file = (new RequestToFile)->filename($request);
             $mask = str_replace('*.', '', $request->mask);
             $filename = $partnerConnection->path_return.'/'.str_replace('ped', $mask, $file);
+            Log::info('Running file:' . $filename);
             if (! \Storage::disk('onthefly')->exists($filename)) {
                 Log::info('Return file not found on partner server:' . $filename);
                 continue;
