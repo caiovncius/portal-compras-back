@@ -51,6 +51,7 @@ class ProductDetailPortalResource extends JsonResource
         return [
             'productId' => $this->product_id,
             'product' => $this->product ? $this->product->description : '',
+            'eanCode' => $this->product ? $this->product->code_ean : '',
             'productDescription' => $this->product ? $this->product->description : '',
             'price' => $this->factory_price,
             'discount' => $this->$discount,
