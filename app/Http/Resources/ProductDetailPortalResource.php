@@ -55,6 +55,7 @@ class ProductDetailPortalResource extends JsonResource
             'productDescription' => $this->product ? $this->product->description : '',
             'price' => $this->factory_price,
             'discount' => $this->$discount,
+            'variable' => $this->variable,
             'priceWithDiscount' => $this->$price_with_discount,
             'obrigatory' => $this->obrigatory,
             'laboratory' => $this->product ? $this->product->laboratory->name : '',
