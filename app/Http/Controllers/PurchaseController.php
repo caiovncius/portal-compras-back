@@ -8,6 +8,7 @@ use App\Http\Requests\PurchaseRequest;
 use App\Http\Resources\ProductDetailPortalResource;
 use App\Http\Resources\PurchaseHistoricResource;
 use App\Http\Resources\PurchaseListResource;
+use App\Http\Resources\PurchasePortalResource;
 use App\Http\Resources\RequestIntentionResource;
 use App\Http\Resources\RequestListResource;
 use App\Http\Resources\RequestResource;
@@ -225,7 +226,7 @@ class PurchaseController extends Controller
                         ->count() > 0;
             });
 
-            return PurchaseListResource::collection($purchases);
+            return PurchasePortalResource::collection($purchases);
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
