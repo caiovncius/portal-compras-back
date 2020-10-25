@@ -21,6 +21,15 @@ class PurchaseUpdater implements PurchaseUpdatable
     public function update(Purchase $model, array $data)
     {
         try {
+
+            if (isset($data['code'])) {
+
+                if ($data['code'] !== $model->code) {
+                    throw new \Exception('Códido já esta em uso');
+                }
+            }
+
+
             $model->fill($data);
             $model->updated_id = auth()->guard('api')->user()->id;
             $model->updated_at = date('Y-m-d H:i:s');
