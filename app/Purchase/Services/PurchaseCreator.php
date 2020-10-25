@@ -41,11 +41,11 @@ class PurchaseCreator implements PurchaseCreatable
 
             if (isset($data['partner']) && !is_null($data['partner'])) {
                 $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
-                $partner = Distributor::find($data['partner']);
+                $partner = Distributor::find($data['partner']['id']);
 
                 if ($data['partnerType'] === Partner::PARTNER_TYPE_PROGRAM) {
                     $partnerType = Partner::PARTNER_TYPE_PROGRAM;
-                    $partner = Program::find($data['partner']);
+                    $partner = Program::find($data['partner']['id']);
                 }
 
                 if (is_null($partner)) {
