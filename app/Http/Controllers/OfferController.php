@@ -585,6 +585,18 @@ class OfferController extends Controller
         }
     }
 
+    public function searchPortal(Request $request)
+    {
+        try {
+            $params = $request->all();
+            $params['status'] = 'ACTIVE';
+            $params['endDate1'] = Carbon::today()->format('Y-m-d');
+            return OfferListResource::collection($this->retrieverService->getOffers($params)->get());
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
     /**
      * @param Offer $offer
      * @return \Illuminate\Http\JsonResponse

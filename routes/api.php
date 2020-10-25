@@ -38,6 +38,10 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
     Route::get('offers/{model}/products', 'OfferController@products')
          ->name('offer.products');
 
+    Route::get('/offers/search', 'OfferController@searchPortal')
+        ->name('offer.search')
+        ->middleware('acl:Offer,r');
+
     Route::get('purchases/{pharmacy?}', 'PurchaseController@portal')
          ->name('purchase.portal');
 

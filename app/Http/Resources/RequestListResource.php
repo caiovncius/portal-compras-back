@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Offer;
+use App\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -40,11 +42,13 @@ class RequestListResource extends JsonResource
             'pharmacyCode' => $this->pharmacy->code,
             'pharmacyId' => $this->pharmacy_id,
             'offerName' => $this->requestable->name,
+            'offerCode' => $this->requestable->code,
+            'offerType' => $this->requestable_type === 'App\Offer' ? 'Oferta Associada' : 'Compras Coletivas',
             'offerCondition' => $this->requestable->condition ? true : false,
             'sendType' => $this->requestable->send_type,
             'status' => $this->status,
             'subtotal' => $this->subtotal,
-            'value' => $this->value,
+            'total' => $this->value,
             'sendDate' => $this->send_date,
             'qtdItens' => $this->products()->count(),
             'qtdUnities' => $this->products()->sum('qtd'),
