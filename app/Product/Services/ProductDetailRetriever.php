@@ -25,7 +25,8 @@ class ProductDetailRetriever implements ProductDetailRetrievable
             if (isset($params['name']) && $params['name'] !== '') {
                 $name = $params['name'];
                 $query->whereHas('product', function(Builder $query) use ($name) {
-                    $query->where('description', 'like', '%'.$name.'%');
+                    $query->where('description', 'like', '%'.$name.'%')
+                    ->orWhere('code_ean', 'like', '%'.$name.'%');
                 });
             }
 
