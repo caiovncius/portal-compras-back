@@ -56,6 +56,7 @@ class RequestResource extends JsonResource
             'offerCondition' => $this->requestable->condition ? true : false,
             'qtdItens' => $this->products()->count(),
             'qtdUnities' => $this->products()->sum('qtd'),
+            'paymentMethod' => $this->payment_method,
             'status' => $this->status,
             'value' => $this->value,
             'subtotal' => $this->subtotal,

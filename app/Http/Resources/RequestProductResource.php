@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Request;
+use App\Returns;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -28,9 +30,14 @@ class RequestProductResource extends JsonResource
     {
         return [
             'product' => ProductResource::make($this->resource),
+            'offerDetails' => ProductDetailResource::make($this->offerDetails),
             'qtd' => $this->pivot->qtd,
             'value' => $this->pivot->value,
-            'total' => $this->pivot->value * $this->pivot->qtd,
+            'subtotal' => $this->pivot->value * $this->pivot->qtd,
+            'status' => Request::getProductStatusText($this->pivot->status),
+            'quantityServed' => $this->pivot->qtd_return,
+            'reason' => Returns::find($this->pivot->return_id)->description,
+            'total' => (float)Request::calculateDiscount($this->pivot->value, $this->pivot->qtd, $this->paymentMethod, $this->offerDetails)
         ];
     }
 }

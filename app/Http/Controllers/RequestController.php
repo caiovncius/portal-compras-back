@@ -520,7 +520,15 @@ class RequestController extends Controller
      */
     public function get(RequestModel $model)
     {
-        return RequestResource::make($model);
+        $request = $model;
+        $request->products->each(function ($product) use($request) {
+            $product->offerDetails = $product->details()
+                ->where('productable_type', $request->requestable_type)
+                ->where('productable_id', $request->requestable_id)
+                ->first();
+            $product->paymentMethod = $request->payment_method;
+        });
+        return RequestResource::make($request);
     }
 
     /**

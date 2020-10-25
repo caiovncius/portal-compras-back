@@ -66,7 +66,7 @@ class RequestOffer
             $partnerConnection = $request->partner->connection;
             $connection = (new FtpService)->setConnection($partnerConnection);
             $file = (new RequestToFile)->filename($request);
-            $mask = str_replace('*.', '', $request->partner->connection->mask);
+            $mask = str_replace('*.', '', $partnerConnection->mask);
             $filename = $partnerConnection->path_return.'/'.str_replace('ped', $mask, $file);
             Log::info('Running file:' . $filename);
             if (! \Storage::disk('onthefly')->exists($filename)) {

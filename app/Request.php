@@ -101,4 +101,38 @@ class Request extends Model
     {
         return date('m', strtotime($this->created_at));
     }
+
+    public static function calculateDiscount($value, $quantity, $paymentMethod, $offerDetail)
+    {
+        $subtotal = $value * $quantity;
+        $discount = $paymentMethod === 'CASH' ? $offerDetail->discount_on_cash : $offerDetail->discount_deferred;
+        $discountValue = ($subtotal / 100) * $discount;
+        return $subtotal - $discountValue;
+    }
+
+    public static function getProductStatusText($value)
+    {
+        switch ($value) {
+
+            case 'CREATED':
+                return 'Adicionado';
+                break;
+
+            case 'ATTENDED':
+                return 'Atendido';
+                break;
+
+            case 'ATTENDED_PARTIAL':
+                return 'Atendido Parcialmente';
+                break;
+
+            case 'NOT_ATTENDED':
+                return 'Não Atendido';
+                break;
+
+            default:
+                return '';
+                break;
+        }
+    }
 }
