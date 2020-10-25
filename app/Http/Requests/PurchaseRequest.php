@@ -81,7 +81,7 @@ class PurchaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:purchases,code,' . $this->id,
+            'code' => 'required|string|unique:purchases,code' . $this->model ? ',' . $this->model->id : '',
             'name' => 'required|string',
             'description' => 'nullable|string',
             'status' => 'nullable|in:OPEN,LATE,READY_SEND,BILLED',
@@ -91,7 +91,7 @@ class PurchaseRequest extends FormRequest
             'validityStart' => 'date|nullable',
             'validityEnd' => 'date|after_or_equal:validityStart|nullable',
             'partnerType' => 'string|in:DISTRIBUTOR,PROGRAM|nullable',
-            'partner' => 'numeric|nullable',
+            'partner' => 'required',
             'minimumPerFamily' => 'required',
             'products' => 'array|nullable',
             'products.*.productId' => 'required',
