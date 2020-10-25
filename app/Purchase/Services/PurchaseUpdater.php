@@ -55,15 +55,15 @@ class PurchaseUpdater implements PurchaseUpdatable
                 $model->partner()->delete();
 
                 $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
-                $partner = Distributor::find($data['partner']);
+                $partner = Distributor::find($data['partner']['id']);
 
                 if ($data['partnerType'] === Partner::PARTNER_TYPE_PROGRAM) {
                     $partnerType = Partner::PARTNER_TYPE_PROGRAM;
-                    $partner = Program::find($data['partner']);
+                    $partner = Program::find($data['partner']['id']);
                 }
 
                 if (is_null($partner)) {
-                    throw new \Exception(sprintf('Parceiro %s não encontrado', $partner['id']));
+                    throw new \Exception(sprintf('Parceiro %s não encontrado', $data['partner']['id']));
                 }
 
                 $model->partner()->create([
