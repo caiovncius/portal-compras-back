@@ -57,6 +57,8 @@ class PurchaseUpdater implements PurchaseUpdatable
                 $partnerType = Partner::PARTNER_TYPE_DISTRIBUTOR;
                 $partner = Distributor::find($data['partner']['id']);
 
+                dd($data['partner']);
+
                 if ($data['partnerType'] === Partner::PARTNER_TYPE_PROGRAM) {
                     $partnerType = Partner::PARTNER_TYPE_PROGRAM;
                     $partner = Program::find($data['partner']['id']);
