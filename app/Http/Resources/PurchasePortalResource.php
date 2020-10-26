@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
- *     schema="PurchaseListResource",
+ *     schema="PurchasePortalResource",
  *     type="object",
  *     title="Purchase Response",
  *     @OA\Property(property="code", type="integer", example="001"),
