@@ -44,7 +44,7 @@ class ProgramUpdatorRequest extends FormRequest
             'contacts.*.email' => 'required|email',
             'contacts.*.telephone' => 'required|string',
             'returns' => 'array|nullable',
-            'returns.*.code' => 'required|string|unique:returns,code,returnable_type,',
+            'returns.*.code' => 'required|string',
             'returns.*.description' => 'required|string',
             'connection' => 'nullable',
             'connection.isFtpActive' => 'required|boolean',
