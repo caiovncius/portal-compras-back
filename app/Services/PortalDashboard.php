@@ -89,6 +89,8 @@ class PortalDashboard
             }
             return $products;
         });
+
+
         $products = [];
         foreach ($arr->filter() as $key => $items) {
             foreach ($items as $item) {
@@ -96,14 +98,17 @@ class PortalDashboard
             }
         }
 
+
+
         $values = collect($products)->groupBy('product')->map(function ($items) {
             return [
                 'item' => $items->first()['product'],
                 'qtd' => $items->count()
             ];
+
         });
 
-        return $values->sortByDesc('qtd')->take(10);
+        return $values->sortByDesc('qtd')->values()->take(10);
     }
 
     /**
@@ -121,6 +126,6 @@ class PortalDashboard
             ];
         });
 
-        return $data->sortByDesc('count')->take(10);
+        return $data->sortByDesc('count')->values()->take(10);
     }
 }
