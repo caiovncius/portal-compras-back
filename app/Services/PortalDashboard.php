@@ -102,8 +102,8 @@ class PortalDashboard
 
         $values = collect($products)->groupBy('product')->map(function ($items) {
             return [
-                'item' => $items->first()['product'],
-                'qtd' => $items->count()
+                'label' => $items->first()['product'],
+                'value' => $items->count()
             ];
 
         });
