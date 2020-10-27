@@ -19,13 +19,13 @@ class RequestRetriever implements RequestRetrievable
         try {
             $query = Request::query();
 
-            if (isset($params['offerCode']) && !empty($params['offerCode'])) {
+            if (isset($params['codeOffer']) && !empty($params['codeOffer'])) {
 
                 $query->whereHasMorph(
                     'requestable',
                     ['App\Offer', 'App\Purchase'],
                     function (Builder $queryMorph) use ($params) {
-                        $queryMorph->where('code', 'like', '%' . $params['offerCode'] . '%');
+                        $queryMorph->where('code', 'like', '%' . $params['codeOffer'] . '%');
                     });
             }
 
