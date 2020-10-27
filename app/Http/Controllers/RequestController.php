@@ -634,4 +634,21 @@ class RequestController extends Controller
             return response()->json(['error' => $exception->getMessage()], 400);
         }
     }
+
+    public function accompaniments(Request $request)
+    {
+        try {
+            $params = $request->all();
+            $params['pharmacies'] = auth()->guard('api')->user()->pharmacies()->pluck('id');
+
+            return RequestMonitoringResource::collection(
+                $this->retrieverService->getRequests($params)
+                    ->orderBy('id', 'DESC')
+                    ->paginate(10)
+            );
+        } catch (\Exception $exception) {
+            dd($exception);
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
 }

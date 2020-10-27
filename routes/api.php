@@ -74,6 +74,9 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
 
     Route::delete('requests/{model}', 'RequestController@delete')
          ->name('request.delete');
+
+    Route::get('accompaniment', 'RequestController@accompaniments')
+        ->name('request.accompaniment');
 });
 
 Route::middleware(['cors', 'auth:api'])->group(function(){
