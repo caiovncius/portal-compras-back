@@ -28,6 +28,7 @@ class RequestProductResource extends JsonResource
      */
     public function toArray($request)
     {
+        $return  = Returns::find($this->pivot->return_id);
         return [
             'product' => ProductResource::make($this->resource),
             'offerDetails' => ProductDetailResource::make($this->offerDetails),
@@ -36,7 +37,7 @@ class RequestProductResource extends JsonResource
             'subtotal' => $this->pivot->value * $this->pivot->qtd,
             'status' => Request::getProductStatusText($this->pivot->status),
             'quantityServed' => $this->pivot->qtd_return,
-            'reason' => Returns::find($this->pivot->return_id)->description,
+            'reason' => !is_null($return) ? $return->description : null,
             'total' => (float)Request::calculateDiscount($this->pivot->value, $this->pivot->qtd, $this->paymentMethod, $this->offerDetails)
         ];
     }
