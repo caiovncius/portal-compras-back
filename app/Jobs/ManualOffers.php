@@ -15,7 +15,10 @@ class ManualOffers implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $offer;
+    /**
+     * @var Offer
+     */
+    public Offer $offer;
 
     /**
      * ManualOffers constructor.

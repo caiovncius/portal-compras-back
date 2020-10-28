@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Offer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,7 +12,10 @@ class NewRequest extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $offer;
+    /**
+     * @var Offer
+     */
+    public Offer $offer;
 
     /**
      * NewRequest constructor.
