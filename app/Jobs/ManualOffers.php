@@ -18,7 +18,7 @@ class ManualOffers implements ShouldQueue
     /**
      * @var Offer
      */
-    public Offer $offer;
+    public $offer;
 
     /**
      * ManualOffers constructor.
