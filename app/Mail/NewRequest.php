@@ -15,7 +15,7 @@ class NewRequest extends Mailable
     /**
      * @var Offer
      */
-    public Offer $offer;
+    public $offer;
 
     /**
      * NewRequest constructor.
