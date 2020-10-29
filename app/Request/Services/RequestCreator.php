@@ -20,6 +20,7 @@ class RequestCreator implements RequestCreatable
     public function store(array $data)
     {
         try {
+
             $type = $data['modelType'] == 'OFFER' ? 'App\Offer' : 'App\Purchase';
 
             if ($data['modelType'] == 'OFFER') {
@@ -32,21 +33,32 @@ class RequestCreator implements RequestCreatable
                 throw new \Exception(sprintf('Tipo %s não encontrado', $data['modelId']));
             }
 
+            $collectProducts = collect($data['products']);
+            $modelProducts = $model->products()->whereIn('product_id', $collectProducts->pluck('productId')->all())->get();
+
+            $subtotal = $modelProducts->sum('factory_price');
+            dd($modelProducts);
+
+//            $offerProducts = $model->products()
+
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $data['pharmacy_id'] = $data['pharmacyId'];
             $data['requestable_id'] = $data['modelId'];
             $data['requestable_type'] = $type;
-            $data['status'] = 'NOT_SEND';
+            $data['status'] = 'CREATED';
             $request = Request::create($data);
 
-            $request->historics()->create([
-                'user' => auth()->guard('api')->user()->name,
-                'action' => 'Pedido criado',
-                'status' => 'ENVIADO'
-            ]);
+            $total = 0;
+            $subtotal = 0;
+            $totalDiscount = 0;
 
             if (isset($data['products'])) {
                 foreach ($data['products'] as $product) {
+
+                    $modelProduct = $model->products()->where('product_id', $product['productId'])->first();
+
+
+
                     $request->products()->attach($product['productId'], [
                         'qtd' => $product['quantity'],
                         'status' => 'CREATED',
@@ -54,6 +66,12 @@ class RequestCreator implements RequestCreatable
                     ]);
                 }
             }
+
+            $request->historics()->create([
+                'user' => auth()->guard('api')->user()->name,
+                'action' => 'Pedido criado',
+                'status' => 'ENVIADO'
+            ]);
 
             if ($model->send_type === 'AUTOMATIC') {
                 AutomaticOffers::dispatch($request);

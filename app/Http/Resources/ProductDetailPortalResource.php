@@ -50,24 +50,32 @@ class ProductDetailPortalResource extends JsonResource
 
         return [
             'productId' => $this->product_id,
+            'offerProductId' => $this->id,
             'product' => $this->product ? $this->product->description : '',
             'eanCode' => $this->product ? $this->product->code_ean : '',
             'productDescription' => $this->product ? $this->product->description : '',
             'price' => $this->factory_price,
+            'minimum' => $this->minimum,
+            'quantityMinimum' => $this->quantity_minimum,
+            'quantityMaximum' => $this->quantity_maximum,
             'discount' => $this->$discount,
             'variable' => $this->variable,
             'priceWithDiscount' => $this->$price_with_discount,
             'obrigatory' => $this->obrigatory,
             'laboratory' => $this->product ? $this->product->laboratory->name : '',
             'eanCodes' => $this->product ? ProductSecondaryEanCode::collection($this->product->secondaryEanCodes) : [],
-            'values' => ProductDetail::where('product_id', $this->product_id)
-                                     ->get()->map(function ($item, $key) use ($discount) {
-                                         return [
-                                            'minimum' => $item->quantity_minimum,
-                                            'maximum' => $item->quantity_maximum,
-                                            'percent' => $item->$discount
-                                        ];
-                                     })
+            'values' => $this->when($this->variable, function () use ($discount) {
+                return $this->productable->products()
+                    ->where('product_id', $this->product_id)
+                    ->where('variable', true)
+                    ->get()->map(function ($item, $key) use ($discount) {
+                        return [
+                            'minimum' => $item->quantity_minimum,
+                            'maximum' => $item->quantity_maximum,
+                            'percent' => $item->$discount
+                        ];
+                    });
+            }, null)
         ];
     }
 }

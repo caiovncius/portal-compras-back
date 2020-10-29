@@ -22,6 +22,10 @@ class ProductDetailRetriever implements ProductDetailRetrievable
             $query->where('productable_id', $params['productable_id']);
             $query->where('productable_type', $params['productable_type']);
 
+            if (isset($params['stateId']) && !empty($params['stateId'])) {
+                $query->where('state_id', $params['stateId']);
+            }
+
             if (isset($params['name']) && $params['name'] !== '') {
                 $name = $params['name'];
                 $query->whereHas('product', function(Builder $query) use ($name) {

@@ -20,23 +20,29 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Request extends Model
 {
-    protected $fillable = [
+    /**
+     * @var array
+     */
+    public $fillable = [
         'pharmacy_id',
-        'status',
-        'updated_id',
-        'partner_id',
         'partner_type',
-        'priority',
-        'value',
-        'subtotal',
-        'send_date',
-        'requestable_id',
+        'partner_id',
         'requestable_type',
+        'requestable_id',
+        'priority',
+        'status',
+        'payment_method',
+        'subtotal',
+        'total_discount',
+        'total',
+        'send_date',
+        'updated_id',
     ];
 
     protected $casts = [
-        'value' => 'float',
+        'total' => 'float',
         'subtotal' => 'float',
+        'total_discount' => 'float',
         'send_date' => 'date'
     ];
 
@@ -82,7 +88,17 @@ class Request extends Model
             'request_products',
             'request_id',
             'product_id'
-        )->withPivot(['qtd', 'qtd_return', 'status', 'partner_id', 'partner_type', 'return_id', 'value']);
+        )->withPivot([
+            'return_id',
+            'partner_type',
+            'partner_id',
+            'partner_id',
+            'requested_quantity',
+            'quantity_served',
+            'subtotal',
+            'total_discount',
+            'total'
+        ]);
     }
 
     /**
@@ -102,6 +118,13 @@ class Request extends Model
         return date('m', strtotime($this->created_at));
     }
 
+    /**
+     * @param $value
+     * @param $quantity
+     * @param $paymentMethod
+     * @param $offerDetail
+     * @return float|int
+     */
     public static function calculateDiscount($value, $quantity, $paymentMethod, $offerDetail)
     {
         $subtotal = $value * $quantity;
@@ -110,6 +133,10 @@ class Request extends Model
         return $subtotal - $discountValue;
     }
 
+    /**
+     * @param $value
+     * @return string
+     */
     public static function getProductStatusText($value)
     {
         switch ($value) {

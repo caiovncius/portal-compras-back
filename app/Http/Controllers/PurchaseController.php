@@ -270,6 +270,11 @@ class PurchaseController extends Controller
             $input['productable_id'] = $model->id;
             $input['productable_type'] = 'App\Purchase';
 
+            if ($request->query('pharmacyId')) {
+                $pharmacy = Pharmacy::find($request->query('pharmacyId'));
+                if (!is_null($pharmacy)) $input['stateId'] = $pharmacy->city->state->id;
+            }
+
             return ProductDetailPortalResource::collection($this->productRetrieverService->getProducts($input)->get());
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
@@ -478,12 +483,27 @@ class PurchaseController extends Controller
      */
 
     /**
+     * @param Request $request
      * @param Purchase $model
      * @return PurchaseListResource
      */
-    public function get(Purchase $model)
+    public function get(Request $request, Purchase $model)
     {
-        return PurchaseListResource::make($model);
+        $purchaseQuery = Purchase::query();
+
+        if ($request->query('pharmacyId') && !empty($request->query('pharmacyId'))) {
+
+            $pharmacy = Pharmacy::find($request->query('pharmacyId'));
+
+            $purchaseQuery->with(['products' => function($query) use($pharmacy) {
+                $query->where('state_id', $pharmacy->city->state->id);
+            }]);
+        }
+
+        $purchase = $purchaseQuery->first();
+
+
+        return PurchaseListResource::make($purchase);
     }
 
     /**

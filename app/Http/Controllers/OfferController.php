@@ -16,6 +16,7 @@ use App\Imports\OfferProductImport;
 use App\Offer;
 use App\Offer\Contracts\OfferCreatable;
 use App\Partner;
+use App\Pharmacy;
 use App\Product\Contracts\ProductDetailRetrievable;
 use App\Offer\Contracts\OfferRemovable;
 use App\Offer\Contracts\OfferRetrievable;
@@ -235,6 +236,10 @@ class OfferController extends Controller
             $input['status'] = 'ACTIVE';
             $input['endDate1'] = Carbon::today()->format('Y-m-d');
 
+            $input['productStates'] = $request->user()->pharmacies()->get()->map(function($pharmacy) {
+                return $pharmacy->city->state->id;
+            });
+
             $offers = $this->retrieverService->getOffers($input)->get();
 
             $offers->each(function ($offer) use($request) {
@@ -243,6 +248,11 @@ class OfferController extends Controller
                     : $offer->requests()
                         ->where('pharmacy_id', $request->query('pharmacyId'))
                         ->count() > 0;
+                $offerRequest = $offer->requests()
+                    ->where('pharmacy_id', $request->query('pharmacyId'))
+                    ->first();
+
+                $offer->requestId = !is_null($offerRequest) ? $offerRequest->id : null;
             });
 
 
@@ -294,6 +304,11 @@ class OfferController extends Controller
             $input = $request->all();
             $input['productable_id'] = $model->id;
             $input['productable_type'] = 'App\Offer';
+
+            if ($request->query('pharmacyId')) {
+                $pharmacy = Pharmacy::find($request->query('pharmacyId'));
+                if (!is_null($pharmacy)) $input['stateId'] = $pharmacy->city->state->id;
+            }
 
             return ProductDetailPortalResource::collection($this->productRetrieverService->getProducts($input)->get());
         } catch (\Exception $exception) {
@@ -503,12 +518,28 @@ class OfferController extends Controller
      */
 
     /**
+     * @param Request $request
      * @param Offer $model
      * @return OfferListResource
      */
-    public function get(Offer $model)
+    public function get(Request $request, Offer $model)
     {
-        return OfferListResource::make($model);
+
+        $offerQuery = Offer::query()
+            ->where('id', $model->id);
+
+        if ($request->query('pharmacyId') && !empty($request->query('pharmacyId'))) {
+
+            $pharmacy = Pharmacy::find($request->query('pharmacyId'));
+
+            $offerQuery->with(['products' => function($query) use($pharmacy) {
+                $query->where('state_id', $pharmacy->city->state->id);
+            }]);
+        }
+
+        $offer = $offerQuery->first();
+
+        return OfferListResource::make($offer);
     }
 
     /**
