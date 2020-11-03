@@ -90,7 +90,7 @@ class PurchaseRequest extends FormRequest
             'validityStart' => 'date|nullable',
             'validityEnd' => 'date|after_or_equal:validityStart|nullable',
             'partnerType' => 'string|in:DISTRIBUTOR,PROGRAM|nullable',
-            'partner' => 'required',
+            'partner' => 'required_if:sendType,AUTOMATIC',
             'minimumPerFamily' => 'required',
             'products' => 'array|nullable',
             'products.*.productId' => 'required',

@@ -224,6 +224,12 @@ class PurchaseController extends Controller
                     : $purchase->requests()
                         ->where('pharmacy_id', $request->query('pharmacyId'))
                         ->count() > 0;
+
+                $purchaseRequest = $purchase->requests()
+                    ->where('pharmacy_id', $request->query('pharmacyId'))
+                    ->first();
+
+                $purchase->requestId = !is_null($purchaseRequest) ? $purchaseRequest->id : null;
             });
 
             return PurchasePortalResource::collection($purchases);
