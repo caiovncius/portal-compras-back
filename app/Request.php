@@ -89,7 +89,8 @@ class Request extends Model
             'product_id'
         )->withPivot([
             'return_id',
-            'partner_id',
+            'unit_value',
+            'discount_percentage',
             'requested_quantity',
             'quantity_served',
             'subtotal',
@@ -159,14 +160,34 @@ class Request extends Model
      */
     public static function getProductSubTotal(ProductDetail $productDetail, int $quantity, string $paymentMethod)
     {
-        if ($quantity < 1 || is_null($productDetail->factory_price) || $productDetail->factory_price <= 0) return 0;
-        return $productDetail->factory_price * $quantity;
+        if ($quantity < 1) return 0;
+        $price = $productDetail->factory_price;
+
+        if ($productDetail->variable) {
+
+            $productRange = $productDetail->productable->products()
+                ->where('quantity_minimum', '<=', $quantity)
+                ->where('quantity_maximum', '>=', $quantity)
+                ->first();
+
+            if (is_null($productRange)) {
+                $productRange = $productDetail->productable->products()
+                    ->where('quantity_minimum', '<=', $quantity)
+                    ->orderBy('quantity_minimum', 'desc')
+                    ->first();
+            }
+
+            $price = is_null($productRange) ? 0 : $productRange->factory_price;
+        }
+
+        return $price > 0 ? $price * $quantity : 0;
     }
 
     /**
      * @param ProductDetail $productDetail
      * @param string $paymentMethod
      * @param $subtotal
+     * @param int $quantity
      * @return float|int
      */
     public static function getProductTotalDiscount(ProductDetail $productDetail, string $paymentMethod, $subtotal, int $quantity)
@@ -176,7 +197,7 @@ class Request extends Model
         $discount = $paymentMethod === 'CASH' ? $productDetail->discount_on_cash : $productDetail->discount_deferred;
 
         if ($productDetail->variable) {
-            $offerClass = $productDetail->productable;
+
             $productRange = $productDetail->productable->products()
                 ->where('quantity_minimum', '<=', $quantity)
                 ->where('quantity_maximum', '>=', $quantity)
@@ -196,6 +217,68 @@ class Request extends Model
         }
 
         return ($subtotal / 100) * $discount;
+    }
+
+    public static function getProductDiscount(ProductDetail $productDetail, string $paymentMethod, int $quantity)
+    {
+
+        $discount = $paymentMethod === 'CASH' ? $productDetail->discount_on_cash : $productDetail->discount_deferred;
+
+        if ($productDetail->variable) {
+
+            $productRange = $productDetail->productable->products()
+                ->where('quantity_minimum', '<=', $quantity)
+                ->where('quantity_maximum', '>=', $quantity)
+                ->first();
+
+            if (is_null($productRange)) {
+                $productRange = $productDetail->productable->products()
+                    ->where('quantity_minimum', '<=', $quantity)
+                    ->orderBy('quantity_minimum', 'desc')
+                    ->first();
+            }
+
+            $discount = (is_null($productRange) ? 0 : $paymentMethod === 'CASH')
+                ? $productRange->discount_on_cash
+                : $productRange->discount_deferred;
+
+        }
+
+        return $discount;
+    }
+
+    /**
+     * @param ProductDetail $productDetail
+     * @param string $paymentMethod
+     * @param int $quantity
+     * @return string
+     */
+    public static function getProductUnitValue(ProductDetail $productDetail, string $paymentMethod, int $quantity)
+    {
+
+        $value = $paymentMethod === 'CASH' ? $productDetail->price_on_cash : $productDetail->price_deferred;
+
+        if ($productDetail->variable) {
+
+            $productRange = $productDetail->productable->products()
+                ->where('quantity_minimum', '<=', $quantity)
+                ->where('quantity_maximum', '>=', $quantity)
+                ->first();
+
+            if (is_null($productRange)) {
+                $productRange = $productDetail->productable->products()
+                    ->where('quantity_minimum', '<=', $quantity)
+                    ->orderBy('quantity_minimum', 'desc')
+                    ->first();
+            }
+
+            $value = (is_null($productRange) ? 0 : $paymentMethod === 'CASH')
+                ? $productRange->price_on_cash
+                : $productRange->price_deferred;
+
+        }
+
+        return $value;
     }
 
     /**

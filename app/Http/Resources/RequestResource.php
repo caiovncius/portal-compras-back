@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\RequestHistoricResource;
+use App\Offer;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -54,6 +55,7 @@ class RequestResource extends JsonResource
             'pharmacyRegister' => $this->pharmacy->cnpj,
             'offerName' => $this->requestable->name,
             'offerCondition' => $this->requestable->condition ? true : false,
+            'partner' => $this->getPartner(),
             'minimumValue' => $this->requestable->minimum_price,
             'qtdItens' => $this->products()->count(),
             'qtdUnities' => $this->products()->sum('requested_quantity'),
@@ -69,5 +71,12 @@ class RequestResource extends JsonResource
             'updated_user' => $this->user ? $this->user->name : '',
             'updated_date' => $this->updated_at
         ];
+    }
+
+    public function getPartner()
+    {
+        return $this->requestable instanceof Offer
+            ? Offer::getOfferCurrentPartner($this->requestable, $this->priority)
+            : $this->requestable->partner;
     }
 }

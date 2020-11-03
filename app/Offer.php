@@ -82,4 +82,19 @@ class Offer extends Model
     {
         return $this->morphMany('App\Request', 'requestable');
     }
+
+    public static function getOfferCurrentPartner(Offer $offer, int $priority)
+    {
+        $partners = $offer->partners()->orderBy('priority', 'asc')
+            ->get();
+
+        if ($partners->count() === 0) return null;
+        $currentPartner = isset($partners[($priority - 1)]) ? $partners[($priority - 1)] : $partners->last();
+
+        $partner = $currentPartner->partner_type === 'DISTRIBUTOR'
+            ? Distributor::find($currentPartner->partner_id)
+            : Program::find($currentPartner->partner_id);
+
+        return $partner;
+    }
 }

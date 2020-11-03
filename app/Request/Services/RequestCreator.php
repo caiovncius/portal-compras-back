@@ -51,22 +51,38 @@ class RequestCreator implements RequestCreatable
 
                     $productDetails = ProductDetail::find($product['offerProduct']);
 
+                    $productUnitValue = Request::getProductUnitValue(
+                        $productDetails,
+                        $request->payment_method,
+                        $product['quantity']
+                    );
+
                     $productSubtotal = Request::getProductSubTotal(
                         $productDetails,
                         $product['quantity'],
                         $request->payment_method
                     );
+
                     $productTotalDiscount = Request::getProductTotalDiscount(
                         $productDetails,
                         $request->payment_method,
                         $productSubtotal,
                         $product['quantity']
                     );
+
                     $productTotal = Request::getProductTotal($productSubtotal, $productTotalDiscount);
+
+                    $discount = Request::getProductDiscount(
+                        $productDetails,
+                        $request->payment_method,
+                        $product['quantity']
+                    );
 
                     $request->products()->attach($product['productId'], [
                         'requested_quantity' => $product['quantity'],
                         'status' => null,
+                        'discount_percentage' => $discount,
+                        'unit_value' => $productUnitValue,
                         'subtotal' => $productSubtotal,
                         'total_discount' => $productTotalDiscount,
                         'total' => $productTotal,

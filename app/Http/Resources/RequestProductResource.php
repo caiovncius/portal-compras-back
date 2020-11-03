@@ -32,13 +32,14 @@ class RequestProductResource extends JsonResource
         return [
             'product' => ProductResource::make($this->resource),
             'offerDetails' => ProductDetailResource::make($this->offerDetails),
+            'value' => $this->pivot->unit_value,
             'qtd' => $this->pivot->requested_quantity,
             'total' => $this->pivot->total,
-            'subtotal' => $this->pivot->value * $this->pivot->qtd,
+            'discount' => $this->pivot->discount_percentage,
+            'subtotal' => $this->pivot->subtotal,
             'status' => Request::getProductStatusText($this->pivot->status),
             'quantityServed' => $this->pivot->served_quantity,
             'reason' => !is_null($return) ? $return->description : null,
-//            'total' => (float)Request::calculateDiscount($this->pivot->value, $this->pivot->qtd, $this->paymentMethod, $this->offerDetails)
         ];
     }
 }
