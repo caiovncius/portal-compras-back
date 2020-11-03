@@ -19,10 +19,10 @@ class NewRequestProductsTables extends Migration
             $table->unsignedBigInteger('product_id');
             $table->enum('status', ['ATTENDED', 'PARTIALLY_ATTENDED', 'NOT_ATTENDED'])->nullable();
             $table->bigInteger('return_id')->nullable();
-            $table->string('partner_type');
-            $table->bigInteger('partner_id');
             $table->integer('requested_quantity');
             $table->integer('quantity_served')->nullable();
+            $table->decimal('unit_value');
+            $table->integer('dicount_percentage')->nullable();
             $table->decimal('subtotal');
             $table->decimal('total_discount');
             $table->decimal('total');
