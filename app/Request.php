@@ -4,6 +4,7 @@ namespace App;
 
 use App\Distributor;
 use App\Program;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,8 +26,6 @@ class Request extends Model
      */
     public $fillable = [
         'pharmacy_id',
-        'partner_type',
-        'partner_id',
         'requestable_type',
         'requestable_id',
         'priority',
@@ -90,8 +89,6 @@ class Request extends Model
             'product_id'
         )->withPivot([
             'return_id',
-            'partner_type',
-            'partner_id',
             'partner_id',
             'requested_quantity',
             'quantity_served',
@@ -99,15 +96,6 @@ class Request extends Model
             'total_discount',
             'total'
         ]);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPartnerAttribute()
-    {
-        if (is_null($this->partner_type)) return null;
-        return $this->partner_type == 'App\Distributor' ? Distributor::find($this->partner_id) : Program::find($this->partner_id);
     }
 
     /**
@@ -161,5 +149,64 @@ class Request extends Model
                 return '';
                 break;
         }
+    }
+
+    /**
+     * @param ProductDetail $productDetail
+     * @param int $quantity
+     * @param string $paymentMethod
+     * @return float|int
+     */
+    public static function getProductSubTotal(ProductDetail $productDetail, int $quantity, string $paymentMethod)
+    {
+        if ($quantity < 1 || is_null($productDetail->factory_price) || $productDetail->factory_price <= 0) return 0;
+        return $productDetail->factory_price * $quantity;
+    }
+
+    /**
+     * @param ProductDetail $productDetail
+     * @param string $paymentMethod
+     * @param $subtotal
+     * @return float|int
+     */
+    public static function getProductTotalDiscount(ProductDetail $productDetail, string $paymentMethod, $subtotal, int $quantity)
+    {
+        if ($subtotal <= 0) return 0;
+
+        $discount = $paymentMethod === 'CASH' ? $productDetail->discount_on_cash : $productDetail->discount_deferred;
+
+        if ($productDetail->variable) {
+            $offerClass = $productDetail->productable;
+            $productRange = $productDetail->productable->products()
+                ->where('quantity_minimum', '<=', $quantity)
+                ->where('quantity_maximum', '>=', $quantity)
+                ->first();
+
+            if (is_null($productRange)) {
+                $productRange = $productDetail->productable->products()
+                    ->where('quantity_minimum', '<=', $quantity)
+                    ->orderBy('quantity_minimum', 'desc')
+                    ->first();
+            }
+
+            $discount = (is_null($productRange) ? 0 : $paymentMethod === 'CASH')
+                ? $productRange->discount_on_cash
+                : $productRange->discount_deferred;
+
+        }
+
+        return ($subtotal / 100) * $discount;
+    }
+
+    /**
+     * @param $subtotal
+     * @param $discountValue
+     * @return int
+     */
+    public static function getProductTotal($subtotal, $discountValue)
+    {
+        $sum = $subtotal - $discountValue;
+        if ($sum <= 0) return 0;
+        return $sum;
     }
 }

@@ -47,10 +47,9 @@ class ProductDetailPortalResource extends JsonResource
         $payment = (!$request->payment OR $request->payment == 'CASH') ? '_on_cash' : '_deferred';
         $discount = "discount$payment";
         $price_with_discount = "price$payment";
-
         return [
             'productId' => $this->product_id,
-            'offerProductId' => $this->id,
+            'offerProductId' => $this->resource->id,
             'product' => $this->product ? $this->product->description : '',
             'eanCode' => $this->product ? $this->product->code_ean : '',
             'productDescription' => $this->product ? $this->product->description : '',

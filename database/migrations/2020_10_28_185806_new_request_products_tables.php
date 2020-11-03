@@ -17,6 +17,7 @@ class NewRequestProductsTables extends Migration
             $table->id();
             $table->unsignedBigInteger('request_id');
             $table->unsignedBigInteger('product_id');
+            $table->enum('status', ['ATTENDED', 'PARTIALLY_ATTENDED', 'NOT_ATTENDED'])->nullable();
             $table->bigInteger('return_id')->nullable();
             $table->string('partner_type');
             $table->bigInteger('partner_id');
@@ -25,7 +26,6 @@ class NewRequestProductsTables extends Migration
             $table->decimal('subtotal');
             $table->decimal('total_discount');
             $table->decimal('total');
-            $table->timestamps();
         });
     }
 

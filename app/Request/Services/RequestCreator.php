@@ -5,6 +5,7 @@ namespace App\Request\Services;
 use App\Jobs\AutomaticOffers;
 use App\Jobs\ManualOffers;
 use App\Offer;
+use App\ProductDetail;
 use App\Purchase;
 use App\Request;
 use App\Request\Contracts\RequestCreatable;
@@ -33,19 +34,12 @@ class RequestCreator implements RequestCreatable
                 throw new \Exception(sprintf('Tipo %s não encontrado', $data['modelId']));
             }
 
-            $collectProducts = collect($data['products']);
-            $modelProducts = $model->products()->whereIn('product_id', $collectProducts->pluck('productId')->all())->get();
-
-            $subtotal = $modelProducts->sum('factory_price');
-            dd($modelProducts);
-
-//            $offerProducts = $model->products()
-
             $data['updated_id'] = auth()->guard('api')->user()->id;
             $data['pharmacy_id'] = $data['pharmacyId'];
             $data['requestable_id'] = $data['modelId'];
             $data['requestable_type'] = $type;
-            $data['status'] = 'CREATED';
+            $data['payment_method'] = $data['paymentMethod'] === 'CASH' ? 'CASH' : 'TERM';
+            $data['status'] = 'WAITING_RETURN';
             $request = Request::create($data);
 
             $total = 0;
@@ -55,29 +49,51 @@ class RequestCreator implements RequestCreatable
             if (isset($data['products'])) {
                 foreach ($data['products'] as $product) {
 
-                    $modelProduct = $model->products()->where('product_id', $product['productId'])->first();
+                    $productDetails = ProductDetail::find($product['offerProduct']);
 
-
+                    $productSubtotal = Request::getProductSubTotal(
+                        $productDetails,
+                        $product['quantity'],
+                        $request->payment_method
+                    );
+                    $productTotalDiscount = Request::getProductTotalDiscount(
+                        $productDetails,
+                        $request->payment_method,
+                        $productSubtotal,
+                        $product['quantity']
+                    );
+                    $productTotal = Request::getProductTotal($productSubtotal, $productTotalDiscount);
 
                     $request->products()->attach($product['productId'], [
-                        'qtd' => $product['quantity'],
-                        'status' => 'CREATED',
-                        'value' => $product['value']
+                        'requested_quantity' => $product['quantity'],
+                        'status' => null,
+                        'subtotal' => $productSubtotal,
+                        'total_discount' => $productTotalDiscount,
+                        'total' => $productTotal,
                     ]);
+
+                    $totalDiscount += $productTotalDiscount;
+                    $subtotal += $productSubtotal;
+                    $total += $productTotal;
                 }
             }
+
+            $request->subtotal = $subtotal;
+            $request->total_discount = $totalDiscount;
+            $request->total = $total;
+            $request->save();
 
             $request->historics()->create([
                 'user' => auth()->guard('api')->user()->name,
                 'action' => 'Pedido criado',
-                'status' => 'ENVIADO'
+                'status' => 'CRIADO'
             ]);
 
             if ($model->send_type === 'AUTOMATIC') {
                 AutomaticOffers::dispatch($request);
             }
 
-            if ($model->send_type === 'MANUAL' && $data['modelType'] == 'OFFER') {
+            if ($model->send_type === 'MANUAL') {
                 ManualOffers::dispatch($model);
             }
 

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Offer;
 use App\Request as RequestModel;
 use App\Returns;
 use App\Services\FileReturn;
@@ -13,6 +14,8 @@ class RequestOffer
 {
     public function send(RequestModel $request, $firstSend = true)
     {
+        if ($request->requestable instanceof Offer::class && $request->requestable->no_automatic_sending) return;
+
         $partner = $request->requestable
                                ->partners()
                                ->orderBy('priority', 'ASC');

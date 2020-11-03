@@ -20,7 +20,7 @@ class RequestMonitoringResource extends JsonResource
             'offerName' => $this->requestable->name,
             'sendType' => $this->requestable->send_type,
             'sentDate' => $this->send_date,
-            'total' => $this->value,
+            'total' => $this->total,
             'status' => $this->status
         ];
     }

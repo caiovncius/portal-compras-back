@@ -16,8 +16,6 @@ class NewRequestTables extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pharmacy_id');
-            $table->string('partner_type');
-            $table->bigInteger('partner_id');
             $table->string('requestable_type');
             $table->bigInteger('requestable_id');
             $table->integer('priority')->default(1);
