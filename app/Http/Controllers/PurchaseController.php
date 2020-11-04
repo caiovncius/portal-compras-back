@@ -499,7 +499,8 @@ class PurchaseController extends Controller
      */
     public function get(Request $request, Purchase $model)
     {
-        $purchaseQuery = Purchase::query();
+        $purchaseQuery = Purchase::query()
+            ->where('id', $model->id);
 
         if ($request->query('pharmacyId') && !empty($request->query('pharmacyId'))) {
 
