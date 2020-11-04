@@ -216,6 +216,10 @@ class PurchaseController extends Controller
             $input = $request->all();
             $input['status'] = 'OPEN';
 
+            $input['productStates'] = $request->user()->pharmacies()->get()->map(function($pharmacy) {
+                return $pharmacy->city->state->id;
+            });
+
             $purchases = $this->retrieverService->getPurchases($input)->get();
 
             $purchases->each(function($purchase) use($request) {

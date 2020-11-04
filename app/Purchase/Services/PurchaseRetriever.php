@@ -49,6 +49,12 @@ class PurchaseRetriever implements PurchaseRetrievable
                 }
             }
 
+            if (isset($params['productStates']) && !empty($params['productStates'])) {
+                $query->whereHas('products', function ($related) use($params) {
+                    $related->whereIn('state_id', $params['productStates']);
+                });
+            }
+
             return $query;
 
         } catch (\Exception $exception) {
