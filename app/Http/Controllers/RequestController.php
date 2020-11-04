@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestProductRequest;
 use App\Http\Requests\RequestRequest;
+use App\Http\Requests\RequestUpdateProductsStatusesRequest;
+use App\Http\Requests\RequestUpdateProductsStatusRequest;
 use App\Http\Resources\RequestListResource;
 use App\Http\Resources\RequestMonitoringResource;
 use App\Http\Resources\RequestResource;
@@ -648,6 +650,36 @@ class RequestController extends Controller
             );
         } catch (\Exception $exception) {
             dd($exception);
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     * @param RequestUpdateProductsStatusRequest $request
+     * @param RequestModel $requestModel
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function massUpdateAllProductStatus(RequestUpdateProductsStatusRequest $request, RequestModel $requestModel)
+    {
+        try {
+            $this->updatorService->updateAllProductStatus($requestModel, $request->status, $request->returnId);
+            return response()->json(['message' => 'Status atualizado com sucesso'], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 400);
+        }
+    }
+
+    /**
+     * @param RequestUpdateProductsStatusesRequest $request
+     * @param RequestModel $requestModel
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateAllProductStatus(RequestUpdateProductsStatusesRequest $request, RequestModel $requestModel)
+    {
+        try {
+            $this->updatorService->massUpdateProductStatus($requestModel, $request->items);
+            return response()->json(['message' => 'Status atualizado com sucesso'], 200);
+        } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
     }

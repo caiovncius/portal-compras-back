@@ -31,6 +31,7 @@ class RequestProductResource extends JsonResource
         $return  = Returns::find($this->pivot->return_id);
         return [
             'product' => ProductResource::make($this->resource),
+            'productId' => $this->id,
             'offerDetails' => ProductDetailResource::make($this->offerDetails),
             'value' => $this->pivot->unit_value,
             'qtd' => $this->pivot->requested_quantity,

@@ -59,4 +59,56 @@ class RequestUpdater implements RequestUpdatable
             throw $e;
         }
     }
+
+    /**
+     * @param Request $request
+     * @param string $status
+     * @param int $returnId
+     * @return bool
+     * @throws \Exception
+     */
+    public function updateAllProductStatus(Request $request, string $status, int $returnId)
+    {
+        try {
+
+            $request->products()->each(function ($product) use($status, $returnId) {
+                $product->pivot->status = $status;
+                $product->pivot->return_id = $returnId;
+                $product->pivot->save();
+            });
+
+            return true;
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param array $items
+     * @return bool
+     * @throws \Exception
+     */
+    public function massUpdateProductStatus(Request $request, array $items)
+    {
+        try {
+
+            foreach ($items as $item) {
+
+                $product = $request->products()->where('products.id', $item['productId'])->first();
+
+                if (is_null($product)) continue;
+
+                $product->pivot->status = $item['status'];
+                $product->pivot->return_id = $item['returnId'];
+                $product->pivot->quantity_served = $item['attendedQuantity'];
+                $product->pivot->save();
+            }
+
+            return true;
+
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
 }

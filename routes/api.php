@@ -301,7 +301,6 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
          ->name('distributor.connection.update')
          ->middleware('acl:Distributor,r,w');
 
-
     Route::get('/returns', 'ReturnsController@list')
          ->name('return.list')
          ->middleware('acl:Return,r');
@@ -626,4 +625,12 @@ Route::middleware(['cors', 'auth:api'])->group(function(){
     Route::delete('/priorities/{priority}', 'PriorityController@delete')
         ->name('priority.delete')
         ->middleware('acl:Priority,r,w');
+
+    Route::put('/requests/{requestModel}/mass-update-products-status', 'RequestController@massUpdateAllProductStatus')
+        ->name('requests.products.massUpdateStatus')
+        ->middleware('acl:Request,r,w');
+
+    Route::put('/requests/{requestModel}/update-products-status', 'RequestController@updateAllProductStatus')
+        ->name('requests.products.updateStatus')
+        ->middleware('acl:Request,r,w');
 });

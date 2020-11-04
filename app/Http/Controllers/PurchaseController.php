@@ -513,7 +513,6 @@ class PurchaseController extends Controller
 
         $purchase = $purchaseQuery->first();
 
-
         return PurchaseListResource::make($purchase);
     }
 
