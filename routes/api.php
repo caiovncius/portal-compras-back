@@ -31,7 +31,7 @@ Route::get('/programs/export', 'ProgramController@export')
     ->name('program.export');
 
 
-Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
+Route::prefix('portal')->middleware(['auth:api', 'cors'])->group(function () {
 
     Route::get('offers', 'OfferController@portal')
          ->name('offer.portal');
@@ -49,6 +49,9 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
     Route::get('purchases/{model}/products', 'PurchaseController@products')
          ->name('purchase.products');
 
+    Route::post('requests', 'RequestController@store')
+        ->name('request.store');
+
     Route::get('requests', 'RequestController@list')
          ->name('request.list');
 
@@ -64,9 +67,6 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
     Route::get('requests/{model}', 'RequestController@get')
          ->name('request.get');
 
-    Route::post('requests', 'RequestController@store')
-         ->name('request.store');
-
     Route::put('requests/{model}', 'RequestController@update')
          ->name('request.update');
 
@@ -80,7 +80,7 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
         ->name('request.accompaniment');
 });
 
-Route::middleware(['cors', 'auth:api'])->group(function(){
+Route::middleware(['auth:api', 'cors'])->group(function(){
 
     Route::get('/functions', 'ProfileController@functions')
          ->name('functions');
