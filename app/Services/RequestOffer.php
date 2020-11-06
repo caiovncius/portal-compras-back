@@ -35,8 +35,7 @@ class RequestOffer
             if ($firstSend) {
                 $request->send_date = date('Y-m-d');
             }
-            $request->partner_id = $partner->id;
-            $request->partner_type = $partnerConnection->connectionable_type;
+
             $request->priority = $request->priority ? $request->priority++ : 1;
             $request->status = $upload ? 'WAITING_RETURN' : 'ERROR_ON_SEND';
             $request->save();
