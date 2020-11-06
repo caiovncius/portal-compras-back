@@ -14,7 +14,7 @@ class RequestOffer
 {
     public function send(RequestModel $request, $firstSend = true)
     {
-        if ($request->requestable instanceof Offer::class && $request->requestable->no_automatic_sending) return;
+        if ($request->requestable instanceof Offer && $request->requestable->no_automatic_sending) return;
 
         $partner = $request->requestable
                                ->partners()
