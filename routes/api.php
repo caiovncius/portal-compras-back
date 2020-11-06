@@ -71,6 +71,9 @@ Route::prefix('portal')->middleware(['auth:api'])->group(function () {
 
     Route::get('accompaniment', 'RequestController@accompaniments')
         ->name('request.accompaniment');
+
+    Route::post('new-order', 'RequestController@store')
+        ->name('request.store');
 });
 
 Route::middleware(['auth:api', 'cors'])->group(function(){
