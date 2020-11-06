@@ -29,6 +29,9 @@ Route::get('/programs/export', 'ProgramController@export')
 
 Route::prefix('portal')->middleware(['auth:api'])->group(function () {
 
+    Route::post('new-request', 'RequestController@store')
+        ->name('request.store');
+
     Route::get('offers', 'OfferController@portal')
          ->name('offer.portal');
 
@@ -44,9 +47,6 @@ Route::prefix('portal')->middleware(['auth:api'])->group(function () {
 
     Route::get('purchases/{model}/products', 'PurchaseController@products')
          ->name('purchase.products');
-
-    Route::post('/new-request', 'RequestController@store')
-        ->name('request.store');
 
     Route::get('requests', 'RequestController@list')
          ->name('request.list');
