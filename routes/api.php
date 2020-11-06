@@ -29,9 +29,6 @@ Route::get('/programs/export', 'ProgramController@export')
 
 Route::prefix('portal')->middleware(['auth:api'])->group(function () {
 
-    Route::post('new-request', 'RequestController@store')
-        ->name('request.store');
-
     Route::get('offers', 'OfferController@portal')
          ->name('offer.portal');
 
@@ -77,6 +74,9 @@ Route::prefix('portal')->middleware(['auth:api'])->group(function () {
 });
 
 Route::middleware(['auth:api', 'cors'])->group(function(){
+
+    Route::post('new-request', 'RequestController@store')
+        ->name('request.store');
 
     Route::get('/functions', 'ProfileController@functions')
          ->name('functions');
