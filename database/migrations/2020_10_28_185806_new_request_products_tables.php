@@ -22,7 +22,7 @@ class NewRequestProductsTables extends Migration
             $table->integer('requested_quantity');
             $table->integer('quantity_served')->nullable();
             $table->decimal('unit_value');
-            $table->integer('dicount_percentage')->nullable();
+            $table->integer('discount_percentage')->nullable();
             $table->decimal('subtotal');
             $table->decimal('total_discount');
             $table->decimal('total');
