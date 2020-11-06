@@ -53,6 +53,7 @@ class RequestRequest extends FormRequest
             'value' => 'required|numeric',
             'products' => 'array|required',
             'products.*.productId' => 'required|exists:products,id',
+            'products.*.offerProduct' => 'required|exists:product_details,id',
             'products.*.quantity' => 'required|numeric',
             'products.*.value' => 'required|numeric',
         ];
@@ -73,6 +74,7 @@ class RequestRequest extends FormRequest
             'paymentMethod' => 'Meio de pagamento',
             'value' => 'Valor total',
             'products.*.productId' => 'Id do produto',
+            'products.*.offerProduct' => 'Produto da oferta é obrigatório',
             'products.*.quantity' => 'Quantidade',
             'products.*.value' => 'Valor do produto',
         ];
