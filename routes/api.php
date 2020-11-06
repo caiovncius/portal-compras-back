@@ -72,7 +72,7 @@ Route::prefix('portal')->middleware(['auth:api'])->group(function () {
     Route::get('accompaniment', 'RequestController@accompaniments')
         ->name('request.accompaniment');
 
-    Route::post('new-order', 'RequestController@store')
+    Route::post('requests', 'RequestController@store')
         ->name('request.store');
 });
 
