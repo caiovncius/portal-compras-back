@@ -45,7 +45,7 @@ Route::prefix('portal')->middleware(['auth:api'])->group(function () {
     Route::get('purchases/{model}/products', 'PurchaseController@products')
          ->name('purchase.products');
 
-    Route::post('requests', 'RequestController@store')
+    Route::post('requests/create', 'RequestController@store')
         ->name('request.store');
 
     Route::get('requests', 'RequestController@list')
