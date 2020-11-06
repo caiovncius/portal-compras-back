@@ -27,7 +27,7 @@ Route::get('/programs/export', 'ProgramController@export')
     ->name('program.export');
 
 
-Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
+Route::prefix('portal')->middleware(['auth:api'])->group(function () {
 
     Route::get('offers', 'OfferController@portal')
          ->name('offer.portal');
