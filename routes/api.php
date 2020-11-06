@@ -45,7 +45,7 @@ Route::prefix('portal')->middleware(['cors', 'auth:api'])->group(function () {
     Route::get('purchases/{model}/products', 'PurchaseController@products')
          ->name('purchase.products');
 
-    Route::post('/new-requests', 'RequestController@store')
+    Route::post('/new-request', 'RequestController@store')
         ->name('request.store');
 
     Route::get('requests', 'RequestController@list')
