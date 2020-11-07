@@ -247,6 +247,7 @@ class OfferController extends Controller
                     ? false
                     : $offer->requests()
                         ->where('pharmacy_id', $request->query('pharmacyId'))
+                        ->where('status', '!=', 'CANCELED')
                         ->count() > 0;
                 $offerRequest = $offer->requests()
                     ->where('pharmacy_id', $request->query('pharmacyId'))

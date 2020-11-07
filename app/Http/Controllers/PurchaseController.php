@@ -227,6 +227,7 @@ class PurchaseController extends Controller
                     ? false
                     : $purchase->requests()
                         ->where('pharmacy_id', $request->query('pharmacyId'))
+                        ->where('status', '!=', 'CANCELED')
                         ->count() > 0;
 
                 $purchaseRequest = $purchase->requests()
