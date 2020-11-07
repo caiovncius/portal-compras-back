@@ -49,7 +49,7 @@ class RequestCreator implements RequestCreatable
             if (isset($data['products'])) {
                 foreach ($data['products'] as $product) {
 
-                    $productDetails = ProductDetail::find($product['offerProduct']);
+                    $productDetails = ProductDetail::find($product['offerProductId']);
 
                     $productUnitValue = Request::getProductUnitValue(
                         $productDetails,

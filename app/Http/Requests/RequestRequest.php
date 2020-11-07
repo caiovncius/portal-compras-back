@@ -74,7 +74,7 @@ class RequestRequest extends FormRequest
             'paymentMethod' => 'Meio de pagamento',
             'value' => 'Valor total',
             'products.*.productId' => 'Id do produto',
-            'products.*.offerProduct' => 'Produto da oferta é obrigatório',
+            'products.*.offerProductId' => 'Produto da oferta é obrigatório',
             'products.*.quantity' => 'Quantidade',
             'products.*.value' => 'Valor do produto',
         ];
