@@ -250,6 +250,7 @@ class OfferController extends Controller
                         ->count() > 0;
                 $offerRequest = $offer->requests()
                     ->where('pharmacy_id', $request->query('pharmacyId'))
+                    ->where('status', '!=', 'CANCELED')
                     ->first();
 
                 $offer->requestId = !is_null($offerRequest) ? $offerRequest->id : null;

@@ -231,6 +231,7 @@ class PurchaseController extends Controller
 
                 $purchaseRequest = $purchase->requests()
                     ->where('pharmacy_id', $request->query('pharmacyId'))
+                    ->where('status', '!=', 'CANCELED')
                     ->first();
 
                 $purchase->requestId = !is_null($purchaseRequest) ? $purchaseRequest->id : null;

@@ -31,7 +31,6 @@ class RequestOffer
             $partner = $request->requestable->partner;
         }
 
-
         $partnerConnection = $partner->connection;
         if ($partnerConnection) {
             $connection = (new FtpService)->setConnection($partnerConnection);
