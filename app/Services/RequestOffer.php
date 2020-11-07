@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Offer;
+use App\Purchase;
 use App\Request as RequestModel;
 use App\Returns;
 use App\Services\FileReturn;
@@ -16,14 +17,21 @@ class RequestOffer
     {
         if ($request->requestable instanceof Offer && $request->requestable->no_automatic_sending) return;
 
-        $partner = $request->requestable
-                               ->partners()
-                               ->orderBy('priority', 'ASC');
-        if (! $firstSend) {
-            $partner = $partner->skip($request->priority);
+        if ($request->requestable instanceof  Offer) {
+            $partner = $request->requestable
+                ->partners()
+                ->orderBy('priority', 'ASC');
+
+            if (! $firstSend) {
+                $partner = $partner->skip($request->priority);
+            }
+
+            $partner = $partner->first()->partner;
+        } else {
+            $partner = $request->requestable->partner;
         }
 
-        $partner = $partner->first()->partner;
+
         $partnerConnection = $partner->connection;
         if ($partnerConnection) {
             $connection = (new FtpService)->setConnection($partnerConnection);
