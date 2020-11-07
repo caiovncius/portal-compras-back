@@ -53,7 +53,7 @@ class RequestRequest extends FormRequest
             'value' => 'required|numeric',
             'products' => 'array|required',
             'products.*.productId' => 'required|exists:products,id',
-            'products.*.offerProduct' => 'required|exists:product_details,id',
+            'products.*.offerProductId' => 'required|exists:product_details,id',
             'products.*.quantity' => 'required|numeric',
             'products.*.value' => 'required|numeric',
         ];
