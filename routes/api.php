@@ -76,7 +76,7 @@ Route::prefix('portal')->middleware(['auth:api'])->group(function () {
         ->name('request.store');
 });
 
-Route::middleware(['auth:api', 'cors'])->group(function(){
+Route::middleware(['auth:api', 'cors'])->group(function() {
 
     Route::post('new-request', 'RequestController@store')
         ->name('request.store');
@@ -626,10 +626,8 @@ Route::middleware(['auth:api', 'cors'])->group(function(){
         ->middleware('acl:Priority,r,w');
 
     Route::put('/requests/{requestModel}/mass-update-products-status', 'RequestController@massUpdateAllProductStatus')
-        ->name('requests.products.massUpdateStatus')
-        ->middleware('acl:Request,r,w');
+        ->name('requests.products.massUpdateStatus');
 
     Route::put('/requests/{requestModel}/update-products-status', 'RequestController@updateAllProductStatus')
-        ->name('requests.products.updateStatus')
-        ->middleware('acl:Request,r,w');
+        ->name('requests.products.updateStatus');
 });
