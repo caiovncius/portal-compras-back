@@ -95,7 +95,8 @@ class Request extends Model
             'quantity_served',
             'subtotal',
             'total_discount',
-            'total'
+            'total',
+            'status'
         ]);
     }
 
