@@ -138,7 +138,7 @@ class Request extends Model
                 return 'Atendido';
                 break;
 
-            case 'ATTENDED_PARTIAL':
+            case 'PARTIALLY_ATTENDED':
                 return 'Atendido Parcialmente';
                 break;
 
