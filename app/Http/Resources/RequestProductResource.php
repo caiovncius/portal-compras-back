@@ -40,7 +40,7 @@ class RequestProductResource extends JsonResource
             'subtotal' => $this->pivot->subtotal,
             'returnId' => $this->pivot->return_id,
             'status' => $this->pivot->status,
-            'attendedQuantity' => $this->pivot->served_quantity,
+            'attendedQuantity' => $this->pivot->quantity_served,
             'reason' => !is_null($return) ? $return->description : null,
         ];
     }
