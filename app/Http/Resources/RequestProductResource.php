@@ -39,7 +39,7 @@ class RequestProductResource extends JsonResource
             'discount' => $this->pivot->discount_percentage,
             'subtotal' => $this->pivot->subtotal,
             'returnId' => $this->pivot->return_id,
-            'status' => Request::getProductStatusText($this->pivot->status),
+            'status' => $this->pivot->status,
             'quantityServed' => $this->pivot->served_quantity,
             'reason' => !is_null($return) ? $return->description : null,
         ];
