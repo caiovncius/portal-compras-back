@@ -34,13 +34,13 @@ class RequestProductResource extends JsonResource
             'productId' => $this->id,
             'offerDetails' => ProductDetailResource::make($this->offerDetails),
             'value' => $this->pivot->unit_value,
-            'qtd' => $this->pivot->requested_quantity,
+            'quantity' => $this->pivot->requested_quantity,
             'total' => $this->pivot->total,
             'discount' => $this->pivot->discount_percentage,
             'subtotal' => $this->pivot->subtotal,
             'returnId' => $this->pivot->return_id,
             'status' => $this->pivot->status,
-            'quantityServed' => $this->pivot->served_quantity,
+            'attendedQuantity' => $this->pivot->served_quantity,
             'reason' => !is_null($return) ? $return->description : null,
         ];
     }
