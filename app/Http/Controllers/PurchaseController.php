@@ -223,6 +223,12 @@ class PurchaseController extends Controller
             $purchases = $this->retrieverService->getPurchases($input)->get();
 
             $purchases->each(function($purchase) use($request) {
+                $purchase->hasRequest = !$request->query('pharmacyId')
+                    ? false
+                    : $purchase->requests()
+                        ->where('pharmacy_id', $request->query('pharmacyId'))
+                        ->where('status', '!=', 'CANCELED')
+                        ->count() > 0;
 
                 $purchaseRequest = $purchase->requests()
                     ->where('pharmacy_id', $request->query('pharmacyId'))

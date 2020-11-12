@@ -84,6 +84,7 @@ class PurchasePortalResource extends JsonResource
             'partner' => !is_null($this->partner) ?  PartnerListResource::make($this->partner) : null,
             'partnerId' => !is_null($this->partner) ?  $this->partner->id : null,
             'contacts' => $this->contacts,
+            'hasRequest' => $this->hasRequest,
             'requestId' => $this->requestId,
             'products' => ProductDetailPortalResource::collection($this->products),
             'updated_user' => $this->user ? $this->user->name : '',
