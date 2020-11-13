@@ -9,7 +9,6 @@ use App\ProductDetail;
 use App\Purchase;
 use App\Request;
 use App\Request\Contracts\RequestCreatable;
-use App\Services\RequestOffer;
 
 class RequestCreator implements RequestCreatable
 {
@@ -110,7 +109,7 @@ class RequestCreator implements RequestCreatable
             }
 
             if ($model->send_type === 'MANUAL') {
-                ManualOffers::dispatch($model);
+                ManualOffers::dispatch($model, $request);
             }
 
             return $request;

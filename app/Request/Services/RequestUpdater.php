@@ -74,6 +74,11 @@ class RequestUpdater implements RequestUpdatable
             $request->products()->each(function ($product) use($status, $returnId) {
                 $product->pivot->status = $status;
                 $product->pivot->return_id = $returnId;
+
+                if ($status === 'ATTENDED') {
+                    $product->pivot->quantity_served = $product->pivot->requested_quantity;
+                }
+
                 $product->pivot->save();
             });
 
