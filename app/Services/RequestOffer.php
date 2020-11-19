@@ -71,12 +71,22 @@ class RequestOffer
         $requests = RequestModel::where('status', 'WAITING_RETURN')
                                 ->where('requestable_type', 'App\Offer')
                                 ->get();
+
         foreach ($requests as $request) {
-            $partnerConnection = $request->partner->connection;
+
+            if ($request->requestable instanceof Offer) {
+                $partner = Offer::getOfferCurrentPartner($request->requestable, 0);
+
+                if (is_null($partner)) return;
+                $partnerConnection = $partner->connection;
+            } else {
+                $partnerConnection = $request->partner->connection;
+            }
+
             $connection = (new FtpService)->setConnection($partnerConnection);
             $file = (new RequestToFile)->filename($request);
             $mask = str_replace('*.', '', $partnerConnection->mask);
-            $filename = $partnerConnection->path_return.'/'.str_replace('ped', $mask, $file);
+            $filename = $partnerConnection->path_return.'/'.str_replace('.ped', $mask, $file);
             Log::info('Running file:' . $filename);
             if (! \Storage::disk('onthefly')->exists($filename)) {
                 Log::info('Return file not found on partner server:' . $filename);
