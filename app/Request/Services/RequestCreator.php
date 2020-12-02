@@ -98,12 +98,6 @@ class RequestCreator implements RequestCreatable
             $request->total = $total;
             $request->save();
 
-            $request->historics()->create([
-                'user' => auth()->guard('api')->user()->name,
-                'action' => 'Pedido criado',
-                'status' => 'CRIADO'
-            ]);
-
             if ($model->send_type === 'AUTOMATIC') {
                 AutomaticOffers::dispatch($request)->delay(now()->addSeconds(20))->onQueue('default');
             }
