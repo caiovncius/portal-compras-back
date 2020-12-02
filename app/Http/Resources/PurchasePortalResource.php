@@ -64,7 +64,7 @@ class PurchasePortalResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'image' => $this->image,
+            'image' => is_null($this->image) ? null : env('APP_URL') . $this->image,
             'code' => $this->code,
             'name' => $this->name,
             'sendType' => $this->send_type,
