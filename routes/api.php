@@ -388,7 +388,7 @@ Route::middleware(['auth:api', 'cors'])->group(function() {
          ->name('purchase.store')
          ->middleware('acl:Purchase,r,w');
 
-    Route::post('/purchases/{purchase}/import-procust', 'PurchaseController@importProducts')
+    Route::post('/purchases/{purchase}/import-products', 'PurchaseController@importProducts')
         ->name('purchase.import')
         ->middleware('acl:Purchase,r,w');
 

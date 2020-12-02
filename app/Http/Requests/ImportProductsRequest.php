@@ -25,10 +25,10 @@ class ImportProductsRequest extends FormRequest
     {
         return [
             'startLine' => 'required|numeric',
-            'familyMinQtd' => 'required|string',
+            'familyMinQtd' => 'string|nullable',
             'stateId' => 'required|exists:states,id',
             'eanCode' => 'required|string',
-            'minQtd' => 'required|string',
+            'minQtd' => 'string|nullable',
             'qtdTo' => 'string|nullable',
             'qtdFrom' => 'string|nullable',
             'fabPrice' => 'string|nullable',

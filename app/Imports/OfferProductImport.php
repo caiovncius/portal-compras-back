@@ -15,6 +15,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Validators\Failure;
 use Maatwebsite\Excel\Validators\ValidationException;
 
 class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, SkipsOnFailure, SkipsOnError, WithStartRow
@@ -38,6 +39,9 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
      */
     private $model;
 
+    /**
+     * @var int
+     */
     private $rows = 0;
 
     /**
@@ -80,45 +84,52 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
                     $onFailure('Código EAN é obrigatório');
                 }
 
+
                 if (is_null($this->getProduct($value))) {
                     $onFailure('Produto não encontrado. Código EAN: ' . $value);
                 }
             },
-            $this->getColIndex($this->colsMap['familyMinQtd']) => 'required|numeric',
-            $this->getColIndex($this->colsMap['minQtd']) => 'required|numeric',
             $this->getColIndex($this->colsMap['startLine']) => 'required|numeric',
         ];
 
+        if (!is_null($this->getIndexByColMap('familyMinQtd'))) {
+            $validation[$this->getColIndex($this->colsMap['familyMinQtd'])] = 'nullable';
+        }
+
+        if (!is_null($this->getIndexByColMap('minQtd'))) {
+            $validation[$this->getColIndex($this->colsMap['minQtd'])] = 'nullable';
+        }
+
         if (!is_null($this->getIndexByColMap('qtdTo'))) {
-            $validation[$this->getIndexByColMap('qtdTo')] = 'numeric|nullable';
+            $validation[$this->getIndexByColMap('qtdTo')] = 'nullable';
         }
 
         if (!is_null($this->getIndexByColMap('qtdFrom'))) {
-            $validation[$this->getIndexByColMap('qtdFrom')] = 'numeric|nullable';
+            $validation[$this->getIndexByColMap('qtdFrom')] = 'nullable';
         }
 
         if (!is_null($this->getIndexByColMap('fabPrice'))) {
-            $validation[$this->getIndexByColMap('fabPrice')] = 'numeric|nullable';
+            $validation[$this->getIndexByColMap('fabPrice')] = 'nullable';
         }
 
         if (!is_null($this->getIndexByColMap('discountAv'))) {
-            $validation[$this->getIndexByColMap('discountAv')] = 'numeric|nullable';
+            $validation[$this->getIndexByColMap('discountAv')] = 'nullable';
         }
 
         if (!is_null($this->getIndexByColMap('priceAv'))) {
-            $validation[$this->getIndexByColMap('priceAv')] = 'numeric|nullable';
+            $validation[$this->getIndexByColMap('priceAv')] = 'nullable';
         }
 
         if (!is_null($this->getIndexByColMap('discountAp'))) {
-            $validation[$this->getIndexByColMap('discountAp')] = 'numeric|nullable';
+            $validation[$this->getIndexByColMap('discountAp')] = 'nullable';
         }
 
         if (!is_null($this->getIndexByColMap('priceAp'))) {
-            $validation[$this->getIndexByColMap('priceAp')] = 'numeric|nullable';
+            $validation[$this->getIndexByColMap('priceAp')] = 'nullable';
         }
 
         if (!is_null($this->getIndexByColMap('required'))) {
-            $validation[$this->getIndexByColMap('required')] = 'string|nullable|in:SIM,NÃO';
+            $validation[$this->getIndexByColMap('required')] = 'nullable|in:SIM,NÃO';
         }
 
         return $validation;
@@ -130,6 +141,7 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
      */
     public function model(array $row)
     {
+
         ++$this->rows;
         $clearRows = array_values($row);
         $product = $this->getProductId($clearRows);
@@ -138,12 +150,24 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
         $discountOnDeferred = !is_null($this->getIndexByColMap('discountAp')) ? $row[$this->getIndexByColMap('discountAp')] : 0;
         $priceOnCash = !is_null($this->getIndexByColMap('priceAv')) ? self::cleanNumber($row[$this->getIndexByColMap('priceAv')]) : ProductDetail::sumDiscount($factoryPrice, $discountOnCash);
         $priceDeferred = !is_null($this->getIndexByColMap('priceAp')) ? self::cleanNumber($row[$this->getIndexByColMap('priceAp')]) : ProductDetail::sumDiscount($factoryPrice, $discountOnDeferred);
+        $minimumPerFamily = !is_null($this->getIndexByColMap('familyMinQtd')) ? $this->getIndexByColMap('familyMinQtd') : null;
+        $minimum = !is_null($this->getIndexByColMap('minQtd')) ? $this->getIndexByColMap('minQtd') : null;
+
+
+        if (is_null($product)) {
+            $this->failures[$this->getColIndex($this->colsMap['eanCode'])] = new Failure(
+                $this->rows,
+                $this->getColIndex($this->colsMap['eanCode']),
+                ['Produto não encontrado pelo código EAN']
+            );
+            return;
+        }
 
         return $this->model->products()->create([
             'product_id' => !is_null($product) ? $product->id : null,
             'state_id' => $this->colsMap['stateId'],
-            'minimum_per_family' => $row[$this->getIndexByColMap('familyMinQtd')],
-            'minimum' => $row[$this->getIndexByColMap('minQtd')],
+            'minimum_per_family' => $minimumPerFamily,
+            'minimum' => $minimum,
             'factory_price' => $factoryPrice,
             'discount_on_cash' => $discountOnCash,
             'price_on_cash' => $priceOnCash,
@@ -185,7 +209,7 @@ class OfferProductImport implements ToModel, WithValidation, WithBatchInserts, S
      */
     protected function getColIndex(string $col)
     {
-        return array_search($col, $this->cols);
+        return array_search(strtoupper($col), $this->cols);
     }
 
     /**
