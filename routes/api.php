@@ -26,6 +26,9 @@ Route::get('/distributors/export', 'DistributorController@export')
 Route::get('/programs/export', 'ProgramController@export')
     ->name('program.export');
 
+Route::get('/requests/export', 'RequestController@export')
+    ->name('requests.export');
+
 
 Route::prefix('portal')->middleware(['auth:api'])->group(function () {
 

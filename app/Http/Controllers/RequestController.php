@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DistributorExport;
+use App\Exports\RequestExport;
 use App\Http\Requests\RequestProductRequest;
 use App\Http\Requests\RequestRequest;
 use App\Http\Requests\RequestUpdateProductsStatusesRequest;
@@ -729,5 +731,17 @@ class RequestController extends Controller
             'totalDiscount' => $productTotalDiscount,
             'total' => $productTotal,
         ]);
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function export(Request $request)
+    {
+        if (is_null($request->query('access_token')) || $request->query('access_token') != env('EXPORT_TOKEN')) {
+            abort(403);
+        }
+
+        return \Maatwebsite\Excel\Facades\Excel::download(new RequestExport(), 'pedidos.xls');
     }
 }
