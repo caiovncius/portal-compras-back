@@ -19,7 +19,7 @@ class AttendancesExport implements FromCollection, WithHeadings
             ->select([
                 'requests.id',
                 'requests.status',
-                'if(requests.payment_method = \'CASH\', \'à vista\', \'à prazo\') as payment_method',
+                'requests.payment_method',
                 'pharmacies.name',
                 'pharmacies.company_name',
                 'pharmacies.cnpj',
