@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AttendancesExport;
 use App\Exports\DistributorExport;
 use App\Exports\RequestExport;
 use App\Http\Requests\RequestProductRequest;
@@ -742,6 +743,6 @@ class RequestController extends Controller
             abort(403);
         }
 
-        return \Maatwebsite\Excel\Facades\Excel::download(new RequestExport(), 'pedidos.xls');
+        return \Maatwebsite\Excel\Facades\Excel::download(new AttendancesExport(), 'pedidos.xls');
     }
 }
