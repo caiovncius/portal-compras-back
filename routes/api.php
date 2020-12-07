@@ -74,6 +74,9 @@ Route::prefix('portal')->middleware(['auth:api'])->group(function () {
 
     Route::post('requests', 'RequestController@store')
         ->name('request.store');
+
+    Route::post('requests/sum-item', 'RequestController@sumItem')
+        ->name('request.sum.item');
 });
 
 Route::middleware(['auth:api', 'cors'])->group(function() {

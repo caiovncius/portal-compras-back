@@ -40,6 +40,7 @@ class ProductDetailResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'productOffer' => $this->id,
             'discountDeferred' => $this->discount_deferred,
             'discountOnCash' => $this->discount_on_cash,
             'minimum' => $this->minimum,

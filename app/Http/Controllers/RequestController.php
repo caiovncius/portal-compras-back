@@ -6,9 +6,11 @@ use App\Http\Requests\RequestProductRequest;
 use App\Http\Requests\RequestRequest;
 use App\Http\Requests\RequestUpdateProductsStatusesRequest;
 use App\Http\Requests\RequestUpdateProductsStatusRequest;
+use App\Http\Requests\SumItemRequest;
 use App\Http\Resources\RequestListResource;
 use App\Http\Resources\RequestMonitoringResource;
 use App\Http\Resources\RequestResource;
+use App\ProductDetail;
 use App\Request as RequestModel;
 use App\Request\Contracts\RequestCreatable;
 use App\Request\Contracts\RequestProductUpdatable;
@@ -682,5 +684,50 @@ class RequestController extends Controller
         } catch (\Exception $exception) {
             return response()->json(['error' => $exception->getMessage()], 400);
         }
+    }
+
+    /**
+     * @param SumItemRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sumItem(SumItemRequest $request)
+    {
+        $productDetails = ProductDetail::find($request->offerProduct);
+
+        $productUnitValue = \App\Request::getProductUnitValue(
+            $productDetails,
+            $request->paymentMethod,
+            $request->quantity
+        );
+
+        $productSubtotal = \App\Request::getProductSubTotal(
+            $productDetails,
+            $request->quantity,
+            $request->paymentMethod
+        );
+
+        $productTotalDiscount = \App\Request::getProductTotalDiscount(
+            $productDetails,
+            $request->paymentMethod,
+            $productSubtotal,
+            $request->quantity
+        );
+
+        $productTotal = \App\Request::getProductTotal($productSubtotal, $productTotalDiscount);
+
+        $discount = \App\Request::getProductDiscount(
+            $productDetails,
+            $request->paymentMethod,
+            $request->quantity
+        );
+
+        return response()->json([
+            'quantity' => $request->quantity,
+            'discountPercentage' => $discount,
+            'unitValue' => $productUnitValue,
+            'subtotal' => $productSubtotal,
+            'totalDiscount' => $productTotalDiscount,
+            'total' => $productTotal,
+        ]);
     }
 }

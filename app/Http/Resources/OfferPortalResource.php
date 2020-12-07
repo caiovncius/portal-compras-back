@@ -36,7 +36,7 @@ class OfferPortalResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'image' => $this->image,
+            'image' => is_null($this->image) ? null : env('APP_URL') . $this->image,
             'code' => $this->code,
             'name' => $this->name,
             'startDate' => $this->start_date,
