@@ -34,7 +34,7 @@ class OfferCreator implements OfferCreatable
                 $data['image'] = FileUploader::uploadFile($data['image']);
             }
 
-            $data['condition_id'] = isset($data['conditionId']) ? $data['conditionId'] : null;
+            $data['condition_id'] = isset($data['condition']) ? $data['condition'] : null;
             $model = Offer::create($data);
 
             if ($data['sendType'] === 'AUTOMATIC' && isset($data['partners']) && !empty($data['partners'])) {

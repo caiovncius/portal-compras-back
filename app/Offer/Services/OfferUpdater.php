@@ -36,7 +36,7 @@ class OfferUpdater implements OfferUpdatable
                 $model->image = FileUploader::uploadFile($data['image']);
             }
 
-            $model->condition_id = isset($data['conditionId']) ? $data['conditionId'] : null;
+            $model->condition_id = isset($data['condition']) ? $data['condition'] : null;
             $model->save();
             $model->partners()->delete();
 
