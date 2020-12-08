@@ -707,27 +707,6 @@ class OfferController extends Controller
             $query = $programQuery->union($distributorsQuery);
         }
 
-
-//        $distributorsQuery = Distributor::query()->select('id','name', 'cnpj as type');
-//        $programsQuery = Program::query()->select('id','name', 'status as type');
-//
-//        if ($request->query('name')) {
-//            dd('lalal');
-//            $distributorsQuery->where('name', 'like', '%' . $request->query('name').'%');
-//            $distributorsQuery->where('name', 'like', '%' . $request->query('name').'%');
-//        }
-//
-//        $unionQuery = $programsQuery->unionAll($distributorsQuery);
-//
-//
-//        if ($request->query('type')) {
-//            if ($request->query('type') === 'DISTRIBUTOR') {
-//                $unionQuery = Distributor::query()->select('id','name', 'cnpj as type');
-//            } else {
-//                $unionQuery = Program::query()->select('id','name', 'status as type');
-//            }
-//        }
-
         $result = PartnerToAutocompleteResource::collection($query->get());
         return response()->json(['data' => $result]);
     }
