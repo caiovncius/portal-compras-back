@@ -44,7 +44,7 @@ class RequestListResource extends JsonResource
             'offerName' => $this->requestable->name,
             'offerCode' => $this->requestable->code,
             'offerType' => $this->requestable_type === 'App\Offer' ? 'Oferta Associada' : 'Compras Coletivas',
-            'offerCondition' => $this->requestable->condition ? true : false,
+            'offerCondition' => !is_null($this->requestable->condition_id),
             'sendType' => $this->requestable->send_type,
             'status' => $this->status,
             'subtotal' => $this->subtotal,
