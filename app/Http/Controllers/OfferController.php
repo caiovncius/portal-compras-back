@@ -680,26 +680,55 @@ class OfferController extends Controller
      */
     public function getAllPartners(Request $request)
     {
+
         $distributorsQuery = Distributor::query()->select('id','name', 'cnpj as type');
-        $programsQuery = Program::query()->select('id','name', 'status as type');
-
-        if ($request->query('name')) {
-            $distributorsQuery->where('name', 'like', '%' . $request->query('name').'%');
-            $distributorsQuery->where('name', 'like', '%' . $request->query('name').'%');
-        }
-
-        $unionQuery = $programsQuery->unionAll($distributorsQuery);
+        $programQuery = Program::query()->select('id','name', 'status as type');
 
 
         if ($request->query('type')) {
+
             if ($request->query('type') === 'DISTRIBUTOR') {
-                $unionQuery = Distributor::query()->select('id','name', 'cnpj as type');
+                $query = Distributor::query()->select('id','name', 'cnpj as type');
             } else {
-                $unionQuery = Program::query()->select('id','name', 'status as type');
+                $query = Program::query()->select('id','name', 'status as type');
             }
+
+            if ($request->query('name')) {
+                $query->where('name', 'like', '%' . $request->query('name').'%');
+            }
+
+        } else {
+
+            if ($request->query('name')) {
+                $distributorsQuery->where('name', 'like', '%' . $request->query('name').'%');
+                $programQuery->where('name', 'like', '%' . $request->query('name').'%');
+            }
+
+            $query = $programQuery->union($distributorsQuery);
         }
 
-        $result = PartnerToAutocompleteResource::collection($unionQuery->get());
+
+//        $distributorsQuery = Distributor::query()->select('id','name', 'cnpj as type');
+//        $programsQuery = Program::query()->select('id','name', 'status as type');
+//
+//        if ($request->query('name')) {
+//            dd('lalal');
+//            $distributorsQuery->where('name', 'like', '%' . $request->query('name').'%');
+//            $distributorsQuery->where('name', 'like', '%' . $request->query('name').'%');
+//        }
+//
+//        $unionQuery = $programsQuery->unionAll($distributorsQuery);
+//
+//
+//        if ($request->query('type')) {
+//            if ($request->query('type') === 'DISTRIBUTOR') {
+//                $unionQuery = Distributor::query()->select('id','name', 'cnpj as type');
+//            } else {
+//                $unionQuery = Program::query()->select('id','name', 'status as type');
+//            }
+//        }
+
+        $result = PartnerToAutocompleteResource::collection($query->get());
         return response()->json(['data' => $result]);
     }
 }
