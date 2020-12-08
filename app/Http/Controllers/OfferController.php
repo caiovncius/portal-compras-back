@@ -681,22 +681,25 @@ class OfferController extends Controller
     public function getAllPartners(Request $request)
     {
         $distributorsQuery = Distributor::query()->select('id','name', 'cnpj as type');
+        $programsQuery = Program::query()->select('id','name', 'status as type');
 
-        $programsQuery = Program::query()->select('id','name', 'status as type')->unionAll($distributorsQuery);
+        if ($request->query('name')) {
+            $distributorsQuery->where('name', 'like', '%' . $request->query('name').'%');
+            $distributorsQuery->where('name', 'like', '%' . $request->query('name').'%');
+        }
+
+        $unionQuery = $programsQuery->unionAll($distributorsQuery);
+
 
         if ($request->query('type')) {
             if ($request->query('type') === 'DISTRIBUTOR') {
-                $programsQuery = Distributor::query()->select('id','name', 'cnpj as type');
+                $unionQuery = Distributor::query()->select('id','name', 'cnpj as type');
             } else {
-                $programsQuery = Program::query()->select('id','name', 'status as type');
+                $unionQuery = Program::query()->select('id','name', 'status as type');
             }
         }
 
-        if ($request->query('name')) {
-            $programsQuery->where('name', 'like', '%' . $request->query('name').'%');
-        }
-
-        $result = PartnerToAutocompleteResource::collection($programsQuery->get());
+        $result = PartnerToAutocompleteResource::collection($unionQuery->get());
         return response()->json(['data' => $result]);
     }
 }
