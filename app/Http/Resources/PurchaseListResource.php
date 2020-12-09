@@ -73,7 +73,7 @@ class PurchaseListResource extends JsonResource
             'validityEnd' => $this->validity_end,
             'untilBilling' => $this->until_billing,
             'billingMeasure' => $this->billing_measure,
-            'minimumPrice' => $this->minimum_billing_value,
+            'minimumBillingValue' => $this->minimum_billing_value,
             'minimumBillingQuantity' => $this->minimum_billing_quantity,
             'totalIntentionsValue' => $this->total_intentions_value,
             'totalIntentionsQuantity' => $this->total_intentions_quantity,
