@@ -38,12 +38,13 @@ class RequestCreator implements RequestCreatable
             $data['requestable_id'] = $data['modelId'];
             $data['requestable_type'] = $type;
             $data['payment_method'] = $data['paymentMethod'] === 'CASH' ? 'CASH' : 'TERM';
-            $data['status'] = 'WAITING_RETURN';
+            $data['status'] = 'CREATED';
             $request = Request::create($data);
 
             $total = 0;
             $subtotal = 0;
             $totalDiscount = 0;
+            $sumItems = 0;
 
             if (isset($data['products'])) {
                 foreach ($data['products'] as $product) {
@@ -90,6 +91,8 @@ class RequestCreator implements RequestCreatable
                     $totalDiscount += $productTotalDiscount;
                     $subtotal += $productSubtotal;
                     $total += $productTotal;
+
+                    $sumItems += $product['quantity'];
                 }
             }
 
@@ -98,7 +101,14 @@ class RequestCreator implements RequestCreatable
             $request->total = $total;
             $request->save();
 
+            if ($data['modelType'] != 'OFFER') {
+                $model->total_intentions_value = is_null($model->total_intentions_value) ? 0 + $request->total : $model->total_intentions_value + $request->total;
+                $model->total_intentions_quantity  = $sumItems;
+                $model->save();
+            }
+
             if ($model->send_type === 'AUTOMATIC') {
+
                 AutomaticOffers::dispatch($request)->delay(now()->addSeconds(20))->onQueue('default');
             }
 

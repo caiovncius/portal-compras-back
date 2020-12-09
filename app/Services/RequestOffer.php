@@ -13,9 +13,37 @@ use Illuminate\Support\Facades\Log;
 
 class RequestOffer
 {
+    /**
+     * @param RequestModel $request
+     * @param bool $firstSend
+     * @return bool|void
+     */
     public function send(RequestModel $request, $firstSend = true)
     {
         if ($request->requestable instanceof Offer && $request->requestable->no_automatic_sending) return;
+
+        if ($request->requestable instanceof Purchase) {
+
+            $type = $request->requestable->billing_measure;
+
+            if ($type === 'VALUE') {
+                $value = $request->requestable->minimum_billing_value;
+                $total = $request->requestable->requests()->sum('total');
+                if ($total < $value) return;
+            } else {
+                $quantity = $request->requestable->minimum_billing_quantity;
+                $totalSale = 0;
+
+                $totalSale += $request->requestable->requests()->each(function ($purchaseRequest) {
+
+                    return $purchaseRequest->products()->each(function ($product) {
+                        return $product->pivot->requested_quantity;
+                    });
+                });
+
+                if ($totalSale < $quantity) return;
+            }
+        }
 
         if ($request->requestable instanceof  Offer) {
             $partner = $request->requestable
