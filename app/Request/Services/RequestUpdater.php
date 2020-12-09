@@ -82,6 +82,22 @@ class RequestUpdater implements RequestUpdatable
                 $product->pivot->save();
             });
 
+            switch ($status) {
+                case 'ATTENDED':
+                    $request->status = 'BILLED';
+                    break;
+
+                case 'PARTIALLY_ATTENDED':
+                    $request->status = 'BILLED_PARTIAL';
+                    break;
+
+                case 'PARTIALLY_ATTENDED':
+                    $request->status = 'NOT_BILLED';
+                    break;
+            }
+
+            $request->save();
+
             return true;
         } catch (\Exception $e) {
             throw $e;
