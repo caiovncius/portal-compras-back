@@ -63,7 +63,7 @@ class ManualOffers implements ShouldQueue
         Mail::to($to->toArray())
             ->cc($cc->toArray())
             ->bcc($cco->toArray())
-            ->send(new NewRequest($this->offer, $this->request))->onQueue('emails');
+            ->send(new NewRequest($this->offer, $this->request));
     }
 
     private function generateExcel()
