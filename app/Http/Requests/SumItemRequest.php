@@ -26,7 +26,7 @@ class SumItemRequest extends FormRequest
         return [
             'offerProduct'=> 'required',
             'quantity' => 'required',
-            'paymentMethod' => 'required|in:CASH,TERM'
+            'paymentMethod' => 'required|in:CASH,DEFERRED'
         ];
     }
 }
