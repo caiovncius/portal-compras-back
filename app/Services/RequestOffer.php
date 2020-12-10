@@ -28,19 +28,11 @@ class RequestOffer
 
             if ($type === 'VALUE') {
                 $value = $request->requestable->minimum_billing_value;
-                $total = $request->requestable->requests()->sum('total');
+                $total = $request->requestable->total_intentions_value;
                 if ($total < $value) return;
             } else {
                 $quantity = $request->requestable->minimum_billing_quantity;
-                $totalSale = 0;
-
-                $totalSale += $request->requestable->requests()->each(function ($purchaseRequest) {
-
-                    return $purchaseRequest->products()->each(function ($product) {
-                        return $product->pivot->requested_quantity;
-                    });
-                });
-
+                $totalSale = $total = $request->requestable->total_intentions_quantity;
                 if ($totalSale < $quantity) return;
             }
         }
